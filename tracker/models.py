@@ -8,9 +8,9 @@ from django.urls import reverse
 class User(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_lenght=30)
+    last_name = models.CharField(max_length=30)
     date_of_birth = models.DateField(null=False, blank=False)
-    train_units = models.ManyToManyField(TrainUnit)
+    training_units = models.ManyToManyField('TrainUnit', related_name='+')
 
     class Meta:
         ordering = ('last_name', 'first_name', 'date_of_birth',)
@@ -25,7 +25,7 @@ class User(models.Model):
 class Exercise(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
     description = models.CharField(max_length=1000, help_text="Insert short description here.")
-    muscles = models.ManyToManyField(Muscle, help_text="Muscles trained by the exercise.")
+    muscles = models.ManyToManyField('Muscle', help_text="Muscles trained by the exercise.")
 
     def __str__(self):
         return self.name
