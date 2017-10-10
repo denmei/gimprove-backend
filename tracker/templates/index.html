@@ -1,6 +1,13 @@
 {% extends "base_generic.html" %}
 
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index_styles.css' %}">
+
+{% endblock %}
+
 {% block content %}
+
 <h1>Smart Gym Home</h1>
 
 {% endblock %}
