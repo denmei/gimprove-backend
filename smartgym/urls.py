@@ -21,9 +21,9 @@ from django.conf.urls import url
 from django.views.generic import RedirectView
 
 urlpatterns = [
+    url(r'^$', RedirectView.as_view(url='/tracker/', permanent=True)),
     url(r'^admin/', admin.site.urls),
     url(r'^tracker/', include('tracker.urls')),
-    url(r'^$', RedirectView.as_view(url='/tracker/', permanent=True)),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

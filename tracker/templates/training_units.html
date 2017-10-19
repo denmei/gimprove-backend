@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Meine Trainingseinheiten</h1>
+
+{% if training_units_list %}
+    <ul>
+
+      {% for training_unit in training_units_list %}
+      <li>
+        <a href="{{ training_unit.get_absolute_url }}">{{ training_unit.start_time_date }}</a>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>Keine Trainingseinheiten verf&uuml;gbar.</p>
+    {% endif %}
+
+
+{% endblock %}

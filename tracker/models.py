@@ -10,7 +10,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     date_of_birth = models.DateField(null=False, blank=False)
-    training_units = models.ManyToManyField('TrainUnit', related_name='+')
+    training_units = models.ManyToManyField('TrainUnit', related_name='+', null=True, blank=True)
 
     class Meta:
         ordering = ('last_name', 'first_name', 'date_of_birth',)
@@ -19,7 +19,7 @@ class User(models.Model):
         return reverse('user-detail', args=[str(self.id)])
 
     def __str__(self):
-        return self.id
+        return str(self.first_name) + ", " + str(self.last_name)
 
 
 class Exercise(models.Model):
@@ -46,9 +46,10 @@ class TrainUnit(models.Model):
     start_time_date = models.DateTimeField(null=False, blank=False)
     end_time_date = models.DateTimeField(null=False, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    exercice_units = models.ManyToManyField('ExerciseUnit', related_name='+', null=True, blank=True)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class ExerciseUnit(models.Model):
@@ -59,7 +60,7 @@ class ExerciseUnit(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Set(models.Model):
@@ -69,4 +70,4 @@ class Set(models.Model):
     repetitions = models.IntegerField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
