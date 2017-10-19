@@ -1,31 +1,35 @@
 from django.db import models
 import uuid
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 
-class User(models.Model):
+"""class GymMember(models.Model, User):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     date_of_birth = models.DateField(null=False, blank=False)
     training_units = models.ManyToManyField('TrainUnit', related_name='+', null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
-        ordering = ('last_name', 'first_name', 'date_of_birth',)
+        ordering = ('last_name', 'first_name', 'date_of_birth')
 
     def get_absolute_url(self):
-        return reverse('user-detail', args=[str(self.id)])
+        return reverse('gymmember-detail', args=[str(self.id)])
 
     def __str__(self):
-        return str(self.first_name) + ", " + str(self.last_name)
+        return str(self.first_name) + ", " + str(self.last_name)"""
 
 
 class Exercise(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
     description = models.CharField(max_length=1000, help_text="Insert short description here.")
     muscles = models.ManyToManyField('Muscle', help_text="Muscles trained by the exercise.")
+    equipment = models.ManyToManyField('Equipment', help_text="Necessary equipment for the exercise.")
 
     def __str__(self):
         return self.name
@@ -41,7 +45,8 @@ class Muscle(models.Model):
         return self.name
 
 
-class TrainUnit(models.Model):
+class TrainUnit(models.Model, LoginRequiredMixin):
+    login_url = '/login/'
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     start_time_date = models.DateTimeField(null=False, blank=False)
     end_time_date = models.DateTimeField(null=False, blank=False)
@@ -71,3 +76,10 @@ class Set(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Equipment(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
