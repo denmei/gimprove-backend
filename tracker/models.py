@@ -3,26 +3,26 @@ import uuid
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
 
-"""class GymMember(models.Model, User):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_of_birth = models.DateField(null=False, blank=False)
-    training_units = models.ManyToManyField('TrainUnit', related_name='+', null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    bio = models.TextField(max_length=500, blank=True, help_text="Beschreibung.")
 
-    class Meta:
-        ordering = ('last_name', 'first_name', 'date_of_birth')
+    @receiver(post_save, sender=User)
+    def create_user_profile(self, sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
 
-    def get_absolute_url(self):
-        return reverse('gymmember-detail', args=[str(self.id)])
+    @receiver(post_save, sender=User)
+    def save_user_profile(self, sender, instance, **kwargs):
+        instance.profile.save()
 
-    def __str__(self):
-        return str(self.first_name) + ", " + str(self.last_name)"""
 
 
 class Exercise(models.Model):
