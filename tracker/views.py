@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import TrainUnit
+from .models import TrainUnit, Profile
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -18,3 +19,9 @@ class TrainingUnitsList(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return TrainUnit.objects.filter(user=self.request.user)
+
+
+class ProfileView(LoginRequiredMixin, generic.DetailView):
+    model = Profile
+    context_object_name = 'profile'
+    template_name = 'profile.html'

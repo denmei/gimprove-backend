@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Meine Profil</h1>
+
+<ul>
+    {% if profile.bio %}
+    <p><b>Beschreibung:</b> <br>{{ profile.bio }}</p>
+    {% endif %}
+</ul>
+
+{% endblock %}

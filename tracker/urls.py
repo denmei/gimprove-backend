@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^training_units/$', views.TrainingUnitsList.as_view(), name='training_units')
+    url(r'^training_units/$', views.TrainingUnitsList.as_view(), name='training_units'),
+    url(r'^profile/(?P<pk>\d+)$', views.ProfileView.as_view(), name='profile')
 ]

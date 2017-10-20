@@ -10,19 +10,18 @@ from django.dispatch import receiver
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     date_of_birth = models.DateField(null=False, blank=False)
     bio = models.TextField(max_length=500, blank=True, help_text="Beschreibung.")
 
-    @receiver(post_save, sender=User)
+    """@receiver(post_save, sender=User)
     def create_user_profile(self, sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
 
     @receiver(post_save, sender=User)
     def save_user_profile(self, sender, instance, **kwargs):
-        instance.profile.save()
-
+        instance.profile.save()"""
 
 
 class Exercise(models.Model):
