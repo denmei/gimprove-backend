@@ -17,8 +17,11 @@ class TrainingUnitsList(LoginRequiredMixin, generic.ListView):
     context_object_name = 'training_units_list'
     template_name = 'training_units.html'
 
-    def get_queryset(self):
-        return TrainUnit.objects.filter(user=self.request.user)
+
+class TrainingUnitDetail(LoginRequiredMixin, generic.DetailView):
+    model = TrainUnit
+    context_object_name = 'training_unit'
+    template_name = 'train_unit.html'
 
 
 class ProfileView(LoginRequiredMixin, generic.DetailView):

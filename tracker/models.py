@@ -50,10 +50,13 @@ class TrainUnit(models.Model, LoginRequiredMixin):
     start_time_date = models.DateTimeField(null=False, blank=False)
     end_time_date = models.DateTimeField(null=False, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    exercice_units = models.ManyToManyField('ExerciseUnit', related_name='+', null=True, blank=True)
+    exercise_units = models.ManyToManyField('ExerciseUnit', related_name='+', null=True, blank=True)
 
     def __str__(self):
         return str(self.id)
+
+    def get_absolute_url(self):
+        return reverse('training_unit', args=[str(self.id)])
 
 
 class ExerciseUnit(models.Model):
