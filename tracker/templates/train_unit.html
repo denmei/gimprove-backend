@@ -2,6 +2,14 @@
 
 {% block content %}
 
-    <h1>{{ training_unit.id }} Detailansicht hier</h1>
+    <h1>Trainingseinheit vom {{ training_unit.start_time_date }}</h1>
+    <p>{{ training_unit.user.firstname }}</p>
+
+    <ul>
+        <li>Test</li>
+        {% for ex in training_unit.exercise_units.all %}
+            <li>k</li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

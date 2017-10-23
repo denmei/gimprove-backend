@@ -56,7 +56,7 @@ class TrainUnit(models.Model, LoginRequiredMixin):
         return str(self.id)
 
     def get_absolute_url(self):
-        return reverse('training_unit', args=[str(self.id)])
+        return reverse('exercise_unit_list', args=[str(self.id)])
 
 
 class ExerciseUnit(models.Model):

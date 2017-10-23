@@ -1,0 +1,15 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+    <h1>Trainingseinheit vom {{ training_unit.start_time_date }}</h1>
+
+    <h2>Einheiten:</h2>
+
+    <ul>
+    {% for ex_unit in exercise_unit_list %}
+        <li>{{ ex_unit.exercise }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
