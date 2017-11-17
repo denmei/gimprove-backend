@@ -7,11 +7,14 @@
 
 {% block content %}
 
-<h1>Meine Profil</h1>
+<h1>Mein Profil</h1>
 
 <ul>
     {% if profile.bio %}
     <p><b>Beschreibung:</b> <br>{{ profile.bio }}</p>
+    {% endif %}
+    {% if profile.gym %}
+    <p><b>Gym:</b> <br>{{ profile.gym.name }}</p>
     {% endif %}
 </ul>
 

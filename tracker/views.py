@@ -4,10 +4,10 @@ from .models import TrainUnit, Profile, ExerciseUnit
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 import datetime
-from .forms import AddExerciseUnitForm
-from django.views.generic.edit import CreateView
+from .forms import AddExerciseUnitForm, AddTrainUnitForm
+from django.views.generic.edit import CreateView, DeleteView
 
 # Create your views here.
 
@@ -35,12 +35,12 @@ class ExerciseUnitList(LoginRequiredMixin, generic.ListView):
     template_name = 'exercise_unit_list.html'
 
     def get_queryset(self):
-        self.train_unit = get_object_or_404(TrainUnit, pk=self.kwargs['pk'])
-        return ExerciseUnit.objects.filter(train_unit=self.train_unit)
+        train_unit = get_object_or_404(TrainUnit, pk=self.kwargs['pk'])
+        return ExerciseUnit.objects.filter(train_unit=train_unit)
 
     def get_context_data(self, **kwargs):
         context = super(ExerciseUnitList, self).get_context_data(**kwargs)
-        context['training_unit'] = self.train_unit
+        context['training_unit'] = get_object_or_404(TrainUnit, pk=self.kwargs['pk'])
         return context
 
 
@@ -52,24 +52,26 @@ class ProfileView(LoginRequiredMixin, generic.DetailView):
 
 class AddExerciseUnit(CreateView):
     model = ExerciseUnit
-    template_name = "add_exercise_unit.html"
-    fields = '__all__'
+    form_class = AddExerciseUnitForm
+    success_url = reverse_lazy('training_units')
 
-    def get_form(self):
-        form = super(AddExerciseUnit, self).get_form()
-        form.fields['start_time_date'].widget.attrs.update({'class': 'datepicker'})
-        return form
+    def get_initial(self):
+        return {'train_unit': self.kwargs.get('pk'), 'time_date': datetime.datetime.today()}
 
 
-def add_exercise_unit(request, pk):
-    training_unit = get_object_or_404(TrainUnit, pk=pk)
-    if request.method == "POST":
-        # Check if the form is valid:
-        form = AddExerciseUnitForm(request.POST)
-    else:
-        proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
-        form = AddExerciseUnitForm(initial={'start_time_date': proposed_renewal_date, })
-
-    return render(request, 'add_exercise_unit.html', {'form': form, 'train_unit': training_unit})
+class DeleteTrainingUnit(DeleteView):
+    model = TrainUnit
+    success_url = reverse_lazy('training_units')
+    context_object_name = 'training_unit'
 
 
+class AddTrainingUnit(CreateView):
+    model = TrainUnit
+    context_object_name = 'training_unit'
+    template_name = "add_train_unit.html"
+    form_class = AddTrainUnitForm
+    success_url = reverse_lazy('training_units')
+
+    def get_initial(self):
+        return {'date': datetime.date.today(), 'user': self.request.user, 'start_time_date': datetime.datetime.today(),
+                'end_time_date': datetime.datetime.today()}

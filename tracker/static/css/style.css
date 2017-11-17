@@ -1,30 +1,57 @@
+html, body {
+    height: 100%;
+    font-family: TrajanPro-Regular, 'Lucida Grande', sans-serif;
+}
+
+h1 {
+    font-family: TrajanPro-Regular, 'Lucida Grande', sans-serif;
+}
+
+h2 {
+    font-family: TrajanPro-Regular, 'Lucida Grande', sans-serif;
+}
+
+.box {
+    text-align: left;
+    padding-left: 250px;
+}
+
+.headline {
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;
+    border: solid 12px white;
+    border-radius: 5px;
+}
+
+
 .navbar {
       margin-bottom: 0;
       border-radius: 0;
-    }
+      background-color: black;
+}
 
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 100%;
+   }
 
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
+/* Set gray background color and 100% height */
+.sidenav {
+  padding: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
 
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
+/* Set black background color, white text and some padding */
+footer {
+  background-color: black;
+  color: white;
+  padding: 15px;
+  font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+}
 
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;}
-    }
+.row {
+    background-color: #e6ffe6;
+    background-size: auto auto;
+}
