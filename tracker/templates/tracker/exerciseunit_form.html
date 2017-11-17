@@ -1,5 +1,11 @@
 {% extends "base_generic.html" %}
 
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{% endblock %}
+
 {% block content %}
 
 <h2>Zur Trainingseinheit hinzufügen:</h2>
