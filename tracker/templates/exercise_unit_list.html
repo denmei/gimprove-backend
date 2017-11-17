@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1>Trainingseinheit vom {{ training_unit.start_time_date }}</h1>
+    <h1>Trainingseinheit vom {{ training_unit.date }}</h1>
 
     <h2>Einheiten:</h2>
 
@@ -12,6 +12,6 @@
     {% endfor %}
     </ul>
 
-    <a href="{% url 'add_exercise_unit' training_unit %}"><input type="submit"></a>
-
+    <a href="{% url 'add_exercise_unit' training_unit %}"><input type="submit" value="Hinzufügen"></a>
+    <a href="{% url 'delete_training_unit' training_unit %}"><input type="submit" value="Trainingseinheit löschen"></a>
 {% endblock %}

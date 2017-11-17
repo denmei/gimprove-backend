@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Trainingseinheit vom {{ training_unit.date }} sicher löschen?</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Löschen" />
+</form>
+{% endblock %}

@@ -13,6 +13,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     date_of_birth = models.DateField(null=False, blank=False)
     bio = models.TextField(max_length=500, blank=True, help_text="Beschreibung.")
+    gym = models.ManyToManyField('Gym', blank=True, null=True)
 
     """@receiver(post_save, sender=User)
     def create_user_profile(self, sender, instance, created, **kwargs):
@@ -49,6 +50,7 @@ class TrainUnit(models.Model, LoginRequiredMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     start_time_date = models.DateTimeField(null=False, blank=False)
     end_time_date = models.DateTimeField(null=False, blank=False)
+    date = models.DateField(null=False, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     exercise_units = models.ManyToManyField('ExerciseUnit', related_name='+', null=True, blank=True)
 
@@ -61,8 +63,7 @@ class TrainUnit(models.Model, LoginRequiredMixin):
 
 class ExerciseUnit(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    start_time_date = models.DateTimeField(null=False, blank=False)
-    end_time_date = models.DateTimeField(null=False, blank=False)
+    time_date = models.DateTimeField(null=False, blank=False)
     train_unit = models.ForeignKey(TrainUnit, on_delete=models.CASCADE)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
 
@@ -82,6 +83,14 @@ class Set(models.Model):
 
 class Equipment(models.Model):
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class Gym(models.Model):
+    name = models.CharField(max_length=100, help_text="Insert name of gym here.")
+    members = models.ManyToManyField(User, blank=True, null=True)
 
     def __str__(self):
         return self.name
