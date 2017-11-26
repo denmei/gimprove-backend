@@ -1,13 +1,23 @@
 {% extends "base_generic.html" %}
 
-{% block content %}
-<h2>Neue Trainingseinheit erstellen:</h2>
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Speichern" />
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
-</form>
+{% endblock %}
+
+{% block content %}
+
+<div class="box">
+    <h2>Neue Trainingseinheit erstellen:</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Speichern" />
+
+    </form>
+</div>
 {% endblock %}

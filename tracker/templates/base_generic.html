@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -33,7 +34,6 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="{% url 'index' %}">Home</a></li>
         <li><a href="">About</a></li>
-        <li><a href="#">Projects</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -48,21 +48,18 @@
 </nav>
 
   <div class="row content">
+    {% if user.is_authenticated %}
     <div class="col-sm-2 sidenav">
-      {% if user.is_authenticated %}
       <p>Hallo {{ user.get_username }}!</p>
       <p><a href="{% url 'training_units' %}">Meine Trainingseinheiten</a></p>
       <p><a href="#">Meine Muskeln</a></p>
       <p><a href="#">Meine Übungen</a></p>
       <p><a href="{% url 'profile' user.id %}">Mein Profil</a></p>
-      {% else %}
-      <p>Bitte melde dich an.</p>
-      {% endif %}
     </div>
-    <div class="box">
-        {% block content %}
-        {% endblock %}
-    </div>
+    {% endif %}
+    {% block content %}
+
+    {% endblock %}
   </div>
 
 

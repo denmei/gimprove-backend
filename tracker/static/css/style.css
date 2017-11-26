@@ -1,43 +1,67 @@
 html, body {
     height: 100%;
+    margin: 0px;
+    padding: 0px;
     font-family: TrajanPro-Regular, 'Lucida Grande', sans-serif;
+    color: white;
 }
 
 h1 {
-    font-family: TrajanPro-Regular, 'Lucida Grande', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
 }
 
 h2 {
-    font-family: TrajanPro-Regular, 'Lucida Grande', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
 }
 
 .box {
     text-align: left;
-    padding-left: 250px;
+    padding-left: 350px;
 }
 
-.headline {
-    font-weight: bold;
-    font-size: 50px;
+.home {
+    margin: 0px;
+    padding: 100px;
+    height: 100%;
     text-align: center;
-    border: solid 12px white;
-    border-radius: 5px;
+    background-image: url('dumbbell.jpeg');
+    background-size: 100% 100%;
+    color: white;
 }
 
+.home h1 {
+    font-size: 90px;
+}
+
+.home p {
+    color: white;
+    font-size: 30px;
+}
+
+.home .small_text {
+    font-size: 15px;
+}
 
 .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
+      font-family: 'Raleway', sans-serif;
       background-color: black;
+      margin: 0px;
+      padding: 0px;
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
     height: 100%;
+    background-color: grey;
+    margin: 0px;
+    padding: 0px;
    }
 
 /* Set gray background color and 100% height */
 .sidenav {
+  color: black;
   padding: 20px;
   background-color: #f1f1f1;
   height: 100%;
@@ -48,10 +72,14 @@ footer {
   background-color: black;
   color: white;
   padding: 15px;
-  font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
 }
 
-.row {
-    background-color: #e6ffe6;
-    background-size: auto auto;
+.black_button {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    border: solid 5px white;
+    border-radius: 8px;
+    font-size: 30px;
+    background-color: transparent;
+    margin: 15px;
 }

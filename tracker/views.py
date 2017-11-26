@@ -18,18 +18,18 @@ def index(request):
 
 
 class TrainingUnitsList(LoginRequiredMixin, generic.ListView):
+    """
+    Show all training units of a user.
+    """
     model = TrainUnit
     context_object_name = 'training_units_list'
     template_name = 'training_units.html'
 
 
-class TrainingUnitDetail(LoginRequiredMixin, generic.DetailView):
-    model = TrainUnit
-    context_object_name = 'training_unit'
-    template_name = 'train_unit.html'
-
-
 class ExerciseUnitList(LoginRequiredMixin, generic.ListView):
+    """
+    Show all exercise units of a particular training unit.
+    """
     model = ExerciseUnit
     context_object_name = 'exercise_unit_list'
     template_name = 'exercise_unit_list.html'
@@ -45,27 +45,41 @@ class ExerciseUnitList(LoginRequiredMixin, generic.ListView):
 
 
 class ProfileView(LoginRequiredMixin, generic.DetailView):
+    """
+    Show profile of user.
+    """
     model = Profile
     context_object_name = 'profile'
     template_name = 'profile.html'
 
 
 class AddExerciseUnit(CreateView):
+    """
+    Adding a exercise unit to a train unit.
+    """
     model = ExerciseUnit
     form_class = AddExerciseUnitForm
-    success_url = reverse_lazy('training_units')
 
     def get_initial(self):
         return {'train_unit': self.kwargs.get('pk'), 'time_date': datetime.datetime.today()}
 
+    def get_success_url(self):
+        return reverse('exercise_unit_list', args=[str(self.kwargs.get('pk'))])
+
 
 class DeleteTrainingUnit(DeleteView):
+    """
+    Delete a complete training unit with all related exercise units.
+    """
     model = TrainUnit
     success_url = reverse_lazy('training_units')
     context_object_name = 'training_unit'
 
 
 class AddTrainingUnit(CreateView):
+    """
+    Add new training unit.
+    """
     model = TrainUnit
     context_object_name = 'training_unit'
     template_name = "add_train_unit.html"

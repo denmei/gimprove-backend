@@ -1,7 +1,15 @@
 {% extends "base_generic.html" %}
 
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+{% endblock %}
+
 {% block content %}
 
+<div class="box">
     <h1>Trainingseinheit vom {{ training_unit.start_time_date }}</h1>
     <p>{{ training_unit.user.firstname }}</p>
 
@@ -11,5 +19,5 @@
             <li>k</li>
         {% endfor %}
     </ul>
-
+</div>
 {% endblock %}

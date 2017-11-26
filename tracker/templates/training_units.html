@@ -3,26 +3,28 @@
 {% block extra_head %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
 {% endblock %}
 
 {% block content %}
+<div class="box">
+    <h1>Meine Trainingseinheiten</h1>
 
-<h1>Meine Trainingseinheiten</h1>
+    {% if training_units_list %}
+        <ul>
 
-{% if training_units_list %}
-    <ul>
+          {% for training_unit in training_units_list %}
+          <li>
+            <a href="{{ training_unit.get_absolute_url }}">{{ training_unit.start_time_date }}</a>
+          </li>
+          {% endfor %}
 
-      {% for training_unit in training_units_list %}
-      <li>
-        <a href="{{ training_unit.get_absolute_url }}">{{ training_unit.start_time_date }}</a>
-      </li>
-      {% endfor %}
+        </ul>
+        {% else %}
+          <p>Keine Trainingseinheiten verfügbar.</p>
+        {% endif %}
 
-    </ul>
-    {% else %}
-      <p>Keine Trainingseinheiten verfügbar.</p>
-    {% endif %}
-
-    <a href="{% url 'add_train_unit' %}"><input type="submit" value="Trainingseinheit hinzufügen"></a>
+        <a href="{% url 'add_train_unit' %}"><input type="submit" value="Trainingseinheit hinzufügen"></a>
+</div>
 {% endblock %}
