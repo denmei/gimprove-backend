@@ -1,0 +1,23 @@
+{% extends 'base_generic.html' %}
+
+
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<div class="box">
+    <h1>Meine Freunde</h1>
+    <div class="friends-grid">
+        {% for friend in profile.friends.all %}
+            <div class="friend">
+                <img src="{{ friend.profile_image.url }}">
+                <a href="{% url 'profile' friend.user.id %}">{{ friend.user.username }}</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

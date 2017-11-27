@@ -13,5 +13,6 @@ urlpatterns = [
         name='delete_training_unit'),
     url(r'^profile/(?P<pk>\d+)$', views.ProfileView.as_view(), name='profile'),
     url(r'^achievements/(?P<pk>\d+)$', views.AchievementView.as_view(), name='achievements'),
-    url(r'^gym/(?P<pk>\d+)$', views.GymView.as_view(), name='gym')
+    url(r'^gym/(?P<pk>\d+)$', views.GymView.as_view(), name='gym'),
+    url(r'^friendship/(?P<pk>\d+)$', views.FriendshipView.as_view(), name='friendships')
 ]

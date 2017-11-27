@@ -18,6 +18,7 @@ class Profile(models.Model):
     gym = models.ManyToManyField('Gym', blank=True, null=True)
     achievements = models.ManyToManyField('Achievement', null=True, blank=True)
     profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+    friends = models.ManyToManyField('Profile', blank=True, null=True)
 
     def __str__(self):
         return str(self.user)

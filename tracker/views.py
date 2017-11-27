@@ -65,7 +65,7 @@ class GymView(LoginRequiredMixin, generic.DetailView):
     template_name = 'gym.html'
 
 
-class AddExerciseUnit(CreateView):
+class AddExerciseUnit(LoginRequiredMixin, CreateView):
     """
     Adding a exercise unit to a train unit.
     """
@@ -79,7 +79,7 @@ class AddExerciseUnit(CreateView):
         return reverse('exercise_unit_list', args=[str(self.kwargs.get('pk'))])
 
 
-class DeleteTrainingUnit(DeleteView):
+class DeleteTrainingUnit(LoginRequiredMixin, DeleteView):
     """
     Delete a complete training unit with all related exercise units.
     """
@@ -88,7 +88,7 @@ class DeleteTrainingUnit(DeleteView):
     context_object_name = 'training_unit'
 
 
-class AddTrainingUnit(CreateView):
+class AddTrainingUnit(LoginRequiredMixin, CreateView):
     """
     Add new training unit.
     """
@@ -101,3 +101,9 @@ class AddTrainingUnit(CreateView):
     def get_initial(self):
         return {'date': datetime.date.today(), 'user': self.request.user, 'start_time_date': datetime.datetime.today(),
                 'end_time_date': datetime.datetime.today()}
+
+
+class FriendshipView(LoginRequiredMixin, generic.DetailView):
+    model = Profile
+    context_object_name = 'profile'
+    template_name = 'friendships.html'

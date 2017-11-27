@@ -10,17 +10,34 @@
 
 {% block content %}
 <div class="box">
-    <h1>Mein Profil</h1>
-    {% if profile.profile_image %}
-        <img src='{{ profile.profile_image.url  }}' alt="Profile Image"/>
+    {% if profile.user == user %}
+        <h1>Mein Profil</h1>
+    {% else %}
+        <h1>{{ profile.user.username }}'s Profil</h1>
     {% endif %}
-    <ul>
+    <div class="profile-grid">
+        {% if profile.profile_image %}
+            <img src='{{ profile.profile_image.url  }}' alt="Profile Image"/>
+        {% endif %}
         {% if profile.bio %}
         <p><b>Beschreibung:</b> <br>{{ profile.bio }}</p>
         {% endif %}
         {% if profile.gym %}
         <p><b>Gym:</b> <br>{{ profile.gym.name }}</p>
         {% endif %}
-    </ul>
+        {% if profile.user == user %}
+            <p><b>Meine Erfolge:</b></p>
+        {% else %}
+            <p><b>{{ profile.user.username }}'s Erfolge:</b></p>
+        {% endif %}
+        <div class="achievement-grid">
+            {% for achievement in profile.achievements.all %}
+            <div class="ach">
+                <img src="{{ achievement.achievement_image.url }}">
+                <p>{{ achievement.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock %}
