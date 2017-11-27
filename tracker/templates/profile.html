@@ -11,7 +11,9 @@
 {% block content %}
 <div class="box">
     <h1>Mein Profil</h1>
-
+    {% if profile.profile_image %}
+        <img src='{{ profile.profile_image.url  }}' alt="Profile Image"/>
+    {% endif %}
     <ul>
         {% if profile.bio %}
         <p><b>Beschreibung:</b> <br>{{ profile.bio }}</p>

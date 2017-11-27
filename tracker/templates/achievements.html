@@ -1,0 +1,23 @@
+{% extends 'base_generic.html' %}
+
+
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<div class="box">
+    <h1>Meine Erfolge</h1>
+    <div class="achievement-grid">
+        {% for achievement in achievements %}
+        <div class="a">
+            <img src="{{ achievement.achievement_image.url }}">
+            <p>{{ achievement.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

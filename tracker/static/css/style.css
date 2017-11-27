@@ -9,6 +9,7 @@ html, body {
 h1 {
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
+    margin-bottom: 30px;
 }
 
 h2 {
@@ -19,6 +20,11 @@ h2 {
 .box {
     text-align: left;
     padding-left: 350px;
+}
+
+.box p {
+    color: white;
+    font-size: 20px;
 }
 
 .home {
@@ -65,6 +71,7 @@ h2 {
   padding: 20px;
   background-color: #f1f1f1;
   height: 100%;
+  min-width: 180px;
 }
 
 /* Set black background color, white text and some padding */
@@ -83,3 +90,31 @@ footer {
     background-color: transparent;
     margin: 15px;
 }
+
+.achievement-grid {
+    display: grid;
+    grid-row-gap: 40px;
+    grid-column-gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    justify-content: center;
+    justify-items: center;
+    align-items: start;
+    align-content: center;
+}
+
+.a {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+
+}
+
+.a img{
+    height: 200px;
+}
+
+.a p {
+    text-align: center;
+}
+

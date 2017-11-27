@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import TrainUnit, Profile, ExerciseUnit
+from .models import TrainUnit, Profile, ExerciseUnit, Achievement, Gym
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
@@ -51,6 +51,18 @@ class ProfileView(LoginRequiredMixin, generic.DetailView):
     model = Profile
     context_object_name = 'profile'
     template_name = 'profile.html'
+
+
+class AchievementView(LoginRequiredMixin, generic.ListView):
+    model = Achievement
+    context_object_name = 'achievements'
+    template_name = 'achievements.html'
+
+
+class GymView(LoginRequiredMixin, generic.DetailView):
+    model = Gym
+    context_object_name = 'gym'
+    template_name = 'gym.html'
 
 
 class AddExerciseUnit(CreateView):

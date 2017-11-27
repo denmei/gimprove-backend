@@ -54,6 +54,8 @@
       <p><a href="{% url 'training_units' %}">Meine Trainingseinheiten</a></p>
       <p><a href="#">Meine Muskeln</a></p>
       <p><a href="#">Meine Übungen</a></p>
+      <p><a href="{% url 'achievements' user.id%}">Meine Erfolge</a></p>
+      <p><a href="#">Mein Gym</a></p>
       <p><a href="{% url 'profile' user.id %}">Mein Profil</a></p>
     </div>
     {% endif %}

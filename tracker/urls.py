@@ -11,5 +11,7 @@ urlpatterns = [
     url(r'^exercise_unit_list/(?P<pk>[0-9A-Fa-f-]+)/add/$', views.AddExerciseUnit.as_view(), name='add_exercise_unit'),
     url(r'^exercise_unit_list/(?P<pk>[0-9A-Fa-f-]+)/delete/$', views.DeleteTrainingUnit.as_view(),
         name='delete_training_unit'),
-    url(r'^profile/(?P<pk>\d+)$', views.ProfileView.as_view(), name='profile')
+    url(r'^profile/(?P<pk>\d+)$', views.ProfileView.as_view(), name='profile'),
+    url(r'^achievements/(?P<pk>\d+)$', views.AchievementView.as_view(), name='achievements'),
+    url(r'^gym/(?P<pk>\d+)$', views.GymView.as_view(), name='gym')
 ]

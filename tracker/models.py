@@ -3,10 +3,12 @@ import uuid
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+import os
+
 
 # Create your models here.
+def get_image_path(instance, filename):
+    return os.path.join('photos', str(instance.pk), filename)
 
 
 class Profile(models.Model):
@@ -14,15 +16,11 @@ class Profile(models.Model):
     date_of_birth = models.DateField(null=False, blank=False)
     bio = models.TextField(max_length=500, blank=True, help_text="Beschreibung.")
     gym = models.ManyToManyField('Gym', blank=True, null=True)
+    achievements = models.ManyToManyField('Achievement', null=True, blank=True)
+    profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
-    """@receiver(post_save, sender=User)
-    def create_user_profile(self, sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(self, sender, instance, **kwargs):
-        instance.profile.save()"""
+    def __str__(self):
+        return str(self.user)
 
 
 class Exercise(models.Model):
@@ -94,3 +92,14 @@ class Gym(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Achievement(models.Model):
+    name = models.CharField(max_length=100, help_text="Insert the name of the achievement here.", primary_key=True)
+    description = models.TextField(max_length=500, help_text="What did the user do to achieve it?", null=True,
+                                   blank=True)
+    user = models.ManyToManyField(User, blank=True, null=True)
+    achievement_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.name)
