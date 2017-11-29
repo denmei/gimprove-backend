@@ -1,161 +1,107 @@
 html, body {
     height: 100%;
+    min-height: 100%;
+    width: 100%;
+    min-width: 100%;
     margin: 0px;
+    max-width: 100%;
     padding: 0px;
     font-family: TrajanPro-Regular, 'Lucida Grande', sans-serif;
     color: white;
+}
+
+@media only screen and (min-width: 1280px) {
+    html, body {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    html, body {
+        font-size: 8px;
+    }
+}
+
+a {
+    color: white;
+    text-decoration: underline;
 }
 
 h1 {
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
     margin-bottom: 30px;
-    font-size: 40px;
+    font-size: 3.0rem;
 }
 
 h2 {
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
-    font-size: 33px;
+    font-size: 2.5rem;
 }
 
 .box {
     text-align: left;
-    padding-left: 350px;
-    padding-right: 50px;
-    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    min-width: 100%;
 }
 
 .box p {
+    font-size: 1.1rem;
     color: white;
-    font-size: 20px;
 }
 
 .box a {
-    font-size: 20px;
+    font-size: 1.1rem;
 }
 
 .input_link {
     color: black;
 }
 
-.home {
+.container-fluid {
+    height: 100%;
+    min-height: 100%;
+    padding: 0px;
     margin: 0px;
-    padding: 100px;
+}
+
+.grey {
+    background-color: grey;
+}
+
+.row {
     height: 100%;
-    text-align: center;
-    background-image: url('dumbbell.jpeg');
-    background-size: 100% 100%;
-    color: white;
-}
-
-.home h1 {
-    font-size: 90px;
-}
-
-.home p {
-    color: white;
-    font-size: 30px;
-}
-
-.home .small_text {
-    font-size: 15px;
-}
-
-.navbar {
-      font-family: 'Raleway', sans-serif;
-      background-color: black;
-      margin: 0px;
-      padding: 0px;
-}
-
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
-    height: 100%;
+    min-height: 100%;
+    width: 100%;
     background-color: grey;
     margin: 0px;
     padding: 0px;
-   }
-
-/* Set gray background color and 100% height */
-.sidenav {
-  color: black;
-  padding: 20px;
-  background-color: #f1f1f1;
-  height: 100%;
-  min-width: 180px;
-}
-
-/* Set black background color, white text and some padding */
-footer {
-  background-color: black;
-  color: white;
-  padding: 15px;
-  position: static;
-  text-align: center;
-}
-
-.black_button {
-    font-family: 'Raleway', sans-serif;
-    color: white;
-    border: solid 5px white;
-    border-radius: 8px;
-    font-size: 30px;
-    background-color: transparent;
-    margin: 15px;
-}
-
-.achievement-grid {
-    display: grid;
-    grid-row-gap: 40px;
-    grid-column-gap: 30px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    justify-content: center;
-    justify-items: center;
-    align-items: start;
-    align-content: center;
 }
 
 .ach {
+    padding: 18px;
     display: grid;
-    justify-content: center;
     justify-items: center;
 }
 
 .ach img{
-    height: 200px;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .ach p {
     text-align: center;
 }
 
-.friends-grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-gap: 20px;
-    justify-content: left;
-    justify-items: left;
-    align-items: start;
-    align-content: center;
-}
-
 .friend {
-    width: 100%;
-    max-height: 200px;
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: repeat(1, 1fr);
-    grid-gap: 20px;
     padding: 8px;
     border: 2px solid white;
     border-radius: 5px;
-    align-items: center;
-    align-content: center;
-    justify-content: left;
+    display: grid;
+    justify-items: center;
+    margin: 10px;
 }
 
 .friend img {
@@ -172,4 +118,77 @@ footer {
 .profile-grid {
     grid-template-columns: 200px 1fr;
     grid-template-rows: repeat(1, 1fr);
+}
+
+.black-text input {
+    color: black;
+}
+
+/*------ Footer ---------*/
+footer {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  position: static;
+  text-align: center;
+  font-size: 1.2rem;
+  bottom: 0;
+}
+
+/*------ Start and Login Page -------*/
+.home {
+    margin: 0px;
+    padding: 100px;
+    height: 100%;
+    min-height: 100%;
+    text-align: center;
+    background-image: url('dumbbell.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.home h1 {
+    font-size: 10rem;
+}
+
+.home p {
+    color: white;
+    font-size: 2rem;
+}
+
+.home .small_text {
+    font-size: 1.2rem;
+}
+
+
+.home .black_button {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    border: solid 5px white;
+    border-radius: 8px;
+    font-size: 2.0rem;
+    background-color: transparent;
+    margin: 15px;
+}
+
+/*----------- NavBar ---------*/
+.navbar {
+      font-family: 'Raleway', sans-serif;
+      background-color: black;
+      margin: 0px;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 1.1rem;
+}
+
+.navbar a {
+    text-decoration: none;
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
 }

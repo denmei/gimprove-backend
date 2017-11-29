@@ -20,21 +20,24 @@
 
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-static-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="myNavBar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
         <a class="navbar-brand" href="{% url 'index' %}">SmartGym</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{% url 'index' %}">Home</a></li>
-        <li><a href="">About</a></li>
-        <li><a href="#">Contact</a></li>
+          {% if user.is_authenticated %}
+              <li><a href="{% url 'training_units' %}">Meine Trainingseinheiten</a></li>
+              <li><a href="#">Mein Gym</a></li>
+              <li><a href="{% url 'friendships' user.id %}">Meine Freunde</a></li>
+              <li><a href="{% url 'profile' user.id %}">Mein Profil</a></li>
+          {% endif %}
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
@@ -47,27 +50,17 @@
   </div>
 </nav>
 
-  <div class="row content">
-    {% if user.is_authenticated %}
-    <div class="col-sm-2 sidenav">
-      <p>Hallo {{ user.get_username }}!</p>
-      <p><a href="{% url 'training_units' %}">Meine Trainingseinheiten</a></p>
-      <p><a href="#">Meine Muskeln</a></p>
-      <p><a href="#">Meine Übungen</a></p>
-      <!-- <p><a href="{% url 'achievements' user.id%}">Meine Erfolge</a></p> -->
-      <p><a href="#">Mein Gym</a></p>
-      <p><a href="{% url 'friendships' user.id %}">Meine Freunde</a></p>
-      <p><a href="{% url 'profile' user.id %}">Mein Profil</a></p>
-    </div>
-    {% endif %}
-    {% block content %}
+<section class="container-fluid grey">
+  <div class="row">
+      {% block content %}
 
-    {% endblock %}
+      {% endblock %}
   </div>
-
+</section>
 
 <footer>
-  <p>SmartGym - Draft, Dennis Meisner</p>
+  <p>SmartGym - Draft</p>
+  <p><a href="#">About</a> / <a href="#">Contact</a></p>
 </footer>
 
 </body>
