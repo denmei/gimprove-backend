@@ -9,49 +9,61 @@
 {% endblock %}
 
 {% block content %}
-<div class="box col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="row">
+    <div class="box col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
             {% if profile.user == user %}
-                <h1>Mein Profil</h1>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1>Mein Profil</h1>
+                </div>
             {% else %}
-                <h1>{{ profile.user.username }}'s Profil</h1>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 vcenter">
+                    <h1>{{ profile.user.username }}'s Profil</h1>
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 vcenter">
+                    {% if user.id in user.profile.get_follow_ids %}
+                        <button type="button" class="btn">Folge ich</button>
+                    {% else %}
+                        <button type="button" class="btn btn-primary">Folgen</button>
+                    {% endif %}
+                </div>
             {% endif %}
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-            {% if profile.bio %}
-            <p><b>Beschreibung:</b> <br>{{ profile.bio }}</p>
-            {% endif %}
-            {% if profile.gym %}
-            <p><b>Gym:</b> <br>{{ profile.gym.name }}</p>
-            {% endif %}
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            {% if profile.profile_image %}
-                <img src='{{ profile.profile_image.url  }}' class="img-rounded" alt="Profile Image"/>
-            {% else %}
-                <p>Kein Bild vorhanden.</p>
-            {% endif %}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            {% if profile.user == user %}
-                <p><b>Meine Erfolge:</b></p>
-            {% else %}
-                <p><b>{{ profile.user.username }}'s Erfolge:</b></p>
-            {% endif %}
-        </div>
-    </div>
-    <div class="row">
-        {% for achievement in profile.achievements.all %}
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ach">
-                <img src="{{ achievement.achievement_image.url }}">
-                <p>{{ achievement.description }}</p>
+        <div class="row">
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                {% if profile.bio %}
+                <p><b>Beschreibung:</b> <br>{{ profile.bio }}</p>
+                {% endif %}
+                {% if profile.gym %}
+                <p><b>Gym: </b>{{ profile.gym.name }}</p>
+                {% endif %}
+                <p><b>Follower: </b><a href="{% url 'followers' profile.user.id %}">{{ profile.get_follower_connections |length }}</a></p>
             </div>
-        {% endfor %}
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                {% if profile.profile_image %}
+                    <img src='{{ profile.profile_image.url  }}' class="profile-img" alt="Profile Image"/>
+                {% else %}
+                    <p>Kein Bild vorhanden.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                {% if profile.user == user %}
+                    <p><b>Meine Erfolge:</b></p>
+                {% else %}
+                    <p><b>{{ profile.user.username }}'s Erfolge:</b></p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            {% for achievement in profile.achievements.all %}
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ach">
+                    <img src="{{ achievement.achievement_image.url }}">
+                    <p>{{ achievement.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

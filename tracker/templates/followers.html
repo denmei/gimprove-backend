@@ -9,19 +9,21 @@
 {% endblock %}
 
 {% block content %}
-<div class="box col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="row">
+    <div class="box col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="row">
         <div class="box col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1>Meine Freunde</h1>
+            <h1>Meine Follower</h1>
         </div>
     </div>
     <div class="row">
-        {% for friend in profile.friends.all %}
+        {% for connection in profile.get_follower_connections %}
             <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 friend">
-                <img src="{{ friend.profile_image.url }}">
-                <a href="{% url 'profile' friend.user.id %}">{{ friend.user.username }}</a>
+                <img src="{{ connection.follower.profile.profile_image.url }}">
+                <a href="{% url 'profile' connection.follower.id %}">{{ connection.follower.username }}</a>
             </div>
         {% endfor %}
     </div>
+</div>
 </div>
 {% endblock %}

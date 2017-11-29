@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<div class="row full-height">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 home">
+        {% for activity in user.profile.get_follows_activities %}
+            <div class="row activity">
+                <h5 class="small-annotation">{{ activity.created }}</h5>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
+                    <img src="{{ activity.user.profile.profile_image.url }}">
+                    <h2>{{ activity.user.username }}</h2>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 ">
+                    <p>{{ activity.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

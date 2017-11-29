@@ -11,6 +11,15 @@ def get_image_path(instance, filename):
     return os.path.join('photos', str(instance.pk), filename)
 
 
+class Connection(models.Model):
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    follower = models.ForeignKey(User, related_name="follower")
+    followed = models.ForeignKey(User, related_name="followed")
+
+    def __str__(self):
+        return str(self.follower) + ":" + str(self.followed)
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     date_of_birth = models.DateField(null=False, blank=False)
@@ -18,7 +27,27 @@ class Profile(models.Model):
     gym = models.ManyToManyField('Gym', blank=True, null=True)
     achievements = models.ManyToManyField('Achievement', null=True, blank=True)
     profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
-    friends = models.ManyToManyField('Profile', blank=True, null=True)
+
+    def get_follows_connections(self):
+        connections = Connection.objects.filter(follower=self.user)
+        return connections
+
+    def get_follower_connections(self):
+        connections = Connection.objects.filter(followed=self.user)
+        return connections
+
+    def get_follow_ids(self):
+        connections = Connection.objects.filter(follower=self.user)
+        follows = connections.values_list('follower', flat=True)
+        return follows
+
+    def get_activities(self):
+        activities = Activity.objects.filter(user=self.user)
+        return activities
+
+    def get_follows_activities(self):
+        activities = Activity.objects.filter()
+        return activities
 
     def __str__(self):
         return str(self.user)
@@ -104,3 +133,14 @@ class Achievement(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+class Activity(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    description = models.TextField(max_length=500, help_text="What kind of activity?", null=True,
+                                   blank=True)
+
+    def __str__(self):
+        return str(id)

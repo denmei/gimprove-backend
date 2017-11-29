@@ -18,13 +18,19 @@ html, body {
 
 @media only screen and (max-width: 480px) {
     html, body {
-        font-size: 8px;
+        font-size: 9px;
     }
 }
 
 a {
     color: white;
     text-decoration: underline;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }
 
 h1 {
@@ -61,7 +67,7 @@ h2 {
 }
 
 .container-fluid {
-    height: 100%;
+    width: 100%;
     min-height: 100%;
     padding: 0px;
     margin: 0px;
@@ -72,27 +78,15 @@ h2 {
 }
 
 .row {
-    height: 100%;
-    min-height: 100%;
+    height: auto;
     width: 100%;
     background-color: grey;
     margin: 0px;
     padding: 0px;
 }
 
-.ach {
-    padding: 18px;
-    display: grid;
-    justify-items: center;
-}
-
-.ach img{
-    max-height: 100%;
-    max-width: 100%;
-}
-
-.ach p {
-    text-align: center;
+.full-height{
+    height: 100vh;
 }
 
 .friend {
@@ -115,13 +109,49 @@ h2 {
     text-decoration: underline;
 }
 
-.profile-grid {
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: repeat(1, 1fr);
-}
-
 .black-text input {
     color: black;
+}
+
+@media only screen and (min-width: 481px) {
+    .profile-img {
+        border-radius: 10px;
+        max-width: 400px;
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .profile-img {
+        border-radius: 10px;
+        max-width: 100px;
+        height: auto;
+    }
+}
+
+/* ----- achievements -------- */
+.ach {
+    padding: 18px;
+    display: grid;
+    justify-items: center;
+}
+
+@media only screen and (min-width: 481px) {
+    .ach img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .ach img {
+        max-width: 200px;
+        height: auto;
+    }
+}
+
+.ach p {
+    text-align: center;
 }
 
 /*------ Footer ---------*/
@@ -154,6 +184,13 @@ footer {
 .home h1 {
     font-size: 10rem;
 }
+
+@media only screen and (max-width: 480px) {
+    .home h1{
+        font-size: 5rem;
+    }
+}
+
 
 .home p {
     color: white;
@@ -191,4 +228,22 @@ footer {
 
 .navbar-brand {
     font-size: 1.3rem;
+}
+
+/*------- Activity --------*/
+
+.activity {
+    width: 100%;
+    background: rgba(220,160,140,0.5);
+    text-align: left;
+    padding: 10px;
+}
+
+.activity img {
+    max-height: 120px;
+    width: auto;
+}
+
+.activity h5 {
+    text-align: right;
 }

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import TrainUnit, Profile, ExerciseUnit, Achievement, Gym
+from .models import TrainUnit, Profile, ExerciseUnit, Achievement, Gym, Activity
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
@@ -103,7 +103,13 @@ class AddTrainingUnit(LoginRequiredMixin, CreateView):
                 'end_time_date': datetime.datetime.today()}
 
 
-class FriendshipView(LoginRequiredMixin, generic.DetailView):
+class FollowerView(LoginRequiredMixin, generic.DetailView):
     model = Profile
     context_object_name = 'profile'
-    template_name = 'friendships.html'
+    template_name = 'followers.html'
+
+
+class ActivityView(LoginRequiredMixin, generic.ListView):
+    model = Activity
+    context_object_name = 'activity'
+    template_name = 'timeline.html'
