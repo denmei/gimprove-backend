@@ -38,7 +38,7 @@ class Profile(models.Model):
 
     def get_follow_ids(self):
         connections = Connection.objects.filter(follower=self.user)
-        follows = connections.values_list('follower', flat=True)
+        follows = connections.values_list('followed', flat=True)
         return follows
 
     def get_activities(self):
@@ -143,4 +143,4 @@ class Activity(models.Model):
                                    blank=True)
 
     def __str__(self):
-        return str(id)
+        return str(self.user) + ": " + str(self.created)

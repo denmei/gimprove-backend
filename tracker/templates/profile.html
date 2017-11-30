@@ -21,10 +21,10 @@
                     <h1>{{ profile.user.username }}'s Profil</h1>
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 vcenter">
-                    {% if user.id in user.profile.get_follow_ids %}
-                        <button type="button" class="btn">Folge ich</button>
+                    {% if profile.user.id in user.profile.get_follow_ids %}
+                    <a href="{% url 'delete_connection' profile.user.id %}"><button type="button" class="btn" >Nicht mehr folgen</button></a>
                     {% else %}
-                        <button type="button" class="btn btn-primary">Folgen</button>
+                    <a href="{% url 'create_connection' profile.user.id %}"><button type="button" class="btn btn-primary">Folgen</button></a>
                     {% endif %}
                 </div>
             {% endif %}

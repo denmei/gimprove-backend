@@ -15,5 +15,7 @@ urlpatterns = [
     url(r'^profile/(?P<pk>\d+)$', views.ProfileView.as_view(), name='profile'),
     url(r'^achievements/(?P<pk>\d+)$', views.AchievementView.as_view(), name='achievements'),
     url(r'^gym/(?P<pk>\d+)$', views.GymView.as_view(), name='gym'),
-    url(r'^followers/(?P<pk>\d+)$', views.FollowerView.as_view(), name='followers')
+    url(r'^followers/(?P<pk>\d+)$', views.FollowerView.as_view(), name='followers'),
+    url(r'^profile/cre_connection/(?P<pk>\d+)$', views.create_connection, name='create_connection'),
+    url(r'^profile/del_connection/(?P<pk>\d+)$', views.delete_connection, name='delete_connection'),
 ]

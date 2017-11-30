@@ -170,7 +170,6 @@ footer {
 .home {
     margin: 0px;
     padding: 100px;
-    height: 100%;
     min-height: 100%;
     text-align: center;
     background-image: url('dumbbell.jpeg');
@@ -185,13 +184,6 @@ footer {
     font-size: 10rem;
 }
 
-@media only screen and (max-width: 480px) {
-    .home h1{
-        font-size: 5rem;
-    }
-}
-
-
 .home p {
     color: white;
     font-size: 2rem;
@@ -199,6 +191,20 @@ footer {
 
 .home .small_text {
     font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 480px) {
+    .home h1{
+        font-size: 5rem;
+    }
+
+    .home {
+        padding: 10px;
+    }
+
+    .home p {
+        font-size: 1.4rem;
+    }
 }
 
 
@@ -237,6 +243,7 @@ footer {
     background: rgba(220,160,140,0.5);
     text-align: left;
     padding: 10px;
+    margin: 5px;
 }
 
 .activity img {
@@ -246,4 +253,23 @@ footer {
 
 .activity h5 {
     text-align: right;
+}
+
+.activity p {
+    font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 480px) {
+    .activity {
+        padding: 2px;
+        margin: 2px;
+    }
+
+    .activity img {
+        max-width: 60px;
+    }
+
+    .activity h5 {
+        font-size: 1rem;
+    }
 }

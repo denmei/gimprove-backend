@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import TrainUnit, Profile, ExerciseUnit, Achievement, Gym, Activity
+from django.contrib.auth.models import User
+from .models import TrainUnit, Profile, ExerciseUnit, Achievement, Gym, Activity, Connection
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
@@ -15,6 +16,17 @@ from django.views.generic.edit import CreateView, DeleteView
 def index(request):
     """View function for home page of site."""
     return render(request, 'index.html')
+
+
+def create_connection(request, pk):
+    connection = Connection(follower=request.user, followed=User.objects.get(id=pk))
+    connection.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def delete_connection(request, pk):
+    Connection.objects.filter(follower=request.user, followed=User.objects.get(id=pk)).delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class TrainingUnitsList(LoginRequiredMixin, generic.ListView):
