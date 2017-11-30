@@ -20,3 +20,13 @@ class AddTrainUnitForm(forms.ModelForm):
         fields = '__all__'
         widgets = {'id': forms.HiddenInput, 'user': forms.HiddenInput, 'exercise_units': forms.HiddenInput,
                    'start_time_date': forms.HiddenInput, 'end_time_date': forms.HiddenInput}
+
+
+class ContactForm(forms.Form):
+    contact_name = forms.CharField(required=False, label="Name")
+    contact_email = forms.EmailField(required=True, label="Email")
+    content = forms.CharField(
+        required=True,
+        widget=forms.Textarea,
+        label='Nachricht'
+    )

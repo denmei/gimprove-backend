@@ -33,6 +33,20 @@ a {
     float: none;
 }
 
+.vleft {
+    display: inline-block;
+    vertical-align: left;
+    float: none;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+}
+
+.white-border {
+    border: 2px solid white;
+}
+
 h1 {
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
@@ -109,8 +123,12 @@ h2 {
     text-decoration: underline;
 }
 
-.black-text input {
+.black-text input, textarea {
     color: black;
+}
+
+.transparent {
+    background: transparent;
 }
 
 @media only screen and (min-width: 481px) {
@@ -169,7 +187,7 @@ footer {
 /*------ Start and Login Page -------*/
 .home {
     margin: 0px;
-    padding: 100px;
+    padding: 20px;
     min-height: 100%;
     text-align: center;
     background-image: url('dumbbell.jpeg');
@@ -182,11 +200,16 @@ footer {
 
 .home h1 {
     font-size: 10rem;
+    margin-bottom: 5px;
+}
+
+.home h2 {
+    font-size: 5rem;
 }
 
 .home p {
     color: white;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
 
 .home .small_text {
@@ -205,10 +228,14 @@ footer {
     .home p {
         font-size: 1.4rem;
     }
+
+    .home textarea {
+        max-width: 300px;
+    }
 }
 
 
-.home .black_button {
+.black_button {
     font-family: 'Raleway', sans-serif;
     color: white;
     border: solid 5px white;
@@ -226,6 +253,7 @@ footer {
       padding-left: 10px;
       padding-right: 10px;
       font-size: 1.1rem;
+      border-radius: 0px;
 }
 
 .navbar a {
@@ -272,4 +300,10 @@ footer {
     .activity h5 {
         font-size: 1rem;
     }
+}
+
+/*--------- About-Page ----------*/
+
+.about .row {
+    background: black;
 }

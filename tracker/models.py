@@ -46,7 +46,7 @@ class Profile(models.Model):
         return activities
 
     def get_follows_activities(self):
-        activities = Activity.objects.filter()
+        activities = Activity.objects.filter().order_by('-created')
         return activities
 
     def __str__(self):
