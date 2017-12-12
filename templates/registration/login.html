@@ -9,43 +9,48 @@
 
 {% block content %}
 
-<div class="home full-height">
-    <h1>SmartGym</h1>
-    {% if form.errors %}
-    <p>Name und Passwort stimmen nicht ueberein. Probiere es nochmal.</p>
-    {% endif %}
-
-    {% if next %}
-        {% if user.is_authenticated %}
-        <p>Keine Berechtigung. Bitte mit einem berechtigten Konto einloggen um fortzufahren.</p>
-        {% else %}
-        <p>Bitte einloggen um fortzufahren.</p>
-        {% endif %}
-    {% endif %}
-
-    <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-
-    <div>
-      <td>{{ form.username.label_tag }}</td>
-        <div class="black-text">
-            <td>{{ form.username }}</td>
+<div class="container-fluid">
+    <section class="row full-height dumbbell-background white-text">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-7 home light-black-transparent">
+            <h1>SmartGym</h1>
         </div>
-    </div>
-    <div>
-      <td>{{ form.password.label_tag }}</td>
-        <div class="black-text">
-            <td>{{ form.password }}</td>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-5 home strong-black-transparent">
+            {% if form.errors %}
+            <p>Name und Passwort stimmen nicht ueberein. Probiere es nochmal.</p>
+            {% endif %}
+
+            {% if next %}
+                {% if user.is_authenticated %}
+                <p>Keine Berechtigung. Bitte mit einem berechtigten Konto einloggen um fortzufahren.</p>
+                {% else %}
+                <p>Please login to continue.</p>
+                {% endif %}
+            {% endif %}
+
+            <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            <div>
+              <td>{{ form.username.label_tag }}</td>
+                <div class="black-text">
+                    <td>{{ form.username }}</td>
+                </div>
+            </div>
+            <div>
+              <td>{{ form.password.label_tag }}</td>
+                <div class="black-text">
+                    <td>{{ form.password }}</td>
+                </div>
+            </div>
+
+            <div>
+              <input class="xl-button" type="submit" value="Login" />
+              <input type="hidden" name="next" value="{{ next }}" />
+            </div>
+            </form>
+
+            {# Assumes you setup the password_reset view in your URLconf #}
+            <p class="small_text"><a href="{% url 'password_reset' %}">Forgot password?</a></p>
         </div>
-    </div>
-
-    <div>
-      <input class="black_button" type="submit" value="Login" />
-      <input type="hidden" name="next" value="{{ next }}" />
-    </div>
-    </form>
-
-    {# Assumes you setup the password_reset view in your URLconf #}
-    <p class="small_text"><a href="{% url 'password_reset' %}">Passwort vergessen?</a></p>
 </div>
 {% endblock %}

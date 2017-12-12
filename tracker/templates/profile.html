@@ -9,60 +9,108 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="box col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="row">
-            {% if profile.user == user %}
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1>Mein Profil</h1>
+<div class="container background-col profile">
+    <div class="row full-height">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-0">
+            <div class="row row-eq-height">
+                {% if profile.user == user %}
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h1>Mein Profil</h1>
+                    </div>
+                {% else %}
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hcenter">
+                        <h1>{{ profile.user.username }}'s Profil</h1>
+                    </div>
+                {% endif %}
+            </div>
+            <!-- Main Information -->
+            <div class="row text-center row-eq-height sm-row-padding">
+                <!-- Picture and follow button -->
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 full-h">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 full-width">
+                            {% if profile.profile_image %}
+                                <img src='{{ profile.profile_image.url  }}' class="profile-img" alt="Profile Image"/>
+                            {% else %}
+                                <p>Kein Bild vorhanden.</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 full-width">
+                            {% if not profile.user == user and profile.user.id in user.profile.get_follow_ids %}
+                                <a href="{% url 'delete_connection' profile.user.id %}"><button type="button" class="btn" >Nicht mehr folgen</button></a>
+                            {% elif not profile.user == user %}
+                                <a href="{% url 'create_connection' profile.user.id %}"><button type="button" class="btn btn-primary">Folgen</button></a>
+                            {% else %}
+                                <a></a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
-            {% else %}
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 vcenter">
-                    <h1>{{ profile.user.username }}'s Profil</h1>
+                <!-- Follower -->
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+                    <a href="{% url 'followers' profile.user.id %}" class="text-center black-text">
+                        <button type="button" class="btn" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        </button>
+                        <h3><b>{{ profile.get_follower_connections |length }}<br>Follower</b></h3>
+                    </a>
                 </div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 vcenter">
-                    {% if profile.user.id in user.profile.get_follow_ids %}
-                    <a href="{% url 'delete_connection' profile.user.id %}"><button type="button" class="btn" >Nicht mehr folgen</button></a>
-                    {% else %}
-                    <a href="{% url 'create_connection' profile.user.id %}"><button type="button" class="btn btn-primary">Folgen</button></a>
-                    {% endif %}
+                <!-- Follows -->
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+                    <a href="{% url 'followers' profile.user.id %}" class="text-center black-text">
+                        <button type="button" class="btn" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        </button>
+                        <h3><b>{{ profile.get_follows_connections |length }}<br>Abonnements</b></h3>
+                    </a>
+                </div>
+                <!-- Achievements -->
+                <div class="col-xs-4 cglyol-sm-4 col-md-2 col-lg-2">
+                    <a href="#" class="text-center black-text">
+                        <button type="button" class="btn" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <h3><b>{{ profile.achievements.all |length }}<br>Erfolge</b></h3>
+                    </a>
+                </div>
+            </div>
+            <!-- Description -->
+            {% if profile.bio %}
+                <div class="row text-center sm-row-padding">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <p>{{ profile.bio }}</p>
+                    </div>
                 </div>
             {% endif %}
-        </div>
-        <div class="row">
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                {% if profile.bio %}
-                <p><b>Beschreibung:</b> <br>{{ profile.bio }}</p>
-                {% endif %}
-                {% if profile.gym %}
-                <p><b>Gym: </b>{{ profile.gym.name }}</p>
-                {% endif %}
-                <p><b>Follower: </b><a href="{% url 'followers' profile.user.id %}">{{ profile.get_follower_connections |length }}</a></p>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                {% if profile.profile_image %}
-                    <img src='{{ profile.profile_image.url  }}' class="profile-img" alt="Profile Image"/>
-                {% else %}
-                    <p>Kein Bild vorhanden.</p>
-                {% endif %}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                {% if profile.user == user %}
-                    <p><b>Meine Erfolge:</b></p>
-                {% else %}
-                    <p><b>{{ profile.user.username }}'s Erfolge:</b></p>
-                {% endif %}
-            </div>
-        </div>
-        <div class="row">
-            {% for achievement in profile.achievements.all %}
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ach">
-                    <img src="{{ achievement.achievement_image.url }}">
-                    <p>{{ achievement.description }}</p>
+            <!-- Gym -->
+            {% if profile.gym %}
+                <div class="row text-center sm-row-padding">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <p><b>Gym: </b>
+                                {% for gym in profile.gym.all %}
+                                    {{ gym }}
+                                {% endfor %}
+                            </p>
+                    </div>
                 </div>
-            {% endfor %}
+            {% endif %}
+            <div class="row sm-row-padding">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    {% if profile.user == user %}
+                        <h2><b>Meine Erfolge:</b></h2>
+                    {% else %}
+                        <h2><b>{{ profile.user.username }}'s Erfolge:</b></h2>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                {% for achievement in profile.achievements.all %}
+                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 ach">
+                        <img src="{{ achievement.achievement_image.url }}">
+                        <p>{{ achievement.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

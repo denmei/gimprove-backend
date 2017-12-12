@@ -9,21 +9,29 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="box col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="row">
-        <div class="box col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1>Meine Follower</h1>
+<div class="container background-col profile">
+    <div class="row full-height">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-0">
+            <div class="row row-eq-height">
+                {% if profile.user == user %}
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h1>Meine Follower</h1>
+                    </div>
+                {% else %}
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h1>{{ profile.user }}'s Follower</h1>
+                </div>
+                {% endif %}
+            </div>
+            <div class="row">
+                {% for connection in profile.get_follower_connections %}
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 friend">
+                        <img src="{{ connection.follower.profile.profile_image.url }}">
+                        <a href="{% url 'profile' connection.follower.id %}">{{ connection.follower.username }}</a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-    <div class="row">
-        {% for connection in profile.get_follower_connections %}
-            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 friend">
-                <img src="{{ connection.follower.profile.profile_image.url }}">
-                <a href="{% url 'profile' connection.follower.id %}">{{ connection.follower.username }}</a>
-            </div>
-        {% endfor %}
-    </div>
-</div>
 </div>
 {% endblock %}
