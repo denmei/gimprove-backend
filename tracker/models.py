@@ -24,8 +24,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     date_of_birth = models.DateField(null=False, blank=False)
     bio = models.TextField(max_length=500, blank=True, help_text="Beschreibung.")
-    gym = models.ManyToManyField('Gym', blank=True, null=True)
-    achievements = models.ManyToManyField('Achievement', null=True, blank=True)
+    gym = models.ManyToManyField('Gym', blank=True)
+    achievements = models.ManyToManyField('Achievement', blank=True)
     profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
     def get_follows_connections(self):
@@ -80,7 +80,7 @@ class TrainUnit(models.Model, LoginRequiredMixin):
     end_time_date = models.DateTimeField(null=False, blank=False)
     date = models.DateField(null=False, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    exercise_units = models.ManyToManyField('ExerciseUnit', related_name='+', null=True, blank=True)
+    exercise_units = models.ManyToManyField('ExerciseUnit', related_name='+', blank=True)
 
     def __str__(self):
         return str(self.id)
@@ -118,7 +118,7 @@ class Equipment(models.Model):
 
 class Gym(models.Model):
     name = models.CharField(max_length=100, help_text="Insert name of gym here.")
-    members = models.ManyToManyField(User, blank=True, null=True)
+    members = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return self.name
@@ -128,7 +128,7 @@ class Achievement(models.Model):
     name = models.CharField(max_length=100, help_text="Insert the name of the achievement here.", primary_key=True)
     description = models.TextField(max_length=500, help_text="What did the user do to achieve it?", null=True,
                                    blank=True)
-    user = models.ManyToManyField(User, blank=True, null=True)
+    user = models.ManyToManyField(User, blank=True)
     achievement_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
     def __str__(self):
