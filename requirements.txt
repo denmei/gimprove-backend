@@ -79,5 +79,6 @@ txsocksx==0.0.0
 unity-lens-photos==1.0
 urllib3==1.22
 Werkzeug==0.12.2
+whitenoise==3.3.1
 xdot==0.6
 zope.interface==4.1.3
