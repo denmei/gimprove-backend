@@ -1,1 +1,1 @@
-web: smartgym bootcamp.wsgi --log-file -
+web: gunicorn smartgym.wsgi --log-file -
