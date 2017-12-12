@@ -1,0 +1,520 @@
+html, body {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    min-width: 100%;
+    margin: 0px;
+    max-width: 100%;
+    padding: 0px;
+    font-family: TrajanPro-Regular, 'Lucida Grande', sans-serif;
+}
+
+@media only screen and (min-width: 1280px) {
+    html, body {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    html, body {
+        font-size: 9px;
+    }
+}
+
+a {
+    text-decoration: underline;
+}
+
+.background-color {
+    background-color: #F2F2EE;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.hcenter {
+    display: flex;
+    align-items: center;
+}
+
+.white-border {
+    border: 2px solid white;
+}
+
+.black-border {
+    border: 2px solid black;
+}
+
+h1 {
+    text-transform: capitalize;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    margin-bottom: 1.0rem;
+    font-size: 3.0rem;
+}
+
+h2 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 2.2rem;
+}
+
+h3 {
+    text-transform: capitalize;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+
+.input_link {
+    color: black;
+}
+
+.grid {
+    display: grid;
+    justify-items: center;
+}
+
+.container-fluid {
+    width: 100%;
+    min-height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.row {
+    height: auto;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.table-wrapper {
+    display: table;
+    height: 100%;
+}
+
+.table-row {
+    display: table-row;
+}
+
+.table-cell {
+    height: 100%;
+    display: table-cell;
+    float: none;
+    vertical-align: top;
+}
+
+.carousel-inner img {
+    margin: 0 auto;
+    min-height: 80%;
+}
+
+.carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
+}
+
+.full-height{
+    height: 100vh;
+}
+
+
+.ver-bottom {
+    vertical-align: bottom;
+}
+
+.full-width {
+    min-width: 100%;
+    width: 100%;
+}
+
+.full-h {
+    min-height: 100%;
+    height: 100%;
+}
+
+
+.padding-0 {
+    padding: 0px;
+}
+
+.sm-row-padding {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.md-row-padding {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.friend {
+    padding: 8px;
+    border: 2px solid white;
+    border-radius: 5px;
+    display: grid;
+    justify-items: center;
+    margin: 10px;
+}
+
+.friend img {
+    max-height: 80%;
+    max-width: 80%;
+}
+
+.friend a {
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+/* ------ colors ------- */
+
+.black-text {
+    color: black;
+}
+
+.black-text input, textarea {
+    color: black;
+}
+
+.yellow {
+    color: #FC663D;
+}
+
+.yellow-background {
+    background-color: #FC663D;
+}
+
+.transparent {
+    background: transparent;
+}
+
+.black-background {
+    background-color: black;
+}
+
+.grey-background {
+    background-color: rgb(239,239,239);
+}
+
+.white-text {
+    color: white;
+}
+
+.white-background {
+    background-color: white;
+}
+
+.light-black-transparent {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.strong-black-transparent {
+    background: linear-gradient(to right, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.5) 8%,rgba(0,0,0,0.8) 22%,rgba(0,0,0,0.8) 100%);
+}
+
+.front {
+    z-index: 100;
+}
+
+/* ----- achievements -------- */
+.ach {
+    display: grid;
+    justify-items: center;
+}
+
+@media only screen and (min-width: 481px) {
+    .ach img {
+        max-height: 100%;
+        max-width: 75%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .ach img {
+        max-width: 200px;
+        height: auto;
+    }
+}
+
+.ach p {
+    text-align: center;
+}
+
+/*------ Footer ---------*/
+footer {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  position: static;
+  text-align: center;
+  font-size: 1.2rem;
+  bottom: 0px;
+}
+
+/*------ Start and Login Page -------*/
+.home {
+    margin: 0px;
+    min-height: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: normal;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.center {
+    justify-content: center;
+    align-content: center;
+}
+
+.home .glyphicon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+
+.home.inverse {
+    background-color: white;
+    color: black;
+}
+
+.dumbbell-background {
+    background-image: url("dumbbell.2e0c73a5f92c.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.home-section {
+    max-height: 100vh;
+    padding: 2.5rem;
+    width: 100%;
+}
+
+.home-section li {
+    text-align: justify;
+}
+
+.home-section
+    .in-text {
+    text-align: justify;
+}
+
+.home-section
+    a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.home-section
+    .row {
+    width: 90%;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 40%;
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+  height: 5px;
+}
+
+.home .xl-button {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+    border: 1px solid white;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
+.home h1 {
+    font-size: 10rem;
+    margin-bottom: 5px;
+    padding-left: 10px;
+}
+
+.home h2 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.home p {
+    font-size: 1.2rem;
+}
+
+
+
+.home .small_text {
+    font-size: 1.2rem;
+}
+
+#contact-row {
+    margin-top: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.text-padding {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.item {
+    max-height: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+    .home h1{
+        font-size: 5rem;
+    }
+
+    .home {
+        padding: 10px;
+    }
+
+    .home p {
+        font-size: 1.4rem;
+    }
+
+    .home li {
+        font-size: 1.3rem;
+    }
+
+    .home textarea {
+        max-width: 300px;
+    }
+
+    .strong-black-transparent {
+    background: black;
+    }
+
+}
+
+/*----------- NavBar ---------*/
+.navbar {
+      font-family: 'Raleway', sans-serif;
+      background-color: black;
+      margin: 0px;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 1.1rem;
+      border-radius: 0px;
+}
+
+
+.navbar a {
+    color: #FC663D !important;
+    text-decoration: none;
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+}
+
+/*------- Activity --------*/
+
+.activity {
+    width: 100%;
+    background: rgba(220,160,140,0.5);
+    text-align: left;
+    padding: 10px;
+    margin: 5px;
+}
+
+.activity img {
+    max-height: 120px;
+    width: auto;
+}
+
+.activity h5 {
+    text-align: right;
+}
+
+.activity p {
+    font-size: 1.0rem;
+}
+
+@media only screen and (max-width: 480px) {
+    .activity {
+        padding: 2px;
+        margin: 2px;
+    }
+
+    .activity img {
+        max-width: 60px;
+    }
+
+    .activity h5 {
+        font-size: 1rem;
+    }
+}
+
+/*--------- About-Page ----------*/
+
+.about .row {
+    background: black;
+}
+
+/*--------- Profile -----------*/
+
+.profile a {
+    text-decoration: none;
+    color: black;
+}
+
+.profile button {
+    font-size: 1.1rem;
+    border: none;
+    width: 100%;
+    min-height: 60%;
+}
+
+.profile .glyphicon {
+    width: 100%;
+    height: 100%;
+    font-size: 5rem;
+}
+
+.profile img {
+    margin: 2rem;
+}
+
+@media only screen and (min-width: 481px) {
+
+    .profile .row-eq-height {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display:         flex;
+    }
+
+    .profile-img {
+        border-radius: 10px;
+        height: 300px;
+        max-width: 80%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    .profile-img {
+        border-radius: 10px;
+        height: 200px;
+        max-width: 90%;
+    }
+
+}
