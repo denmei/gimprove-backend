@@ -1,8 +1,8 @@
 from django.db import models
 import uuid
-from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.urls import reverse
 import os
 
 
