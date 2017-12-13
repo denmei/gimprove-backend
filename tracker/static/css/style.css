@@ -35,10 +35,13 @@ a {
     float: none;
 }
 
-.hcenter {
-    display: flex;
-    align-items: center;
+@media only screen and (min-width: 800px) {
+    .hcenter {
+        display: flex;
+        align-items: center;
+    }
 }
+
 
 .white-border {
     border: 2px solid white;
@@ -106,8 +109,13 @@ h3 {
 .table-cell {
     height: 100%;
     display: table-cell;
-    float: none;
     vertical-align: top;
+}
+
+@media only screen and (min-width: 800px) {
+.table-cell {
+    float: none;
+}
 }
 
 .carousel-inner img {
@@ -295,7 +303,6 @@ footer {
 }
 
 .home-section {
-    max-height: 100vh;
     padding: 2.5rem;
     width: 100%;
 }
