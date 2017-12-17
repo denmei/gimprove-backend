@@ -174,7 +174,6 @@ class ActivityView(LoginRequiredMixin, generic.ListView):
 def contact(request):
     form_class = ContactForm
 
-    # new logic!
     if request.method == 'POST':
         form = form_class(data=request.POST)
 
@@ -200,7 +199,7 @@ def contact(request):
             email = EmailMessage(
                 "New contact form submission",
                 content,
-                "Your website" +'',
+                "Your website" + '',
                 ['meisnerdennis@web.de'],
                 headers={'Reply-To': contact_email}
             )
@@ -208,5 +207,5 @@ def contact(request):
             return redirect('contact')
 
     return render(request, 'contact.html', {
-        'form': form_class,
+        'form': form_class
     })
