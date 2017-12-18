@@ -1,0 +1,282 @@
+html, body {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    min-width: 100%;
+    margin: 0px;
+    max-width: 100%;
+    padding: 0px;
+    font-family: TrajanPro-Regular, 'Lucida Grande', sans-serif;
+}
+
+
+@media only screen and (min-width: 1280px) {
+    html, body {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    html, body {
+        font-size: 9px;
+    }
+}
+
+/* -------- fonts --------*/
+
+h1 {
+    padding-top: 10rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+h4 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+ul {
+    font-size: 1.2rem;
+}
+
+p {
+    font-size: 1.3rem;
+}
+
+@media only screen and (max-width: 480px) {
+    h1 {
+        font-size: 5rem;
+    }
+}
+
+@media only screen and (min-width: 481px) {
+    h1 {
+        font-size: 10rem;
+    }
+}
+
+.dumbbell-background {
+    background-image: url('dumbbell.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.xl-button {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+    border: 1px solid white;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 2rem;
+    text-transform: capitalize;
+    max-width: 80%;
+}
+
+/*------- home section -------*/
+
+.home-section {
+    width: 100%;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+    text-align: justify;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.home-section .glyphicon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.home-section-orange {
+    background-color: #FC663D;
+    color: black;
+}
+
+.home-section-orange hr {
+    background-color: black;
+}
+
+.home-section-black {
+    background-color: black;
+    color: white;
+}
+
+.home-section-black hr {
+    background-color: white;
+}
+
+.home-section-grey {
+    background-color: rgb(239,239,239);
+    color: black;
+}
+
+.home-section-grey hr {
+    background-color: black;
+}
+
+/*------ Carousels -----*/
+
+.carousel-inner img {
+    margin: auto;
+}
+
+/*----- Forms ---------*/
+
+.table-wrapper {
+    display: table;
+    height: 100%;
+}
+
+.table-row {
+    max-width: 100%;
+    display: table-row;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+/*
+@media only screen and (min-width: 800px) {
+.table-cell {
+    float: none;
+}
+}*/
+
+.table-cell li {
+    text-align: left;
+}
+
+.table-cell p {
+    text-align: justify;
+}
+
+.table-cell .carousel-caption p{
+    text-align: center;
+}
+
+.container-fluid {
+    width: 100%;
+    min-height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.row {
+    margin: 0px;
+    padding: 0px;
+}
+
+.center-cell {
+    display: flex;
+    align-items: center;
+
+}
+
+@media only screen and (min-width: 480px) {
+    #logo-row {
+        height: 100%;
+    }
+}
+
+@media only screen and (max-width: 481px) {
+    #logo-row {
+        height: 50%;
+    }
+}
+
+
+.container {
+    padding: 0px;
+}
+
+.screen-height {
+    height: 100vh;
+    min-height: 100vh;
+}
+
+.full-height{
+    height: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 40%;
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+  height: 5px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*------- colors ------*/
+.light-black-transparent {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (min-width: 481px) {
+    .strong-black-transparent {
+        background: linear-gradient(to right, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.5) 8%,rgba(0,0,0,0.8) 22%,rgba(0,0,0,0.8) 100%);
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .strong-black-transparent {
+        background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.5) 8%,rgba(0,0,0,0.8) 22%,rgba(0,0,0,0.8) 100%);
+    }
+}
+
+/*------- navbar ----------*/
+.navbar {
+      font-family: 'Raleway', sans-serif;
+      background-color: black;
+      margin: 0px;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 1.1rem;
+      border-radius: 0px;
+}
+
+
+.navbar a {
+    color: #FC663D !important;
+    text-decoration: none;
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+}
+
+.white-border {
+    border: 2px solid white;
+}
