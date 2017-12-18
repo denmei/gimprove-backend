@@ -65,7 +65,7 @@ p {
 
 @media only screen and (min-width: 481px) {
     h1 {
-        font-size: 10rem;
+        font-size: 12rem;
     }
 }
 
@@ -95,9 +95,26 @@ p {
     text-align: center;
     justify-items: center;
     align-items: center;
-    text-align: justify;
+    text-align: center;
     padding-top: 5rem;
     padding-bottom: 5rem;
+}
+
+.home-section .row {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.home-section .carousel p {
+    text-align: center;
+}
+
+.home-section p {
+    text-align: justify;
+}
+
+.home-section li {
+    text-align: left;
 }
 
 .home-section .glyphicon {
@@ -140,40 +157,11 @@ p {
 
 /*----- Forms ---------*/
 
-.table-wrapper {
-    display: table;
-    height: 100%;
-}
-
-.table-row {
-    max-width: 100%;
-    display: table-row;
-}
-
-.table-cell {
-    display: table-cell;
-    vertical-align: top;
-    text-align: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-/*
-@media only screen and (min-width: 800px) {
-.table-cell {
-    float: none;
-}
-}*/
-
-.table-cell li {
-    text-align: left;
-}
-
-.table-cell p {
-    text-align: justify;
-}
-
-.table-cell .carousel-caption p{
-    text-align: center;
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
 }
 
 .container-fluid {
@@ -188,10 +176,14 @@ p {
     padding: 0px;
 }
 
-.center-cell {
+.hcenter {
     display: flex;
     align-items: center;
+}
 
+.vcenter {
+    display: flex;
+    justify-items: center;
 }
 
 @media only screen and (min-width: 480px) {
