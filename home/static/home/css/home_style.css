@@ -65,7 +65,7 @@ p {
 
 @media only screen and (min-width: 481px) {
     h1 {
-        font-size: 12rem;
+        font-size: 10rem;
     }
 }
 
@@ -157,11 +157,13 @@ p {
 
 /*----- Forms ---------*/
 
-.row-eq-height {
+@media only screen and (min-width: 481px) {
+  .row-eq-height {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
+}
 }
 
 .container-fluid {
@@ -186,6 +188,10 @@ p {
     justify-items: center;
 }
 
+#logo-row {
+    padding: 0px;
+}
+
 @media only screen and (min-width: 480px) {
     #logo-row {
         height: 100%;
@@ -201,6 +207,11 @@ p {
 
 .container {
     padding: 0px;
+    width: 90%;
+}
+
+#logo-container {
+    width: 100%;
 }
 
 .screen-height {
