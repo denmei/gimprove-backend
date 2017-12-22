@@ -21,11 +21,11 @@ class Connection(models.Model):
 
 
 class Profile(models.Model):
+    """
+    Abstract class for the two user types - gyms and athletes (users).
+    """
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
-    date_of_birth = models.DateField(null=False, blank=False)
     bio = models.TextField(max_length=500, blank=True, help_text="Beschreibung.")
-    gym = models.ManyToManyField('Gym', blank=True)
-    achievements = models.ManyToManyField('Achievement', blank=True)
     profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
     def get_follows_connections(self):
@@ -51,6 +51,30 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+
+class UserProfile(Profile):
+    date_of_birth = models.DateField(null=False, blank=False)
+    gym = models.ManyToManyField('Gym', blank=True)
+    achievements = models.ManyToManyField('Achievement', blank=True)
+
+
+class GymProfile(Profile):
+    gym = models.OneToOneField('Gym', blank=False)
+
+
+def get_profile_type(user):
+    """
+    Helps to determine whether the user has a user or a gym profile.
+    :param user: Reference on user from request.
+    :return: 'user' in case of UserProfile, 'gym' in case of GymProfile, 'None' else
+    """
+    if getattr(user.profile, 'userprofile'):
+        return 'user'
+    elif getattr(user.profile, 'gymprofile'):
+        return 'gym'
+    else:
+        return None
 
 
 class Exercise(models.Model):

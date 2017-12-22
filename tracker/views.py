@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.contrib.auth.models import User
-from .models import TrainUnit, Profile, ExerciseUnit, Achievement, Gym, Activity, Connection
+from .models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
@@ -17,7 +17,7 @@ from django.template.loader import get_template
 # Create your views here.
 
 
-def index(request):
+"""def index(request):
     form_class = ContactForm
 
     # new logic!
@@ -55,7 +55,13 @@ def index(request):
 
     return render(request, 'index.html', {
         'form': form_class,
-    })
+    })"""
+
+
+def index(request):
+    if get_profile_type(request.user) == 'gym':
+        return render(request, 'tracker/Gym/gym_tracker_base.html')
+    return render(request, 'tracker/User/user_tracker_base.html')
 
 
 def about(request):
@@ -106,7 +112,7 @@ class ProfileView(LoginRequiredMixin, generic.DetailView):
     """
     model = Profile
     context_object_name = 'profile'
-    template_name = 'profile.html'
+    template_name = 'tracker/profile.html'
 
 
 class AchievementView(LoginRequiredMixin, generic.ListView):

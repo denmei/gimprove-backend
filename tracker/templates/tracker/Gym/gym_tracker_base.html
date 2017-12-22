@@ -1,0 +1,44 @@
+{% extends "tracker/tracker_base.html" %}
+
+{% block sidebar_content %}
+               <li class="sidebar-category">
+                    <div class="sidebar-category-header">
+                        <a href="">general</a>
+                    </div>
+                </li>
+
+                <li class="sidebar-category">
+                    <div class="sidebar-category-header">
+                        <a href="#members-subnav" data-toggle="collapse" aria-expanded="false">members</a>
+                    </div>
+                    <ul class="sidebar-subnav collapse" id="members-subnav">
+                        <li class="sidebar-subcategory"><a href="">overview</a></li>
+                        <li class="sidebar-subcategory"><a href="">community</a></li>
+                        <li class="sidebar-subcategory"><a href="">analytics</a></li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-category">
+                    <div class="sidebar-category-header">
+                        <a href="#studio-subnav" data-toggle="collapse" aria-expanded="false">studio</a>
+                    </div>
+                    <ul class="sidebar-subnav collapse" id="studio-subnav">
+                        <li class="sidebar-subcategory"><a href="">overview</a></li>
+                        <li class="sidebar-subcategory"><a href="">calendar & to dos</a></li>
+                        <li class="sidebar-subcategory"><a href="">workout plans</a></li>
+                        <li class="sidebar-subcategory"><a href="">equipment</a></li>
+                        <li class="sidebar-subcategory"><a href="">analytics</a></li>
+                    </ul>
+                </li>
+
+              <li class="sidebar-category">
+                    <div class="sidebar-category-header">
+                        <a href="#system-subnav" data-toggle="collapse" aria-expanded="false">system</a>
+                    </div>
+                    <ul class="sidebar-subnav collapse" id="system-subnav">
+                        <li class="sidebar-subcategory"><a href="{% url 'profile' user.id %}">profile</a></li>
+                        <li class="sidebar-subcategory"><a href="">settings</a></li>
+                        <li class="sidebar-subcategory"><a href="">quit</a></li>
+                    </ul>
+                </li>
+{% endblock %}
