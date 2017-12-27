@@ -195,7 +195,7 @@ p {
 
 .container-fluid {
     width: 100%;
-    min-height: 100%;
+
     padding: 0px;
     margin: 0px;
 }
@@ -257,8 +257,8 @@ p {
 }
 
 .screen-height {
-    height: calc(100vh - 4rem);
     min-height: 100%;
+    height: calc(100vh - 4rem);
 }
 
 .full-height{
@@ -331,4 +331,16 @@ img {
 
 .white-border {
     border: 2px solid white;
+}
+
+.red-border {
+    border: 2px solid red;
+}
+
+.box-disp {
+    box-sizing: border-box;
+}
+
+.max {
+    max-height: 100%;
 }

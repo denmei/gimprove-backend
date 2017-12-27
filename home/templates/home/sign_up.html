@@ -17,14 +17,16 @@
 
 <div class="row full-width">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <form role="form" action="" method="post">
+        <form role="form" action="{% url 'home' %}" method="post">
             {% csrf_token %}
             <div class="row transparent">
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <p>Name: </p>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <p>{{ form.contact_name }}</p>
+                    <div class="black-text">
+                        <td>{{ form.contact_name }}</td>
+                    </div>
                 </div>
             </div>
             <div class="row transparent">
@@ -32,15 +34,9 @@
                     <p>Mail: </p>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <p>{{ form.contact_email }}</p>
-                </div>
-            </div>
-            <div class="row transparent">
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <p class="text-center">Message: </p>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <p>{{ form.content }}</p>
+                    <div class="black-text">
+                        <td>{{ form.contact_email }}</td>
+                    </div>
                 </div>
             </div>
             <button class="xl-button" type="submit">Send</button>
