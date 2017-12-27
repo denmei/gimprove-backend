@@ -309,7 +309,7 @@ img {
 
 /*------- navbar ----------*/
 .navbar {
-      height: 4rem;
+      min-height: 4rem;
       font-family: 'Raleway', sans-serif;
       background-color: black;
       margin: 0px;
