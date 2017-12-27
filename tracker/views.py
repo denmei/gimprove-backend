@@ -114,6 +114,14 @@ class ProfileView(LoginRequiredMixin, generic.DetailView):
     context_object_name = 'profile'
     template_name = 'tracker/profile.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if get_profile_type(self.request.user) == 'gym':
+            context['base_template'] = 'tracker/Gym/gym_tracker_base.html'
+        else:
+            context['base_template'] = 'tracker/User/user_tracker_base.html'
+        return context
+
 
 class AchievementView(LoginRequiredMixin, generic.ListView):
     model = Achievement
