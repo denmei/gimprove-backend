@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-15 05:24+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: home/templates/home/homepage2.html:14
+msgid "About"
+msgstr "Über"
+
+#: home/templates/home/homepage2.html:17
+msgid "Contact"
+msgstr "Kontakt"
+
+#: home/templates/home/homepage2.html:36
+msgid " SmartGym is the Solution You need <br> to digitalize Your Studio! "
+msgstr ""
+" SmartGym ist die ultimative Lösung <br> zur Digitalisierung Ihres "
+"Fitnessstudios! "
+
+#: home/templates/home/homepage2.html:38
+msgid ""
+" SmartGym-Add Ons are a <b>lightweight solution to digitalize your\n"
+"                            machines</b>. "
+msgstr ""
+" SmartGym bietet leichtgewichtige Komponenten zum <b>Nachrüsten Ihres \n"
+"                            Studioequipments</b>. "
+
+#: home/templates/home/homepage2.html:40
+msgid ""
+" Sensors help to track the relevant key figures of your clients' workouts.\n"
+"                          "
+msgstr ""
+" Mit Hilfe verschiedener Sensoren werden die Trainingsdaten Ihrer Kunden erfasst.\n"
+"                          "
+
+#: home/templates/home/homepage2.html:42
+msgid ""
+" Athletes can <b>analyze their workouts and their progress</b> within the\n"
+"                            SmartGym-App. "
+msgstr ""
+" Mit der SmartGym-App können Ihre Kunden ihre Workouts und \n"
+"                            Fortschritte analysieren. "
+
+#: home/templates/home/homepage2.html:44
+msgid ""
+" The Add Ons can be installed within a couple of minutes.\n"
+"                            "
+msgstr ""
+"Die Komponenten können innerhalb von Minuten installiert werden.\n"
+"                          "
+
+#: home/templates/home/homepage2.html:46
+msgid ""
+" SmartGym comes as an integrated software system, <b>connecting you and\n"
+"                            your clients</b> and helping you to <b>deliver "
+"the best service</b> and <b>manage your\n"
+"                            facility</b>. "
+msgstr ""
+
+#: home/templates/home/homepage2.html:63
+msgid "Outstanding Workout Experience"
+msgstr ""
+
+#: home/templates/home/homepage2.html:72
+msgid "Motivates Your Clients"
+msgstr ""
+
+#: home/templates/home/homepage2.html:75
+msgid ""
+" Motivating your clients is crucial for keeping fluctuation low.\n"
+"                                SmartGym provides a variety of solutions to "
+"keep your clients motivated:\n"
+"                                "
+msgstr ""
+" Um die Kundenfluktuation zu minimieren, ist eine hohe Motivation der Mitglieder unerlässlich.\n"
+"                                SmartGym bietet Ihnen eine Reihe an Möglichkeiten"
+"um Ihre Kunden zu motivieren:\n"
+"                                "
+
+#: home/templates/home/homepage2.html:79
+msgid "Automatic tracking of workouts in realtime"
+msgstr "Automatische Erfassung von Trainingseinheiten in Echtzeit"
+
+#: home/templates/home/homepage2.html:80
+msgid "Visualization of achievements and progresses"
+msgstr "Visualiesierung von Fortschritten und Erfolgen"
+
+#: home/templates/home/homepage2.html:81
+msgid ""
+"<a data-target=\"#app-carousel\" data-slide-to=\"0\" class=\"scroll-app\">\n"
+"                                    Live Feedback</a> lets you react to your "
+"clients' activities in realtime\n"
+"                                    "
+msgstr ""
+"<a data-target=\"#app-carousel\" data-slide-to=\"0\" class=\"scroll-app\">\n"
+"                                    Live Feedback</a> Ermöglicht Ihnen, in Echtzeit"
+"auf die Aktivitäten Ihrer Kunden zu reagieren\n"
+"                                    "
+
+#: home/templates/home/homepage2.html:84
+msgid "Own studio community to share achievements and progresses"
+msgstr "Eigene Studio-Community um Erfolge und Fortschritte zu teilen"
+
+#: home/templates/home/homepage2.html:85
+msgid ""
+"<a data-target=\"#app-carousel\" data-slide-to=\"1\" class=\"scroll-app\">\n"
+"                                    Specific tasks</a> and open community "
+"competitions to challenge your clients\n"
+"                                    "
+msgstr ""
+
+#: home/templates/home/homepage2.html:97
+msgid ""
+" SmartGym gives you the possibility to set yourself apart from your\n"
+"                                competitors and to increase customer "
+"loyalty: "
+msgstr ""
+" Mit SmartGym können Sie Ihr Fitnessstudio von anderen abheben und die Kundenbindung erhöhen: "
+
+#: smartgym/settings.py:116
+msgid "English"
+msgstr ""
+
+#: smartgym/settings.py:117
+msgid "German"
+msgstr ""

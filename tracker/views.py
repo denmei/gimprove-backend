@@ -1,17 +1,15 @@
 from django.shortcuts import render
 from django.views import generic
-from django.contrib.auth.models import User
 from .models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy
 import datetime
 from .forms import AddExerciseUnitForm, AddTrainUnitForm, ContactForm
 from django.views.generic.edit import CreateView, DeleteView
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
-from django.template import Context
 from django.template.loader import get_template
 
 # Create your views here.

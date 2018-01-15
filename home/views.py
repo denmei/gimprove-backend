@@ -9,7 +9,7 @@ from django.template.loader import get_template
 
 
 def home(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return HttpResponseRedirect('/tracker/')
     else:
         return render(request, 'home/homepage2.html')

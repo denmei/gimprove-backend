@@ -319,10 +319,23 @@ img {
       border-radius: 0px;
 }
 
+.header-button {
+    color: #FC663D !important;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    min-height: 100%;
+}
 
 .navbar a {
     color: #FC663D !important;
     text-decoration: none;
+}
+
+.navbar-nav li {
+    display: inline-block;
+    float:none;
 }
 
 .navbar-brand {

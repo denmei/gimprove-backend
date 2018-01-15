@@ -13,8 +13,8 @@ def get_image_path(instance, filename):
 
 class Connection(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False)
-    follower = models.ForeignKey(User, related_name="follower")
-    followed = models.ForeignKey(User, related_name="followed")
+    follower = models.ForeignKey(User, related_name="follower", on_delete=models.CASCADE)
+    followed = models.ForeignKey(User, related_name="followed", on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.follower) + ":" + str(self.followed)
@@ -60,7 +60,7 @@ class UserProfile(Profile):
 
 
 class GymProfile(Profile):
-    gym = models.OneToOneField('Gym', blank=False)
+    gym = models.OneToOneField('Gym', blank=False, on_delete=models.CASCADE)
 
 
 def get_profile_type(user):

@@ -43,7 +43,24 @@
               <li><a href="{% url 'profile' user.id %}">Mein Profil</a></li>
           {% endif %}
       </ul>
+      <!--Language buttons and Login/Logout-->
       <ul class="nav navbar-nav navbar-right">
+        <li>
+            <form action="{% url 'set_language' %}" method="post">
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
+              <input name="language" type="hidden" value="de" />
+              <button class="header-button" type="submit">deutsch</button>
+            </form>
+        </li>
+        <li>
+            <form action="{% url 'set_language' %}" method="post">
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ redirect_to }}" />
+              <input name="language" type="hidden" value="en" />
+              <button class="header-button" type="submit">english</button>
+            </form>
+        </li>
         {% if user.is_authenticated %}
         <li><a href="{% url 'logout'%}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         {% else %}

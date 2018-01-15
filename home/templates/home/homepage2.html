@@ -1,4 +1,5 @@
 {% extends "home/home_base.html" %}
+{% load i18n %}
 
 {% block extra_head %}
 {% load static %}
@@ -10,10 +11,10 @@
 {% block header_right %}
 <div class="row full-width">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-        <a class="btn xl-button full-width js-scroll-trigger" href="#about">About</a>
+        <a class="btn xl-button full-width js-scroll-trigger" href="#about">{% trans 'About' %}</a>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-        <a class="btn xl-button full-width js-scroll-trigger" href="#contact">Contact</a>
+        <a class="btn xl-button full-width js-scroll-trigger" href="#contact">{% trans 'Contact' %}</a>
     </div>
 </div>
 {% endblock %}
@@ -32,14 +33,19 @@
             </div>
             <div class="row row-eq-height">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <h3>SmartGym is the Solution You need <br> to digitalize Your Studio!</h3>
+                    <h3>{% blocktrans %} SmartGym is the Solution You need <br> to digitalize Your Studio! {% endblocktrans %}</h3>
                     <ul>
-                        <li>SmartGym-Add Ons are a <b>lightweight solution to digitalize your machines</b>.</li>
-                        <li>Sensors help to track the relevant key figures of your clients' workouts.</li>
-                        <li>Athletes can <b>analyze their workouts and their progress</b> within the SmartGym-App.</li>
-                        <li>The Add Ons can be installed within a couple of minutes.</li>
-                        <li>SmartGym comes as an integrated software system, <b>connecting you and your clients</b> and helping
-                            you to <b>deliver the best service</b> and <b>manage your facility</b>.</li>
+                        <li>{% blocktrans %} SmartGym-Add Ons are a <b>lightweight solution to digitalize your
+                            machines</b>. {% endblocktrans %}</li>
+                        <li>{% blocktrans %} Sensors help to track the relevant key figures of your clients' workouts.
+                            {% endblocktrans %}</li>
+                        <li>{% blocktrans %} Athletes can <b>analyze their workouts and their progress</b> within the
+                            SmartGym-App. {% endblocktrans %}</li>
+                        <li>{% blocktrans %} The Add Ons can be installed within a couple of minutes.
+                            {% endblocktrans %}</li>
+                        <li>{% blocktrans %} SmartGym comes as an integrated software system, <b>connecting you and
+                            your clients</b> and helping you to <b>deliver the best service</b> and <b>manage your
+                            facility</b>. {% endblocktrans %}</li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 hcenter">
@@ -54,7 +60,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h2>Outstanding Workout Experience</h2>
+                    <h2>{% trans 'Outstanding Workout Experience' %}</h2>
                 </div>
                 <hr>
             </div>
@@ -63,19 +69,22 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                             <i class="fa fa-4x fa-star-o"></i>
-                            <h4>Motivates Your Clients</h4>
+                            <h4>{% trans 'Motivates Your Clients' %}</h4>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                            <p>Motivating your clients is crucial for keeping fluctuation low. SmartGym provides a
-                            variety of solutions to keep your clients motivated:</p>
+                            <p>{% blocktrans %} Motivating your clients is crucial for keeping fluctuation low.
+                                SmartGym provides a variety of solutions to keep your clients motivated:
+                                {% endblocktrans %}</p>
                             <ul>
-                                <li>Automatic tracking of workouts in realtime</li>
-                                <li>Visualization of achievements and progresses</li>
-                                <li><a data-target="#app-carousel" data-slide-to="0" class="scroll-app">Live Feedback</a> lets you react to
-                                    your clients' activities in realtime</li>
-                                <li>Own studio community to share achievements and progresses</li>
-                                <li><a data-target="#app-carousel" data-slide-to="1" class="scroll-app">Specific tasks</a> and open community
-                                    competitions to challenge your clients</li>
+                                <li>{% trans 'Automatic tracking of workouts in realtime' %}</li>
+                                <li>{% trans 'Visualization of achievements and progresses' %}</li>
+                                <li>{% blocktrans %}<a data-target="#app-carousel" data-slide-to="0" class="scroll-app">
+                                    Live Feedback</a> lets you react to your clients' activities in realtime
+                                    {% endblocktrans %}</li>
+                                <li>{% trans 'Own studio community to share achievements and progresses' %}</li>
+                                <li>{% blocktrans %}<a data-target="#app-carousel" data-slide-to="1" class="scroll-app">
+                                    Specific tasks</a> and open community competitions to challenge your clients
+                                    {% endblocktrans %}</li>
                             </ul>
                         </div>
                     </div>
@@ -85,8 +94,8 @@
                             <h4>Increases Customer Loyalty</h4>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                            <p>SmartGym gives you the possibility to set yourself apart from your competitors and to
-                            increase customer loyalty:</p>
+                            <p>{% blocktrans %} SmartGym gives you the possibility to set yourself apart from your
+                                competitors and to increase customer loyalty: {% endblocktrans %}</p>
                             <ul>
                                 <li>Live overview over the activities in your gym helps you to deliver the best service</li>
                                 <li>Own studio community binds your clients to your facility</li>
