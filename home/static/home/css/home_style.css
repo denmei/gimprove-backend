@@ -81,7 +81,7 @@ p {
 }
 
 .dumbbell-background {
-    background-image: url('dumbbell.jpg');
+    /**background-image: url('dumbbell.jpg');**/
     background-size: cover;
     background-repeat: no-repeat;
 }

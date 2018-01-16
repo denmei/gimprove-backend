@@ -135,12 +135,12 @@ MEDIA_URL = '/media/'
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'testing@example.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-EMAIL_PORT = 1025
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'meisnerden@gmail.com'
+EMAIL_HOST_PASSWORD = 'sk8eordie'
+DEFAULT_EMAIL_FROM = 'meisnerden@gmail.com'
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -158,3 +158,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+

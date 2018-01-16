@@ -12,8 +12,12 @@ $(document).ready( function() {
         }, 400);
     });
 
-    $('.send-button').on('click', () => {
-        alert('Thanks for your interest. We sent you a mail to your address.');
+    $('.xl-button').on('mouseenter', (event) => {
+        $(event.currentTarget).css({'color': 'black', 'background': 'white'});
+    });
+
+    $('.xl-button').on('mouseleave', (event) => {
+        $(event.currentTarget).css({'color': 'white', 'background': 'transparent'});
     });
 
 });

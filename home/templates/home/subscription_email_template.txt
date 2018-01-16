@@ -1,0 +1,8 @@
+<html>
+<h1>Dear {{ contact_name }},</h1>
+
+<p>thanks for subscribing to our newsletter.
+
+Kind regards,
+Your SmartGym-Team</p>
+</html>

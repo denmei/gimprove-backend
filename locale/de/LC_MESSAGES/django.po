@@ -71,14 +71,18 @@ msgid ""
 "the best service</b> and <b>manage your\n"
 "                            facility</b>. "
 msgstr ""
+" SmartGym ist ein integriertes Softwaresystem, dass <b>Sie mit Ihren\n"
+"                            Kunden verbindet</b> und Ihnen dabei hilft, <b>die "
+"Betreuung der Mitglieder zu optimieren</b> und <b>Ihr Studio\n"
+"                            zu verwalten.</b>. "
 
 #: home/templates/home/homepage2.html:63
 msgid "Outstanding Workout Experience"
-msgstr ""
+msgstr "Einzigartiges Trainingsgefühl"
 
 #: home/templates/home/homepage2.html:72
 msgid "Motivates Your Clients"
-msgstr ""
+msgstr "Motiviert Ihre Kunden"
 
 #: home/templates/home/homepage2.html:75
 msgid ""
@@ -122,7 +126,12 @@ msgid ""
 "                                    Specific tasks</a> and open community "
 "competitions to challenge your clients\n"
 "                                    "
+
 msgstr ""
+"<a data-target=\"#app-carousel\" data-slide-to=\"1\" class=\"scroll-app\">\n"
+"                                    Maßgeschneiderte Aufgaben</a> und offene Community-Wettbewerbe "
+"um Ihre Kunden herauszufordern und zu motivieren\n"
+"                                    "
 
 #: home/templates/home/homepage2.html:97
 msgid ""

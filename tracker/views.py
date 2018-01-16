@@ -33,7 +33,7 @@ from django.template.loader import get_template
 
             # Email the profile with the
             # contact information
-            template = get_template('contact_template.txt')
+            template = get_template('subscription_email_template.txt')
             context = {
                 'contact_name': contact_name,
                 'contact_email': contact_email,
@@ -200,7 +200,7 @@ def contact(request):
 
             # Email the profile with the
             # contact information
-            template = get_template('contact_template.txt')
+            template = get_template('subscription_email_template.txt')
             context = {
                 'contact_name': contact_name,
                 'contact_email': contact_email,
