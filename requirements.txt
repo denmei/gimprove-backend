@@ -10,4 +10,4 @@ bleach==1.4.3
 psycopg2==2.6.1
 whitenoise==3.2
 django_makemessages_xgettext==0.1.1
-django-smtp-ssl=1.0
+django-smtp-ssl==1.0
