@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h2>Digitalizing the Fitness Industry</h2>
+                    <h2>{% trans 'Digitalizing the Fitness Industry' %}</h2>
                 </div>
                 <hr>
             </div>
@@ -91,7 +91,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                             <i class="fa fa-4x fa-angle-double-up"></i>
-                            <h4>Increases Customer Loyalty</h4>
+                            <h4>{% trans 'Increases Customer Loyalty' %}</h4>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                             <p>{% blocktrans %} SmartGym gives you the possibility to set yourself apart from your
@@ -127,7 +127,6 @@
                                     <p>{% trans 'Challenge your Clients' %}</p>
                                 </div>
                             </div>
-
 
                           <!-- Left and right controls
                           <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -187,15 +186,16 @@
                             <h4>{% trans 'Optimize Your Portfolio' %}</h4>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 hcenter">
-                            <p>Find out which of your <a data-target="#webapp-carousel" data-slide-to="3" class="scroll-webapp">machines</a>
-                                are popular and which are not to optimize your facility's portfolio. Predictive
-                                Maintenance helps you to avoid malfunctions.</p>
+                            <p>{% blocktrans %}Find out which of your <a data-target="#webapp-carousel" data-slide-to="3"
+                                class="scroll-webapp">machines</a> are popular and which are not to optimize your
+                                facility's portfolio. Predictive Maintenance helps you to avoid malfunctions.
+                                {% endblocktrans %}</p>
                         </div>
                     </div>
                     <div class="row row-eq-height">
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                             <i class="fa fa-4x fa-arrows-alt"></i>
-                            <h4>Highest Flexibility</h4>
+                            <h4>{% trans 'Highest Flexibility' %}</h4>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 hcenter">
                             <p>{% trans 'Use SmartGym on the device of your choice: SmartGym is available as
@@ -239,7 +239,7 @@
                         <div class="item">
                           <img class="full-width" src="{% static 'home/mockup/equipment_imac2013_front.png' %}">
                           <div class="carousel-caption">
-                              <p>Manage your Equipment.</p>
+                              <p>{% trans 'Manage your Equipment' %}</p>
                           </div>
                         </div>
                       </div>
@@ -255,13 +255,13 @@
         <div class="container home-section">
             <div class="row row-eq-height">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h2>Contact</h2>
+                    <h2>{% trans 'Contact' %}</h2>
                 </div>
             </div>
             <hr>
 
             <div class="row">
-                <h3>Subscribe to get more Information!</h3>
+                <h3>{% trans 'Subscribe to get more Information!' %}</h3>
             </div>
 
             <div class="row">
@@ -270,7 +270,7 @@
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                <p>Name: </p>
+                                <p>{% trans 'Name: ' %}</p>
                             </div>
                             <div class="col-xs-12 col-sm-4 col-md-4col-lg-8">
                                 <p>{{ form.contact_name }}</p>
@@ -278,19 +278,19 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                <p>E-Mail: </p>
+                                <p>{% trans 'E-Mail: ' %}</p>
                             </div>
                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-8">
                                 <p>{{ form.contact_email }}</p>
                             </div>
                         </div>
-                        <button class="xl-button send-button" type="submit">Senden</button>
+                        <button class="xl-button send-button" type="submit">{% trans 'Send'}</button>
                     </form>
                 </div>
             </div>
 
             <div class="row">
-                <h3>Or contact Us directly!</h3>
+                <h3>{% trans 'Or contact Us directly!' %}</h3>
             </div>
 
             <div class="row row-eq-height" id="contact-row">

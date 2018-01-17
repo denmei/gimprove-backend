@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-15 05:24+0000\n"
+"POT-Creation-Date: 2018-01-16 20:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,9 +22,13 @@ msgstr ""
 msgid "About"
 msgstr "Über"
 
-#: home/templates/home/homepage2.html:17
+#: home/templates/home/homepage2.html:17 home/templates/home/homepage2.html:258
 msgid "Contact"
 msgstr "Kontakt"
+
+#: home/templates/home/homepage2.html:30
+msgid "Digitalizing the Fitness Industry"
+msgstr ""
 
 #: home/templates/home/homepage2.html:36
 msgid " SmartGym is the Solution You need <br> to digitalize Your Studio! "
@@ -41,11 +45,17 @@ msgstr ""
 "                            Studioequipments</b>. "
 
 #: home/templates/home/homepage2.html:40
+#, fuzzy
+#| msgid ""
+#| " Sensors help to track the relevant key figures of your clients' "
+#| "workouts.\n"
+#| "                          "
 msgid ""
 " Sensors help to track the relevant key figures of your clients' workouts.\n"
-"                          "
+"                            "
 msgstr ""
-" Mit Hilfe verschiedener Sensoren werden die Trainingsdaten Ihrer Kunden erfasst.\n"
+" Mit Hilfe verschiedener Sensoren werden die Trainingsdaten Ihrer Kunden "
+"erfasst.\n"
 "                          "
 
 #: home/templates/home/homepage2.html:42
@@ -72,8 +82,8 @@ msgid ""
 "                            facility</b>. "
 msgstr ""
 " SmartGym ist ein integriertes Softwaresystem, dass <b>Sie mit Ihren\n"
-"                            Kunden verbindet</b> und Ihnen dabei hilft, <b>die "
-"Betreuung der Mitglieder zu optimieren</b> und <b>Ihr Studio\n"
+"                            Kunden verbindet</b> und Ihnen dabei hilft, "
+"<b>die Betreuung der Mitglieder zu optimieren</b> und <b>Ihr Studio\n"
 "                            zu verwalten.</b>. "
 
 #: home/templates/home/homepage2.html:63
@@ -91,9 +101,10 @@ msgid ""
 "keep your clients motivated:\n"
 "                                "
 msgstr ""
-" Um die Kundenfluktuation zu minimieren, ist eine hohe Motivation der Mitglieder unerlässlich.\n"
-"                                SmartGym bietet Ihnen eine Reihe an Möglichkeiten"
-"um Ihre Kunden zu motivieren:\n"
+" Um die Kundenfluktuation zu minimieren, ist eine hohe Motivation der "
+"Mitglieder unerlässlich.\n"
+"                                SmartGym bietet Ihnen eine Reihe an "
+"Möglichkeitenum Ihre Kunden zu motivieren:\n"
 "                                "
 
 #: home/templates/home/homepage2.html:79
@@ -112,8 +123,8 @@ msgid ""
 "                                    "
 msgstr ""
 "<a data-target=\"#app-carousel\" data-slide-to=\"0\" class=\"scroll-app\">\n"
-"                                    Live Feedback</a> Ermöglicht Ihnen, in Echtzeit"
-"auf die Aktivitäten Ihrer Kunden zu reagieren\n"
+"                                    Live Feedback</a> Ermöglicht Ihnen, in "
+"Echtzeitauf die Aktivitäten Ihrer Kunden zu reagieren\n"
 "                                    "
 
 #: home/templates/home/homepage2.html:84
@@ -126,12 +137,15 @@ msgid ""
 "                                    Specific tasks</a> and open community "
 "competitions to challenge your clients\n"
 "                                    "
-
 msgstr ""
 "<a data-target=\"#app-carousel\" data-slide-to=\"1\" class=\"scroll-app\">\n"
-"                                    Maßgeschneiderte Aufgaben</a> und offene Community-Wettbewerbe "
-"um Ihre Kunden herauszufordern und zu motivieren\n"
+"                                    Maßgeschneiderte Aufgaben</a> und offene "
+"Community-Wettbewerbe um Ihre Kunden herauszufordern und zu motivieren\n"
 "                                    "
+
+#: home/templates/home/homepage2.html:94
+msgid "Increases Customer Loyalty"
+msgstr ""
 
 #: home/templates/home/homepage2.html:97
 msgid ""
@@ -139,7 +153,131 @@ msgid ""
 "                                competitors and to increase customer "
 "loyalty: "
 msgstr ""
-" Mit SmartGym können Sie Ihr Fitnessstudio von anderen abheben und die Kundenbindung erhöhen: "
+" Mit SmartGym können Sie Ihr Fitnessstudio von anderen abheben und die "
+"Kundenbindung erhöhen: "
+
+#: home/templates/home/homepage2.html:100
+msgid ""
+"Live overview over the activities in your gym helps you to deliver the best "
+"service"
+msgstr ""
+
+#: home/templates/home/homepage2.html:101
+#, fuzzy
+#| msgid "Own studio community to share achievements and progresses"
+msgid "Own studio community binds your clients to your facility"
+msgstr "Eigene Studio-Community um Erfolge und Fortschritte zu teilen"
+
+#: home/templates/home/homepage2.html:102
+msgid ""
+"Customized studio design of the mobile app makes your facility omnipresent "
+"for your clients"
+msgstr ""
+
+#: home/templates/home/homepage2.html:120
+msgid "Give Live-Feedback"
+msgstr ""
+
+#: home/templates/home/homepage2.html:127
+#, fuzzy
+#| msgid "Motivates Your Clients"
+msgid "Challenge your Clients"
+msgstr "Motiviert Ihre Kunden"
+
+#: home/templates/home/homepage2.html:153
+msgid "State-of-the-Art Trainer Support"
+msgstr ""
+
+#: home/templates/home/homepage2.html:164
+#: home/templates/home/homepage2.html:228
+msgid "Realtime Monitoring"
+msgstr ""
+
+#: home/templates/home/homepage2.html:167
+#, fuzzy
+#| msgid ""
+#| "<a data-target=\"#app-carousel\" data-slide-to=\"0\" class=\"scroll-app"
+#| "\">\n"
+#| "                                    Live Feedback</a> lets you react to "
+#| "your clients' activities in realtime\n"
+#| "                                    "
+msgid ""
+"<a data-target=\"#webapp-carousel\" data-slide-to=\"1\" class=\"scroll-webapp"
+"\">\n"
+"                                Monitor</a> all activities in your gym in "
+"realtime in order to provide the best service\n"
+"                                to your clients. "
+msgstr ""
+"<a data-target=\"#app-carousel\" data-slide-to=\"0\" class=\"scroll-app\">\n"
+"                                    Live Feedback</a> Ermöglicht Ihnen, in "
+"Echtzeitauf die Aktivitäten Ihrer Kunden zu reagieren\n"
+"                                    "
+
+#: home/templates/home/homepage2.html:175
+msgid "Create and Manage Workout Plans"
+msgstr ""
+
+#: home/templates/home/homepage2.html:178
+msgid ""
+"Create and manage your own <a data-target=\"#webapp-carousel\"\n"
+"                                 data-slide-to=\"2\" class=\"scroll-webapp"
+"\">workout plans</a>. Assign them to your\n"
+"                                clients and track their progress."
+msgstr ""
+
+#: home/templates/home/homepage2.html:186
+msgid "Optimize Your Portfolio"
+msgstr ""
+
+#: home/templates/home/homepage2.html:189
+#, fuzzy
+#| msgid ""
+#| "<a data-target=\"#app-carousel\" data-slide-to=\"0\" class=\"scroll-app"
+#| "\">\n"
+#| "                                    Live Feedback</a> lets you react to "
+#| "your clients' activities in realtime\n"
+#| "                                    "
+msgid ""
+"Find out which of your <a data-target=\"#webapp-carousel\" data-slide-to="
+"\"3\"\n"
+"                                class=\"scroll-webapp\">machines</a> are "
+"popular and which are not to optimize your\n"
+"                                facility's portfolio. Predictive Maintenance "
+"helps you to avoid malfunctions.\n"
+"                                "
+msgstr ""
+"<a data-target=\"#app-carousel\" data-slide-to=\"0\" class=\"scroll-app\">\n"
+"                                    Live Feedback</a> Ermöglicht Ihnen, in "
+"Echtzeitauf die Aktivitäten Ihrer Kunden zu reagieren\n"
+"                                    "
+
+#: home/templates/home/homepage2.html:198
+msgid "Highest Flexibility"
+msgstr ""
+
+#: home/templates/home/homepage2.html:221
+msgid "All important figures at a glance"
+msgstr ""
+
+#: home/templates/home/homepage2.html:242
+msgid "Manage your Equipment"
+msgstr ""
+
+#: home/templates/home/homepage2.html:264
+msgid "Subscribe to get more Information!"
+msgstr ""
+
+#: home/templates/home/homepage2.html:273
+msgid "Name: "
+msgstr ""
+
+#: home/templates/home/homepage2.html:281
+msgid "E-Mail: "
+msgstr ""
+
+#: home/templates/home/homepage2.html:293
+msgid "Or contact Us directly!"
+msgstr ""
 
 #: smartgym/settings.py:116
 msgid "English"
