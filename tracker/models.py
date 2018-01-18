@@ -12,6 +12,9 @@ def get_image_path(instance, filename):
 
 
 class Connection(models.Model):
+    """
+    Connection between a follower and the followed profile.
+    """
     created = models.DateTimeField(auto_now_add=True, editable=False)
     follower = models.ForeignKey(User, related_name="follower", on_delete=models.CASCADE)
     followed = models.ForeignKey(User, related_name="followed", on_delete=models.CASCADE)
@@ -22,8 +25,9 @@ class Connection(models.Model):
 
 class Profile(models.Model):
     """
-    Abstract class for the two user types - gyms and athletes (users).
+    Abstract class for the two user types - gyms and athletes (users). Attributes:
     """
+    # TODO: Make abstract
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True, help_text="Beschreibung.")
     profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
@@ -54,13 +58,20 @@ class Profile(models.Model):
 
 
 class UserProfile(Profile):
+    """
+    Extended Profile for personal users (not Gyms).
+    """
     date_of_birth = models.DateField(null=False, blank=False)
     gym = models.ManyToManyField('Gym', blank=True)
     achievements = models.ManyToManyField('Achievement', blank=True)
 
 
 class GymProfile(Profile):
+    """
+    Extended Profile for gym users.
+    """
     gym = models.OneToOneField('Gym', blank=False, on_delete=models.CASCADE)
+    members = models.ManyToManyField('UserProfile', blank=True)
 
 
 def get_profile_type(user):
@@ -78,6 +89,9 @@ def get_profile_type(user):
 
 
 class Exercise(models.Model):
+    """
+    Represents an executable exercise (not a group of sets!).
+    """
     name = models.CharField(max_length=100, primary_key=True)
     description = models.CharField(max_length=1000, help_text="Insert short description here.")
     muscles = models.ManyToManyField('Muscle', help_text="Muscles trained by the exercise.")
@@ -98,6 +112,9 @@ class Muscle(models.Model):
 
 
 class TrainUnit(models.Model, LoginRequiredMixin):
+    """
+    Represents a group of exercise units executed together at a specific point of time.
+    """
     login_url = '/login/'
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     start_time_date = models.DateTimeField(null=False, blank=False)
@@ -114,6 +131,9 @@ class TrainUnit(models.Model, LoginRequiredMixin):
 
 
 class ExerciseUnit(models.Model):
+    """
+    Represents a group of sets of the same exercise within the same TrainUnit.
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     time_date = models.DateTimeField(null=False, blank=False)
     train_unit = models.ForeignKey(TrainUnit, on_delete=models.CASCADE)
@@ -124,6 +144,9 @@ class ExerciseUnit(models.Model):
 
 
 class Set(models.Model):
+    """
+    Represents a group of repetitions of the same exercise, directly executed one after the other.
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     date_time = models.DateTimeField(null=False, blank=False)
     exercise_unit = models.ForeignKey(ExerciseUnit, on_delete=models.CASCADE)
@@ -134,15 +157,11 @@ class Set(models.Model):
 
 
 class Equipment(models.Model):
+    """
+    Represents a unique machine within a studio.
+    """
+    # TODO Extend so equipment can be authenticated for uploading data
     name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
-
-
-class Gym(models.Model):
-    name = models.CharField(max_length=100, help_text="Insert name of gym here.")
-    members = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return self.name
@@ -160,6 +179,9 @@ class Achievement(models.Model):
 
 
 class Activity(models.Model):
+    """
+    New training units, achievements etc. create activities that can be shared in the community.
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, editable=False)
