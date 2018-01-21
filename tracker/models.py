@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.urls import reverse
 import os
+from datetime import datetime
 
 
 # Create your models here.
@@ -142,7 +143,7 @@ class ExerciseUnit(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.exercise) + " " + str(self.time_date)
 
 
 class Set(models.Model):
@@ -150,10 +151,10 @@ class Set(models.Model):
     Represents a group of repetitions of the same exercise, directly executed one after the other.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    date_time = models.DateTimeField(null=False, blank=False)
+    date_time = models.DateTimeField(default=datetime.now(), null=False, blank=False)
     exercise_unit = models.ForeignKey(ExerciseUnit, on_delete=models.CASCADE)
-    repetitions = models.IntegerField(default=0)
-    weight = models.IntegerField(default=0)
+    repetitions = models.IntegerField(blank=False)
+    weight = models.IntegerField(blank=False)
 
     def __str__(self):
         return str(self.id)

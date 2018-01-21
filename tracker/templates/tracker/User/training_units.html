@@ -15,10 +15,18 @@
                 <h1>Meine Workouts</h1>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 home">
+
+        <!-- List of TrainingUnits and the related ExerciseUnits and Sets. -->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             {% for train_unit in training_units %}
                 <div class="row">
-                    <p>Workout</p>
+                    <h2>Workout vom {{ train_unit.date }}</h2>
+                    {% for exercise_unit in train_unit.exercise_units.all %}
+                        <h3>{{ exercise_unit.exercise }}</h3>
+                        {% for set in exercise_unit.set_set.all %}
+                            <p>Set {{ forloop.counter }}: {{ set.repetitions }} Wiederholungen; {{ set.weight }} kg</p>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             {% endfor %}
         </div>
