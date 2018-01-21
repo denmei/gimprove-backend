@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import *
+from .serializers import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
@@ -11,6 +12,8 @@ from django.views.generic.edit import CreateView, DeleteView
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template.loader import get_template
+
+from rest_framework import generics
 
 # Create your views here.
 
@@ -82,8 +85,13 @@ class TrainingUnitsList(LoginRequiredMixin, generic.ListView):
     Show all training units of a user.
     """
     model = TrainUnit
-    context_object_name = 'training_units_list'
-    template_name = 'training_units.html'
+    context_object_name = 'training_units'
+    template_name = 'tracker/User/training_units.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['base_template'] = 'tracker/User/user_tracker_base.html'
+        return context
 
 
 class ExerciseUnitList(LoginRequiredMixin, generic.ListView):
@@ -104,20 +112,17 @@ class ExerciseUnitList(LoginRequiredMixin, generic.ListView):
         return context
 
 
-class ProfileView(LoginRequiredMixin, generic.DetailView):
+class UserProfileView(LoginRequiredMixin, generic.DetailView):
     """
     Show profile of user.
     """
-    model = Profile
+    model = UserProfile
     context_object_name = 'profile'
     template_name = 'tracker/profile.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if get_profile_type(self.request.user) == 'gym':
-            context['base_template'] = 'tracker/Gym/gym_tracker_base.html'
-        else:
-            context['base_template'] = 'tracker/User/user_tracker_base.html'
+        context['base_template'] = 'tracker/User/user_tracker_base.html'
         return context
 
 
@@ -128,7 +133,7 @@ class AchievementView(LoginRequiredMixin, generic.ListView):
 
 
 class GymView(LoginRequiredMixin, generic.DetailView):
-    model = Gym
+    model = GymProfile
     context_object_name = 'gym'
     template_name = 'gym.html'
 
@@ -177,10 +182,15 @@ class FollowerView(LoginRequiredMixin, generic.DetailView):
     template_name = 'followers.html'
 
 
-class ActivityView(LoginRequiredMixin, generic.ListView):
+class ActivityListView(LoginRequiredMixin, generic.ListView):
     model = Activity
-    context_object_name = 'activity'
-    template_name = 'timeline.html'
+    context_object_name = 'activities'
+    template_name = 'tracker/activitylist.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['base_template'] = 'tracker/User/user_tracker_base.html'
+        return context
 
 
 def contact(request):
@@ -221,3 +231,16 @@ def contact(request):
     return render(request, 'contact.html', {
         'form': form_class
     })
+
+
+class SetList(generics.ListCreateAPIView):
+    queryset = Set.objects.all()
+    serializer_class = SetSerializer
+
+
+class SetDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    View to retrieve, update or delete sets via http request.
+    """
+    queryset = Set.objects.all()
+    serializer_class = SetSerializer

@@ -1,3 +1,7 @@
+<!--
+Base file for tracker-application. Style and frame for all views/users (incl. Navbars, ActivityBar).
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,9 +61,9 @@
             <div class="container-fluid">
                 <div class="row" id="page-row">
                     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10" id="content">
+                            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
                             {% block site_content %}
                             {% endblock %}
-                            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
                     </div>
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-2 full-height" id="activity-bar">
                         <div class="activity-header">

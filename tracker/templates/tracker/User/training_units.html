@@ -1,0 +1,27 @@
+{% extends base_template %}
+
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+{% endblock %}
+
+{% block site_content %}
+<div class="container background-col">
+    <div class="row full-height">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-0">
+            <div class="row row-eq-height">
+                <h1>Meine Workouts</h1>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 home">
+            {% for train_unit in training_units %}
+                <div class="row">
+                    <p>Workout</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

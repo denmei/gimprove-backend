@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 full-width">
                             {% if profile.profile_image %}
-                                <img src='{{ profile.profile_image.url  }}' class="profile-img" alt="Profile Image"/>
+                                <img src='{{ profile.profile_image.url  }}' class="profile-img img-resize" alt="Profile Image"/>
                             {% else %}
                                 <p>Kein Bild vorhanden.</p>
                             {% endif %}
@@ -52,7 +52,7 @@
                         <button type="button" class="btn" aria-label="Left Align">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </button>
-                        <h3><b>{{ profile.get_follower_connections |length }}<br>Follower</b></h3>
+                        <h3><b>{{ zzprofile.get_follower_connections |length }}<br>Follower</b></h3>
                     </a>
                 </div>
                 <!-- Follows -->
@@ -97,7 +97,7 @@
             <div class="row sm-row-padding">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     {% if profile.user == user %}
-                        <h2><b>Meine Erfolge:</b></h2>
+                        <h2>Meine Erfolge:</h2>
                     {% else %}
                         <h2><b>{{ profile.user.username }}'s Erfolge:</b></h2>
                     {% endif %}
@@ -105,10 +105,12 @@
             </div>
             <div class="row">
                 {% for achievement in profile.achievements.all %}
-                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 ach">
-                        <img src="{{ achievement.achievement_image.url }}">
-                        <p>{{ achievement.description }}</p>
-                    </div>
+                    {% if achievement.achievement_image %}
+                        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <img class="img-responsive" src="{{ achievement.achievement_image.url }}">
+                            <p class="text-center">{{ achievement.description }}</p>
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>

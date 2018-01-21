@@ -1,4 +1,4 @@
-{% extends "base_generic.html" %}
+{% extends base_template %}
 
 {% block extra_head %}
 {% load static %}
@@ -7,9 +7,14 @@
 
 {% endblock %}
 
-{% block content %}
+{% block site_content %}
 <div class="container background-col">
     <div class="row full-height">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-0">
+            <div class="row row-eq-height">
+                <h1>Neuigkeiten</h1>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 home">
             {% for activity in user.profile.get_follows_activities %}
                 <div class="row activity">
