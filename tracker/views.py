@@ -90,8 +90,13 @@ class TrainingUnitsList(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        #TrainUnit.objects.all().filter(genre=self.kwargs['pk'])
+        TrainUnit.objects.filter(user=self.request.user.userprofile)
         context['base_template'] = 'tracker/User/user_tracker_base.html'
         return context
+
+    def get_queryset(self):
+        return TrainUnit.objects.filter(user=self.request.user.userprofile)
 
 
 class ExerciseUnitList(LoginRequiredMixin, generic.ListView):
