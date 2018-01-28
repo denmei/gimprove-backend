@@ -265,6 +265,7 @@ class SetList(APIView):
         request.data['weight'] = 2000
         user_profile = UserProfile.objects.get(rfid_tag=request.data['rfid'])
 
+        # TODO exercise-name muss von request-nachricht kommen -> eigenes Feld in serializer. Gleiches für RDIF-Feld.
         # If exercise_unit = None, create a new exercise_unit for the set. If there does not exist a Training Unit for
         # the current date, also create a new Training Unit.
         if request.data['exercise_unit'] == "None" or request.data['exercise_unit'] == "":
@@ -272,7 +273,6 @@ class SetList(APIView):
             if TrainUnit.objects.filter(date=timezone.now(), user=user_profile).exists():
                 train_unit = TrainUnit.objects.get(date=timezone.now(), user=user_profile)
                 train_unit.end_time_date = timezone.now()
-                train_unit.save()
             else:
                 train_unit = TrainUnit.objects.create(date=timezone.now(), start_time_date=timezone.now(),
                                                       end_time_date=timezone.now(), user=user_profile)
@@ -280,8 +280,9 @@ class SetList(APIView):
                                                         train_unit=train_unit,
                                                         exercise=Exercise.objects.get(name="Lat Pulldown Machine"))
             request.data['exercise_unit'] = exercise_unit.id
+            train_unit.exercise_units.add(exercise_unit)
+            train_unit.save()
         serializer = SetSerializer(data=request.data)
-
         # Add new set.
         if serializer.is_valid():
             serializer.save()
