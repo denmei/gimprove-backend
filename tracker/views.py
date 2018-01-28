@@ -12,8 +12,9 @@ from django.views.generic.edit import CreateView, DeleteView
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template.loader import get_template
-
-from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import generics, status
 
 # Create your views here.
 
@@ -89,13 +90,17 @@ class TrainingUnitsList(LoginRequiredMixin, generic.ListView):
     template_name = 'tracker/User/training_units.html'
 
     def get_context_data(self, **kwargs):
+        """
+        Set base template and context.
+        """
         context = super().get_context_data(**kwargs)
-        #TrainUnit.objects.all().filter(genre=self.kwargs['pk'])
-        TrainUnit.objects.filter(user=self.request.user.userprofile)
         context['base_template'] = 'tracker/User/user_tracker_base.html'
         return context
 
     def get_queryset(self):
+        """
+        Show only training units of the current user.
+        """
         return TrainUnit.objects.filter(user=self.request.user.userprofile)
 
 
@@ -238,9 +243,50 @@ def contact(request):
     })
 
 
-class SetList(generics.ListCreateAPIView):
+"""class SetList(generics.ListCreateAPIView):
     queryset = Set.objects.all()
-    serializer_class = SetSerializer
+    serializer_class = SetSerializer"""
+
+
+class SetList(APIView):
+    """
+    Class for creating new sets or retrieving a list of sets.
+    """
+
+    def get(self, request, format=None):
+        sets = Set.objects.all()
+        serializer = SetSerializer(sets, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        """
+        Method for creating a new set.
+        """
+        request.data['weight'] = 2000
+        user_profile = UserProfile.objects.get(rfid_tag=request.data['rfid'])
+
+        # If exercise_unit = None, create a new exercise_unit for the set. If there does not exist a Training Unit for
+        # the current date, also create a new Training Unit.
+        if request.data['exercise_unit'] == "None" or request.data['exercise_unit'] == "":
+            # If there already exists a TrainUnit, update the end_time_date-field.
+            if TrainUnit.objects.filter(date=timezone.now(), user=user_profile).exists():
+                train_unit = TrainUnit.objects.get(date=timezone.now(), user=user_profile)
+                train_unit.end_time_date = timezone.now()
+                train_unit.save()
+            else:
+                train_unit = TrainUnit.objects.create(date=timezone.now(), start_time_date=timezone.now(),
+                                                      end_time_date=timezone.now(), user=user_profile)
+            exercise_unit = ExerciseUnit.objects.create(time_date=timezone.now(),
+                                                        train_unit=train_unit,
+                                                        exercise=Exercise.objects.get(name="Lat Pulldown Machine"))
+            request.data['exercise_unit'] = exercise_unit.id
+        serializer = SetSerializer(data=request.data)
+
+        # Add new set.
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class SetDetail(generics.RetrieveUpdateDestroyAPIView):

@@ -3,6 +3,7 @@ import uuid
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils import timezone
 import os
 from datetime import datetime
 
@@ -152,7 +153,7 @@ class Set(models.Model):
     Represents a group of repetitions of the same exercise, directly executed one after the other.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    date_time = models.DateTimeField(default=datetime.now(), null=False, blank=False)
+    date_time = models.DateTimeField(default=timezone.now, null=False, blank=False)
     exercise_unit = models.ForeignKey(ExerciseUnit, on_delete=models.CASCADE)
     repetitions = models.IntegerField(blank=False)
     weight = models.IntegerField(blank=False)
