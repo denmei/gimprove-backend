@@ -276,7 +276,10 @@ class SetList(APIView):
             else:
                 train_unit = TrainUnit.objects.create(date=timezone.now(), start_time_date=timezone.now(),
                                                       end_time_date=timezone.now(), user=user_profile)
-            exercise_unit = ExerciseUnit.objects.create(time_date=timezone.now(),
+            if train_unit.exercise_units.filter(exercise=Exercise.objects.get(name="Lat Pulldown Machine")).exists():
+                exercise_unit = train_unit.exercise_units.get(exercise=Exercise.objects.get(name="Lat Pulldown Machine"))
+            else:
+                exercise_unit = ExerciseUnit.objects.create(time_date=timezone.now(),
                                                         train_unit=train_unit,
                                                         exercise=Exercise.objects.get(name="Lat Pulldown Machine"))
             request.data['exercise_unit'] = exercise_unit.id
