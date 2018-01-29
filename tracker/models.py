@@ -157,16 +157,6 @@ class Set(models.Model):
     exercise_unit = models.ForeignKey(ExerciseUnit, on_delete=models.CASCADE)
     repetitions = models.IntegerField(blank=False)
     weight = models.IntegerField(blank=False)
-    rfid = models.CharField(blank=False, null=False, max_length=10)
-
-    """
-    @classmethod
-    def create(cls, repetitions, weight, rfid, exercise_unit=None, date_time=datetime.now()):
-        # TODO get exercise_unit for User or create new
-        if exercise_unit = None:
-            exercise_unit = 1
-        set = cls(repetitions=repetitions, weight=weight, exercise_unit=exercise_unit, date_time=date_time)
-    """
 
     def __str__(self):
         return str(self.id)
