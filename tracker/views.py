@@ -248,49 +248,13 @@ def contact(request):
     serializer_class = SetSerializer"""
 
 
-class SetList(APIView):
+class SetList(generics.ListCreateAPIView):
     """
     Class for creating new sets or retrieving a list of sets.
     """
+    queryset = Set.objects.all()
+    serializer_class = SetSerializer
 
-    def get(self, request, format=None):
-        sets = Set.objects.all()
-        serializer = SetSerializer(sets, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        """
-        Method for creating a new set.
-        """
-        request.data['weight'] = 2000
-        user_profile = UserProfile.objects.get(rfid_tag=request.data['rfid'])
-
-        # TODO exercise-name muss von request-nachricht kommen -> eigenes Feld in serializer. Gleiches für RDIF-Feld.
-        # If exercise_unit = None, create a new exercise_unit for the set. If there does not exist a Training Unit for
-        # the current date, also create a new Training Unit.
-        if request.data['exercise_unit'] == "None" or request.data['exercise_unit'] == "":
-            # If there already exists a TrainUnit, update the end_time_date-field.
-            if TrainUnit.objects.filter(date=timezone.now(), user=user_profile).exists():
-                train_unit = TrainUnit.objects.get(date=timezone.now(), user=user_profile)
-                train_unit.end_time_date = timezone.now()
-            else:
-                train_unit = TrainUnit.objects.create(date=timezone.now(), start_time_date=timezone.now(),
-                                                      end_time_date=timezone.now(), user=user_profile)
-            if train_unit.exercise_units.filter(exercise=Exercise.objects.get(name="Lat Pulldown Machine")).exists():
-                exercise_unit = train_unit.exercise_units.get(exercise=Exercise.objects.get(name="Lat Pulldown Machine"))
-            else:
-                exercise_unit = ExerciseUnit.objects.create(time_date=timezone.now(),
-                                                        train_unit=train_unit,
-                                                        exercise=Exercise.objects.get(name="Lat Pulldown Machine"))
-            request.data['exercise_unit'] = exercise_unit.id
-            train_unit.exercise_units.add(exercise_unit)
-            train_unit.save()
-        serializer = SetSerializer(data=request.data)
-        # Add new set.
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class SetDetail(generics.RetrieveUpdateDestroyAPIView):
