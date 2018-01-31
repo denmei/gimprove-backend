@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 import os
-from datetime import datetime
+from django.core.exceptions import ValidationError
+from datetime import timedelta
 
 
 # Create your models here.
@@ -68,7 +69,7 @@ class UserProfile(Profile):
     """
     date_of_birth = models.DateField(null=False, blank=False)
     gym = models.ManyToManyField('GymProfile', blank=True)
-    rfid_tag = models.CharField('RFID', max_length=10, blank=True, null=True, unique=True)
+    rfid_tag = models.CharField('RFID', max_length=10, blank=True, null=True)
     achievements = models.ManyToManyField('Achievement', blank=True)
 
 
@@ -100,7 +101,7 @@ class Exercise(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
     description = models.CharField(max_length=1000, help_text="Insert short description here.")
     muscles = models.ManyToManyField('Muscle', help_text="Muscles trained by the exercise.")
-    equipment = models.ManyToManyField('Equipment', help_text="Necessary equipment for the exercise.")
+    equipment_machine = models.ManyToManyField('Equipment', help_text="Necessary equipment for the exercise.", blank=True)
 
     def __str__(self):
         return self.name
@@ -134,6 +135,10 @@ class TrainUnit(models.Model, LoginRequiredMixin):
     def get_absolute_url(self):
         return reverse('exercise_unit_list', args=[str(self.id)])
 
+    def clean(self):
+        if self.start_time_date >= self.end_time_date:
+            raise ValidationError('End time must be after start time!')
+
 
 class ExerciseUnit(models.Model):
     """
@@ -146,6 +151,10 @@ class ExerciseUnit(models.Model):
 
     def __str__(self):
         return str(self.exercise) + " " + str(self.time_date)
+
+    def clean(self):
+        if not (self.time_date >= self.train_unit.start_time_data and self.time_date <= self.train_unit.end_time_date):
+            raise ValidationError("Time Date must be within End and Start time of TrainUnit.")
 
 
 class Set(models.Model):
@@ -161,16 +170,28 @@ class Set(models.Model):
     def __str__(self):
         return str(self.id)
 
+    def clean(self):
+        # check repetitions
+        if self.repetitions <= 0 or self.repetitions > 500:
+            raise ValidationError("Not a reasonable value for repetitions.")
+        # check weight
+        if self.weight < 0:
+            raise ValidationError("No negative values allowed for weight.")
+        # check whether set date fits the exercise unit date
+        if not (self.exercise_unit.time_date <= self.date_time <= self.exercise_unit.time_date + timedelta(days=1)):
+            raise ValidationError("Date value does not fit to exercise unit.")
+
 
 class Equipment(models.Model):
     """
     Represents a unique machine within a studio.
     """
-    # TODO Extend so equipment can be authenticated for uploading data
-    name = models.CharField(max_length=100)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    exercises = models.ManyToManyField(Exercise, blank=False)
+    gym = models.ForeignKey(GymProfile, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.name
+        return str(self.gym) + ": " + str(self.id)[0:5]
 
 
 class Achievement(models.Model):
