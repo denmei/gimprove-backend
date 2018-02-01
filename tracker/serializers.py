@@ -20,7 +20,6 @@ class SetSerializer(serializers.ModelSerializer):
         """
         Multiple validations of the input data coming from the client.
         """
-        print(self.initial_data)
         equipment_id_r = self.initial_data['equipment_id']
         exercise_name_r = self.initial_data['exercise_name']
 
