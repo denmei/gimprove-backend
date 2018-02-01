@@ -20,9 +20,7 @@ class SetSerializer(serializers.ModelSerializer):
         """
         Multiple validations of the input data coming from the client.
         """
-        rfid_r = self.initial_data['rfid']
-        exercise_unit_r = self.initial_data['exercise_unit']
-        user_profile = UserProfile.objects.get(rfid_tag=rfid_r)
+        print(self.initial_data)
         equipment_id_r = self.initial_data['equipment_id']
         exercise_name_r = self.initial_data['exercise_name']
 
@@ -35,7 +33,20 @@ class SetSerializer(serializers.ModelSerializer):
         if fit is False:
             raise ValidationError("Exercise name does not fit to Equipment-ID.")
 
-        # TODO: move to create() method
+        return self.initial_data
+
+    def create(self, validated_data, **kwargs):
+        """
+        Remove additional parameters (rfid and exercise name) before creating the set-instance.
+        """
+        # Pop the data not needed to create a set.
+        exercise_name_r = validated_data.pop('exercise_name')
+        rfid_r = validated_data.pop('rfid')
+        equipment_id = validated_data.pop('equipment_id')
+        user_profile = UserProfile.objects.get(rfid_tag=rfid_r)
+        exercise_unit_r = validated_data['exercise_unit']
+
+        # Create a new TrainUnit and ExerciseUnit if necessary.
         if exercise_unit_r == "None" or exercise_unit_r == "":
             # If there already exists a TrainUnit, update the end_time_date-field.
             if TrainUnit.objects.filter(date=timezone.now(), user=user_profile).exists():
@@ -45,23 +56,15 @@ class SetSerializer(serializers.ModelSerializer):
                 train_unit = TrainUnit.objects.create(date=timezone.now(), start_time_date=timezone.now(),
                                                       end_time_date=timezone.now(), user=user_profile)
             if train_unit.exercise_units.filter(exercise=Exercise.objects.get(name=exercise_name_r)).exists():
-                exercise_unit = train_unit.exercise_units.get(exercise=Exercise.objects.get(name=exercise_name_r))
+                exercise_unit_r = train_unit.exercise_units.get(exercise=Exercise.objects.get(name=exercise_name_r))
             else:
-                exercise_unit = ExerciseUnit.objects.create(time_date=timezone.now(),
+                exercise_unit_r = ExerciseUnit.objects.create(time_date=timezone.now(),
                                                         train_unit=train_unit,
                                                         exercise=Exercise.objects.get(name=exercise_name_r))
-            attrs['exercise_unit'] = exercise_unit
-            train_unit.exercise_units.add(exercise_unit)
+            validated_data['exercise_unit'] = exercise_unit_r
+            train_unit.exercise_units.add(exercise_unit_r)
             train_unit.save()
-        return attrs
 
-    def create(self, validated_data, **kwargs):
-        """
-        Remove additional parameters (rfid and exercise name) before creating the set-instance.
-        """
-        exercise_name = validated_data.pop('exercise_name')
-        rfid = validated_data.pop('rfid')
-        equipment_id = validated_data.pop('equipment_id')
         return Set.objects.create(**validated_data)
 
     def validate_equipment_id(self, value):
