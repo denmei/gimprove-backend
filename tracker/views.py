@@ -256,7 +256,6 @@ class SetList(generics.ListCreateAPIView):
     serializer_class = SetSerializer
 
 
-
 class SetDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     View to retrieve, update or delete sets via http request.

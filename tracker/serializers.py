@@ -80,7 +80,7 @@ class SetSerializer(serializers.ModelSerializer):
          - not negative
          - not more than 499
         """
-        if value <= 0:
+        if value < 0:
             raise serializers.ValidationError('Repetitions must be greater than 0!')
         if value > 500:
             raise serializers.ValidationError('Too high value for repetitions.')

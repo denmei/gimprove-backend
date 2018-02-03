@@ -172,7 +172,7 @@ class Set(models.Model):
 
     def clean(self):
         # check repetitions
-        if self.repetitions <= 0 or self.repetitions > 500:
+        if self.repetitions < 0 or self.repetitions > 500:
             raise ValidationError("Not a reasonable value for repetitions.")
         # check weight
         if self.weight < 0:
