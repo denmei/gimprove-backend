@@ -11,25 +11,6 @@
 <div class="container background-col">
     <div class="row full-height">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-0">
-            <script type="text/javascript">
-                var prof = "{{ profile.active_set }}";
-                var ex_name = "{{ profile.active_set.exercise_unit.exercise }}";
-            </script>
-
-            <!-- Actual training activity if available -->
-
-            <div class="row row-eq-height">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1>Active Workout</h1>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hcenter">
-                    <h3 id="exercise_name"> Übung: </h3>
-                    <p id="repetitions"> Wiederholungen: </p>
-                    <p id="weight"> Gewicht:</p>
-                </div>
-            </div>
-
-
 
             <div class="row row-eq-height">
                 {% if profile.user == user %}
@@ -137,9 +118,4 @@
     </div>
 </div>
 
-{% endblock %}
-
-{% block js_imports %}
-{% load static %}
-<script src="{% static 'tracker/js/user_profile.js' %}"></script>
 {% endblock %}

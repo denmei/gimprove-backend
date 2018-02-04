@@ -9,6 +9,25 @@
 
 {% block site_content %}
 <div class="container background-col">
+
+    <script type="text/javascript">
+        var profile = "{{ profile }}"
+        var active_set = "{{ profile.active_set }}";
+        var ex_name = "{{ profile.active_set.exercise_unit.exercise }}";
+    </script>
+
+    <!-- Actual training activity if available -->
+
+    <div class="row row-eq-height" id="active_set_div">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h1>Active Workout</h1>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hcenter">
+            <h3 id="exercise_name"> Übung: </h3>
+            <p id="repetitions"> Wiederholungen: </p>
+            <p id="weight"> Gewicht:</p>
+        </div>
+    </div>
     <div class="row full-height">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-0">
             <div class="row row-eq-height">
@@ -33,4 +52,9 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js_imports %}
+{% load static %}
+<script src="{% static 'tracker/js/user_activities.js' %}"></script>
 {% endblock %}

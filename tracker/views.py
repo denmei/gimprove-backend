@@ -20,8 +20,7 @@ from rest_framework import generics, status
 def index(request):
     if get_profile_type(request.user) == 'gym':
         return render(request, 'tracker/Gym/gym_tracker_base.html')
-    pk = request.user.id
-    return redirect('profile', request.user.id)
+    return redirect('activities', request.user.id)
 
 
 def about(request):
@@ -153,7 +152,7 @@ class FollowerView(LoginRequiredMixin, generic.DetailView):
 class ActivityListView(LoginRequiredMixin, generic.ListView):
     model = Activity
     context_object_name = 'activities'
-    template_name = 'tracker/activitylist.html'
+    template_name = 'tracker/User/user_activitylist.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

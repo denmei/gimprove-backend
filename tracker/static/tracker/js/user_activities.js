@@ -7,7 +7,7 @@ $(document).ready(function () {
     var i = 1;
     // var link = 'http://127.0.0.1:8000/tracker/set_detail_rest/bf7cbf7f1405478790a29ef55e50d35f''
     var link = 'http://127.0.0.1:8000/tracker/set_detail_rest/'
-    link = link + prof
+    link = link + active_set
 
     function loop() {
         setTimeout(function () {
@@ -21,6 +21,11 @@ $(document).ready(function () {
                 }
             });
             i ++;
+            if(ex_name == "") {
+                $('#active_set_div').hide();
+            } else {
+                $('#active_set_div').show();
+            }
             if(true) {
                 loop();
             };
