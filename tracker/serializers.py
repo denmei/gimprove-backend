@@ -76,13 +76,15 @@ class SetSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.repetitions = validated_data.get('repetitions')
+        instance.weight = validated_data.get('weight')
+        # TODO: Logikpruefung fuer Gewicht: Siginifikant kleiner/groesser sodass waehrend Set verstellt?
 
         # Check whether set is still active.
         if validated_data.get('active') != 'True':
             user_profile = UserProfile.objects.get(rfid_tag=validated_data.get('rfid'))
             user_profile.active_set = None
             user_profile.save()
-
+        instance.save()
         return instance
 
     def validate_equipment_id(self, value):

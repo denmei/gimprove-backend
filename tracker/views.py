@@ -16,54 +16,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics, status
 
-# Create your views here.
-
-
-"""def index(request):
-    form_class = ContactForm
-
-    # new logic!
-    if request.method == 'POST':
-        form = form_class(data=request.POST)
-
-        if form.is_valid():
-            contact_name = request.POST.get(
-                'contact_name'
-            , '')
-            contact_email = request.POST.get(
-                'contact_email'
-            , '')
-            form_content = request.POST.get('content', '')
-
-            # Email the profile with the
-            # contact information
-            template = get_template('subscription_email_template.txt')
-            context = {
-                'contact_name': contact_name,
-                'contact_email': contact_email,
-                'form_content': form_content,
-            }
-            content = template.render(context)
-
-            email = EmailMessage(
-                "New contact form submission",
-                content,
-                "Your website" +'',
-                ['meisnerdennis@web.de'],
-                headers={'Reply-To': contact_email}
-            )
-            email.send()
-            return redirect('contact')
-
-    return render(request, 'index.html', {
-        'form': form_class,
-    })"""
-
 
 def index(request):
     if get_profile_type(request.user) == 'gym':
         return render(request, 'tracker/Gym/gym_tracker_base.html')
-    return render(request, 'tracker/User/user_tracker_base.html')
+    pk = request.user.id
+    return redirect('profile', request.user.id)
 
 
 def about(request):

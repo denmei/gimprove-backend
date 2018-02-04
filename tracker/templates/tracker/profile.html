@@ -22,6 +22,17 @@
                     </div>
                 {% endif %}
             </div>
+
+            <!-- Actual training activity if available -->
+            <div class="row text-center row-eq-height sm-row-padding" id="active_train_unit">
+                {% if profile.active_set != None %}
+                    <p> Übung: {{ profile.active_set.exercise_unit.exercise.name }}</p>
+                    <p> Wiederholungen: {{ profile.active_set.repetitions }} <p>
+                    <p> Gewicht: {{ profile.active_set.weight }}</p>
+                {% endif %}
+            </div>
+
+
             <!-- Main Information -->
             <div class="row text-center row-eq-height sm-row-padding">
                 <!-- Picture and follow button -->
