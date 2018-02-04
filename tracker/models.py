@@ -71,6 +71,7 @@ class UserProfile(Profile):
     gym = models.ManyToManyField('GymProfile', blank=True)
     rfid_tag = models.CharField('RFID', max_length=10, blank=True, null=True)
     achievements = models.ManyToManyField('Achievement', blank=True)
+    active_set = models.ForeignKey('Set', blank=True, null=True, on_delete=models.DO_NOTHING)
 
 
 class GymProfile(Profile):

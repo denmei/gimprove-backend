@@ -10,11 +10,12 @@ class SetSerializer(serializers.ModelSerializer):
     exercise_unit = serializers.PrimaryKeyRelatedField(required=False, read_only=True, allow_null=True)
     equipment_id = serializers.CharField(write_only=True)
     exercise_name = serializers.CharField(write_only=True)
+    active = serializers.CharField(write_only=True)
     rfid = serializers.CharField(write_only=True)
 
     class Meta:
         model = Set
-        fields = ('id', 'date_time', 'exercise_unit', 'repetitions', 'weight', 'rfid', 'equipment_id', 'exercise_name')
+        fields = ('id', 'date_time', 'exercise_unit', 'repetitions', 'weight', 'rfid', 'equipment_id', 'exercise_name', 'active')
 
     def validate(self, attrs):
         """
@@ -44,6 +45,7 @@ class SetSerializer(serializers.ModelSerializer):
         equipment_id = validated_data.pop('equipment_id')
         user_profile = UserProfile.objects.get(rfid_tag=rfid_r)
         exercise_unit_r = validated_data['exercise_unit']
+        active = validated_data.pop('active')
 
         # Create a new TrainUnit and ExerciseUnit if necessary.
         if exercise_unit_r == "None" or exercise_unit_r == "":
@@ -64,7 +66,24 @@ class SetSerializer(serializers.ModelSerializer):
             train_unit.exercise_units.add(exercise_unit_r)
             train_unit.save()
 
-        return Set.objects.create(**validated_data)
+        new_set = Set.objects.create(**validated_data)
+
+        if active == 'True':
+            user_profile.active_set = new_set
+            user_profile.save()
+
+        return new_set
+
+    def update(self, instance, validated_data):
+        instance.repetitions = validated_data.get('repetitions')
+
+        # Check whether set is still active.
+        if validated_data.get('active') != 'True':
+            user_profile = UserProfile.objects.get(rfid_tag=validated_data.get('rfid'))
+            user_profile.active_set = None
+            user_profile.save()
+
+        return instance
 
     def validate_equipment_id(self, value):
         """
