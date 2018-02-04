@@ -2,14 +2,16 @@
 
 {% block extra_head %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'tracker/css/User/user_activities.css' %}">
 <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+<script src="changethewords-master/jquery.changethewords.js"></script>
 
 {% endblock %}
 
 {% block site_content %}
 <div class="container background-col">
 
+    <!-- Hand context variables to JS -->
     <script type="text/javascript">
         var profile = "{{ profile }}"
         var active_set = "{{ profile.active_set }}";
@@ -17,17 +19,33 @@
     </script>
 
     <!-- Actual training activity if available -->
-
-    <div class="row row-eq-height" id="active_set_div">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1>Active Workout</h1>
+    <div id="active_set_div">
+        <div class="row row-eq-height">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-0">
+                <h1 id="exercise_name">Active Workout: </h1>
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hcenter">
-            <h3 id="exercise_name"> Übung: </h3>
-            <p id="repetitions"> Wiederholungen: </p>
-            <p id="weight"> Gewicht:</p>
+        <div class="row row-eq-height">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 active_workout">
+                <div class="row text-center">
+                     <h2>Wiederholungen:</h2>
+                </div>
+                <div class="row text-center extra-large">
+                    <h2 class="extra-large" id="repetitions"></h2>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 active_workout">
+                <div class="row text-center">
+                     <h2>Gewicht:</h2>
+                </div>
+                <div class="row text-center">
+                    <h2 class="extra-large" id="weight"></h2>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Network Activities -->
     <div class="row full-height">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-0">
             <div class="row row-eq-height">

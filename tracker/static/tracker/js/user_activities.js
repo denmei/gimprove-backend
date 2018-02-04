@@ -15,9 +15,9 @@ $(document).ready(function () {
                 type: 'GET',
                 url: link,
                 success: function(response_set) {
-                    $('#exercise_name').text(ex_name);
-                    $('#weight').text("Gewicht: " + response_set.weight.toString());
-                    $('#repetitions').text("Wiederholungen: " + response_set.repetitions.toString());
+                    $('#exercise_name').text("Active Workout: " + ex_name.toString());
+                    $('#weight').text(response_set.weight.toString());
+                    $('#repetitions').text(response_set.repetitions.toString());
                 }
             });
             i ++;
@@ -29,7 +29,7 @@ $(document).ready(function () {
             if(true) {
                 loop();
             };
-        }, 500)
+        }, 1000)
     };
 
     loop();

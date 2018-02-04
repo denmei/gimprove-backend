@@ -150,6 +150,9 @@ class FollowerView(LoginRequiredMixin, generic.DetailView):
 
 
 class ActivityListView(LoginRequiredMixin, generic.ListView):
+    """
+    Start page for every user. Lists activities of other users and shows current active set if available.
+    """
     model = Activity
     context_object_name = 'activities'
     template_name = 'tracker/User/user_activitylist.html'
@@ -157,6 +160,7 @@ class ActivityListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['base_template'] = 'tracker/User/user_tracker_base.html'
+        context['profile'] = UserProfile.objects.get(user=self.request.user)
         return context
 
 

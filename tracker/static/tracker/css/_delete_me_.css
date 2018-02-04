@@ -1,13 +1,4 @@
-html, body {
-    height: 100%;
-    min-height: 100%;
-    width: 100%;
-    min-width: 100%;
-    margin: 0px;
-    max-width: 100%;
-    padding: 0px;
-    font-family: TrajanPro-Regular, 'Lucida Grande', sans-serif;
-}
+
 
 @media only screen and (min-width: 1280px) {
     html, body {
@@ -468,6 +459,10 @@ hr {
     .activity h5 {
         font-size: 1rem;
     }
+}
+
+#repetitions{
+        color: red;
 }
 
 /*--------- About-Page ----------*/
