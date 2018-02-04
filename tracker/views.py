@@ -86,7 +86,7 @@ class UserProfileView(LoginRequiredMixin, generic.DetailView):
     """
     model = UserProfile
     context_object_name = 'profile'
-    template_name = 'tracker/profile.html'
+    template_name = 'tracker/User/user_profile.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
