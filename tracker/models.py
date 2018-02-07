@@ -44,6 +44,9 @@ class Profile(models.Model):
         return connections
 
     def get_follow_ids(self):
+        """
+        :return: List of the ids of the Users the Profile is following.
+        """
         connections = Connection.objects.filter(follower=self.user)
         follows = connections.values_list('followed', flat=True)
         return follows
