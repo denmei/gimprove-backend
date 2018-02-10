@@ -1,1 +1,1 @@
-from .rest_tests import *
+from .test_rest import *

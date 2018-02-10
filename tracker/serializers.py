@@ -66,6 +66,9 @@ class SetSerializer(serializers.ModelSerializer):
             train_unit.exercise_units.add(exercise_unit_r)
             train_unit.save()
 
+        # Set has to be added to existing exercise unit:
+        else:
+            validated_data['exercise_unit'] = ExerciseUnit.objects.filter(id=validated_data['exercise_unit'])[0]
         new_set = Set.objects.create(**validated_data)
 
         if active == 'True':
