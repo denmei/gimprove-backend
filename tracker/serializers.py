@@ -127,3 +127,12 @@ class SetSerializer(serializers.ModelSerializer):
         if len(value) != 10:
             raise serializers.ValidationError('Not a valid RFID-Value!')
         return value
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(required=False, read_only=True, allow_null=True)
+
+    class Meta:
+        model = UserProfile
+        fields = (['user', 'rfid_tag', 'active_set'])
+

@@ -34,4 +34,5 @@ E.g.:
 urlpatterns += [
     url(r'^set_list_rest/$', views.SetList.as_view(), name='set_list'),
     url(r'^set_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', views.SetDetail.as_view(), name='set_detail'),
+    url(r'^userprofile_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', views.UserProfileDetail.as_view(), name='userprofile_detail')
 ]

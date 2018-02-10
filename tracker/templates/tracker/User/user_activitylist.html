@@ -4,7 +4,6 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'tracker/css/User/user_activities.css' %}">
 <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-<script src="changethewords-master/jquery.changethewords.js"></script>
 
 {% endblock %}
 
@@ -14,6 +13,7 @@
     <!-- Hand context variables to JS -->
     <script type="text/javascript">
         var profile = "{{ profile }}"
+        var user_id = "{{ user_id }}"
         var active_set = "{{ profile.active_set }}";
         var ex_name = "{{ profile.active_set.exercise_unit.exercise }}";
     </script>

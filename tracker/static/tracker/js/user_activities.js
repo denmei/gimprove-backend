@@ -5,27 +5,48 @@ AJAX for updating the User-Profile page quickly.
 $(document).ready(function () {
 
     var i = 1;
-    // var link = 'http://127.0.0.1:8000/tracker/set_detail_rest/bf7cbf7f1405478790a29ef55e50d35f''
-    var link = 'http://127.0.0.1:8000/tracker/set_detail_rest/'
-    link = link + active_set
+    var link_set_detail = 'http://127.0.0.1:8000/tracker/set_detail_rest/'
+    link_set_detail = link_set_detail + active_set
+    var link_userprofile_detail = 'http://127.0.0.1:8000/tracker/userprofile_detail_rest/'
+    link_userprofile_detail = link_userprofile_detail + user_id
+    var active = true
 
     function loop() {
         setTimeout(function () {
+            // check whether there is an active set. If so, show set data.
             $.ajax({
                 type: 'GET',
-                url: link,
+                url: link_userprofile_detail,
                 success: function(response_set) {
-                    $('#exercise_name').text("Active Workout: " + ex_name.toString());
-                    $('#weight').text(response_set.weight.toString());
-                    $('#repetitions').text(response_set.repetitions.toString());
+                    if(response_set.active_set) {
+                        // has active set:
+                        if(active == false) {
+                            $('#active_set_div').show();
+                            active = true;
+                        }
+                        // if active set, get data and update
+                        $.ajax({
+                            type: 'GET',
+                            url: link_set_detail,
+                            success: function(response_set) {
+                                $('#exercise_name').text("Active Workout: " + ex_name.toString());
+                                $('#weight').text(response_set.weight.toString());
+                                $('#repetitions').text(response_set.repetitions.toString());
+                            }
+                        });
+
+                    } else {
+                    // no active set:
+                        if(active == true) {
+                            $('#active_set_div').hide();
+                            active = false;
+                        };
+                    }
                 }
             });
+
             i ++;
-            if(ex_name == "") {
-                $('#active_set_div').hide();
-            } else {
-                $('#active_set_div').show();
-            }
+
             if(true) {
                 loop();
             };

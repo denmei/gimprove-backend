@@ -161,6 +161,7 @@ class ActivityListView(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data(**kwargs)
         context['base_template'] = 'tracker/User/user_tracker_base.html'
         context['profile'] = UserProfile.objects.get(user=self.request.user)
+        context['user_id'] = self.request.user.id
         return context
 
 
@@ -223,3 +224,12 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Set.objects.all()
     serializer_class = SetSerializer
+
+
+class UserProfileDetail(generics.RetrieveAPIView):
+    """
+    View to retrieve UserProfileData via http request.
+    """
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+
