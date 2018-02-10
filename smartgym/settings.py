@@ -161,5 +161,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
-
-

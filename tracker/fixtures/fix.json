@@ -31,7 +31,9 @@
         "muscles": [
             "Back"
         ],
-        "equipment_machine": []
+        "equipment_machine": [
+            "1b7d0321-9615-4bd5-a64c-7fcfee388ec5"
+        ]
     }
 },
 {
@@ -501,15 +503,15 @@
         "weight": 94
     }
 },
-{
-    "model": "tracker.equipment",
-    "pk": "1b7d0321-9615-4bd5-a64c-7fcfee388ec5",
-    "fields": {
-        "gym": 2,
-        "exercises": [
-            "Lat Pulldown"
-        ]
-    }
+    {
+        "model": "tracker.equipment",
+        "pk": "1b7d0321-9615-4bd5-a64c-7fcfee388ec5",
+        "fields": {
+            "gym": 2,
+            "exercises": [
+                "Lat Pulldown"
+            ]
+        }
 },
     {
     "model": "auth.user",
