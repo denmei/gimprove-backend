@@ -6,7 +6,6 @@ $(document).ready(function () {
 
     var i = 1;
     var link_set_detail = 'http://127.0.0.1:8000/tracker/set_detail_rest/'
-    link_set_detail = link_set_detail + active_set
     var link_userprofile_detail = 'http://127.0.0.1:8000/tracker/userprofile_detail_rest/'
     link_userprofile_detail = link_userprofile_detail + user_id
     var active = true
@@ -23,11 +22,12 @@ $(document).ready(function () {
                         if(active == false) {
                             $('#active_set_div').show();
                             active = true;
-                        }
+                        };
                         // if active set, get data and update
+
                         $.ajax({
                             type: 'GET',
-                            url: link_set_detail,
+                            url: link_set_detail + response_set.active_set,
                             success: function(response_set) {
                                 $('#exercise_name').text("Active Workout: " + ex_name.toString());
                                 $('#weight').text(response_set.weight.toString());
