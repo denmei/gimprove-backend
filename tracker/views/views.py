@@ -17,13 +17,16 @@ from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template.loader import get_template
 from rest_framework import generics
+from home import urls as home_urls
 
 
 @login_required
 def index(request):
-    if get_profile_type(request.user) == 'gym':
-        return render(request, 'tracker/Gym/gym_tracker_base.html')
-    return redirect('activities', request.user.id)
+    if request.user.is_authenticated():
+        if get_profile_type(request.user) == 'gym':
+            return render(request, 'tracker/Gym/gym_tracker_base.html')
+        return redirect('activities', request.user.id)
+    return redirect('home')
 
 
 @login_required

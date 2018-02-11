@@ -23,14 +23,7 @@ urlpatterns = [
     url(r'^profile/del_connection/(?P<pk>\d+)$', views.delete_connection, name='delete_connection'),
 ]
 
-"""
-Views for REST-API.
-E.g.:
-    - new set: http --json POST http://127.0.0.1:8000/tracker/set_list_rest/ date_time=2017-12-22T09:23:00 exercise_unit="2162f3f1-1671-4726-abef-586b7f15dae5"
-    - delete set: http --json DELETE http://127.0.0.1:8000/tracker/set_detail_rest/fb5e2c57-9ed3-4cd3-9bae-022553ec7b9e
-    - all sets: http http://127.0.0.1:8000/tracker/set_list_rest
-
-"""
+# Serializer Urls:
 urlpatterns += [
     url(r'^set_list_rest/$', views.SetList.as_view(), name='set_list'),
     url(r'^set_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', views.SetDetail.as_view(), name='set_detail'),
