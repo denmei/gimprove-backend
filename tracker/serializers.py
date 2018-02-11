@@ -6,6 +6,7 @@ These serializers may only be used by authenticated components since they provid
 """
 # TODO: Add permission to restrict access only to authenticated equipment components
 # TODO: Extra mark for sets that were tracked by equipment components
+# TODO: Disable delete and get_list functionality since not needed by equipment components
 
 
 class SetSerializer(serializers.ModelSerializer):
