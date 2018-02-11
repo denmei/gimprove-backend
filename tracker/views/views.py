@@ -3,39 +3,42 @@
 
 from django.shortcuts import render
 from django.views import generic
-from .models import *
-from .serializers import *
+from tracker.models import *
+from django.contrib.auth.decorators import login_required
+from tracker.serializers import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 import datetime
-from .forms import AddExerciseUnitForm, AddTrainUnitForm, ContactForm
+from tracker.forms import AddExerciseUnitForm, AddTrainUnitForm, ContactForm
 from django.views.generic.edit import CreateView, DeleteView
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template.loader import get_template
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import generics, status
+from rest_framework import generics
 
 
+@login_required
 def index(request):
     if get_profile_type(request.user) == 'gym':
         return render(request, 'tracker/Gym/gym_tracker_base.html')
     return redirect('activities', request.user.id)
 
 
+@login_required
 def about(request):
     return render(request, 'about.html')
 
 
+@login_required
 def create_connection(request, pk):
     connection = Connection(follower=request.user, followed=User.objects.get(id=pk))
     connection.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
+@login_required
 def delete_connection(request, pk):
     Connection.objects.filter(follower=request.user, followed=User.objects.get(id=pk)).delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
@@ -168,6 +171,7 @@ class ActivityListView(LoginRequiredMixin, generic.ListView):
         return context
 
 
+@login_required
 def contact(request):
     form_class = ContactForm
 
@@ -206,33 +210,3 @@ def contact(request):
     return render(request, 'contact.html', {
         'form': form_class
     })
-
-
-"""class SetList(generics.ListCreateAPIView):
-    queryset = Set.objects.all()
-    serializer_class = SetSerializer"""
-
-
-class SetList(generics.ListCreateAPIView):
-    """
-    Class for creating new sets or retrieving a list of sets.
-    """
-    queryset = Set.objects.all()
-    serializer_class = SetSerializer
-
-
-class SetDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    View to retrieve, update or delete sets via http request.
-    """
-    queryset = Set.objects.all()
-    serializer_class = SetSerializer
-
-
-class UserProfileDetail(generics.RetrieveAPIView):
-    """
-    View to retrieve UserProfileData via http request.
-    """
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
-
