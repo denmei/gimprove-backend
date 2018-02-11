@@ -1,3 +1,7 @@
 .extra-large {
     font-size: 15.0rem;
 }
+
+#active_set_div {
+    display: None;
+}

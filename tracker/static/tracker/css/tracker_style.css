@@ -108,6 +108,10 @@ body {
     margin-top: 10px;
 }
 
+#header-container {
+    margin-right: 2.0rem;
+}
+
 .navbar-right {
     color: rgb(252, 102, 61);
     font-size: 1.6rem;

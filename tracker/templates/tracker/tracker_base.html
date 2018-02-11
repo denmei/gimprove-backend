@@ -24,9 +24,7 @@ Base file for tracker-application. Style and frame for all views/users (incl. Na
 
 <body>
 
-    <div id="w">
         <!-- Navbar -->
-        <div id="header-wrapper">
             <nav class="navbar navbar-fixed-top">
                 <div class="container-fluid" id="header-container">
                     <div class="navbar-header">
@@ -36,17 +34,14 @@ Base file for tracker-application. Style and frame for all views/users (incl. Na
                         {% block site_name %}
                         {% endblock %}
                     </div>
-                    {% if user.is_authenticated %}
                     <div class="nav navbar-nav navbar-right">
                         <a href="{% url 'logout'%}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
                     </div>
-                    {% endif %}
                 </div>
             </nav>
-        </div>
 
         <!-- Sidebar -->
-        <div id="toggle-wrapper" class="container-fluid">
+        <div id="toggle-wrapper" class="container-fluid toggled">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 {% block sidebar_content %}
@@ -117,7 +112,6 @@ Base file for tracker-application. Style and frame for all views/users (incl. Na
         </div>
         <!-- /#page-content-wrapper -->
 
-    </div>
     </div>
 
 
