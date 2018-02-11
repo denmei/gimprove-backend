@@ -123,6 +123,34 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(content['date_time'], train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"))
         self.assertEqual(content['exercise_unit'], str(exercise_unit.id))
 
+    def test_update_restrictions(self):
+        """
+        Tests whether only repetition-values that are greater than the current value are supported.
+        """
+        # data preparation
+        train_set = Set.objects.all()[0]
+        exercise_unit = train_set.exercise_unit
+        exercise = exercise_unit.exercise
+        equipment = exercise.equipment_machine.all()[0]
+        train_unit = exercise_unit.train_unit
+        user = train_unit.user
+        data = {'repetitions':  int(train_set.repetitions) - 1, 'weight': 10,
+                'exercise_name': exercise.name, 'equipment_id': str(equipment.id),
+                'date_time': train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 'rfid': str(user.rfid_tag),
+                'active': str(False)}
+
+        # make update request
+        url = self.pre_http + reverse('set_detail', kwargs={'pk': train_set.id})
+        response = self.c.put(url, data)
+        content = (json.loads(response.content.decode("utf-8")))
+
+        # check response
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(content['repetitions'], int(train_set.repetitions))
+        self.assertEqual(content['weight'], 10)
+        self.assertEqual(content['date_time'], train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"))
+        self.assertEqual(content['exercise_unit'], str(exercise_unit.id))
+
 
 class UserProfileSerializerTest(APITestCase):
     """

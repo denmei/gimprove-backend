@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from tracker.models import *
 
+"""
+These serializers may only be used by authenticated components since they provide extra functionalities.
+"""
+# TODO: Add permission to restrict access only to authenticated equipment components
+# TODO: Extra mark for sets that were tracked by equipment components
+
 
 class SetSerializer(serializers.ModelSerializer):
     """
@@ -78,7 +84,10 @@ class SetSerializer(serializers.ModelSerializer):
         return new_set
 
     def update(self, instance, validated_data):
-        instance.repetitions = validated_data.get('repetitions')
+        """
+        Only allows to increase the repetitions count (extra functionality for equipment components).
+        """
+        instance.repetitions = max(int(validated_data.get('repetitions')), int(instance.repetitions))
         instance.weight = validated_data.get('weight')
         # TODO: Logikpruefung fuer Gewicht: Siginifikant kleiner/groesser sodass waehrend Set verstellt?
 

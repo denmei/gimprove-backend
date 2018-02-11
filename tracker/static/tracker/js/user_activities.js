@@ -6,10 +6,10 @@ $(document).ready(function () {
 
     var i = 1;
     // TODO: change when deploying to heroku
-    var link_set_detail = 'https://app-smartgym.herokuapp.com/tracker/set_detail_rest/'
-    var link_userprofile_detail = 'https://app-smartgym.herokuapp.com/tracker/userprofile_detail_rest/'
-    // var link_set_detail = 'http://127.0.0.1:8000/tracker/set_detail_rest/'
-    // var link_userprofile_detail = 'http://127.0.0.1:8000/tracker/userprofile_detail_rest/'
+    // var link_set_detail = 'https://app-smartgym.herokuapp.com/tracker/set_detail_rest/'
+    // var link_userprofile_detail = 'https://app-smartgym.herokuapp.com/tracker/userprofile_detail_rest/'
+    var link_set_detail = 'http://127.0.0.1:8000/tracker/set_detail_rest/'
+    var link_userprofile_detail = 'http://127.0.0.1:8000/tracker/userprofile_detail_rest/'
     link_userprofile_detail = link_userprofile_detail + user_id
     var active = false
 

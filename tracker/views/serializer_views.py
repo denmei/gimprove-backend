@@ -1,6 +1,12 @@
 from tracker.serializers import *
 from rest_framework import generics
 
+"""
+These views may only be used by authenticated components.
+"""
+
+# TODO: add permissions so only authenticated components can use the views.
+
 
 class SetList(generics.ListCreateAPIView):
     """
