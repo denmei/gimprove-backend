@@ -22,7 +22,7 @@ from home import urls as home_urls
 
 @login_required
 def index(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         if get_profile_type(request.user) == 'gym':
             return render(request, 'tracker/Gym/gym_tracker_base.html')
         return redirect('activities', request.user.id)
