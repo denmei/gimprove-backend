@@ -26,8 +26,17 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class UserProfileDetail(generics.RetrieveAPIView):
     """
-    View to retrieve UserProfileData via http request.
+    View to retrieve UserProfileData via http request and by User_id.
     """
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
 
+"""
+class UserProfileDetailByRfid(generics.RetrieveAPIView):
+
+    View to retrieve UserProfileData via http request and by UserProfile_RFID.
+
+    # TODO: By RFID. Add URL
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+"""

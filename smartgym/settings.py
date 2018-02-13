@@ -26,7 +26,7 @@ SECRET_KEY = 'mua*5%xiv5z6s27si3am&&m+o=@gg#$f#gv^8j-i%h+kc6$8jt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".herokuapp.com", ".researchthroughdesign.org", "127.0.0.1"]
+ALLOWED_HOSTS = [".herokuapp.com", ".researchthroughdesign.org", "127.0.0.1", "www.gimprove.com"]
 
 
 # Application definition
