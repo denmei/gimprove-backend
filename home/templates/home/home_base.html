@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  {% block title %}<title>Smart Gym</title>{% endblock %}
+  {% block title %}<title>GImprove</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -30,9 +30,9 @@
             <span class="icon-bar"></span>
         </button>
         {% if user.is_authenticated %}
-            <a class="navbar-brand" href="{% url 'activities' user.id %}">SmartGym</a>
+            <a class="navbar-brand" href="{% url 'activities' user.id %}">GImprove</a>
         {% else %}
-            <a class="navbar-brand" href="{% url 'home' %}">SmartGym</a>
+            <a class="navbar-brand" href="{% url 'home' %}">GImprove</a>
         {% endif %}
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -75,7 +75,7 @@
     <div class="container home-section dumbbell-background screen-height" id="logo-container">
         <div class="row" id="logo-row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 full-height light-black-transparent">
-                <h1>SmartGym</h1>
+                <h1>GImprove</h1>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 full-height strong-black-transparent hcenter">
                 {% block header_right %}
