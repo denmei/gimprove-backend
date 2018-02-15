@@ -1,5 +1,6 @@
 from tracker.serializers import *
 from rest_framework import generics
+from tracker.models import UserProfile, Set
 
 """
 These views may only be used by authenticated components.
@@ -23,6 +24,18 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
 
+    def delete(self, request, *args, **kwargs):
+        """
+        On delete, the set has to be removed from the active_set field of the user profile if it is there. Otherwise
+        a foreign key error occurs.
+        """
+        set = Set.objects.get(id=kwargs['pk'])
+        user_profile = set.exercise_unit.train_unit.user
+        if user_profile.active_set == set:
+            user_profile.active_set = None
+            user_profile.save()
+        return super(SetDetail, self).destroy(request, *args, **kwargs)
+
 
 class UserProfileDetail(generics.RetrieveAPIView):
     """
@@ -31,12 +44,11 @@ class UserProfileDetail(generics.RetrieveAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
 
-"""
+
 class UserProfileDetailByRfid(generics.RetrieveAPIView):
-
+    """
     View to retrieve UserProfileData via http request and by UserProfile_RFID.
-
-    # TODO: By RFID. Add URL
+    """
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
-"""
+    lookup_field = 'rfid_tag'
