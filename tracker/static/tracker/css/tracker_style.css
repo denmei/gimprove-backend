@@ -87,26 +87,13 @@ body {
   height: 50px;
 }
 
-
-@media only screen and (max-width: 780px) {
-    .navbar-header a {
-        font-size: 1.6rem;
-        font-weight: bold;
-        color: rgb(252, 102, 61);
-        max-width: 100%;
-        margin-left: 3.0rem;
-        text-align: center;
-    }
-}
-
-@media only screen and (min-width: 781px) {
-    .navbar-header a {
-        font-size: 1.6rem;
-        font-weight: bold;
-        color: rgb(252, 102, 61);
-        width: 265px;
-        text-align: center;
-    }
+.navbar-header a {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: rgb(252, 102, 61);
+    margin-left: 3.0rem;
+    margin-right: 3.0rem;
+    text-align: center;
 }
 
 .navbar-header {
