@@ -1,6 +1,5 @@
-from tracker.serializers import *
 from rest_framework.test import APITestCase, RequestsClient
-import json
+from tracker.serializers.serializers import *
 
 
 class UserProfileSerializerTest(APITestCase):

@@ -1,6 +1,8 @@
-from rest_framework import serializers
-from tracker.models import *
 import json
+
+from rest_framework import serializers
+
+from tracker.models.models import *
 
 """
 These serializers may only be used by authenticated components since they provide extra functionalities.

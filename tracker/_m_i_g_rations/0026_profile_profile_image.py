@@ -3,7 +3,8 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import tracker.models
+
+import tracker.models.models
 
 
 class Migration(migrations.Migration):
@@ -16,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='profile',
             name='profile_image',
-            field=models.ImageField(blank=True, null=True, upload_to=tracker.models.get_image_path),
+            field=models.ImageField(blank=True, null=True, upload_to=tracker.models.models.get_image_path),
         ),
     ]

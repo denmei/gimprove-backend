@@ -1,5 +1,6 @@
 from django import forms
-from .models import ExerciseUnit, TrainUnit
+
+from tracker.models.models import ExerciseUnit, TrainUnit
 
 
 class AddExerciseUnitForm(forms.ModelForm):

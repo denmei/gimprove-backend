@@ -1,23 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render
-from django.views import generic
-from tracker.models import *
-from django.contrib.auth.decorators import login_required
-from tracker.serializers import *
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
-from django.urls import reverse, reverse_lazy
 import datetime
-from tracker.forms import AddExerciseUnitForm, AddTrainUnitForm, ContactForm
-from django.views.generic.edit import CreateView, DeleteView
+
+from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.shortcuts import render
 from django.template.loader import get_template
-from rest_framework import generics
-from home import urls as home_urls
+from django.urls import reverse_lazy
+from django.views import generic
+from django.views.generic.edit import CreateView, DeleteView
+
+from tracker.forms.forms import AddExerciseUnitForm, AddTrainUnitForm, ContactForm
+from tracker.serializers.serializers import *
 
 
 @login_required

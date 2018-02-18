@@ -1,4 +1,4 @@
-from tracker.serializers import *
+from tracker.serializers.serializers import *
 from rest_framework.test import APITestCase, RequestsClient
 import json
 import random

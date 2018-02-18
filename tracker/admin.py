@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from tracker.models.models import *
 
-from .models import *
+# Register your models here.
 
 admin.site.register(TrainUnit)
 admin.site.register(Exercise)

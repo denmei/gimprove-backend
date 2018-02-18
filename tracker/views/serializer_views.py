@@ -1,6 +1,7 @@
-from tracker.serializers import *
 from rest_framework import generics
-from tracker.models import UserProfile, Set
+
+from tracker.models.models import UserProfile, Set
+from tracker.serializers.serializers import *
 
 """
 These views may only be used by authenticated components.
