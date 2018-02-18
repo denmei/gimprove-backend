@@ -32,6 +32,6 @@ urlpatterns += [
         name='userprofile_detail'),
     url(r'^userprofile_detail_rfid_rest/(?P<rfid_tag>[\w\-]+)$',
         userprofile_serializer_view.UserProfileDetailByRfid.as_view(), name='userprofile_rfid_detail'),
-    url(r'^userprofile_create/$', userprofile_serializer_view.UserProfileCreator.as_view(),
+    url(r'^userprofile_create_rest/$', userprofile_serializer_view.UserProfileCreator.as_view(),
         name='userprofile_create'),
 ]

@@ -28,13 +28,13 @@ Base file for tracker-application. Style and frame for all views/users (incl. Na
             <nav class="navbar navbar-fixed-top">
                 <div class="container-fluid" id="header-container">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="/tracker/">SmartGym</a>
+                        <a class="navbar-brand" href="/tracker/">GImprove</a>
                     </div>
-                    <div class="header-content">
+                    <div class="header-content red-border">
                         {% block site_name %}
                         {% endblock %}
                     </div>
-                    <div class="nav navbar-nav navbar-right">
+                    <div class="nav navbar-nav navbar-right red-border">
                         <a href="{% url 'logout'%}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
                     </div>
                 </div>

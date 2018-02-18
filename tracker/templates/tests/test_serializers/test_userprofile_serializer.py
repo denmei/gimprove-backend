@@ -68,6 +68,7 @@ class UserProfileSerializerTest(APITestCase):
         Tests whether a UserProfile can be retrieved properly by the User-RFID-Number.
         """
         response = self.c.get(self.pre_http + reverse('userprofile_rfid_detail', kwargs={'rfid_tag': self.rfid_tag}))
+        print(self.pre_http + reverse('userprofile_rfid_detail', kwargs={'rfid_tag': self.rfid_tag}))
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
         if content['active_set'] is None:

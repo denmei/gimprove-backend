@@ -169,6 +169,7 @@ class ActivityListView(LoginRequiredMixin, generic.ListView):
         context['base_template'] = 'tracker/User/user_tracker_base.html'
         context['profile'] = UserProfile.objects.get(user=self.request.user)
         context['user_id'] = self.request.user.id
+        print("user_id : " + str(self.request.user.id))
         return context
 
 

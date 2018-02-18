@@ -35,7 +35,7 @@ class Profile(models.Model):
     """
     # TODO: Make abstract
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500, blank=True, help_text="Beschreibung.")
+    bio = models.TextField(max_length=1000, blank=True, help_text="Beschreibung.")
     profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
     def get_follows_connections(self):
@@ -173,7 +173,7 @@ class Set(models.Model):
     exercise_unit = models.ForeignKey(ExerciseUnit, on_delete=models.CASCADE)
     repetitions = models.IntegerField(blank=False)
     weight = models.IntegerField(blank=False)
-    durations = models.CharField(max_length=200, blank=False, null=False)
+    durations = models.TextField(max_length=1200, blank=False, null=False)
 
     def __str__(self):
         return str(self.id)

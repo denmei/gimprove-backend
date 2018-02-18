@@ -100,6 +100,7 @@ class SetSerializer(serializers.ModelSerializer):
         """
         instance.repetitions = max(int(validated_data.get('repetitions')), int(instance.repetitions))
         instance.weight = validated_data.get('weight')
+        instance.durations = validated_data.get('durations')
         # TODO: Logikpruefung fuer Gewicht: Siginifikant kleiner/groesser sodass waehrend Set verstellt?
 
         # Check whether set is still active.
