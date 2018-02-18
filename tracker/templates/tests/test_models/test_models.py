@@ -80,7 +80,4 @@ class UserProfileActivitiesTest(TestCase):
         self.assertTrue(self.up_1.get_activities()[0] == self.activity_1)
         self.assertTrue(self.up_2.get_follows_activities()[0] == self.activity_1)
 
-
-
 #TODO: Test function "get_profile_type"
-#Todo: Test clean of TrainUnit and Set

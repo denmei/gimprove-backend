@@ -9,8 +9,6 @@ class SetSerializerTest(APITestCase):
     """
     Tests the functionality of the SetSerializer.
     """
-    # TODO: Throws error if set is active -> test and fix
-    # TODO: Add test where active set is deleted (threw errors in the past)
 
     fixtures = ['fix.json']
 
@@ -194,5 +192,3 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(str(active_before), id_2)
         self.assertEqual(UserProfile.objects.first().active_set, None)
         self.assertEqual(response_2.status_code, 204)
-
-
