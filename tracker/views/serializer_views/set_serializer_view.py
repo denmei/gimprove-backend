@@ -1,11 +1,6 @@
 from rest_framework import generics
-
-from tracker.models.models import UserProfile, Set
-from tracker.serializers.serializers import *
-
-"""
-These views may only be used by authenticated components.
-"""
+from tracker.serializers.SetSerializer import *
+from tracker.serializers.UserProfileSerializer import *
 
 # TODO: add permissions so only authenticated components can use the views.
 
@@ -36,20 +31,3 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
             user_profile.active_set = None
             user_profile.save()
         return super(SetDetail, self).destroy(request, *args, **kwargs)
-
-
-class UserProfileDetail(generics.RetrieveAPIView):
-    """
-    View to retrieve UserProfileData via http request and by User_id.
-    """
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
-
-
-class UserProfileDetailByRfid(generics.RetrieveAPIView):
-    """
-    View to retrieve UserProfileData via http request and by UserProfile_RFID.
-    """
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
-    lookup_field = 'rfid_tag'

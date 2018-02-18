@@ -1,4 +1,4 @@
-from tracker.serializers.serializers import *
+from tracker.serializers.SetSerializer import *
 from rest_framework.test import APITestCase, RequestsClient
 import json
 import random
@@ -124,6 +124,7 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(content['date_time'], train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"))
         self.assertEqual(content['exercise_unit'], str(exercise_unit.id))
 
+    @override_settings(DEBUG=True)
     def test_update_restrictions(self):
         """
         Tests whether only repetition-values that are greater than the current value are supported.
@@ -142,7 +143,6 @@ class SetSerializerTest(APITestCase):
                 'date_time': train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 'rfid': str(user.rfid_tag),
                 'active': str(False), 'durations': json.dumps(durations)}
         url = self.pre_http + reverse('set_detail', kwargs={'pk': train_set.id})
-
         # test correct update request. Repetitions value may not be changed since may not be decreased.
         response = self.c.put(url, data)
         content = (json.loads(response.content.decode("utf-8")))

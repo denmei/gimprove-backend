@@ -1,15 +1,10 @@
 import json
-
 from rest_framework import serializers
-
 from tracker.models.models import *
 
-"""
-These serializers may only be used by authenticated components since they provide extra functionalities.
-"""
+
 # TODO: Add permission to restrict access only to authenticated equipment components
 # TODO: Extra mark for sets that were tracked by equipment components
-# TODO: Disable delete and get_list functionality since not needed by equipment components
 
 
 class SetSerializer(serializers.ModelSerializer):
@@ -152,12 +147,3 @@ class SetSerializer(serializers.ModelSerializer):
         if len(value) != 10:
             raise serializers.ValidationError('Not a valid RFID-Value!')
         return value
-
-
-class UserProfileSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(required=False, read_only=True, allow_null=True)
-
-    class Meta:
-        model = UserProfile
-        fields = (['user', 'rfid_tag', 'active_set'])
-

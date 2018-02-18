@@ -3,6 +3,7 @@
 
 from django.conf.urls import url
 from tracker import views
+from tracker.views.serializer_views import set_serializer_view, userprofile_serializer_view
 
 
 urlpatterns = [
@@ -25,10 +26,10 @@ urlpatterns = [
 
 # Serializer Urls:
 urlpatterns += [
-    url(r'^set_list_rest/$', views.SetList.as_view(), name='set_list'),
-    url(r'^set_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', views.SetDetail.as_view(), name='set_detail'),
-    url(r'^userprofile_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', views.UserProfileDetail.as_view(),
+    url(r'^set_list_rest/$', set_serializer_view.SetList.as_view(), name='set_list'),
+    url(r'^set_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', set_serializer_view.SetDetail.as_view(), name='set_detail'),
+    url(r'^userprofile_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', userprofile_serializer_view.UserProfileDetail.as_view(),
         name='userprofile_detail'),
-    url(r'^userprofile_detail_rfid_rest/(?P<rfid_tag>[\w\-]+)$', views.UserProfileDetailByRfid.as_view(),
-        name='userprofile_rfid_detail')
+    url(r'^userprofile_detail_rfid_rest/(?P<rfid_tag>[\w\-]+)$',
+        userprofile_serializer_view.UserProfileDetailByRfid.as_view(), name='userprofile_rfid_detail')
 ]

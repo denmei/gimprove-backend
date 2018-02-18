@@ -15,7 +15,7 @@ from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView
 
 from tracker.forms.forms import AddExerciseUnitForm, AddTrainUnitForm, ContactForm
-from tracker.serializers.serializers import *
+from tracker.serializers.UserProfileSerializer import *
 
 
 @login_required

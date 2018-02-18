@@ -1,5 +1,5 @@
 from rest_framework.test import APITestCase, RequestsClient
-from tracker.serializers.serializers import *
+from tracker.serializers.UserProfileSerializer import *
 
 
 class UserProfileSerializerTest(APITestCase):
