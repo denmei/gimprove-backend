@@ -3,12 +3,14 @@
     "model": "tracker.userprofile",
     "pk": 1,
     "fields": {
-        "bio": "",
+        "bio": "Desc",
         "profile_image": "",
-        "date_of_birth": "2018-02-04",
+        "date_of_birth": "1991-02-15",
         "rfid_tag": "0006921147",
-        "active_set": "a5064076-2401-4cd2-b6fb-67f357cdd84d",
-        "gym": [],
+        "active_set": null,
+        "gym": [
+            2
+        ],
         "achievements": []
     }
 },
@@ -16,23 +18,21 @@
     "model": "tracker.gymprofile",
     "pk": 2,
     "fields": {
-        "bio": "",
+        "bio": "none",
         "profile_image": "",
-        "members": [
-            1
-        ]
+        "members": []
     }
 },
 {
     "model": "tracker.exercise",
     "pk": "Lat Pulldown",
     "fields": {
-        "description": "Lat Pulldown Machine Desc",
+        "description": "None",
         "muscles": [
             "Back"
         ],
         "equipment_machine": [
-            "1b7d0321-9615-4bd5-a64c-7fcfee388ec5"
+            "fded5e7f-f504-4992-bb70-949f3aec172c"
         ]
     }
 },
@@ -43,482 +43,64 @@
 },
 {
     "model": "tracker.trainunit",
-    "pk": "974a724c-5d2c-41c8-b670-278e69857f3f",
+    "pk": "efa96d34-6286-45af-b71d-2489a0acbcd4",
     "fields": {
-        "start_time_date": "2018-02-04T09:50:34.419Z",
-        "end_time_date": "2018-02-04T18:09:21.268Z",
-        "date": "2018-02-04",
+        "start_time_date": "2018-02-15T20:38:31.393Z",
+        "end_time_date": "2018-02-15T20:38:36.170Z",
+        "date": "2018-02-15",
         "user": 1,
         "exercise_units": [
-            "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a"
+            "b2a03c96-b3f0-4616-b29c-011603f208ff"
         ]
     }
 },
 {
     "model": "tracker.exerciseunit",
-    "pk": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
+    "pk": "b2a03c96-b3f0-4616-b29c-011603f208ff",
     "fields": {
-        "time_date": "2018-02-04T09:50:34.430Z",
-        "train_unit": "974a724c-5d2c-41c8-b670-278e69857f3f",
+        "time_date": "2018-02-15T20:38:31.403Z",
+        "train_unit": "efa96d34-6286-45af-b71d-2489a0acbcd4",
         "exercise": "Lat Pulldown"
     }
 },
 {
     "model": "tracker.set",
-    "pk": "04022f86-0ea3-47c9-8f07-ca35f301b5f8",
+    "pk": "123cf710-2555-475a-b248-8ede84d0775f",
     "fields": {
-        "date_time": "2018-02-04T16:32:06Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 13
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "0865abeb-a9ce-4a34-96ee-3527f04e4c3e",
-    "fields": {
-        "date_time": "2018-02-04T16:35:27Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 66
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "088fefde-d351-4ded-b9a8-e2efcbef9c02",
-    "fields": {
-        "date_time": "2018-02-04T16:43:25Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 98
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "1f1ad363-cc22-4e7f-8ca3-a7b2a1ebba9a",
-    "fields": {
-        "date_time": "2018-02-04T16:31:28Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 73
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "245782a8-8ee6-499b-ac29-97a89a18949c",
-    "fields": {
-        "date_time": "2018-02-04T16:24:36Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 57
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "26a42b81-9230-4ae1-bfb1-182b1dd19019",
-    "fields": {
-        "date_time": "2018-02-04T16:33:43Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 21
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "34b02d4b-802d-497f-8295-8dfeba1bc333",
-    "fields": {
-        "date_time": "2018-02-04T16:25:17Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 44
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "374fcee4-1f4c-4f66-afa3-6dce2b8743ee",
-    "fields": {
-        "date_time": "2018-02-04T16:27:38Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 61
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "3e0a2e7e-a5f4-48d7-a89e-1533cea3a926",
-    "fields": {
-        "date_time": "2018-02-04T16:57:54Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 2,
-        "weight": 76
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "41894b93-1b0e-4416-a96f-9b27f6cea0f1",
-    "fields": {
-        "date_time": "2018-02-04T17:11:42Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
+        "date_time": "2018-02-16T06:25:01Z",
+        "exercise_unit": "b2a03c96-b3f0-4616-b29c-011603f208ff",
         "repetitions": 1,
-        "weight": 24
+        "weight": 100,
+        "durations": "[1]"
     }
 },
 {
     "model": "tracker.set",
-    "pk": "47966cb2-a1d1-4e7e-b970-29eba4e91bbc",
+    "pk": "a815a5fd-0b31-4f35-b5d7-bd7274bb1ab7",
     "fields": {
-        "date_time": "2018-02-04T16:38:11Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 15
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "4b746312-ace0-4605-96ba-d65069ac4e16",
-    "fields": {
-        "date_time": "2018-02-04T17:00:38Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 3,
-        "weight": 87
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "4f4e0ac8-e5a2-4c4a-98be-9f597c9d3691",
-    "fields": {
-        "date_time": "2018-02-04T19:07:23Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 1,
-        "weight": 69
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "50681b81-6246-495d-a5d8-a2f93575fdae",
-    "fields": {
-        "date_time": "2018-02-04T16:13:09Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 72
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "524d55f1-a061-47be-861a-4c8ec9dd4377",
-    "fields": {
-        "date_time": "2018-02-04T16:43:02Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 61
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "64b11e08-8e30-43e2-9eee-beb383424e46",
-    "fields": {
-        "date_time": "2018-02-04T16:30:27Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 53
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "688a3ed5-b883-45f7-9108-8aa31e41b161",
-    "fields": {
-        "date_time": "2018-02-04T17:25:51Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
+        "date_time": "2018-02-16T06:22:28Z",
+        "exercise_unit": "b2a03c96-b3f0-4616-b29c-011603f208ff",
         "repetitions": 2,
-        "weight": 77
+        "weight": 80,
+        "durations": "[1, 1.5]"
     }
 },
 {
-    "model": "tracker.set",
-    "pk": "691c6276-8339-484a-9221-36418d7d0571",
+    "model": "tracker.equipment",
+    "pk": "fded5e7f-f504-4992-bb70-949f3aec172c",
     "fields": {
-        "date_time": "2018-02-04T16:43:53Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 72
+        "gym": 2,
+        "exercises": [
+            "Lat Pulldown"
+        ]
     }
-},
-{
-    "model": "tracker.set",
-    "pk": "69fbacad-9582-4eb5-aa50-897ac6640c00",
-    "fields": {
-        "date_time": "2018-02-04T16:42:02Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 90
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "6b960bec-0ec3-4166-9b31-60d1604a0c8d",
-    "fields": {
-        "date_time": "2018-02-04T16:00:55Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 9,
-        "weight": 50
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "6c7caedc-e91d-4ea7-a75f-51043d65b6de",
-    "fields": {
-        "date_time": "2018-02-04T16:30:55Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 57
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "74a4188e-4d4b-4a6e-8412-d11e3ede0882",
-    "fields": {
-        "date_time": "2018-02-04T16:27:04Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 31
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "74ebb4d1-44cd-40d7-8b0b-0368d26b487c",
-    "fields": {
-        "date_time": "2018-02-04T19:07:55Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 4,
-        "weight": 27
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "7ff7638f-78fc-4b2e-968f-17dfaf172a3f",
-    "fields": {
-        "date_time": "2018-02-04T16:59:18Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 0,
-        "weight": 0
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "861b914c-1db9-4071-bb73-33caaed87756",
-    "fields": {
-        "date_time": "2018-02-04T16:55:29Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 5,
-        "weight": 10
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "874b8a4c-7b50-4d13-9b9b-9ed2b22c6bce",
-    "fields": {
-        "date_time": "2018-02-04T16:28:25Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 39
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "8896522b-a87a-4d2b-b58c-16178daedbb5",
-    "fields": {
-        "date_time": "2018-02-04T15:59:14Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 90
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "8a59a351-05a3-4002-81ec-cb2f2a0e70db",
-    "fields": {
-        "date_time": "2018-02-04T16:12:26Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 26
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "91192939-6e79-4846-a783-aa2f1418710d",
-    "fields": {
-        "date_time": "2018-02-04T16:34:18Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 59
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "99802de6-9b61-49c0-a571-0e77b1560660",
-    "fields": {
-        "date_time": "2018-02-04T16:45:52Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 58
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "9accb233-04c0-4729-bc49-a78a1709e11b",
-    "fields": {
-        "date_time": "2018-02-04T15:59:57Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 70
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "9de8fd49-434a-46f3-8e3e-2599323c4696",
-    "fields": {
-        "date_time": "2018-02-04T16:44:59Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 59
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "a5064076-2401-4cd2-b6fb-67f357cdd84d",
-    "fields": {
-        "date_time": "2018-02-04T19:09:21Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 1,
-        "weight": 16
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "a72c1ff2-4121-4d56-ac00-04e33c3df43f",
-    "fields": {
-        "date_time": "2018-02-04T16:34:52Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 9
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "bf7cbf7f-1405-4787-90a2-9ef55e50d35f",
-    "fields": {
-        "date_time": "2018-02-04T12:13:43Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 99
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "c9705cf7-52a5-4c8e-a299-fbe111cab26f",
-    "fields": {
-        "date_time": "2018-02-04T16:57:12Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 2,
-        "weight": 56
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "d38ae15a-f991-4a95-8e1b-3598b0c8465a",
-    "fields": {
-        "date_time": "2018-02-04T15:58:33Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 7
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "d3fd8b1c-1fda-4c9b-8eea-b82d3e6e2514",
-    "fields": {
-        "date_time": "2018-02-04T15:58:06Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 44
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "e8329ed3-caa3-454a-a262-a8c987b45503",
-    "fields": {
-        "date_time": "2018-02-04T16:56:21Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 0,
-        "weight": 0
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "e9074235-7b4f-4068-93e1-1240c8bff7c8",
-    "fields": {
-        "date_time": "2018-02-04T16:51:59Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 88
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "ef66fdaa-5173-4a43-b914-816965f8949e",
-    "fields": {
-        "date_time": "2018-02-04T16:36:44Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 73
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "f0ae11b5-6042-4857-8dce-7e3be8f1180c",
-    "fields": {
-        "date_time": "2018-02-04T16:48:08Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 93
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "fb4be9f9-ff75-4ba5-b79d-e14e8295a823",
-    "fields": {
-        "date_time": "2018-02-04T16:32:49Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 95
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "feaaa19a-38a5-48d1-bf4b-181d2947c4a6",
-    "fields": {
-        "date_time": "2018-02-04T16:29:34Z",
-        "exercise_unit": "71db7ab1-bccd-4fe3-b8cf-36b39f846e2a",
-        "repetitions": 10,
-        "weight": 94
-    }
-},
-    {
-        "model": "tracker.equipment",
-        "pk": "1b7d0321-9615-4bd5-a64c-7fcfee388ec5",
-        "fields": {
-            "gym": 2,
-            "exercises": [
-                "Lat Pulldown"
-            ]
-        }
 },
     {
     "model": "auth.user",
     "pk": 1,
     "fields": {
-        "password": "pbkdf2_sha256$100000$qcSv9fPL8NFf$3THx/e/wxcbIzrPYFq0jTncqTU69P+jY1apAobrMy6Y=",
-        "last_login": "2018-02-06T06:26:12.806Z",
+        "password": "pbkdf2_sha256$100000$p4NCXnQfO8WP$GOfrX0S/JvNAEz4Vw/QogKNm36R1dwphY1XQHV3BK2c=",
+        "last_login": "2018-02-15T20:35:09.609Z",
         "is_superuser": true,
         "username": "dennis",
         "first_name": "",
@@ -526,7 +108,7 @@
         "email": "",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2018-02-04T09:46:12.558Z",
+        "date_joined": "2018-02-15T20:34:10.794Z",
         "groups": [],
         "user_permissions": []
     }
@@ -535,7 +117,7 @@
     "model": "auth.user",
     "pk": 2,
     "fields": {
-        "password": "pbkdf2_sha256$100000$Km7qDBcO639i$VozyGn1c1WPHUi4jt8t7YhiY7fI5sn8OpX2PmURMUoA=",
+        "password": "pbkdf2_sha256$100000$Vlch7L8He3Ax$mHmArGQsGjE2fzITGPebtD0eYJSQFnWfRvwiS5LpnpI=",
         "last_login": null,
         "is_superuser": false,
         "username": "test_gym",
@@ -544,7 +126,7 @@
         "email": "",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2018-02-04T09:47:28.189Z",
+        "date_joined": "2018-02-15T20:35:38.179Z",
         "groups": [],
         "user_permissions": []
     }

@@ -173,6 +173,7 @@ class Set(models.Model):
     exercise_unit = models.ForeignKey(ExerciseUnit, on_delete=models.CASCADE)
     repetitions = models.IntegerField(blank=False)
     weight = models.IntegerField(blank=False)
+    durations = models.CharField(max_length=200, blank=False, null=False)
 
     def __str__(self):
         return str(self.id)
@@ -181,6 +182,7 @@ class Set(models.Model):
         # check repetitions
         if self.repetitions < 0 or self.repetitions > 500:
             raise ValidationError("Not a reasonable value for repetitions.")
+        # TODO check duration match repetition
         # check weight
         if self.weight < 0:
             raise ValidationError("No negative values allowed for weight.")

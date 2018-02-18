@@ -3,6 +3,8 @@ from django.test import TestCase, Client
 from datetime import datetime
 from rest_framework.test import APITestCase, RequestsClient
 import json
+import random
+from django.test.utils import override_settings
 
 """
 Script to test the models of the tracker app.
@@ -14,6 +16,7 @@ class SetSerializerTest(APITestCase):
     Tests the functionality of the SetSerializer.
     """
     # TODO: Throws error if set is active -> test and fix
+    # TODO: Add test where active set is deleted (threw errors in the past)
 
     fixtures = ['fix.json']
 
@@ -39,11 +42,11 @@ class SetSerializerTest(APITestCase):
         exercise_name = exercise_unit.exercise
         date_time = exercise_unit.time_date
         equipment_id = Equipment.objects.first().id
-
+        durations = random.sample(range(1, 20), repetitions)
         # make request and test
         data = {'exercise_unit': exercise_unit.id, 'repetitions': repetitions, 'weight': weight,
                 'exercise_name': exercise_name, 'rfid': rfid, 'date_time': date_time, 'equipment_id': equipment_id,
-                'active': False}
+                'active': False, 'durations': json.dumps(durations)}
         response = self.c.post(self.pre_http + reverse('set_list'), data)
         self.assertEqual(response.status_code, 201)
 
@@ -56,6 +59,7 @@ class SetSerializerTest(APITestCase):
         """
         pass
 
+    @override_settings(DEBUG=True)
     def test_exercise_unit_creation(self):
         """
         Using existing trainunit but create new exerciseunit.
@@ -66,8 +70,10 @@ class SetSerializerTest(APITestCase):
         rfid = UserProfile.objects.first().rfid_tag
         date_time = timezone.now()
         equipment_id = Equipment.objects.first().id
+        durations = random.sample(range(1, 20), repetitions)
         data = {'exercise_unit': "", 'repetitions': repetitions, 'weight': weight, 'exercise_name': exercise_name,
-                'rfid': rfid, 'date_time': date_time, 'equipment_id': equipment_id, 'active': False}
+                'rfid': rfid, 'date_time': date_time, 'equipment_id': equipment_id, 'active': False, 'durations':
+                    json.dumps(durations)}
         response = self.c.post(self.pre_http + reverse('set_list'), data)
         self.assertEqual(response.status_code, 201)
 
@@ -83,11 +89,11 @@ class SetSerializerTest(APITestCase):
         exercise_unit = train_unit.exercise_units.first()
         date_time = exercise_unit.time_date
         equipment_id = Equipment.objects.first().id
-
+        durations = random.sample(range(1, 20), repetitions)
         # make request where exercise name and equipment do not match
         data = {'exercise_unit': exercise_unit.id, 'repetitions': repetitions, 'weight': weight,
                 'exercise_name': 'some_name', 'rfid': rfid, 'date_time': date_time, 'equipment_id': equipment_id,
-                'active': False}
+                'active': False, 'durations': json.dumps(durations)}
         response = self.c.post(self.pre_http + reverse('set_list'), data)
         content = response.content
 
@@ -95,6 +101,7 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn("Exercise name does not fit to Equipment-ID.", str(content))
 
+    @override_settings(DEBUG=True)
     def test_update(self):
         """
         Check whether sets are updated correctly.
@@ -107,10 +114,11 @@ class SetSerializerTest(APITestCase):
         equipment = exercise.equipment_machine.all()[0]
         train_unit = exercise_unit.train_unit
         user = train_unit.user
+        durations = random.sample(range(1, 20), int(train_set.repetitions) + 5)
         data = {'repetitions':  int(train_set.repetitions) + 5, 'weight': 10,
                 'exercise_name': exercise.name, 'equipment_id': str(equipment.id),
                 'date_time': train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 'rfid': str(user.rfid_tag),
-                'active': str(False)}
+                'active': str(False), 'durations': json.dumps(durations)}
 
         # make update request
         url = self.pre_http + reverse('set_detail', kwargs={'pk': train_set.id})
@@ -135,10 +143,11 @@ class SetSerializerTest(APITestCase):
         equipment = exercise.equipment_machine.all()[0]
         train_unit = exercise_unit.train_unit
         user = train_unit.user
+        durations = random.sample(range(1, 20), int(train_set.repetitions) - 1)
         data = {'repetitions':  int(train_set.repetitions) - 1, 'weight': 10,
                 'exercise_name': exercise.name, 'equipment_id': str(equipment.id),
                 'date_time': train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 'rfid': str(user.rfid_tag),
-                'active': str(False)}
+                'active': str(False), 'durations': json.dumps(durations)}
 
         # make update request
         url = self.pre_http + reverse('set_detail', kwargs={'pk': train_set.id})
@@ -171,7 +180,10 @@ class UserProfileSerializerTest(APITestCase):
         response = self.c.get(self.pre_http + reverse('userprofile_detail', kwargs={'pk': self.user.id}))
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(content['active_set'], str(self.active_set))
+        if content['active_set'] is None:
+            self.assertEqual(content['active_set'], self.active_set)
+        else:
+            self.assertEqual(content['active_set'], str(self.active_set))
 
 
 class UserProfileRfidSerializerTest(APITestCase):
@@ -193,5 +205,8 @@ class UserProfileRfidSerializerTest(APITestCase):
         response = self.c.get(self.pre_http + reverse('userprofile_rfid_detail', kwargs={'rfid_tag': self.user.rfid_tag}))
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(content['active_set'], str(self.active_set))
+        if content['active_set'] is None:
+            self.assertEqual(content['active_set'], self.active_set)
+        else:
+            self.assertEqual(content['active_set'], str(self.active_set))
         self.assertEqual(content['user'], self.user_id)

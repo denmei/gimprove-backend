@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from tracker.models import *
+import json
 
 """
 These serializers may only be used by authenticated components since they provide extra functionalities.
@@ -22,14 +23,19 @@ class SetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Set
-        fields = ('id', 'date_time', 'exercise_unit', 'repetitions', 'weight', 'rfid', 'equipment_id', 'exercise_name', 'active')
+        fields = ('id', 'date_time', 'durations', 'exercise_unit', 'repetitions', 'weight', 'rfid', 'equipment_id',
+                  'exercise_name', 'active')
 
     def validate(self, attrs):
         """
         Multiple validations of the input data coming from the client.
         """
+        # TODO: Check whether all values in request
+        # TODO: check durations vs. repetitions
         equipment_id_r = self.initial_data['equipment_id']
         exercise_name_r = self.initial_data['exercise_name']
+        durations = self.initial_data['durations']
+        repetitions = self.initial_data['repetitions']
 
         # Check whether exercise_name and equipment fit:
         fit = False
@@ -39,6 +45,12 @@ class SetSerializer(serializers.ModelSerializer):
                 break
         if fit is False:
             raise ValidationError("Exercise name does not fit to Equipment-ID.")
+
+        # check whether duration values and repetitions fit
+        durations = json.loads(durations)
+        if len(durations) != int(repetitions):
+            raise ValidationError("The number of duration values must be equal to the number of repetitions." +
+                                  str(len(durations)) + " " + str(durations) + " " + str(repetitions))
 
         return self.initial_data
 
@@ -76,6 +88,7 @@ class SetSerializer(serializers.ModelSerializer):
         # Set has to be added to existing exercise unit:
         else:
             validated_data['exercise_unit'] = ExerciseUnit.objects.filter(id=validated_data['exercise_unit'])[0]
+        validated_data['durations'] = json.dumps(validated_data['durations'])
         new_set = Set.objects.create(**validated_data)
 
         if active == 'True':
