@@ -1,14 +1,8 @@
 from tracker.serializers import *
-from django.test import TestCase, Client
-from datetime import datetime
 from rest_framework.test import APITestCase, RequestsClient
 import json
 import random
 from django.test.utils import override_settings
-
-"""
-Script to test the models of the tracker app.
-"""
 
 
 class SetSerializerTest(APITestCase):
@@ -135,6 +129,7 @@ class SetSerializerTest(APITestCase):
     def test_update_restrictions(self):
         """
         Tests whether only repetition-values that are greater than the current value are supported.
+        Tests whether length of durations-field fits to repetitions.
         """
         # data preparation
         train_set = Set.objects.all()[0]
@@ -148,65 +143,56 @@ class SetSerializerTest(APITestCase):
                 'exercise_name': exercise.name, 'equipment_id': str(equipment.id),
                 'date_time': train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 'rfid': str(user.rfid_tag),
                 'active': str(False), 'durations': json.dumps(durations)}
-
-        # make update request
         url = self.pre_http + reverse('set_detail', kwargs={'pk': train_set.id})
+
+        # test correct update request. Repetitions value may not be changed since may not be decreased.
         response = self.c.put(url, data)
         content = (json.loads(response.content.decode("utf-8")))
-
-        # check response
         self.assertEqual(response.status_code, 200)
         self.assertEqual(content['repetitions'], int(train_set.repetitions))
         self.assertEqual(content['weight'], 10)
         self.assertEqual(content['date_time'], train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"))
         self.assertEqual(content['exercise_unit'], str(exercise_unit.id))
 
+        # test update request with length of durations field other than repetitions count. Must throw error.
+        data['durations'] = json.dumps(random.sample(range(1, 20), int(train_set.repetitions) + 4))
+        response = self.c.put(url, data)
+        self.assertEqual(response.status_code, 400)
 
-class UserProfileSerializerTest(APITestCase):
-    """
-    Tests the functionality of the UserSerializer.
-    """
+    def test_delete(self):
+        """
+        Tests whether a created set can be deleted properly. Non-active as well as active sets are tested.
+        """
 
-    fixtures = ['fix.json']
+        def get_new_set_id(active):
+            """
+            Creates new set.
+            :return: id of the new set
+            """
+            rfid = UserProfile.objects.first().rfid_tag
+            train_unit = TrainUnit.objects.filter(user=UserProfile.objects.first())[0]
+            exercise_unit = train_unit.exercise_units.first()
+            exercise_name = exercise_unit.exercise
+            date_time = exercise_unit.time_date
+            equipment_id = Equipment.objects.first().id
+            durations = random.sample(range(1, 20), 10)
+            data = {'exercise_unit': exercise_unit.id, 'repetitions': 10, 'weight': 60,
+                    'exercise_name': exercise_name, 'rfid': rfid, 'date_time': date_time, 'equipment_id': equipment_id,
+                    'active': active, 'durations': json.dumps(durations)}
+            response = json.loads(self.c.post(self.pre_http + reverse('set_list'), data).content.decode("utf-8"))
+            return response['id']
 
-    def setUp(self):
-        self.c = RequestsClient()
-        self.pre_http = "http://127.0.0.1:8000"
-        self.rfid_tag = UserProfile.objects.all()[0].rfid_tag
-        self.user = UserProfile.objects.all()[0].user
-        self.active_set = UserProfile.objects.all()[0].active_set
+        # try deleting a non-active set
+        id_1 = get_new_set_id(active=False)
+        response_1 = self.c.delete(self.pre_http + reverse('set_detail', kwargs={'pk': id_1}))
+        self.assertEqual(response_1.status_code, 204)
 
-    def test_userprofile_retrieval(self):
-        response = self.c.get(self.pre_http + reverse('userprofile_detail', kwargs={'pk': self.user.id}))
-        content = (json.loads(response.content.decode("utf-8")))
-        self.assertEqual(response.status_code, 200)
-        if content['active_set'] is None:
-            self.assertEqual(content['active_set'], self.active_set)
-        else:
-            self.assertEqual(content['active_set'], str(self.active_set))
+        # try deleting an active set
+        id_2 = get_new_set_id(active=True)
+        active_before = UserProfile.objects.first().active_set
+        response_2 = self.c.delete(self.pre_http + reverse('set_detail', kwargs={'pk': id_2}))
+        self.assertEqual(str(active_before), id_2)
+        self.assertEqual(UserProfile.objects.first().active_set, None)
+        self.assertEqual(response_2.status_code, 204)
 
 
-class UserProfileRfidSerializerTest(APITestCase):
-    """
-    Tests the functionality of the UserSerializer (by RFID-Tag).
-    """
-
-    fixtures = ['fix.json']
-
-    def setUp(self):
-        self.c = RequestsClient()
-        self.pre_http = "http://127.0.0.1:8000"
-        self.rfid_tag = UserProfile.objects.all()[0].rfid_tag
-        self.user = UserProfile.objects.all()[0]
-        self.active_set = UserProfile.objects.all()[0].active_set
-        self.user_id = self.user.user.id
-
-    def test_userprofile_retrieval(self):
-        response = self.c.get(self.pre_http + reverse('userprofile_rfid_detail', kwargs={'rfid_tag': self.user.rfid_tag}))
-        content = (json.loads(response.content.decode("utf-8")))
-        self.assertEqual(response.status_code, 200)
-        if content['active_set'] is None:
-            self.assertEqual(content['active_set'], self.active_set)
-        else:
-            self.assertEqual(content['active_set'], str(self.active_set))
-        self.assertEqual(content['user'], self.user_id)
