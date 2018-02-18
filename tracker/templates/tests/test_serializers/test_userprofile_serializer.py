@@ -1,5 +1,6 @@
 from rest_framework.test import APITestCase, RequestsClient
 from tracker.serializers.UserProfileSerializer import *
+from django.test.utils import override_settings
 
 
 class UserProfileSerializerTest(APITestCase):
@@ -15,6 +16,40 @@ class UserProfileSerializerTest(APITestCase):
         self.rfid_tag = UserProfile.objects.all()[0].rfid_tag
         self.user = UserProfile.objects.all()[0].user
         self.active_set = UserProfile.objects.all()[0].active_set
+        self.gym = GymProfile.objects.first()
+
+    @override_settings(DEBUG=True)
+    def test_userprofile_creation(self):
+        """
+        Tests whether UserProfiles can be created properly using the API.
+        """
+        data = {'date_of_birth': "1991-11-20", 'gym': self.gym.user.id, 'rfid_tag': "1234567890",
+                'achievements': None, 'active_set': None, 'bio': "Test", 'profile_image': None,
+                'username': 'test create'}
+        response = self.c.post(self.pre_http + reverse('userprofile_create'), data)
+        # print(response.content)
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(UserProfile.objects.last().gym.first(), self.gym)
+
+    def test_userprofile_delete(self):
+        """
+        Tests whether a UserProfile and -account can be deleted and reactivated properly.
+        """
+        # create account
+        data = {'date_of_birth': "1991-11-20", 'gym': self.gym.user.id, 'rfid_tag': "1234567890",
+                'achievements': None, 'active_set': None, 'bio': "Test", 'profile_image': None,
+                'username': 'test delete'}
+        response_id = json.loads(self.c.post(self.pre_http + reverse('userprofile_create'), data)
+                                 .content.decode("utf-8"))['user']
+        active_users_1 = len(User.objects.filter(is_active=True))
+        users_1 = len(User.objects.all())
+        # delete account
+        delete_request = self.c.delete(self.pre_http + reverse('userprofile_detail', kwargs={'pk': response_id}))
+        active_users_2 = len(User.objects.filter(is_active=True))
+        users_2 = len(User.objects.all())
+        self.assertEqual(delete_request.status_code, 204)
+        self.assertEqual(active_users_1, active_users_2 + 1)
+        self.assertEqual(users_1, users_2)
 
     def test_userprofile_retrieval(self):
         """
