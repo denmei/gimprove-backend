@@ -36,5 +36,5 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
         if len(Set.objects.filter(exercise_unit=exercise_unit)) == 0:
             exercise_unit.delete()
         if len(train_unit.exercise_units.all()) == 0:
-            user_profile.delete()
+            train_unit.delete()
         return ret_val
