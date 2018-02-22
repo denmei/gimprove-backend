@@ -3,6 +3,7 @@ from rest_framework.test import APITestCase, RequestsClient
 import json
 import random
 from django.test.utils import override_settings
+from datetime import datetime
 
 
 class SetSerializerTest(APITestCase):
@@ -158,7 +159,7 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(response.status_code, 400)
 
     @override_settings(DEBUG=True)
-    def test_delete(self):
+    def test_delete_active(self):
         """
         Tests whether a created set can be deleted properly. Non-active as well as active sets are tested.
         """
@@ -193,3 +194,33 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(str(active_before), id_2)
         self.assertEqual(UserProfile.objects.first().active_set, None)
         self.assertEqual(response_2.status_code, 204)
+
+    def test_delete_last(self):
+        """
+        A set must be properly deleted. If it was the last set in the exercise unit, the exercise unit must be
+        deleted. If the exercise unit was the last one in the TrainUnit, the TrainUnit must be deleted.
+        """
+        # create single set with new train unit and exercise unit
+        user = UserProfile.objects.first()
+        train_unit = TrainUnit.objects.create(start_time_date=datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                              end_time_date=datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                              date=datetime.now().date(), user=user)
+        exercise_unit = ExerciseUnit.objects.create(time_date=datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                                    train_unit=train_unit, exercise=Exercise.objects.first())
+        set = Set.objects.create(date_time=datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                 exercise_unit=exercise_unit,
+                                 repetitions=1, weight=10, durations=[0])
+
+        # make sure that every object was created and is unique
+        self.assertEqual(Set.objects.filter(id=set.id).count(), 1)
+        self.assertEqual(ExerciseUnit.objects.filter(id=exercise_unit.id).count(), 1)
+        self.assertEqual(TrainUnit.objects.filter(id=train_unit.id).count(), 1)
+
+        # delete set
+        response = self.c.delete(self.pre_http + reverse('set_detail', kwargs={'pk': set.id}))
+
+        # set, exercise unit and train unit must be deleted
+        self.assertEqual(Set.objects.filter(id=set.id).count(), 0)
+        self.assertEqual(ExerciseUnit.objects.filter(id=exercise_unit.id).count(), 0)
+        self.assertEqual(TrainUnit.objects.filter(id=train_unit.id).count(), 0)
+        self.assertEqual(response.status_code, 204)
