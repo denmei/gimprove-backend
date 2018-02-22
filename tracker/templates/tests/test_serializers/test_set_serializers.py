@@ -157,6 +157,7 @@ class SetSerializerTest(APITestCase):
         response = self.c.put(url, data)
         self.assertEqual(response.status_code, 400)
 
+    @override_settings(DEBUG=True)
     def test_delete(self):
         """
         Tests whether a created set can be deleted properly. Non-active as well as active sets are tested.
