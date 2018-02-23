@@ -30,7 +30,7 @@ urlpatterns += [
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^$', RedirectView.as_view(url='/home/', permanent=True)),
     url(r'^admin/', admin.site.urls),
-    url(r'^tracker/', include('tracker.urls.urls')),
+    url(r'^tracker/', include('tracker.main.urls.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
