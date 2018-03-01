@@ -1,6 +1,7 @@
 import json
 from rest_framework import serializers
 from tracker.main.models.models import *
+from tracker.main.services.timer import Timer
 
 
 # TODO: Add permission to restrict access only to authenticated equipment components
@@ -91,6 +92,8 @@ class SetSerializer(serializers.ModelSerializer):
         if active == 'True':
             user_profile.active_set = new_set
             user_profile.save()
+            timer = Timer(2, new_set, user_profile)
+            timer.start()
 
         return new_set
 

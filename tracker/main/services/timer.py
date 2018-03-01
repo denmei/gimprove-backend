@@ -1,12 +1,13 @@
 import time
 from threading import Thread
-from django.db import models
+import requests
 
 
-class Timer(Thread, models.Model):
+class Timer(Thread):
     """
     Provides timeout functionality for sets. Deactivates related sets on time out.
     """
+    #TODO: Timer must check whether set has been updated since the creation and if so, extend time_out by the delta.
 
     def __init__(self, time_out, set, user):
         """
@@ -49,11 +50,11 @@ class Timer(Thread, models.Model):
         """
         Starts the timer.
         """
+        print('Start timer')
         self.timed_out = False
         self.timer = self._time_out_
         while self.timer > 0 and not self._stop_:
             self.timer -= 1
             time.sleep(1)
-        self.user.active_set = None
-        self.user.save()
-        self.timed_out = True
+        print("DEACTIVATE")
+

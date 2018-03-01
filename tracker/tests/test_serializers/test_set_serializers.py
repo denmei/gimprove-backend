@@ -43,9 +43,6 @@ class SetSerializerTest(APITestCase):
         response = self.c.post(self.pre_http + reverse('set_list'), data)
         self.assertEqual(response.status_code, 201)
 
-    def test_set_creation_validators(self):
-        pass
-
     def test_train_unit_creation(self):
         """
         Create new trainunit and exerciseunit.

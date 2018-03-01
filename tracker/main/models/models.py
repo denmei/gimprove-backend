@@ -77,7 +77,10 @@ class UserProfile(Profile):
     gym = models.ManyToManyField('GymProfile', blank=True)
     rfid_tag = models.CharField('RFID', max_length=10, blank=True, null=True)
     achievements = models.ManyToManyField('Achievement', blank=True)
-    active_set = models.ForeignKey('Set', blank=True, null=True, on_delete=models.DO_NOTHING)
+    _active_set = models.ForeignKey('Set', blank=True, null=True, on_delete=models.DO_NOTHING)
+
+    def active_set(self):
+        return self._active_set
 
 
 class GymProfile(Profile):
@@ -160,7 +163,8 @@ class ExerciseUnit(models.Model):
         return str(self.exercise) + " " + str(self.time_date)
 
     def clean(self):
-        if not (self.time_date >= self.train_unit.start_time_data and self.time_date <= self.train_unit.end_time_date):
+        if not ((self.time_date >= self.train_unit.start_time_date) and
+                (self.time_date <= self.train_unit.end_time_date)):
             raise ValidationError("Time Date must be within End and Start time of TrainUnit.")
 
 
@@ -174,6 +178,7 @@ class Set(models.Model):
     repetitions = models.IntegerField(blank=False)
     weight = models.IntegerField(blank=False)
     durations = models.TextField(max_length=1200, blank=False, null=False)
+    last_update = models.DateTimeField(default=timezone.now, null=False, blank=False)
 
     def __str__(self):
         return str(self.id)
