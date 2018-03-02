@@ -3,14 +3,12 @@
     "model": "tracker.userprofile",
     "pk": 1,
     "fields": {
-        "bio": "Desc",
+        "bio": "Dennis' Profil",
         "profile_image": "",
-        "date_of_birth": "1991-02-15",
+        "date_of_birth": "1991-02-25",
         "rfid_tag": "0006921147",
-        "active_set": null,
-        "gym": [
-            2
-        ],
+        "_active_set": null,
+        "gym": [],
         "achievements": []
     }
 },
@@ -18,9 +16,11 @@
     "model": "tracker.gymprofile",
     "pk": 2,
     "fields": {
-        "bio": "none",
+        "bio": "",
         "profile_image": "",
-        "members": []
+        "members": [
+            1
+        ]
     }
 },
 {
@@ -32,7 +32,7 @@
             "Back"
         ],
         "equipment_machine": [
-            "fded5e7f-f504-4992-bb70-949f3aec172c"
+            "a96a564a-82ef-4046-9abd-0450297b32c2"
         ]
     }
 },
@@ -43,502 +43,53 @@
 },
 {
     "model": "tracker.trainunit",
-    "pk": "322b43cc-c87f-4287-87e0-0f18f40fb7fd",
+    "pk": "495aa72c-2ce3-4a71-87fc-0238263509d6",
     "fields": {
-        "start_time_date": "2018-02-18T10:32:35.107Z",
-        "end_time_date": "2018-02-18T10:46:00.760Z",
-        "date": "2018-02-18",
+        "start_time_date": "2018-03-01T15:39:53Z",
+        "end_time_date": "2018-03-01T15:59:57Z",
+        "date": "2018-03-01",
         "user": 1,
         "exercise_units": [
-            "1122570e-c7cf-4fdf-ae32-20a33276d3e4"
-        ]
-    }
-},
-{
-    "model": "tracker.trainunit",
-    "pk": "efa96d34-6286-45af-b71d-2489a0acbcd4",
-    "fields": {
-        "start_time_date": "2018-02-15T20:38:31.393Z",
-        "end_time_date": "2018-02-15T20:38:36.170Z",
-        "date": "2018-02-15",
-        "user": 1,
-        "exercise_units": [
-            "b2a03c96-b3f0-4616-b29c-011603f208ff"
+            "f9b5d986-2519-4801-8a93-abd4660fe5c4"
         ]
     }
 },
 {
     "model": "tracker.exerciseunit",
-    "pk": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
+    "pk": "f9b5d986-2519-4801-8a93-abd4660fe5c4",
     "fields": {
-        "time_date": "2018-02-18T10:32:35.127Z",
-        "train_unit": "322b43cc-c87f-4287-87e0-0f18f40fb7fd",
-        "exercise": "Lat Pulldown"
-    }
-},
-{
-    "model": "tracker.exerciseunit",
-    "pk": "b2a03c96-b3f0-4616-b29c-011603f208ff",
-    "fields": {
-        "time_date": "2018-02-15T20:38:31.403Z",
-        "train_unit": "efa96d34-6286-45af-b71d-2489a0acbcd4",
+        "time_date": "2018-03-01T15:50:41Z",
+        "train_unit": "495aa72c-2ce3-4a71-87fc-0238263509d6",
         "exercise": "Lat Pulldown"
     }
 },
 {
     "model": "tracker.set",
-    "pk": "123cf710-2555-475a-b248-8ede84d0775f",
+    "pk": "7d3ef778-cc4c-40da-9ec8-008ebd995236",
     "fields": {
-        "date_time": "2018-02-16T06:25:01Z",
-        "exercise_unit": "b2a03c96-b3f0-4616-b29c-011603f208ff",
-        "repetitions": 1,
-        "weight": 100,
-        "durations": "[1]"
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "1805b3ac-ef65-4613-8049-63b4d42047ba",
-    "fields": {
-        "date_time": "2018-02-18T11:32:35Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "227b6556-bd3b-4e90-b3ee-387694eec147",
-    "fields": {
-        "date_time": "2018-02-18T11:35:05Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "24bee000-36fb-427f-97ce-d3f0d725902d",
-    "fields": {
-        "date_time": "2018-02-18T11:45:26Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "2e38531b-fa44-40c9-afdb-4471aa93afa5",
-    "fields": {
-        "date_time": "2018-02-18T11:33:34Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "34561b99-a505-4e55-98d9-ccebcb07f929",
-    "fields": {
-        "date_time": "2018-02-18T11:35:44Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "467d458e-1ec6-41ae-8a8c-808ef5074e28",
-    "fields": {
-        "date_time": "2018-02-18T11:44:48Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "4762b948-b44b-476c-a657-f88a1551efa0",
-    "fields": {
-        "date_time": "2018-02-18T11:39:32Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "5475f5da-d548-49be-a274-a5d54cd1aea7",
-    "fields": {
-        "date_time": "2018-02-18T11:42:55Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "5afa2ec0-dae9-4d78-ba67-e39bccc67217",
-    "fields": {
-        "date_time": "2018-02-18T11:33:34Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "5b9c7a75-ea58-400f-9ea6-5d363d06bab5",
-    "fields": {
-        "date_time": "2018-02-18T11:35:06Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "642d5637-5855-4b55-bfaa-51fdbe2d64eb",
-    "fields": {
-        "date_time": "2018-02-18T11:40:17Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "67bd7b28-d03e-4b2b-b24f-4fc2af9a4323",
-    "fields": {
-        "date_time": "2018-02-18T11:41:35Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "71bdcfee-834d-4aa1-bc00-e0c7defa14db",
-    "fields": {
-        "date_time": "2018-02-18T11:41:35Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "740f779c-aaaa-4a12-8f78-935f0e7ec2eb",
-    "fields": {
-        "date_time": "2018-02-18T11:32:35Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "7518ee42-6500-4fdd-b508-505603549340",
-    "fields": {
-        "date_time": "2018-02-18T11:45:26Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "7826e2a0-23f4-4b9b-a259-6cdb2a4d0d01",
-    "fields": {
-        "date_time": "2018-02-18T11:41:35Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "7a477565-6cb5-4618-9b27-7e4347414d69",
-    "fields": {
-        "date_time": "2018-02-18T11:38:18Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "7da49d93-45a2-4e56-8a01-a5f4d47e49d2",
-    "fields": {
-        "date_time": "2018-02-18T11:39:32Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "8013f4ed-9247-4ae1-89a2-0e5e25c96b26",
-    "fields": {
-        "date_time": "2018-02-18T11:44:48Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "8649beb1-357a-45de-b104-e6f828b76f85",
-    "fields": {
-        "date_time": "2018-02-18T11:45:05Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "89f12edf-2f46-47ad-997c-4ca794a868e5",
-    "fields": {
-        "date_time": "2018-02-18T11:42:55Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "8d721023-806a-4550-ba78-af46cd8db9d7",
-    "fields": {
-        "date_time": "2018-02-18T11:35:43Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "971b572c-013f-44c2-976e-08cf6fb5247e",
-    "fields": {
-        "date_time": "2018-02-18T11:45:05Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "a286dea2-a662-4ad5-8084-d7544e853b34",
-    "fields": {
-        "date_time": "2018-02-18T11:40:17Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "a5d71e68-c9a7-4388-8011-5ddd6ba5525a",
-    "fields": {
-        "date_time": "2018-02-18T11:42:55Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "a815a5fd-0b31-4f35-b5d7-bd7274bb1ab7",
-    "fields": {
-        "date_time": "2018-02-16T06:22:28Z",
-        "exercise_unit": "b2a03c96-b3f0-4616-b29c-011603f208ff",
+        "date_time": "2018-03-01T15:58:03Z",
+        "exercise_unit": "f9b5d986-2519-4801-8a93-abd4660fe5c4",
         "repetitions": 2,
-        "weight": 80,
-        "durations": "[1, 1.5]"
+        "weight": 10,
+        "durations": "[0.5, 0.4]",
+        "last_update": "2018-03-01T16:18:03Z"
     }
 },
 {
     "model": "tracker.set",
-    "pk": "aa0ca899-8dfb-4c8e-9d11-996110803bc3",
+    "pk": "a470cb5f-6853-4d64-82e4-5dbf4d9b0ad5",
     "fields": {
-        "date_time": "2018-02-18T11:46:00Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "ac5624ca-c304-487d-807f-ada6612a6f52",
-    "fields": {
-        "date_time": "2018-02-18T11:35:43Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "ae4ea5d9-2ec7-44e1-abb8-7d84b188bf8f",
-    "fields": {
-        "date_time": "2018-02-18T11:38:18Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "b9b0f09d-d410-4d52-9df8-20d5ec4ff250",
-    "fields": {
-        "date_time": "2018-02-18T11:46:00Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "ca8fa292-5457-4774-a44f-851cbd3e67e6",
-    "fields": {
-        "date_time": "2018-02-18T11:32:35Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "d04dd186-cd88-40d6-b12a-a122c7eeede0",
-    "fields": {
-        "date_time": "2018-02-18T11:44:47Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "d48504aa-7259-438d-bed4-afd19706416a",
-    "fields": {
-        "date_time": "2018-02-18T11:45:26Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "e97a77eb-5be5-454e-b31b-9b20cc66eddc",
-    "fields": {
-        "date_time": "2018-02-18T11:39:32Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "ee65523a-be1d-4324-b7ec-55d9f09f66ac",
-    "fields": {
-        "date_time": "2018-02-18T11:33:34Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "f07fba54-0813-4fdf-beef-4396c2df2f0a",
-    "fields": {
-        "date_time": "2018-02-18T11:45:05Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 5,
-        "weight": 5,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "f23a1fe1-b671-44f2-9bbf-19e81f67a7eb",
-    "fields": {
-        "date_time": "2018-02-18T11:38:18Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "f5db7128-b8cd-4eca-991b-d8bde8ed7e45",
-    "fields": {
-        "date_time": "2018-02-18T11:35:06Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "f9e66adc-8a66-4d73-93be-eeaebffe6c0f",
-    "fields": {
-        "date_time": "2018-02-18T11:40:17Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "fc765d85-5594-4e09-a165-dffdd3232083",
-    "fields": {
-        "date_time": "2018-02-18T11:46:00Z",
-        "exercise_unit": "1122570e-c7cf-4fdf-ae32-20a33276d3e4",
-        "repetitions": 0,
-        "weight": 0,
-        "durations": "\"[]\""
+        "date_time": "2018-03-01T15:55:35Z",
+        "exercise_unit": "f9b5d986-2519-4801-8a93-abd4660fe5c4",
+        "repetitions": 1,
+        "weight": 10,
+        "durations": "[0.5]",
+        "last_update": "2018-03-01T16:17:35Z"
     }
 },
 {
     "model": "tracker.equipment",
-    "pk": "fded5e7f-f504-4992-bb70-949f3aec172c",
+    "pk": "a96a564a-82ef-4046-9abd-0450297b32c2",
     "fields": {
         "gym": 2,
         "exercises": [
@@ -546,12 +97,12 @@
         ]
     }
 },
-  {
+    {
     "model": "auth.user",
     "pk": 1,
     "fields": {
-        "password": "pbkdf2_sha256$100000$p4NCXnQfO8WP$GOfrX0S/JvNAEz4Vw/QogKNm36R1dwphY1XQHV3BK2c=",
-        "last_login": "2018-02-15T20:35:09.609Z",
+        "password": "pbkdf2_sha256$100000$vhlUGJGErKt7$5lGi4ByZZ4lkLdiX7MnJc+z4Bp4G+oDVZASDbcTYXes=",
+        "last_login": "2018-02-25T17:49:02.230Z",
         "is_superuser": true,
         "username": "dennis",
         "first_name": "",
@@ -559,7 +110,7 @@
         "email": "",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2018-02-15T20:34:10.794Z",
+        "date_joined": "2018-02-25T17:48:46.191Z",
         "groups": [],
         "user_permissions": []
     }
@@ -568,7 +119,7 @@
     "model": "auth.user",
     "pk": 2,
     "fields": {
-        "password": "pbkdf2_sha256$100000$Vlch7L8He3Ax$mHmArGQsGjE2fzITGPebtD0eYJSQFnWfRvwiS5LpnpI=",
+        "password": "pbkdf2_sha256$100000$C8hUzYn5wg0X$3DaUhrp8J/xKGnkIqXTB6TNKKFLI+WhlDRXIhInSzbU=",
         "last_login": null,
         "is_superuser": false,
         "username": "test_gym",
@@ -577,10 +128,9 @@
         "email": "",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2018-02-15T20:35:38.179Z",
+        "date_joined": "2018-03-01T16:01:11.651Z",
         "groups": [],
         "user_permissions": []
     }
 }
-
 ]

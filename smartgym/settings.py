@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'tracker.apps.TrackerConfig',
     'django_makemessages_xgettext',
-
     'rest_framework'
 ]
 

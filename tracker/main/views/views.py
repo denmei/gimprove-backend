@@ -13,6 +13,7 @@ from django.template.loader import get_template
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView
+
 from tracker.main.forms.forms import AddExerciseUnitForm, AddTrainUnitForm, ContactForm
 from tracker.main.models.models import *
 

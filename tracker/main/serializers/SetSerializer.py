@@ -1,7 +1,5 @@
-import json
 from rest_framework import serializers
 from tracker.main.models.models import *
-from tracker.main.services.timer import Timer
 
 
 # TODO: Add permission to restrict access only to authenticated equipment components
@@ -92,8 +90,6 @@ class SetSerializer(serializers.ModelSerializer):
         if active == 'True':
             user_profile.active_set = new_set
             user_profile.save()
-            timer = Timer(2, new_set, user_profile)
-            timer.start()
 
         return new_set
 
@@ -104,6 +100,7 @@ class SetSerializer(serializers.ModelSerializer):
         instance.repetitions = max(int(validated_data.get('repetitions')), int(instance.repetitions))
         instance.weight = validated_data.get('weight')
         instance.durations = validated_data.get('durations')
+        instance.last_update = timezone.now()
         # TODO: Logikpruefung fuer Gewicht: Siginifikant kleiner/groesser sodass waehrend Set verstellt?
 
         # Check whether set is still active.

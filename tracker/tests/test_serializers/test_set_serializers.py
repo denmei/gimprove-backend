@@ -94,7 +94,7 @@ class SetSerializerTest(APITestCase):
     @override_settings(DEBUG=True)
     def test_update(self):
         """
-        Check whether sets are updated correctly.
+        Check whether sets are updated correctly. Last_update field must be updated automatically.
         :return:
         """
         # data preparation
@@ -109,6 +109,7 @@ class SetSerializerTest(APITestCase):
                 'exercise_name': exercise.name, 'equipment_id': str(equipment.id),
                 'date_time': train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 'rfid': str(user.rfid_tag),
                 'active': str(False), 'durations': json.dumps(durations)}
+        before_time = timezone.now()
 
         # make update request
         url = self.pre_http + reverse('set_detail', kwargs={'pk': train_set.id})
@@ -121,6 +122,7 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(content['weight'], 10)
         self.assertEqual(content['date_time'], train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"))
         self.assertEqual(content['exercise_unit'], str(exercise_unit.id))
+        self.assertTrue(Set.objects.get(id=content['id']).last_update > before_time)
 
     @override_settings(DEBUG=True)
     def test_update_restrictions(self):

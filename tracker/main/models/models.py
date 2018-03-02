@@ -9,7 +9,8 @@ from django.urls import reverse
 from django.utils import timezone
 import os
 from django.core.exceptions import ValidationError
-from datetime import timedelta
+from datetime import timedelta, datetime
+import json
 
 
 # Create your models here.
@@ -79,8 +80,20 @@ class UserProfile(Profile):
     achievements = models.ManyToManyField('Achievement', blank=True)
     _active_set = models.ForeignKey('Set', blank=True, null=True, on_delete=models.DO_NOTHING)
 
+    @property
     def active_set(self):
+        """
+        Returns active set. If set has not been changed during the last 15 seconds, returns None.
+        """
+        if not self._active_set is None:
+            time_diff = timezone.now() - self._active_set.last_update
+            if time_diff.seconds > 15:
+                self._active_set = None
         return self._active_set
+
+    @active_set.setter
+    def active_set(self, a_set):
+        self._active_set = a_set
 
 
 class GymProfile(Profile):
@@ -194,6 +207,9 @@ class Set(models.Model):
         # check whether set date fits the exercise unit date
         if not (self.exercise_unit.time_date <= self.date_time <= self.exercise_unit.time_date + timedelta(days=1)):
             raise ValidationError("Date value does not fit to exercise unit.")
+        # check whether number of durations and repetitions fit
+        if len(json.loads(self.durations)) != self.repetitions:
+            raise ValidationError("Number of durations values and repetitions do not fit.")
 
 
 class Equipment(models.Model):

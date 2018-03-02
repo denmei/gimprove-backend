@@ -1,3 +1,5 @@
+import time
+
 from django.test import TestCase
 
 from tracker.main.models.models import *
@@ -24,6 +26,11 @@ class UserProfileTest(TestCase):
     def test_userprofile_creation(self):
         self.up = self.create_userprofile(self.gym, "0123456789")
         self.assertTrue(isinstance(self.up, UserProfile))
+
+    def test_auto_deactivation(self):
+        self.up.active_set = Set.objects.first()
+        time.sleep(16)
+        self.assertEqual(self.up.active_set, None)
 
 
 class UserProfileConnectionTest(TestCase):
