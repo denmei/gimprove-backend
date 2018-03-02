@@ -88,4 +88,30 @@ class UserProfileActivitiesTest(TestCase):
         self.assertTrue(self.up_1.get_activities()[0] == self.activity_1)
         self.assertTrue(self.up_2.get_follows_activities()[0] == self.activity_1)
 
+
+class UserProfileActiveSetTest(TestCase):
+    """
+    Tests whether auto-deactivation of inactive sets works properly.
+    """
+
+    fixtures = ['fix.json']
+
+    def setUp(self):
+        self.up = UserProfile.objects.first()
+        self.set = Set.objects.first()
+        self.set.last_update = timezone.now()
+        self.up.active_set = self.set
+
+    def test_no_deactivation_after_update(self):
+        time.sleep(5)
+        self.set.last_update = timezone.now()
+        time.sleep(11)
+        self.assertTrue(self.up.active_set == self.set)
+
+    def test_deactivation_no_update(self):
+        self.up.active_set = self.set
+        self.set.last_update = timezone.now() - timezone.timedelta(seconds=16)
+        self.assertTrue(self.up.active_set is None)
+
+
 #TODO: Test function "get_profile_type"
