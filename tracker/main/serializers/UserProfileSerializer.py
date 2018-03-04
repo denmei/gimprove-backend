@@ -17,7 +17,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ('user', 'date_of_birth', 'gym', 'rfid_tag', 'achievements', 'active_set', 'bio', 'profile_image',
+        fields = ('user', 'date_of_birth', 'gym', 'rfid_tag', 'achievements', '_pr_active_set', 'bio', 'profile_image',
                   'username')
 
     def create(self, validated_data, **kwargs):

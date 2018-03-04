@@ -84,7 +84,7 @@ class SetSerializer(serializers.ModelSerializer):
         # Set has to be added to existing exercise unit:
         else:
             validated_data['exercise_unit'] = ExerciseUnit.objects.filter(id=validated_data['exercise_unit'])[0]
-        validated_data['durations'] = json.dumps(validated_data['durations'])
+        validated_data['durations'] = ""
         new_set = Set.objects.create(**validated_data)
 
         if active == 'True':
