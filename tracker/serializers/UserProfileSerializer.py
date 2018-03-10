@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from tracker.main.models.models import *
+from tracker.models.models import *
 
 
 # TODO: Add permission to restrict access only to authenticated equipment components

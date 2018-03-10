@@ -1,7 +1,9 @@
 from rest_framework import generics
-from tracker.main.serializers.UserProfileSerializer import *
 from rest_framework import status
 from rest_framework.response import Response
+
+from tracker.serializers.UserProfileSerializer import *
+
 
 # TODO: add permissions so only authenticated components can use the views
 

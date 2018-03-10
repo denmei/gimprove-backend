@@ -2,7 +2,7 @@ import time
 
 from django.test import TestCase
 
-from tracker.main.models.models import *
+from tracker.models.models import *
 
 """
 Script to test the models of the tracker app.

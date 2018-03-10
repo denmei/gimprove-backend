@@ -2,14 +2,16 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url
-from tracker.main import views
-from tracker.main.views.serializer_views import userprofile_serializer_view, set_serializer_view
+
+from tracker import views
+from tracker.views.serializer_views import userprofile_serializer_view, set_serializer_view
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     # url(r'^contact$', views.contact, name='contact'),
     url(r'^about$', views.about, name='about'),
     url(r'^activities/(?P<pk>\d+)$', views.ActivityListView.as_view(), name='activities'),
+    url(r'^mockup/(?P<pk>\d+)$', views.AppMockupView.as_view(), name='mockup'),
     url(r'^training_units/(?P<pk>\d+)$', views.TrainingUnitsList.as_view(), name='training_units'),
     url(r'^exercise_unit_list/(?P<pk>[0-9A-Fa-f-]+)$', views.ExerciseUnitList.as_view(), name='exercise_unit_list'),
     url(r'^exercise_unit_list/(?P<pk>[0-9A-Fa-f-]+)/add/$', views.AddExerciseUnit.as_view(), name='add_exercise_unit'),

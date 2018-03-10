@@ -1,9 +1,11 @@
-from tracker.main.serializers.SetSerializer import *
-from rest_framework.test import APITestCase, RequestsClient
 import json
 import random
-from django.test.utils import override_settings
 from datetime import datetime
+
+from django.test.utils import override_settings
+from rest_framework.test import APITestCase, RequestsClient
+
+from tracker.serializers.SetSerializer import *
 
 
 class SetSerializerTest(APITestCase):

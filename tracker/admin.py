@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from tracker.main.models.models import *
+from tracker.models.models import *
 
 # Register your models here.
 

@@ -1,6 +1,7 @@
-from rest_framework.test import APITestCase, RequestsClient
-from tracker.main.serializers.UserProfileSerializer import *
 from django.test.utils import override_settings
+from rest_framework.test import APITestCase, RequestsClient
+
+from tracker.serializers.UserProfileSerializer import *
 
 
 class UserProfileSerializerTest(APITestCase):

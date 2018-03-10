@@ -13,9 +13,9 @@ from django.template.loader import get_template
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView
+from tracker.models.models import *
 
-from tracker.main.forms.forms import AddExerciseUnitForm, AddTrainUnitForm, ContactForm
-from tracker.main.models.models import *
+from tracker.forms.forms import AddExerciseUnitForm, AddTrainUnitForm, ContactForm
 
 
 @login_required
@@ -162,7 +162,7 @@ class ActivityListView(LoginRequiredMixin, generic.ListView):
     """
     model = Activity
     context_object_name = 'activities'
-    template_name = 'tracker/User/user_activitylist.html'
+    template_name = '/templates/tracker/User/user_activitylist.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -171,6 +171,12 @@ class ActivityListView(LoginRequiredMixin, generic.ListView):
         context['user_id'] = self.request.user.id
         print("user_id : " + str(self.request.user.id))
         return context
+
+
+class AppMockupView(LoginRequiredMixin, generic.ListView):
+    model = UserProfile
+    context_object_name = 'user_profile'
+    template_name = 'tracker/User/app_mockup/index.html'
 
 
 @login_required

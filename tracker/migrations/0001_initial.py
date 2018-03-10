@@ -8,7 +8,7 @@ import django.utils.timezone
 from django.conf import settings
 from django.db import migrations, models
 
-import tracker.main.models.models
+import tracker.models.models
 
 
 class Migration(migrations.Migration):
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('name', models.CharField(help_text='Insert the name of the achievement here.', max_length=100, primary_key=True, serialize=False)),
                 ('description', models.TextField(blank=True, help_text='What did the user do to achieve it?', max_length=500, null=True)),
-                ('achievement_image', models.ImageField(blank=True, null=True, upload_to=tracker.main.models.models.get_image_path)),
+                ('achievement_image', models.ImageField(blank=True, null=True, upload_to=tracker.models.models.get_image_path)),
             ],
         ),
         migrations.CreateModel(
@@ -71,7 +71,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
                 ('bio', models.TextField(blank=True, help_text='Beschreibung.', max_length=1000)),
-                ('profile_image', models.ImageField(blank=True, null=True, upload_to=tracker.main.models.models.get_image_path)),
+                ('profile_image', models.ImageField(blank=True, null=True, upload_to=tracker.models.models.get_image_path)),
             ],
             options={
                 'abstract': False,
@@ -110,7 +110,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
                 ('bio', models.TextField(blank=True, help_text='Beschreibung.', max_length=1000)),
-                ('profile_image', models.ImageField(blank=True, null=True, upload_to=tracker.main.models.models.get_image_path)),
+                ('profile_image', models.ImageField(blank=True, null=True, upload_to=tracker.models.models.get_image_path)),
                 ('date_of_birth', models.DateField()),
                 ('rfid_tag', models.CharField(blank=True, max_length=10, null=True, verbose_name='RFID')),
                 ('achievements', models.ManyToManyField(blank=True, to='tracker.Achievement')),
