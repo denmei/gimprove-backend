@@ -13,9 +13,9 @@ $(document).ready(function () {
     link_userprofile_detail = link_userprofile_detail + user_id;
     var active = false;
 
+
     function loop() {
         setTimeout(function () {
-            console.log(link_userprofile_detail)
             // check whether there is an active set. If so, show set data.
             $.ajax({
                 type: 'GET',
