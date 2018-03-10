@@ -162,7 +162,7 @@ class ActivityListView(LoginRequiredMixin, generic.ListView):
     """
     model = Activity
     context_object_name = 'activities'
-    template_name = '/templates/tracker/User/user_activitylist.html'
+    template_name = 'tracker/User/user_activitylist.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -176,7 +176,12 @@ class ActivityListView(LoginRequiredMixin, generic.ListView):
 class AppMockupView(LoginRequiredMixin, generic.ListView):
     model = UserProfile
     context_object_name = 'user_profile'
-    template_name = 'tracker/User/app_mockup/index.html'
+    template_name = 'tracker/User/AppMockup/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_id'] = self.request.user.id
+        return context
 
 
 @login_required
