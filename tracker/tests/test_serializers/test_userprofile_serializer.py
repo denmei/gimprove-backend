@@ -58,10 +58,10 @@ class UserProfileSerializerTest(APITestCase):
         response = self.c.get(self.pre_http + reverse('userprofile_detail', kwargs={'pk': self.user.id}))
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
-        if content['active_set'] is None:
-            self.assertEqual(content['active_set'], self.active_set)
+        if content['_pr_active_set'] is None:
+            self.assertEqual(content['_pr_active_set'], self.active_set)
         else:
-            self.assertEqual(content['active_set'], str(self.active_set))
+            self.assertEqual(content['_pr_active_set'], str(self.active_set))
 
     def test_userprofile_retrieval_rfid(self):
         """
@@ -70,8 +70,8 @@ class UserProfileSerializerTest(APITestCase):
         response = self.c.get(self.pre_http + reverse('userprofile_rfid_detail', kwargs={'rfid_tag': self.rfid_tag}))
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
-        if content['active_set'] is None:
-            self.assertEqual(content['active_set'], self.active_set)
+        if content['_pr_active_set'] is None:
+            self.assertEqual(content['_pr_active_set'], self.active_set)
         else:
-            self.assertEqual(content['active_set'], str(self.active_set))
+            self.assertEqual(content['_pr_active_set'], str(self.active_set))
         self.assertEqual(content['user'], self.user.id)
