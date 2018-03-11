@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'tracker.apps.TrackerConfig',
     'django_makemessages_xgettext',
     'rest_framework',
-    'pipeline',
     'corsheaders',
 ]
 
