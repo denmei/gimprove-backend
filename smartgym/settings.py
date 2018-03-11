@@ -41,10 +41,17 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'tracker.apps.TrackerConfig',
     'django_makemessages_xgettext',
-    'rest_framework'
+    'rest_framework',
+    'pipeline',
+    'corsheaders',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middlewar'
     'e.locale.LocaleMiddleware',
