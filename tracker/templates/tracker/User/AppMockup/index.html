@@ -13,24 +13,35 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
         {% load static %}
         <link rel="stylesheet" href="{% static 'tracker/css/User/app_mockup/main.css' %}">
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="{% static 'tracker/js/jquery-circle-progress/dist/circle-progress.js' %}"></script>
     </head>
     <body>
         <script type="text/javascript">
         var user_id = "{{ user_id }}"
         </script>
 
-      <div class="mockup">
-        <img id="mockup-img" src="/static/tracker/pictures/app_mockup/mockup_0.png">
-      </div>
+        <div class="container-fluid mockup">
+            <div class="row med-height">
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            </div>
+            <div class="row circle-height">
+                <div class="circle"></div>
+                <h2 id="counter">
+                    5
+                </h2>
+            </div>
+            <div class="row med-height">
 
-      {% load static %}
-      <script src="{% static 'tracker/js/app_mockup/main.js' %}"></script>
+            </div>
+        </div>
+
+        {% load static %}
+        <script src="{% static 'tracker/js/app_mockup/main.js' %}"></script>
     </body>
 </html>
