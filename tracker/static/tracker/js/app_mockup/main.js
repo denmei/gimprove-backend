@@ -12,6 +12,7 @@ $(document).ready(function () {
     // var link_userprofile_detail = 'http://127.0.0.1:8000/tracker/userprofile_detail_rest/';
     link_userprofile_detail = link_userprofile_detail + user_id;
     var active = false;
+    var reps = 0;
 
 
     function loop() {
@@ -30,8 +31,11 @@ $(document).ready(function () {
                             url: link_set_detail + response_set._pr_active_set,
                             success: function(response_set) {
                                 console.log(response_set.repetitions);
-                                var s = "/static/tracker/pictures/app_mockup/mockup_" + response_set.repetitions + ".png"
-                                $('#mockup-img').attr("src", s);
+                                if (response_set.repetitions != reps) {
+                                    var s = "/static/tracker/pictures/app_mockup/mockup_" + response_set.repetitions + ".png"
+                                    $('#mockup-img').attr("src", s);
+                                    reps = response_set.repetitions;
+                                };
                             }
                         });
 
