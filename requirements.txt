@@ -12,4 +12,4 @@ whitenoise==3.2
 django_makemessages_xgettext==0.1.1
 django-smtp-ssl==1.0
 djangorestframework==3.7.7
-django-cors-headers==2.2.0
+corsheaders==2.2.0
