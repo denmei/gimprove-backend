@@ -12,13 +12,12 @@ html, body {
   height: 100vh;
   padding: 0;
   margin: 0;
-  background-image: url("/static/tracker/pictures/app_mockup/mockup_0.png");
+  background-image: url("/static/tracker/pictures/mockup.png");
   background-size: cover;
 }
 
 .med-height {
     height: 20%;
-    border: 2px solid red;
 }
 
 .circle-height {

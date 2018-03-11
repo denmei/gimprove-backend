@@ -53,7 +53,8 @@ $(document).ready(function () {
                                     fill: {
                                       color: "white"
                                     },
-                                    emptyFill: 'rgba(0, 0, 0, 0.0)'
+                                    emptyFill: 'rgba(0, 0, 0, 0.0)',
+                                    animationStartValue: ((reps-1)/10)
                                   });
                                   $('#counter').text(reps.toString());
                                 };
