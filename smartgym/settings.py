@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home.apps.HomeConfig',
+    'landing_page.apps.LandingPageConfig',
     'tracker.apps.TrackerConfig',
     'django_makemessages_xgettext',
     'rest_framework',

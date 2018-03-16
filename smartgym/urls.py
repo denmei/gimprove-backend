@@ -22,13 +22,13 @@ from django.views.generic import RedirectView
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = i18n_patterns(
-    url(r'^home/', include('home.urls')),
+    url(r'^landing_page/', include('landing_page.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
 )
 
 urlpatterns += [
     url(r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'^$', RedirectView.as_view(url='/home/', permanent=True)),
+    url(r'^$', RedirectView.as_view(url='/landing_page/', permanent=True)),
     url(r'^admin/', admin.site.urls),
     url(r'^tracker/', include('tracker.urls.urls')),
 ]
