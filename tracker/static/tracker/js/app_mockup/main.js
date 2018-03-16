@@ -18,13 +18,18 @@ $(document).ready(function () {
     window.scrollTo(0,1);
     }
 
-    $('.circle').circleProgress({
+    // set width of progress circle
+    var circle_width = $('.circle-height').width() * 0.85;
+    console.log(circle_width);
+
+    // init progress circle
+  $('.circle').circleProgress({
     value: (0 / 10),
-    size: 300,
+    size: circle_width,
     fill: {
       color: "white"
     },
-    thickness: 300/35,
+    thickness: circle_width/35,
     emptyFill: 'rgba(0, 0, 0, 1.0)'
   });
 
