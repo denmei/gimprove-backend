@@ -1,6 +1,3 @@
-/*
-AJAX for updating the User-Profile page quickly.
-*/
 
 $(document).ready(function () {
 
