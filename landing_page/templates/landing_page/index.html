@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	Bent - Bootstrap Landing Page Template by Dcrazed
+	Site: https://dcrazed.com/bent-app-landing-page-template/
+	Free for personal and commercial use under GNU GPL 3.0 license.
+-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GImprove</title>
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:500,600,700,800,900,400,300' rel='stylesheet' type='text/css'>
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap -->
+    {% load static %}
+    <link href="{% static 'landing_page/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Owl Carousel Assets -->
+    <link href="{% static 'landing_page/css/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'landing_page/css/owl.theme.css' %}" rel="stylesheet">
+
+
+    <!-- Pixeden Icon Font -->
+    <link rel="stylesheet" href="{% static 'landing_page/css/Pe-icon-7-stroke.css' %}">
+
+    <!-- Font Awesome -->
+    <link href="{% static 'landing_page/css/font-awesome.min.css' %}" rel="stylesheet">
+
+
+    <!-- PrettyPhoto -->
+    <link href="{% static 'landing_page/css/prettyPhoto.css' %}" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- Style -->
+    <link href="{% static 'landing_page/css/style.css' %}" rel="stylesheet">
+
+    <link href="{% static 'landing_page/css/animate.css' %}" rel="stylesheet">
+    <!-- Responsive CSS -->
+    <link href="{% static 'landing_page/css/responsive.css' %}" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+    <!-- PRELOADER -->
+    <div class="spn_hol">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+ <!-- END PRELOADER -->
+
+ <!-- =========================
+     START ABOUT US SECTION
+============================== -->
+
+    <section class="header parallax home-parallax page" id="HOME">
+      <video autoplay muted loop class="header-video" width="100%" height="100%" src="{% static 'landing_page/videos/test_video.mp4' %}" frameborder="0"></video>
+        <h2></h2>
+        <div class="section_overlay">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <img src="{% static 'landing_page/images/logo.png' %}" alt="Logo">
+                        </a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-middle">
+                            <!-- NAV -->
+                            <li><a href="#HOME">HOME</a> </li>
+                            <li><a href="#ABOUT">ÜBER</a> </li>
+                            <li><a href="#FEATURES">FEATURES</a></li>
+                            <li><a href="#ADVANTAGES">VORTEILE</a></li>
+                            <li><a href="#CONTACT">KONTAKT</a> </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- Login -->
+                              <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="authenticationDropdown" data-toggle="dropdown" aria-expanded="true"><p>LOGIN<span class="caret"></span></p></a>
+                                <ul id="login-dp" class="dropdown-menu">
+                                  <li>
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <form class="form" role="form" method="post" action="" accept-charset="UTF-8" id="login-nav">
+                                            {% csrf_token %}
+
+                                            {% for hidden in login_form.hidden_fields %}
+                                            {{ hidden }}
+                                            {% endfor %}
+                                          <div class="form-group">
+                                            <label class="sr-only">Email-Adresse</label>
+                                            {{ login_form.username }}
+                                          </div>
+                                          <div class="form-group">
+                                            <label class="sr-only">Passwort</label>
+                                            {{ login_form.password }}
+                                            <div class="help-block text-right" id="promptForgotPassword"><a href="#">Passwort vergessen?</a></div>
+                                          </div>
+                                          <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-block" id="authButton">Los!</button>
+                                          </div>
+                                        </form>
+                                      </div>
+                                      <div class="bottom text-center">
+                                        Noch keinen Account? Fragen Sie <a href="#CONTACT" id="linkSignSwitcher"><strong>hier</strong></a> Ihren kostenlosen Probeaccount an!
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container- -->
+            </nav>
+
+            <div class="container home-container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="logo text-center">
+                                <!-- LOGO -->
+                            <img width="300" height="140" src="{% static 'landing_page/images/logo.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <div class="home_text">
+                            <!-- TITLE AND DESC -->
+                            <h1>Bringen Sie Ihr Studio ins digitale Zeitalter.</h1>
+                            <p>Mit GImprove rüsten Sie Ihren bestehenden Gerätepark
+                              schnell und kostengünstig auf.</p>
+
+                            <div class="download-btn">
+                            <!-- BUTTON -->
+                                <!-- <a class="btn home-btn wow fadeInLeft" href="#DOWNLOAD">Download</a> -->
+                                <a class="tuor btn wow fadeInRight" href="#ABOUT">Mehr erfahren<i class="fa fa-angle-down"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-md-offset-1 col-sm-4">
+                        <div class="home-iphone">
+                            <img src="{% static 'landing_page/images/iPhone_Home.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- END HEADER SECTION -->
+
+
+
+
+ <!-- =========================
+     START ABOUT US SECTION
+============================== -->
+
+
+    <section class="about page" id="ABOUT">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <!-- ABOUT US SECTION TITLE-->
+                    <div class="section_title">
+                        <h2>Über Uns</h2>
+                        <p>Erfolge motivieren Uns.
+                          Schon kleine Verbesserungen von Training zu Training reichen aus, um Uns anzuspornen und Unsere Vorhaben weiter zu verfolgen.
+                          Wir von Gimprove wollen es Sportlern in Fitnessstudios ermöglichen, ihre Erfolge zu erfassen und damit ihre gesetzten Ziele zu erreichen.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="inner_about_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="about_phone wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+                        <!-- PHONE -->
+                            <img src="{% static 'landing_page/images/about_iphone.png' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-6  wow fadeInRight" data-wow-duration="1s" data-wow-delay=".5s">
+                        <!-- TITLE -->
+                        <div class="inner_about_title">
+                            <h2>Die Upgrade-Lösung zur Digitalisierung von Fitnessgeräten</h2>
+                            <p>GImprove-Komponenten werden zur Erfassung von Leistungsdaten am bestehenden Studioequipment angebracht. Mit Hilfe der eingebauten Sensoren
+                            können Wiederholungen, verwendete Gewichte sowie die Bewegungsausführung erfasst und aufgezeichnet werden.</p>
+                        </div>
+                        <div class="inner_about_desc">
+
+                            <!-- SINGLE DESC -->
+                            <div class="single_about_area fadeInUp wow" data-wow-duration=".5s" data-wow-delay="1s">
+                                <!-- ICON -->
+                                <div><i class="pe-7s-timer"></i></div>
+                                <!-- HEADING DESCRIPTION -->
+                                <h3>Schnelle Installation</h3>
+                                <p>Digitalisieren Sie Ihre Geräte innerhalb weniger Minuten ohne Beeinträchtigung des Studiobetriebs.</p>
+                            </div>
+                            <!-- END SINGLE DESC -->
+
+
+                            <!-- SINGLE DESC -->
+                            <div class="single_about_area fadeInUp wow" data-wow-duration=".5s" data-wow-delay="1.5s">
+                                <!-- ICON -->
+                                <div><i class="pe-7s-piggy"></i></div>
+                                <!-- HEADING DESCRIPTION -->
+                                <h3>Kostengünstiges Upgrade</h3>
+                                <p>Bringen Sie Ihr Studio ins digitale Zeitalter, ohne ihr vorhandenes Equipment durch kostspielige Neuanschaffungen zu ersetzen.</p>
+                            </div>
+                            <!-- END SINGLE DESC -->
+
+
+                            <!-- SINGLE DESC -->
+                            <div class="single_about_area fadeInUp wow" data-wow-duration=".5s" data-wow-delay="2s">
+                                <!-- ICON -->
+                                <div><i class="pe-7s-refresh-2"></i></div>
+                                <!-- HEADING DESCRIPTION -->
+                                <h3>Universell</h3>
+                                <p>GImprove-Komponenten sind universell und herstellerunabhängig an den unterschiedlichsten Gerätetypen einsetzbar. </p>
+                            </div>
+                            <!-- END SINGLE DESC -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="video_area" style="display: None">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 wow fadeInLeftBig">
+                    <!-- VIDEO LEFT TITLE -->
+                        <div class="video_title">
+                            <h2>Best App <br>in the market</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
+                        </div>
+                        <div class="video-button">
+                            <!-- BUTTON -->
+                            <a class="btn btn-primary btn-video" href="#FEATURES" role="button">Features</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 wow fadeInRightBig">
+                         <!-- VIDEO -->
+                        <div class="video">
+                            <iframe src="https://player.vimeo.com/video/88209254?title=0&amp;byline=0&amp;portrait=0&amp;color=cc0000" width="560" height="315"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End About Us -->
+
+
+
+<!-- =========================
+     START FEATURES
+============================== -->
+    <section id="FEATURES" class="features page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <!-- FEATURES SECTION TITLE -->
+                    <div class="section_title wow fadeIn" data-wow-duration="1s">
+                        <h2>Features</h2>
+                        <p>Häufig ist es die Motivation, die ambitionierten Fitnesszielen im Weg steht.</br> GImprove bringt den Spaß und die Motivation zurück ins Training.</p>
+                    </div>
+                    <!-- END FEATURES SECTION TITLE -->
+                </div>
+            </div>
+        </div>
+
+        <div class="feature_inner">
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-4">
+                      <div class="feature_iphone">
+                          <!-- FEATURE PHONE IMAGE -->
+                          <img class="wow bounceIn" data-wow-duration="1s" src="{% static 'landing_page/images/iPhone02.png' %}" alt="">
+                      </div>
+                  </div>
+
+                    <div class="col-md-4 left_no_padding wow fadeInRight" data-wow-duration="1s">
+                        <!-- FEATURE -->
+
+                        <div class="right_single_feature">
+                            <!-- ICON -->
+                            <div><span class="pe-7s-like"></span></div>
+
+                            <!-- FEATURE HEADING AND DESCRIPTION -->
+                            <h3>Auto-Tracking</h3>
+                            <p>Verwendete Gewichte und Wiederholungen werden automatisch durch die GImprove-Komponenten erfasst und aufgezeichnet. Alle erfassten Informationen können in der GImprove-App abgerufen werden.</p>
+                        </div>
+
+                        <!-- END SINGLE FEATURE -->
+
+
+                        <!-- FEATURE -->
+                        <div class="right_single_feature">
+                            <!-- ICON -->
+                            <div><span class="pe-7s-science"></span></div>
+
+                            <!-- FEATURE HEADING AND DESCRIPTION -->
+                            <h3>Realtime-Feedback</h3>
+                            <p>Die GImprove-App bietet eine Vielzahl von Informationen zur aktuell ausgeführten Übung in Echtzeit. Damit kann die Bewegungsausführung zugunsten eines effektiveren Trainings optimiert werden.</p>
+                        </div>
+                        <!-- END SINGLE FEATURE -->
+
+                    </div>
+
+                    <div class="col-md-4 left_no_padding wow fadeInRight" data-wow-duration="1s">
+
+                      <!-- FEATURE -->
+                      <div class="right_single_feature">
+                          <!-- ICON -->
+                          <div><span class="pe-7s-look"></span></div>
+
+                          <!-- FEATURE HEADING AND DESCRIPTION -->
+                          <h3>Erfolgsanalyse</h3>
+                          <p>Die GImprove-Analysetools ermöglichen eine graphsiche Analyse der aufgezeichneten Trainingsdaten, um die eigenen Fortschritte genauestens nachzuverfolgen.</p>
+                      </div>
+                      <!-- END SINGLE FEATURE -->
+
+                        <!-- FEATURE -->
+                        <div class="right_single_feature">
+                            <!-- ICON -->
+                            <div><span class="pe-7s-gleam"></span></div>
+
+                            <!-- FEATURE HEADING AND DESCRIPTION -->
+                            <h3>Gamefication</h3>
+                            <p>Durch spielerische Inhalte bringt die GImprove-App den Spaß zurück ins Training. </p>
+                        </div>
+                        <!-- END SINGLE FEATURE -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END FEATURES SECTION -->
+
+
+
+    <!-- =========================
+         START ADVANTAGES
+    ============================== -->
+    <section id="ADVANTAGES" class="advantages parallax advantages-parallax page" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <!-- ADVANTAGES SECTION TITLE-->
+                    <div class="section_title">
+                        <h2>GImprove erhöht die Kundenbindung</h2>
+                        <p>Zufriedene Mitglieder sind treue Mitglieder. </br>
+                          Mit den Trainer- und Sozialfunktionen von GImprove erhöhen Sie
+                          die Kundenzufriedenheit durch eine intensivere Trainingsbetreuung und Spaß am Training.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="inner_advantages_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 right_no_padding wow fadeInRight feature_block feature_block_left" data-wow-duration="1s">
+                        <!-- Explanations for trainer functions -->
+                        <h2>Trainer Features</h2>
+                        <div class=social_feature>
+                            <!-- FEATURE HEADING AND DESCRIPTION -->
+                            <h3>Trainingspläne</h3>
+                            <p>Erstellen Sie schnell und einfach maßgeschneiderte Trainingspläne und verfolgen Sie den Erfolg Ihrer Mitglieder.</p>
+                        </div>
+                        <div class=social_feature>
+                            <!-- FEATURE HEADING AND DESCRIPTION -->
+                            <h3>Feedback</h3>
+                            <p>Reagieren Sie in Echtzeit auf die Trainingsleistungen und Erfolge Ihrer Kunden.</p>
+                        </div>
+                        <div class=social_feature>
+                            <!-- FEATURE HEADING AND DESCRIPTION -->
+                            <h3>Hervorragende Betreuung</h3>
+                            <p>Benachrichtigungen erlauben Ihrem Team schnell auf bestimmte Situationen zu reagieren, beispielsweise falls ein Mitglied ein Gerät zum ersten Mal bedient.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 right_no_padding wow fadeInRight feature_block feature_block_right" data-wow-duration="1s">
+                        <!-- Explanations for social functions -->
+                        <h2>Social Features</h2>
+                        <div class=social_feature>
+                            <!-- FEATURE HEADING AND DESCRIPTION -->
+                            <h3>Community</h3>
+                            <p>Bauen Sie mit Hilfe von Gimprove Ihre eigene Studio-Community auf, in welcher Mitglieder miteinander agieren und sich herausfordern können.</p>
+                        </div>
+                        <div class=social_feature>
+                            <!-- FEATURE HEADING AND DESCRIPTION -->
+                            <h3>Wettbewerbe</h3>
+                            <p>Veranstalten Sie vollautomatische Wettbewerbe oder stellen Sie Ihren Mitgliedern individuelle Herausforderungen.</p>
+                        </div>
+                        <div class=social_feature>
+                            <!-- FEATURE HEADING AND DESCRIPTION -->
+                            <h3>Messaging</h3>
+                            <p>Nutzen Sie GImprove zur Kommunikation mit Ihren Mitgliedern um beispielsweise Terminwechsel, Neuigkeiten und andere Informationen schnell und unkompliziert zu teilen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Advantages -->
+
+
+
+
+<!-- =========================
+     START CALL TO ACTION
+============================== -->
+    <div class="call_to_action" style="display:None">
+        <div class="container">
+            <div class="row wow fadeInLeftBig" data-wow-duration="1s">
+                <div class="col-md-9">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et olore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                </div>
+                <div class="col-md-3">
+                    <a class="btn btn-primary btn-action" href="#" role="button">Download Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END CALL TO ACTION -->
+
+
+<!-- =========================
+     Start APPS SCREEN SECTION
+============================== -->
+    <section class="apps_screen page" id="SCREENS" style="display: None">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 wow fadeInBig" data-wow-duration="1s">
+                        <!-- APPS SCREEN TITLE -->
+                        <div class="section_title">
+                            <h2>Screenshots</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                        </div>
+                        <!-- END APPS SCREEN TITLE -->
+                    </div>
+                </div>
+            </div>
+
+        <div class="screen_slider">
+            <div id="demo" class="wow bounceInRight" data-wow-duration="1s">
+                <div id="owl-demo" class="owl-carousel">
+
+                    <!-- APPS SCREEN IMAGES -->
+                    <div class="item">
+                    <a href="images/screens/iPhone04.png" rel="prettyPhoto[pp_gal]"><img src="{% static 'landing_page/images/iPhone04.png' %}" width="60" height="60" alt="APPS SCREEN" /></a>
+                    </div>
+                    <div class="item">
+                        <a href="images/screens/iPhone05.png" rel="prettyPhoto[pp_gal]"><img src="{% static 'landing_page/images/iPhone05.png' %}" width="60" height="60" alt="APPS SCREEN" /></a>
+                    </div>
+                    <div class="item">
+                        <a href="images/screens/iPhone06.png" rel="prettyPhoto[pp_gal]"><img src="{% static 'landing_page/images/iPhone06.png' %}" width="60" height="60" alt="APPS SCREEN" /></a>
+                    </div>
+                    <div class="item">
+                        <a href="images/screens/iPhone07.png" rel="prettyPhoto[pp_gal]"><img src="{% static 'landing_page/images/iPhone07.png' %}" width="60" height="60" alt="APPS SCREEN" /></a>
+                    </div>
+                    <div class="item">
+                        <a href="images/screens/iPhone08.png" rel="prettyPhoto[pp_gal]"><img src="{% static 'landing_page/images/iPhone08.png' %}" width="60" height="60" alt="APPS SCREEN" /></a>
+                    </div>
+                    <div class="item">
+                        <a href="images/screens/iPhone09.png" rel="prettyPhoto[pp_gal]"><img src="{% static 'landing_page/images/iPhone09.png' %}" width="60" height="60" alt="APPS SCREEN" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ENS APPS SCREEN -->
+
+
+
+
+
+<!-- =========================
+     Start FUN FACTS
+============================== -->
+
+
+    <section class="fun_facts parallax" style="display:None">
+        <div class="section_overlay">
+            <div class="container wow bounceInLeft" data-wow-duration="1s">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <div class="single_fun_facts">
+                            <i class="pe-7s-cloud-download"></i>
+                            <h2><span  class="counter_num">699</span> <span>+</span></h2>
+                            <p>Downloads</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="single_fun_facts">
+                            <i class="pe-7s-look"></i>
+                            <h2><span  class="counter_num">1999</span> <span>+</span></h2>
+                            <p>Likes</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="single_fun_facts">
+                            <i class="pe-7s-comment"></i>
+                            <h2><span  class="counter_num">199</span> <span>+</span></h2>
+                            <p>Feedbacks</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="single_fun_facts">
+                            <i class="pe-7s-cup"></i>
+                            <h2><span  class="counter_num">10</span> <span>+</span></h2>
+                            <p>Awards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- END FUN FACTS -->
+
+
+
+
+<!-- =========================
+     START DOWNLOAD NOW
+============================== -->
+    <section class="download page" id="DOWNLOAD" style="display: None">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <!-- DOWNLOAD NOW SECTION TITLE -->
+                    <div class="section_title">
+                        <h2>download now</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                    </div>
+                    <!--END DOWNLOAD NOW SECTION TITLE -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="download_screen text-center wow fadeInUp" data-wow-duration="1s">
+                        <img src="{% static 'landing_page/images/download_screen.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="available_store" style="display:None">
+            <div class="container  wow bounceInRight" data-wow-duration="1s">
+                <div class="col-md-6">
+                    <div class="available_title">
+                        <h2>Available on</h2>
+                        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                    </div>
+                </div>
+
+                <!-- DOWNLOADABLE STORE -->
+                <div class="col-md-6">
+                    <div class="row">
+                        <a href="">
+                            <div class="col-md-4 no_padding">
+                                <div class="single_store">
+                                    <i class="fa fa-apple"></i>
+                                    <div class="store_inner">
+                                        <h2>iOS</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="col-md-4 no_padding">
+                            <a href="">
+                                <div class="single_store">
+                                    <i class="fa fa-android"></i>
+                                    <div class="store_inner">
+                                        <h2>ANDROID</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 no_padding">
+                            <a href="">
+                                <div class="single_store last">
+                                    <i class="fa fa-windows"></i>
+                                    <div class="store_inner">
+                                        <h2>WINDOWS</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END DOWNLOADABLE STORE -->
+            </div>
+        </div>
+    </section>
+    <!-- END DOWNLOAD -->
+
+<!-- =========================
+     START CONTCT FORM AREA
+============================== -->
+    <section class="contact page" id="CONTACT">
+        <div class="section_overlay">
+            <div class="container">
+                <div class="col-md-10 col-md-offset-1 wow bounceIn">
+                    <!-- Start Contact Section Title-->
+                    <div class="section_title">
+                        <h2>Kontakt</h2>
+                        <p>Interesse geweckt? Kontaktieren Sie uns!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact_form wow bounceIn">
+                <div class="container">
+
+                <!-- START ERROR AND SUCCESS MESSAGE -->
+                    <div class="form_error text-center">
+                        <div class="name_error hide error">Name</div>
+                        <div class="email_error hide error">Email</div>
+                        <div class="email_val_error hide error">Bitte geben Sie eine gültige Email ein</div>
+                        <div class="message_error hide error">Nachricht</div>
+                    </div>
+                    <div class="Sucess"></div>
+
+                    <form action="" method="post" name="contact" class="subscribe_form">
+
+                        {% csrf_token %}
+
+                        {% for hidden in contact_form.hidden_fields %}
+                        {{ hidden }}
+                        {% endfor %}
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ contact_form.name }}
+                                {{ contact_form.email }}
+                            </div>
+
+                            <div class="col-md-8">
+                                {{ contact_form.message }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+                             <button type="submit" name="contactbutton" class="btn btn-default subs-btn">Senden</button>
+                          </div>
+                        </div>
+
+                    </form>
+                    <!-- END FORM -->
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 wow bounceInLeft">
+                        <div class="social_icons">
+                            <ul>
+                                <li><a href=""><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-youtube-play"></i></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END CONTACT -->
+
+<!-- =========================
+     Start Subscription Form
+============================== -->
+
+
+
+    <section class="subscribe parallax subscribe-parallax" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+        <div class="section_overlay wow lightSpeedIn">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+
+                        <!-- Start Subscribe Section Title -->
+                        <div class="section_title">
+                            <h2>Newsletter</h2>
+                            <p>Abonnieren Sie unseren Newsletter um über Neuigkeiten auf dem Laufenden gehalten zu werden.</p>
+                        </div>
+                        <!-- End Subscribe Section Title -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row  wow lightSpeedIn">
+                    <div class="col-md-6 col-md-offset-3">
+                        <!-- SUBSCRIPTION SUCCESSFUL OR ERROR MESSAGES -->
+                        <div class="subscription-success"></div>
+                        <div class="subscription-error"></div>
+
+                        <!-- EMAIL INPUT BOX -->
+                        <form action="" method="post" name="newsletter" class="subscribe_form">
+                            {% csrf_token %}
+                            <table>
+                                {{ newsletter_form.as_table }}
+                            </table>
+                            <!-- SUBSCRIBE BUTTON -->
+                            <button type="submit" name="nlbutton" class="btn btn-default subs-btn">Senden</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- END SUBSCRIPBE FORM -->
+
+
+<!-- =========================
+     FOOTER
+============================== -->
+
+    <section class="copyright">
+        <h2></h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="copy_right_text">
+                    <!-- COPYRIGHT TEXT -->
+                        <p>Copyright &copy; 2017. All Rights Reserved.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="scroll_top">
+                        <a href="#HOME"><i class="fa fa-angle-up"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END FOOTER -->
+
+
+<!-- =========================
+     SCRIPTS
+============================== -->
+
+    {% load static %}
+    <script src="{% static 'landing_page/js/jquery.min.js' %}"></script>
+    <script src="{% static 'landing_page/js/dropdown-authentication' %}"></script>
+    <script src="{% static 'landing_page/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'landing_page/js/owl.carousel.js' %}"></script>
+    <script src="{% static 'landing_page/js/jquery.fitvids.js' %}"></script>
+    <script src="{% static 'landing_page/js/smoothscroll.js' %}"></script>
+    <script src="{% static 'landing_page/js/jquery.parallax-1.1.3.js' %}"></script>
+    <script src="{% static 'landing_page/js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'landing_page/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'landing_page/js/jquery.ajaxchimp.langs.js' %}"></script>
+    <script src="{% static 'landing_page/js/wow.min.js' %}"></script>
+    <script src="{% static 'landing_page/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'landing_page/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'landing_page/js/script.js' %}"></script>
+
+
+</body>
+</html>
