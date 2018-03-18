@@ -19,7 +19,7 @@ $(document).ready(function () {
     }
 
     // set width of progress circle
-    var circle_width = $('.circle-height').width() * 0.85;
+    var circle_width = $('.circle-container').width() * 0.85;
     console.log(circle_width);
 
     // init progress circle
@@ -30,7 +30,7 @@ $(document).ready(function () {
       color: "white"
     },
     thickness: circle_width/35,
-    emptyFill: 'rgba(0, 0, 0, 1.0)'
+    emptyFill: 'rgba(0, 0, 0, 0.0)'
   });
 
   $('#counter').text("0");
@@ -56,7 +56,7 @@ $(document).ready(function () {
                                     $('.circle').circleProgress({
                                     value: (reps / 10),
                                     fill: {
-                                      color: "white"
+                                      color: 'rgb(255, 150, 1)'
                                     },
                                     emptyFill: 'rgba(0, 0, 0, 0.0)',
                                     animationStartValue: ((reps-1)/10)

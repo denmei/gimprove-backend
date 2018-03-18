@@ -17,6 +17,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
+
+        <link href='https://fonts.googleapis.com/css?family=Raleway:500,600,700,800,900,400,300' rel='stylesheet' type='text/css'>
+
         {% load static %}
         <link rel="stylesheet" href="{% static 'tracker/css/User/app_mockup/main.css' %}">
         <script src="{% static 'tracker/js/jquery-circle-progress/dist/circle-progress.js' %}"></script>
@@ -27,16 +30,36 @@
         </script>
 
         <div class="container-fluid mockup">
-            <div class="row med-height">
+            <!-- Upper Space -->
+            <div class="row empty-row-top">
 
             </div>
-            <div class="row circle-height">
+
+            <!-- exercise name -->
+            <div class="row exercise-name-container">
+                <h2 id="exercise-name">Lat Pulldown</h2>
+            </div>
+
+            <!-- Circle container -->
+            <div class="row circle-container">
                 <div class="circle"></div>
                 <h2 id="counter">
                     5
                 </h2>
             </div>
-            <div class="row med-height">
+
+            <!-- weight container -->
+            <div class="row weight-container">
+               <h2 id="weight">50 kg</h2>
+            </div>
+
+            <div class="row stop-button">
+                {% load static %}
+                <img src="{% static 'tracker/pictures/stop-button.png' %}">
+            </div>
+
+            <!-- Lower Space -->
+            <div class="row empty-row-bottom">
 
             </div>
         </div>
