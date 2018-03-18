@@ -40,6 +40,8 @@ $(document).ready(function () {
   });
 
   $('#counter').text("0");
+  $('#weight').hide();
+  $('#exercise-name').hide();
 
     function loop() {
         setTimeout(function () {
@@ -68,6 +70,8 @@ $(document).ready(function () {
                                     animationStartValue: ((reps-1)/10)
                                   });
                                   $('#counter').text(reps.toString());
+                                  $('#weight').show();
+                                  $('#exercise-name').show();
                                 };
                             }
                         });
