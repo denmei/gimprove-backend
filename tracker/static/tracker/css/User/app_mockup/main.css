@@ -31,14 +31,17 @@ html, body {
 }
 
 .empty-row-top {
+position: absolute;
     height: 5%;
 }
 
 .empty-row-bottom {
+position: absolute;
     height: 5%;
 }
 
 .circle-container {
+    position: absolute;
     height: 50%;
     width: 100%;
 }
@@ -52,6 +55,7 @@ html, body {
 }
 
 .weight-container {
+    position: absolute;
     height: 15%;
 }
 
@@ -75,6 +79,7 @@ html, body {
 }
 
 .stop-button {
+position: absolute;
     height: 15%;
 }
 
