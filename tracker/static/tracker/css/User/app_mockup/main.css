@@ -59,7 +59,7 @@ html, body {
 
 .circle-container h2 {
     color: white;
-    font-size: 7rem;
+    font-size: 8rem;
     font-weight: 400;
     text-align: center;
 }
@@ -102,6 +102,16 @@ html, body {
 }
 
 #counter {
+    padding-bottom: 5px;
     z-index: 2;
     position: absolute;
+    border-bottom: 2px solid rgb(255, 150, 1);
+}
+
+#target {
+    padding-top: 200px;
+    z-index: 2;
+    position: absolute;
+    color: rgb(255, 150, 1);
+    font-size: 2.5rem;
 }
