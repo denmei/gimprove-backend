@@ -24,7 +24,7 @@ $(document).ready(function () {
     console.log(circle_width);
 
     // init progress circle
-  $('.circle').circleProgress({
+  $('#circle').circleProgress({
     value: (0 / 10),
     size: circle_width,
     fill: {
@@ -56,7 +56,7 @@ $(document).ready(function () {
                                 console.log(response_set.repetitions);
                                 if (response_set.repetitions != reps) {
                                     reps = response_set.repetitions;
-                                    $('.circle').circleProgress({
+                                    $('#circle').circleProgress({
                                     value: (reps / 10),
                                     fill: {
                                       color: 'rgb(255, 150, 1)'
