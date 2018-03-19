@@ -7,6 +7,8 @@ $(document).ready(function () {
 
     var currentLocation = window.location;
 
+    console.log('app_mockup/main.js')
+
     if(currentLocation.toString().indexOf("127.0.0.1") > -1) {
         var link_set_detail = 'http://127.0.0.1:8000/tracker/set_detail_rest/';
         var link_userprofile_detail = 'http://127.0.0.1:8000/tracker/userprofile_detail_rest/';
