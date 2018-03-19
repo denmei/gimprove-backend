@@ -19,10 +19,6 @@ $(document).ready(function () {
 
     link_userprofile_detail = link_userprofile_detail + user_id;
 
-    if(navigator.userAgent.match(/Android/i)){
-    window.scrollTo(0,1);
-    }
-
     // set width of progress circle
     var circle_width = $('.circle-container').width() * 0.85;
     console.log(circle_width);
