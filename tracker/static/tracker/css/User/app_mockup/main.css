@@ -71,7 +71,7 @@ html, body {
     height:15%;
 }
 
-.stop-button img {
+.stop-button:fullscreen > img {
     height: 100%;
     width: auto;
 }
