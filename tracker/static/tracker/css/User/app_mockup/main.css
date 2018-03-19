@@ -3,11 +3,11 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-html, body -webkit-full-screen {
+html, body {
     font-family: 'Raleway', sans-serif;
 }
 
-.mockup -webkit-full-screen {
+.mockup: -webkit-full-screen {
   width: 100%;
   height: 100vh;
   padding: 0;
@@ -16,38 +16,38 @@ html, body -webkit-full-screen {
   background-size: cover;
 }
 
-.mockup div -webkit-full-screen {
+.mockup div: -webkit-full-screen {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.empty-row-top -webkit-full-screen {
+.empty-row-top {
     height: 5%;
 }
 
-.empty-row-bottom -webkit-full-screen {
+.empty-row-bottom {
     height: 5%;
 }
 
-.circle-container -webkit-full-screen {
+.circle-container {
     height: 50%;
     width: 100%;
 }
 
-.circle-container h2 -webkit-full-screen {
+.circle-container h2 {
     position: absolute;
     color: white;
     font-size: 7rem;
     font-weight: 400;
 }
 
-.weight-container -webkit-full-screen {
+.weight-container {
     height: 15%;
 }
 
-.weight-container h2 -webkit-full-screen {
+.weight-container h2 {
     position: absolute;
     color: white;
     font-size: 4.1rem;
@@ -55,22 +55,22 @@ html, body -webkit-full-screen {
     text-align: center;
 }
 
-.exercise-name-container -webkit-full-screen {
+.exercise-name-container {
     height: 10%;
 }
 
-.exercise-name-container h2 -webkit-full-screen {
+.exercise-name-container h2 {
     color: rgb(255, 150, 1);
     font-size: 2.7rem;
     font-weight: 200;
     text-align: center;
 }
 
-.stop-button -webkit-full-screen {
+.stop-button {
     height:15%;
 }
 
-.stop-button img -webkit-full-screen {
+.stop-button img: -webkit-full-screen {
     height: 100%;
     width: auto;
 }
