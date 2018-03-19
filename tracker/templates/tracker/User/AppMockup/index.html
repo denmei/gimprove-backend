@@ -26,6 +26,15 @@
         var user_id = "{{ user_id }}"
         </script>
 
+        <script>
+        var elem = document.getElementById("body");
+
+        elem.onclick = function() {
+            req = elem.requestFullScreen || elem.webkitRequestFullScreen || elem.mozRequestFullScreen;
+            req.call(elem);
+        }
+        </script>
+
         <div class="container-fluid mockup">
             <!-- Upper Space -->
             <div class="row empty-row-top">
