@@ -7,7 +7,7 @@ html, body {
     font-family: 'Raleway', sans-serif;
 }
 
-.mockup:-webkit-full-screen  {
+.mockup  {
   width: 100%;
   height: 100vh;
   padding: 0;
@@ -16,27 +16,34 @@ html, body {
   background-size: cover;
 }
 
-.mockup:-webkit-full-screen > div {
+:-webkit-full-screen {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	background: none;
+}
+
+.mockup div {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.empty-row-top:-webkit-full-screen {
+.empty-row-top {
     height: 5%;
 }
 
-.empty-row-bottom:-webkit-full-screen {
+.empty-row-bottom {
     height: 5%;
 }
 
-.circle-container:-webkit-full-screen {
+.circle-container {
     height: 50%;
     width: 100%;
 }
 
-.circle-container:-webkit-full-screen > h2 {
+.circle-container h2 {
     position: absolute;
     color: white;
     font-size: 7rem;
@@ -44,11 +51,11 @@ html, body {
     text-align: center;
 }
 
-.weight-container:-webkit-full-screen {
+.weight-container {
     height: 15%;
 }
 
-.weight-container:-webkit-full-screen > h2 {
+.weight-container h2 {
     position: absolute;
     color: white;
     font-size: 4.1rem;
@@ -56,22 +63,22 @@ html, body {
     text-align: center;
 }
 
-.exercise-name-container:-webkit-full-screen {
+.exercise-name-container {
     height: 10%;
 }
 
-.exercise-name-container:-webkit-full-screen > h2 {
+.exercise-name-container h2 {
     color: rgb(255, 150, 1);
     font-size: 2.7rem;
     font-weight: 200;
     text-align: center;
 }
 
-.stop-button:-webkit-full-screen {
-    height:15%;
+.stop-button {
+    height: 15%;
 }
 
-.stop-button:-webkit-full-screen > img {
+.stop-button img {
     height: 100%;
     width: auto;
 }
