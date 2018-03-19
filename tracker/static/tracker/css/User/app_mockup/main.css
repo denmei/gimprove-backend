@@ -16,18 +16,18 @@ html, body {
   background-size: cover;
 }
 
-.mockup div {
+.mockup:-webkit-full-screen > div {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.empty-row-top {
+.empty-row-top:-webkit-full-screen {
     height: 5%;
 }
 
-.empty-row-bottom {
+.empty-row-bottom:-webkit-full-screen {
     height: 5%;
 }
 
@@ -36,7 +36,7 @@ html, body {
     width: 100%;
 }
 
-.circle-container h2 {
+.circle-container:-webkit-full-screen > h2 {
     position: absolute;
     color: white;
     font-size: 7rem;
@@ -48,7 +48,7 @@ html, body {
     height: 15%;
 }
 
-.weight-container h2 {
+.weight-container:-webkit-full-screen > h2 {
     position: absolute;
     color: white;
     font-size: 4.1rem;
@@ -56,11 +56,11 @@ html, body {
     text-align: center;
 }
 
-.exercise-name-container {
+.exercise-name-container:-webkit-full-screen {
     height: 10%;
 }
 
-.exercise-name-container h2 {
+.exercise-name-container:-webkit-full-screen > h2 {
     color: rgb(255, 150, 1);
     font-size: 2.7rem;
     font-weight: 200;
