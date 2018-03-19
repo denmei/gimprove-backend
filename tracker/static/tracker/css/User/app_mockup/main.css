@@ -43,21 +43,6 @@ html, body {
     font-weight: 400;
 }
 
-.circle-container .numbers {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid red;
-}
-
-.circle-container .numbers .row{
-    position: absolute;
-    width: 100%;
-    border: 2px solid yellow;
-}
-
 .weight-container {
     height: 15%;
 }
