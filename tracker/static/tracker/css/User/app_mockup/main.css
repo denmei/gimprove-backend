@@ -31,7 +31,7 @@ html, body {
     height: 5%;
 }
 
-.circle-container {
+.circle-container:fullscreen {
     height: 50%;
     width: 100%;
 }
@@ -44,7 +44,7 @@ html, body {
     text-align: center;
 }
 
-.weight-container {
+.weight-container:fullscreen {
     height: 15%;
 }
 
@@ -67,7 +67,7 @@ html, body {
     text-align: center;
 }
 
-.stop-button {
+.stop-button:fullscreen {
     height:15%;
 }
 
