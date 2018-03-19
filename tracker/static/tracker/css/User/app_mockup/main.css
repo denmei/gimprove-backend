@@ -55,18 +55,18 @@ html, body {
     text-align: center;
 }
 
-.exercise-name-container {
+.exercise-name-container: -webkit-full-screen {
     height: 10%;
 }
 
-.exercise-name-container h2 {
+.exercise-name-container h2: -webkit-full-screen {
     color: rgb(255, 150, 1);
     font-size: 2.7rem;
     font-weight: 200;
     text-align: center;
 }
 
-.stop-button {
+.stop-button: -webkit-full-screen {
     height:15%;
 }
 
