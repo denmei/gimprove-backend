@@ -23,6 +23,20 @@ html, body {
 	background: none;
 }
 
+:fullscreen {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	background: none;
+}
+
+:-moz-full-screen {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	background: none;
+}
+
 .mockup div {
   width: 100%;
   display: flex;
@@ -31,23 +45,19 @@ html, body {
 }
 
 .empty-row-top {
-position: absolute;
     height: 5%;
 }
 
 .empty-row-bottom {
-position: absolute;
     height: 5%;
 }
 
 .circle-container {
-    position: absolute;
     height: 50%;
     width: 100%;
 }
 
 .circle-container h2 {
-    position: absolute;
     color: white;
     font-size: 7rem;
     font-weight: 400;
@@ -55,12 +65,10 @@ position: absolute;
 }
 
 .weight-container {
-    position: absolute;
     height: 15%;
 }
 
 .weight-container h2 {
-    position: absolute;
     color: white;
     font-size: 4.1rem;
     font-weight: 320;
@@ -79,11 +87,21 @@ position: absolute;
 }
 
 .stop-button {
-position: absolute;
     height: 15%;
 }
 
 .stop-button img {
     height: 100%;
     width: auto;
+}
+
+
+#circle {
+    z-index: 1;
+    position: fixed;
+}
+
+#counter {
+    z-index: 2;
+    position: fixed;
 }
