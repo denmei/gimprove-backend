@@ -23,31 +23,31 @@ html, body {
   align-items: center;
 }
 
-.empty-row-top {
+.empty-row-top: -webkit-full-screen {
     height: 5%;
 }
 
-.empty-row-bottom {
+.empty-row-bottom: -webkit-full-screen {
     height: 5%;
 }
 
-.circle-container {
+.circle-container: -webkit-full-screen {
     height: 50%;
     width: 100%;
 }
 
-.circle-container h2 {
+.circle-container h2: -webkit-full-screen {
     position: absolute;
     color: white;
     font-size: 7rem;
     font-weight: 400;
 }
 
-.weight-container {
+.weight-container: -webkit-full-screen {
     height: 15%;
 }
 
-.weight-container h2 {
+.weight-container h2: -webkit-full-screen {
     position: absolute;
     color: white;
     font-size: 4.1rem;
