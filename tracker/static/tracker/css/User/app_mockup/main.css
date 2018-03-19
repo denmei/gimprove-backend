@@ -98,10 +98,10 @@ html, body {
 
 #circle {
     z-index: 1;
-    position: fixed;
+    position: absolute;
 }
 
 #counter {
     z-index: 2;
-    position: fixed;
+    position: absolute;
 }
