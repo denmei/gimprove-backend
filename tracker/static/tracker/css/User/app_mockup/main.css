@@ -7,23 +7,13 @@ html, body {
     font-family: 'Raleway', sans-serif;
 }
 
-.mockup {
+.mockup:-webkit-full-screen  {
   width: 100%;
   height: 100vh;
   padding: 0;
   margin: 0;
   background-color: rgb(53, 57, 66);
   background-size: cover;
-}
-
-.mockup:fullscreen {
-  width: 100%;
-  height: 100vh;
-}
-
-.mockup:-webkit-full-screen {
-  width: 100%;
-  height: 100vh;
 }
 
 .mockup div {
