@@ -36,7 +36,6 @@ $(document).ready(function () {
 
   $('#counter').text("0");
   $('#weight').hide();
-  $('#target').hide();
 
     function loop() {
         setTimeout(function () {
