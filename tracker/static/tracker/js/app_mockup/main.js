@@ -4,7 +4,7 @@ $(document).ready(function () {
     var i = 1;
     var active = false;
     var reps = 0;
-    var target = 10;
+    var target = 8;
 
     var currentLocation = window.location;
 
