@@ -4,6 +4,7 @@ $(document).ready(function () {
     var i = 1;
     var active = false;
     var reps = 0;
+    var target = 8;
 
     var currentLocation = window.location;
 
@@ -25,7 +26,7 @@ $(document).ready(function () {
 
     // init progress circle
   $('#circle').circleProgress({
-    value: (0 / 10),
+    value: (0 / target),
     size: circle_width,
     fill: {
       color: "white"
@@ -56,12 +57,12 @@ $(document).ready(function () {
                                 if (response_set.repetitions != reps) {
                                     reps = response_set.repetitions;
                                     $('#circle').circleProgress({
-                                    value: (reps / 10),
+                                    value: (reps / target),
                                     fill: {
                                       color: 'rgb(255, 150, 1)'
                                     },
                                     emptyFill: 'rgba(0, 0, 0, 0.0)',
-                                    animationStartValue: ((reps-1)/10)
+                                    animationStartValue: ((reps-1)/ target)
                                   });
                                   $('#counter').text(reps.toString());
                                   $('#weight').show();
