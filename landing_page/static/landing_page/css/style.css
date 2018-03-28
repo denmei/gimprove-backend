@@ -178,7 +178,15 @@ p {
     }
 }
 @media (max-width: 768px) {
-    .navbar-brand img {} .navbar-default {
+    .navbar-brand img {
+        height: 10px;
+        -webkit-transition: all 1s;
+        -moz-transition: all 1s;
+        -o-transition: all 1s;
+        transition: all 1s;
+    }
+
+    .navbar-default {
       /*background-color: #fff !important; */
     }
     .navbar-default .navbar-nav>li>a {
@@ -221,6 +229,18 @@ p {
 }
 .logo{
     padding-bottom: 50px;
+}
+@media (max-width: 768px) {
+    .logo img{
+        height: 60px;
+        width: auto;
+    }
+}
+@media (min-width: 768px) {
+    .logo img{
+        height: 80px;
+        width: auto;
+    }
 }
 .home_text{
     text-align: left;
