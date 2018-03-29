@@ -193,6 +193,9 @@ class Set(models.Model):
     durations = models.TextField(max_length=1200, blank=False, null=False)
     last_update = models.DateTimeField(default=timezone.now, null=False, blank=False)
 
+    class Meta:
+        ordering = ['date_time']
+
     def __str__(self):
         return str(self.id)
 
