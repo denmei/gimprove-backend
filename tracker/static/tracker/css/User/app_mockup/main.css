@@ -114,7 +114,8 @@ html, body {
 
 #target {
     border-top: 2px solid rgb(255, 150, 1);
-    padding-top: 200px;
+    padding-top: 2px;
+    margin-bottom: -170px;
     z-index: 2;
     position: absolute;
     color: rgb(255, 150, 1);
