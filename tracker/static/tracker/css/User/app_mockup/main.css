@@ -5,7 +5,9 @@
    ========================================================================== */
 html, body {
     font-family: 'Raleway', sans-serif;
-    font-feature-settings: 'lnum' 1;
+    -webkit-font-feature-settings: "lnum";
+    -moz-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
 }
 
 .mockup  {
