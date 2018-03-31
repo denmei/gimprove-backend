@@ -245,16 +245,15 @@ p {
 .home_text{
     text-align: left;
 }
-.home-iphone{
+.home-appmock{
     text-align: right;
 }
-.home-iphone img{
-    width: 100%;
-    max-height: 100%;
+.home-appmock img{
+    width: 200%;
 }
 
 @media (max-width: 768px){
-    .home-iphone{
+    .home-appmock{
         display: none;
     }
     .home_text{
@@ -697,11 +696,12 @@ div.carousel-inner .item img {
 .advantages{
   background: #F1F1F1;
   padding-top: 50px;
-  background: url(../images/testimonial.jpg);
+  background: url(../images/gimprove_component.JPG);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 100%;
+  color: white;
 }
 
 @media (max-width: 768px){
