@@ -3,6 +3,8 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
+
 html, body {
     font-family: 'Raleway', sans-serif;
     -webkit-font-feature-settings: "lnum";
@@ -108,10 +110,10 @@ html, body {
     padding-bottom: 5px;
     z-index: 2;
     position: absolute;
-    border-bottom: 2px solid rgb(255, 150, 1);
 }
 
 #target {
+    border-top: 2px solid rgb(255, 150, 1);
     padding-top: 200px;
     z-index: 2;
     position: absolute;
