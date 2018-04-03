@@ -16,7 +16,7 @@ class ContactForm(forms.Form):
                                                                                     'placeholder': "Ihre Email-Adresse"}))
     message = forms.CharField(required=True, label="", widget=forms.Textarea(attrs={'id': 'message', 'class': 'form-control',
                                                                                     'placeholder': "Ihre Nachricht an uns",
-                                                                                    'style': 'resize:none', 'rows': '25',
+                                                                                    'style': 'resize:none', 'rows': '23',
                                                                                     'cols': '10'}))
 
 
