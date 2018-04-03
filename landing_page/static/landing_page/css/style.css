@@ -223,10 +223,6 @@ p {
   transform: translateX(-50%) translateY(-50%);
   background-size: cover;
 }
-
-.header .section_overlay {
-
-}
 .logo{
     padding-bottom: 50px;
 }
@@ -695,13 +691,24 @@ div.carousel-inner .item img {
 -----------------------------------------*/
 .advantages{
   background: #F1F1F1;
-  padding-top: 50px;
   background: url(../images/gimprove_component.JPG);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 100%;
   color: white;
+}
+
+.advantages .section_overlay {
+    background-color: rgba(53, 57, 66, 0.66)
+}
+
+.advantages .section_title h2 {
+    color: white;
+}
+
+.advantages .section_title p {
+    color: white;
 }
 
 @media (max-width: 768px){
