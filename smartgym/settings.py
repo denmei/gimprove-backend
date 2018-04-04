@@ -124,7 +124,7 @@ LANGUAGES = (
     ('de', _('German')),
 )
 
-TIME_ZONE = 'Europe/London'
+TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 
