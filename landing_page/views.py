@@ -30,16 +30,22 @@ def home(request):
                 return redirect(indexview)
         else:
             if newsletter_form.is_valid():
-                contact_email = request.POST.get(
-                    'contact_email', '')
-                # Email the profile with the
-                # contact information
+                contact_email = request.POST.get('contact_email', '')
+                # Email the profile with the contact information
                 template = get_template('landing_page/subscription_email_template.txt')
                 context = {'contact_email': contact_email}
                 content = template.render(context)
                 # send confirmation
-                send_mail('GImprove: Your Subscription', content, 'dennis@gimprove.com', [contact_email],
-                          fail_silently=False)
+                # send_mail(subject='GImprove: Your Subscription', message=content, from_email='dennis@gimprove.com',
+                #         recipient_list=list([contact_email] + ['dennis@gimprove.com']), fail_silently=False)
+
+                subject, from_email, to = 'GImprove: Your Subscription', 'dennis@gimprove.com', [contact_email]
+                text_content = 'This is an important message.'
+                html_content = content
+                msg = EmailMultiAlternatives(subject=subject, body=text_content, from_email=from_email, to=to, bcc=['dennis@gimprove.com'])
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+
                 # save mail-address locally
                 # TODO: create Database for addresses
                 with open('landing_page/newsletter_subscriptions.txt', 'a') as subscriptions_file:
@@ -54,7 +60,7 @@ def home(request):
                 subject, from_email, to = 'GImprove: Your Message', 'dennis@gimprove.com', [contact_email]
                 text_content = 'This is an important message.'
                 html_content = content
-                msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                msg = EmailMultiAlternatives(subject=subject, body=text_content, from_email=from_email, to=to, bcc=['dennis@gimprove.com'])
                 msg.attach_alternative(html_content, "text/html")
                 msg.send()
         return redirect('/landing_page/', {'newsletter_form': newsletter_form, 'contact_form': contact_form,

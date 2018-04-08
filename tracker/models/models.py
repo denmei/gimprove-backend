@@ -197,7 +197,7 @@ class Set(models.Model):
         ordering = ['-date_time']
 
     def __str__(self):
-        return str(self.id)
+        return str(self.date_time) + "_" + str(self.repetitions) + "r_" + str(self.id)[0:5]
 
     def clean(self):
         # check repetitions

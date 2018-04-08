@@ -1085,14 +1085,17 @@ div.carousel-inner .item img {
 -----------------------------------------*/
 
 .subscribe {
-    background-image: url(../images/subscribe.jpg);
+    background: url(../images/gimprove_component_2.JPG);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
+.subscribe_form {
+    padding-top: 30px;
+}
 .subscribe .section_overlay {
-    padding-bottom: 70px;
-    background: transparent
+  padding-bottom: 90px;
+  background-color: rgba(53, 57, 66, 0.66)
 }
 .subscribe .section_title h2{
 	color: #eaeaea;
