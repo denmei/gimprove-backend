@@ -361,6 +361,7 @@ tuor:visited {
     font-size: 19px;
     line-height: 24px;
     margin-top: 40px;
+    text-align: justify;
 }
 .inner_about_desc {} .single_about_area {
     position: relative;
@@ -572,7 +573,7 @@ div.carousel-inner .item img {
     left: 0;
     /* width: 130px;
     height: 90px; */
-    text-align: center;
+    text-align: justify;
     top: -8px;
 }
 .right_single_feature h3 {
@@ -691,7 +692,7 @@ div.carousel-inner .item img {
 -----------------------------------------*/
 .advantages{
   background: #F1F1F1;
-  background: url(../images/gimprove_component.JPG);
+  background: url(../images/gimprove-10.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -700,7 +701,7 @@ div.carousel-inner .item img {
 }
 
 .advantages .section_overlay {
-    background-color: rgba(53, 57, 66, 0.66)
+    background-color: rgba(53, 57, 66, 0.8)
 }
 
 .advantages .section_title h2 {
@@ -736,7 +737,7 @@ div.carousel-inner .item img {
   margin-bottom: 35px;
 }
 
-.social_feature {
+.single_feature {
     font-size: 40px;
     width: 100%;
     left: 0;
@@ -756,21 +757,22 @@ div.carousel-inner .item img {
   }
 }
 
-.social_feature h3 {
+.single_feature h3 {
     text-transform: uppercase;
     font-size: 25px;
     font-weight: 700;
     margin-bottom: 15px;
 }
 
-.social_feature h3 span {
+.single_feature h3 span {
     color: #f39c12;
 }
 
-.social_feature p {
+.single_feature p {
     font-size: 16px;
     font-weight: 300;
     line-height: 25px;
+    text-align: justify;
 }
 
 /*---------------------------------------
@@ -935,9 +937,7 @@ div.carousel-inner .item img {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.contact_form {
-    padding-top: 30px;
-}
+
 .contact_form .form-control {
     display: block;
     display: block;
@@ -1204,7 +1204,7 @@ div.carousel-inner .item img {
     font-weight: 300;
 }
 .scroll_top {
-    text-align: right;
+    text-align: center;
 }
 .scroll_top a {
     background: #f39c12;
