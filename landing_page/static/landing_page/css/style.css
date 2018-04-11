@@ -468,74 +468,7 @@ tuor:visited {
     border: 1px solid #999999;
     padding: 5px;
 }
-/*---------------------------------------
-   SECTION TESTIMONIAL
------------------------------------------*/
 
-#owl-demo .item {
-    margin-left: 90px;
-    margin-right: 90px;
-    margin-bottom: 50px;
-}
-#owl-demo .item img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-.testimonial {
-    background: url(../images/testimonial.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.testimonial .section_overlay {
-    background: rgba(0, 0, 0, .6);
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-.carousel-indicators {
-    bottom: -8px;
-}
-div.carousel-inner .item img {
-    border: 2px solid #f39c12;
-    border-radius: 50%;
-    padding: 3px;
-}
-.testimonial_caption {
-    padding-bottom: 70px;
-}
-.testimonial_caption p {
-    color: #D8D8D8;
-    font-size: 18px;
-    line-height: 27px;
-    padding-top: 50px;
-}
-.testimonial_caption h2 {
-    color: #f39c12;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 30px;
-    margin-top: 25px;
-}
-.testimonial_caption h4 {
-    color: #f39c12
-}
-.testimonial_caption h4 span {
-    color: #D8D8D8;
-    font-style: italic;
-    font-weight: 300;
-}
-.testimonial ol.carousel-indicators li {
-    width: 12px;
-    height: 12px;
-    border: 1px solid #f39c12;
-    margin: 1PX
-}
-.testimonial ol.carousel-indicators li.active {
-    width: 12px;
-    height: 12px;
-    border: 0px solid #f39c12;
-    background: #f39c12;
-}
 /*---------------------------------------
    SECTION FEATURES
 -----------------------------------------*/
@@ -556,8 +489,8 @@ div.carousel-inner .item img {
     padding-top: 30px;
     padding-bottom: 70px;
 }
-.feature_iphone {} .feature_iphone img {
-    width: 100%;
+.features .carousel-indicators {
+    bottom: -20px;
 }
 .right_single_feature {
     height: 200px;
