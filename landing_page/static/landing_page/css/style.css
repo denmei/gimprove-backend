@@ -343,7 +343,7 @@ tuor:visited {
 }
 .inner_about_title h2 {
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: 500;
     font-size: 30px;
     line-height: 37px;
     position: relative;
@@ -358,7 +358,7 @@ tuor:visited {
     height: 1px;
 }
 .inner_about_title p {
-    font-size: 19px;
+    font-size: 15px;
     line-height: 24px;
     margin-top: 40px;
     text-align: justify;
@@ -406,67 +406,6 @@ tuor:visited {
         width: 80%;
         margin-right: 20%;
     }
-}
-/*---------------------------------------
-   SECTION VIDEO
------------------------------------------*/
-
-.video_area {
-    background: #e4e4e4;
-    padding-bottom: 140px;
-    padding-top: 120px;
-}
-.video_title {
-    padding-bottom: 30px;
-}
-.video_title h2 {
-    text-transform: uppercase;
-    font-weight: 800;
-    font-size: 30px;
-    line-height: 37px;
-    position: relative;
-    margin-top: 0px;
-}
-.video_title h2:after {
-    content: "";
-    position: absolute;
-    bottom: -12px;
-    left: 0;
-    width: 70px;
-    background: #f39c12;
-    height: 1px;
-}
-.video_title p {
-    font-size: 18px;
-    line-height: 28px;
-    margin-top: 40px;
-    color: #333;
-    font-weight: 300;
-}
-.btn-video,
-.btn-video:active,
-.btn-video:focus,
-.btn-video:visited {
-    background: transparent;
-    border: 1px solid #929292;
-    color: #686868;
-    border-radius: 3px;
-    padding: 12px 35px;
-    text-transform: uppercase;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -o-transition: all 1s;
-    transition: all 1s;
-}
-.btn-video:hover {
-    background: #f39c12;
-    color: #fff;
-    border: 1px solid #f39c12;
-}
-.video {} .video iframe {
-    width: 100%;
-    border: 1px solid #999999;
-    padding: 5px;
 }
 
 /*---------------------------------------
@@ -608,41 +547,6 @@ tuor:visited {
         margin-bottom: 70px;
     }
 }
-
-/*---------------------------------------
-   SECTION CALL TO ACTION
------------------------------------------*/
-
-.call_to_action {
-    background-color: #1a1a1a;
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
-.call_to_action p {
-    color: #dfdfdf;
-    font-size: 18px;
-    font-weight: 300;
-}
-.call_to_action a {} .btn-action,
-.btn-action:active,
-.btn-action:focus,
-.btn-action:visited {
-    background: #f39c12;
-    border: 1px solid #f39c12;
-    color: #fff;
-    border-radius: 3px;
-    padding: 15px 35px;
-    text-transform: uppercase;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -o-transition: all 1s;
-    transition: all 1s;
-}
-.btn-action:hover {
-    background: #FF6B80;
-    border-color: #FF6B80;
-}
-
 
 /*---------------------------------------
    SECTION ADVANTAGES
@@ -1041,18 +945,19 @@ tuor:visited {
    SECTION SUBSCRIBE
 -----------------------------------------*/
 
-.subscribe {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
 @media (min-width: 768px){
     .subscribe {
     background: url(../images/gimprove_component_2.JPG);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     }
 }
 @media (max-width: 768px){
     .subscribe {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background: url(../images/leg_press.png);
     }
 }
@@ -1145,7 +1050,7 @@ tuor:visited {
 -----------------------------------------*/
 
 .copyright {
-    background-color: #1A1D22;
+    background-color: rgb(53, 57, 66);
     padding-bottom: 65px;
     padding-top: 65px;
     border-bottom: 3px solid #f39c12;
@@ -1174,7 +1079,7 @@ tuor:visited {
     text-align: center;
 }
 .scroll_top a {
-    background: #f39c12;
+    background: #ff9601;
     padding: 25px;
 }
 .scroll_top a i {
