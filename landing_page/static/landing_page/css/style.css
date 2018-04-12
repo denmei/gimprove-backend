@@ -735,43 +735,6 @@ tuor:visited {
     color: #fff;
     border-color: #f39c12;
 }
-.social_icons {
-    padding-top: 50px;
-    padding-bottom: 70px;
-}
-.social_icons ul {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-.social_icons ul li {
-    list-style: none;
-    display: inline;
-    padding-left: 10px
-}
-.social_icons ul li a {
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    border: 1px solid #9d9d9d;
-    border-radius: 3px;
-    width: 45px;
-    height: 45px;
-    line-height: 49px;
-    color: #9d9d9d;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -o-transition: all 1s;
-    transition: all 1s;
-}
-.social_icons ul li a i {
-    font-size: 20px;
-}
-.social_icons ul li a:hover {
-    background: #f39c12;
-    border: 1px solid #f39c12;
-    color: #fff
-}
 .error {
     color: #f39c12;
     display: block;
@@ -793,6 +756,9 @@ tuor:visited {
     padding-right: 10px;
     font-size: 18px;
     color: #4DB849
+}
+.contact_form {
+    padding-bottom: 70px;
 }
 .contact_form .form-control {
     color: #3d3d3d;
