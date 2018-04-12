@@ -54,7 +54,7 @@ $(document).ready(function() {
     });
 });
 
-// ADD VIDEO BACKGROUND ON LARGER SCREENS
+// HIDE VIDEO BACKGROUND ON SMALLER SCREENS
 $(document).ready(function() {
     if (screen.width < 768) {
         $('#HOMEVID').css('display', 'None');
@@ -62,6 +62,14 @@ $(document).ready(function() {
     }
 });
 
+// ALIGN TEXT ON SMALLER SCREENS
+$(document).ready(function() {
+    if (screen.width < 768) {
+        $(".section_description_big").css("display", "None");
+    } else {
+        $(".section_description_small").css("display", "None");
+    }
+});
 
 
  // MENU SECTION ACTIVE
