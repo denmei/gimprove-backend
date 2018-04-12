@@ -126,6 +126,14 @@ p {
 -----------------------------------------*/
 /*menu*/
 
+.header-small {
+  background: #F1F1F1;
+  background: url(../images/home.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .header h2 {
     height: 0px;
     margin: 0px;
@@ -576,7 +584,7 @@ tuor:visited {
 @media (max-width: 768px){
     .advantages{
   background: url(../images/gimprove_component_2_small.JPG);
-  background-size: auto 150%;
+  background-size: auto 180%;
   background-repeat: no-repeat;
   background-position: center;
     }

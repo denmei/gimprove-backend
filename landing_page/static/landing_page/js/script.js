@@ -54,6 +54,13 @@ $(document).ready(function() {
     });
 });
 
+// ADD VIDEO BACKGROUND ON LARGER SCREENS
+$(document).ready(function() {
+    if (screen.width < 768) {
+        $('#HOMEVID').css('display', 'None');
+        $('#HOME').addClass('header-small');
+    }
+});
 
 
 
