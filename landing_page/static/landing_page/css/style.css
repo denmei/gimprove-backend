@@ -126,9 +126,17 @@ p {
 -----------------------------------------*/
 /*menu*/
 
-.header-small {
+.header-small-portrait {
   background: #F1F1F1;
   background: url(../images/home.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header-small-landscape {
+  background: #F1F1F1;
+  background: url(../images/lat.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -562,6 +570,16 @@ tuor:visited {
   color: white;
 }
 
+@media (max-width: 768px){
+    .advantages{
+  background: url(../images/gimprove_component_2_small.JPG);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+    }
+
+}
+
 .advantages .section_overlay {
     background-color: rgba(53, 57, 66, 0.8)
 }
@@ -572,16 +590,6 @@ tuor:visited {
 
 .advantages .section_title p {
     color: white;
-}
-
-@media (max-width: 768px){
-    .advantages{
-  background: url(../images/gimprove_component_2_small.JPG);
-  background-size: auto 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-    }
-
 }
 
 .feature_block {
@@ -635,78 +643,6 @@ tuor:visited {
     font-weight: 300;
     line-height: 25px;
     text-align: justify;
-}
-
-/*---------------------------------------
-   SECTION APPS SCREEN
------------------------------------------*/
-
-.apps_screen {
-    background: #f1f1f1;
-    padding-bottom: 96px;
-}
-.screen_slider {
-    padding-top: 50px;
-}
-.owl-theme .owl-controls .owl-page span {
-    display: block;
-    width: 12px;
-    height: 12px;
-    margin: 5px 7px;
-    filter: Alpha(Opacity=50);
-    opacity: 0.5;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    background: transparent;
-    border: 1px solid #f39c12;
-}
-.owl-theme .owl-controls .owl-page.active span,
-.owl-theme .owl-controls.clickable .owl-page:hover span {
-    opacity: 1;
-    background: #f39c12;
-}
-/*---------------------------------------
-   SECTION FUN FACTS
------------------------------------------*/
-
-.fun_facts {
-    background: url(../images/fun_bg.jpg) no-repeat center;
-    background-size: cover;
-}
-.fun_facts .section_overlay {
-    padding-top: 120px;
-    padding-bottom: 120px;
-    background: rgba(0, 0, 0, .4);
-}
-.single_fun_facts {
-    font-family: 'Source Sans Pro', sans-serif;
-}
-.single_fun_facts i {
-    color: #f39c12;
-    font-size: 60px;
-    ;
-}
-.single_fun_facts h2 {
-    color: #D7DADB;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 35px;
-    margin-top: 15px;
-    margin-bottom: 1px;
-    font-family: 'Source Sans Pro', sans-serif;
-}
-.single_fun_facts h2 span {
-    font-weight: 300;
-    font-family: 'Source Sans Pro', sans-serif;
-}
-.single_fun_facts p {
-    color: #D7DADB;
-    font-size: 20px;
-    margin-top: 0px;
-    font-weight: 300;
-    text-transform: uppercase;
-    font-family: 'Source Sans Pro', sans-serif;
 }
 
 /*---------------------------------------
@@ -865,7 +801,7 @@ tuor:visited {
    SECTION SUBSCRIBE
 -----------------------------------------*/
 
-@media (min-width: 768px){
+@media screen and (orientation: landscape), screen and (min-width: 768px){
     .subscribe {
     background: url(../images/gimprove_component_2.JPG);
     background-size: cover;
@@ -873,7 +809,15 @@ tuor:visited {
     background-repeat: no-repeat;
     }
 }
-@media (max-width: 768px){
+@media screen and (orientation: landscape), screen and (max-width: 768px){
+    .subscribe {
+    background: url(../images/leg_press.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+}
+@media (orientation: portrait){
     .subscribe {
     background-size: cover;
     background-position: center;

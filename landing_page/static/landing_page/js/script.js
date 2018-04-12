@@ -56,15 +56,18 @@ $(document).ready(function() {
 
 // HIDE VIDEO BACKGROUND ON SMALLER SCREENS
 $(document).ready(function() {
-    if (screen.width < 768) {
+    if (screen.width < 768 & screen.width < screen.height) {
         $('#HOMEVID').css('display', 'None');
-        $('#HOME').addClass('header-small');
+        $('#HOME').addClass('header-small-portrait');
+    } else if (screen.width < 768) {
+        $('#HOMEVID').css('display', 'None');
+        $('#HOME').addClass('header-small-landscape');
     }
 });
 
 // ALIGN TEXT ON SMALLER SCREENS
 $(document).ready(function() {
-    if (screen.width < 768) {
+    if (screen.width < 768 & screen.width < screen.height) {
         $(".section_description_big").css("display", "None");
     } else {
         $(".section_description_small").css("display", "None");
