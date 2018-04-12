@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mua*5%xiv5z6s27si3am&&m+o=@gg#$f#gv^8j-i%h+kc6$8jt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [".herokuapp.com", ".researchthroughdesign.org", "127.0.0.1", "www.gimprove.com", "www.gimprove.de"]
+ALLOWED_HOSTS = [".herokuapp.com", ".researchthroughdesign.org", "localhost", "127.0.0.1", "www.gimprove.com", "www.gimprove.de"]
 
 
 # Application definition
@@ -166,6 +166,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
+)
+
+ADMINS = (
+    ('Dennis Meisner', 'meisnerdennis@web.de')
 )
 
 # Heroku: Update database configuration from $DATABASE_URL.
