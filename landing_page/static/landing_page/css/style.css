@@ -249,13 +249,6 @@ p {
 .home_text{
     text-align: left;
 }
-.home-appmock{
-    text-align: right;
-}
-.home-appmock img{
-    width: 200%;
-}
-
 @media (max-width: 768px){
     .home-appmock{
         display: none;
@@ -584,7 +577,7 @@ tuor:visited {
 @media (max-width: 768px){
     .advantages{
   background: url(../images/gimprove_component_2_small.JPG);
-  background-size: auto 180%;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;
     }
