@@ -408,6 +408,10 @@ tuor:visited {
     color: #f39c12;
 }
 
+.about_phone img {
+    max-height: 90vh;
+}
+
 
 .about_phone img {} @media (min-width: 991px) and (max-width: 1200px) {
     .about_phone img {
@@ -443,6 +447,12 @@ tuor:visited {
 }
 .features .carousel-indicators {
     bottom: -30px;
+}
+.features .carousel-inner .item img {
+        max-height: 550px;
+        width: auto;
+        display: block;
+        margin: 0 auto;
 }
 .right_single_feature {
     position: relative;
@@ -801,7 +811,7 @@ tuor:visited {
    SECTION SUBSCRIBE
 -----------------------------------------*/
 
-@media screen and (orientation: landscape), screen and (min-width: 768px){
+@media (orientation: landscape) and (min-width: 768px){
     .subscribe {
     background: url(../images/gimprove_component_2.JPG);
     background-size: cover;
@@ -809,7 +819,7 @@ tuor:visited {
     background-repeat: no-repeat;
     }
 }
-@media screen and (orientation: landscape), screen and (max-width: 768px){
+@media (orientation: landscape) and (max-width: 768px){
     .subscribe {
     background: url(../images/leg_press.png);
     background-size: cover;
