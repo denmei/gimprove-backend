@@ -24,10 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mua*5%xiv5z6s27si3am&&m+o=@gg#$f#gv^8j-i%h+kc6$8jt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [".herokuapp.com", ".researchthroughdesign.org", "localhost", "127.0.0.1", "www.gimprove.com", "www.gimprove.de"]
 
+ADMINS = (
+    ("Dennis Meisner", "meisnerdennis@web.de")
+)
 
 # Application definition
 
@@ -139,6 +142,7 @@ USE_TZ = True
 # STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
+
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
@@ -161,16 +165,28 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
 
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#WHITENOISE_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-ADMINS = (
-    ('Dennis Meisner', 'meisnerdennis@web.de')
-)
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+}
+
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url

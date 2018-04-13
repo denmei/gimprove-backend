@@ -1,36 +1,32 @@
-/*
-AJAX for updating the User-Profile page quickly.
-*/
 
 $(document).ready(function () {
 
     var i = 1;
     var active = false;
     var reps = 0;
+    var target = 10;
 
     var currentLocation = window.location;
+
+    console.log('app_mockup/main.js')
 
     if(currentLocation.toString().indexOf("127.0.0.1") > -1) {
         var link_set_detail = 'http://127.0.0.1:8000/tracker/set_detail_rest/';
         var link_userprofile_detail = 'http://127.0.0.1:8000/tracker/userprofile_detail_rest/';
     } else {
-        var link_set_detail = 'https://app-smartgym.herokuapp.com/tracker/set_detail_rest/';
-        var link_userprofile_detail = 'https://app-smartgym.herokuapp.com/tracker/userprofile_detail_rest/';
+        var link_set_detail = 'https://gimprove-test.herokuapp.com/tracker/set_detail_rest/';
+        var link_userprofile_detail = 'https://gimprove-test.herokuapp.com/tracker/userprofile_detail_rest/';
     };
 
     link_userprofile_detail = link_userprofile_detail + user_id;
-
-    if(navigator.userAgent.match(/Android/i)){
-    window.scrollTo(0,1);
-    }
 
     // set width of progress circle
     var circle_width = $('.circle-container').width() * 0.85;
     console.log(circle_width);
 
     // init progress circle
-  $('.circle').circleProgress({
-    value: (0 / 10),
+  $('#circle').circleProgress({
+    value: (0 / target),
     size: circle_width,
     fill: {
       color: "white"
@@ -41,7 +37,6 @@ $(document).ready(function () {
 
   $('#counter').text("0");
   $('#weight').hide();
-  $('#exercise-name').hide();
 
     function loop() {
         setTimeout(function () {
@@ -61,17 +56,18 @@ $(document).ready(function () {
                                 console.log(response_set.repetitions);
                                 if (response_set.repetitions != reps) {
                                     reps = response_set.repetitions;
-                                    $('.circle').circleProgress({
-                                    value: (reps / 10),
+                                    $('#circle').circleProgress({
+                                    value: (reps / target),
                                     fill: {
                                       color: 'rgb(255, 150, 1)'
                                     },
                                     emptyFill: 'rgba(0, 0, 0, 0.0)',
-                                    animationStartValue: ((reps-1)/10)
+                                    animationStartValue: ((reps-1)/ target)
                                   });
                                   $('#counter').text(reps.toString());
                                   $('#weight').show();
                                   $('#exercise-name').show();
+                                  $('#target').show();
                                 };
                             }
                         });
