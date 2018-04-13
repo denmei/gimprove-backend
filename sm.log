@@ -1,0 +1,342 @@
+Internal Server Error: /en/landing_page/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/dennis/Dokumente/GImprove/sm_gym/landing_page/views.py", line 73, in home
+    'contact_form': contact_form, 'login_form': login_form})
+  File "/usr/local/lib/python3.5/dist-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 155, in url
+    return self._url(self.stored_name, name, force)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 134, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 422, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'landing_page/videos/Lat_Low_Q.mp4'
+"GET /en/landing_page/ HTTP/1.1" 500 24
+Internal Server Error: /en/landing_page/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/dennis/Dokumente/GImprove/sm_gym/landing_page/views.py", line 73, in home
+    'contact_form': contact_form, 'login_form': login_form})
+  File "/usr/local/lib/python3.5/dist-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 155, in url
+    return self._url(self.stored_name, name, force)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 134, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 422, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'landing_page/videos/Lat_Low_Q.mp4'
+"GET /en/landing_page/ HTTP/1.1" 500 24
+Internal Server Error: /en/landing_page/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/dennis/Dokumente/GImprove/sm_gym/landing_page/views.py", line 73, in home
+    'contact_form': contact_form, 'login_form': login_form})
+  File "/usr/local/lib/python3.5/dist-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 155, in url
+    return self._url(self.stored_name, name, force)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 134, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 422, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'landing_page/videos/Lat_Low_Q.mp4'
+"GET /en/landing_page/ HTTP/1.1" 500 24
+Internal Server Error: /en/landing_page/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/dennis/Dokumente/GImprove/sm_gym/landing_page/views.py", line 73, in home
+    'contact_form': contact_form, 'login_form': login_form})
+  File "/usr/local/lib/python3.5/dist-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 155, in url
+    return self._url(self.stored_name, name, force)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 134, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 422, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'landing_page/videos/Lat_Low_Q.mp4'
+"GET /en/landing_page/ HTTP/1.1" 500 24
+Internal Server Error: /en/landing_page/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/dennis/Dokumente/GImprove/sm_gym/landing_page/views.py", line 73, in home
+    'contact_form': contact_form, 'login_form': login_form})
+  File "/usr/local/lib/python3.5/dist-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 155, in url
+    return self._url(self.stored_name, name, force)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 134, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 422, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'landing_page/videos/Lat_Low_Q.mp4'
+"GET /en/landing_page/ HTTP/1.1" 500 24
+Internal Server Error: /en/landing_page/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/dennis/Dokumente/GImprove/sm_gym/landing_page/views.py", line 73, in home
+    'contact_form': contact_form, 'login_form': login_form})
+  File "/usr/local/lib/python3.5/dist-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 155, in url
+    return self._url(self.stored_name, name, force)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 134, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 422, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'landing_page/videos/Lat_Low_Q.mp4'
+"GET /en/landing_page/ HTTP/1.1" 500 24
+Internal Server Error: /en/landing_page/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/dennis/Dokumente/GImprove/sm_gym/landing_page/views.py", line 73, in home
+    'contact_form': contact_form, 'login_form': login_form})
+  File "/usr/local/lib/python3.5/dist-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 155, in url
+    return self._url(self.stored_name, name, force)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 134, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 422, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'landing_page/videos/Lat_Low_Q.mp4'
+"GET /en/landing_page/ HTTP/1.1" 500 24
+Internal Server Error: /en/landing_page/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/dennis/Dokumente/GImprove/sm_gym/landing_page/views.py", line 73, in home
+    'contact_form': contact_form, 'login_form': login_form})
+  File "/usr/local/lib/python3.5/dist-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 155, in url
+    return self._url(self.stored_name, name, force)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 134, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 422, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'landing_page/videos/Lat_Low_Q.mp4'
+"GET /en/landing_page/ HTTP/1.1" 500 24
+Internal Server Error: /en/landing_page/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/dennis/Dokumente/GImprove/sm_gym/landing_page/views.py", line 73, in home
+    'contact_form': contact_form, 'login_form': login_form})
+  File "/usr/local/lib/python3.5/dist-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 155, in url
+    return self._url(self.stored_name, name, force)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 134, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/usr/local/lib/python3.5/dist-packages/django/contrib/staticfiles/storage.py", line 422, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'landing_page/videos/Lat_Low_Q.mp4'
+"GET /en/landing_page/ HTTP/1.1" 500 24
