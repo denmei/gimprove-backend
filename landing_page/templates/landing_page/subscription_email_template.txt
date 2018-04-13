@@ -1,11 +1,3 @@
-<html>
-<h1>Hi,</h1>
-
-<p>thanks for subscribing to our newsletter.
-
-Kind regards,
-Your GImprove-Team</p>
-</html>
 <!doctype html>
 <html>
   <head>
