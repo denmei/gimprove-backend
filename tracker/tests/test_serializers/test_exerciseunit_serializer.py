@@ -1,7 +1,3 @@
-import json
-import random
-from datetime import datetime
-from django.test.utils import override_settings
 from rest_framework.test import APITestCase, RequestsClient
 
 from tracker.serializers.ExerciseUnitSerializer import *
@@ -25,25 +21,18 @@ class ExerciseUnitSerializerTest(APITestCase):
         response = self.c.get(self.pre_http + reverse('exerciseunit_list'))
         self.assertEqual(response.status_code, 200)
 
-    def test_exerciseunit_creation(self):
-        """
-        ExerciseUnits may not be created manually.
-        """
-        pass
-
-    @override_settings(DEBUG=True)
-    def test_update_exerciseunit(self):
-        """
-        ExerciseUnits may not be updated manually.
-        """
-        pass
-
     def test_exerciseunit_delete(self):
         """
         When an ExerciseUnit is deleted, all corresponding sets must be deleted, too.
         """
         # get reference on a exerciseunit
         test_unit = ExerciseUnit.objects.first()
+        test_id = test_unit.id
         # get reference on all sets of the exerciseunit
+        set_count_before = len(Set.objects.filter(exercise_unit=test_unit))
         # delete exercise unit
+        response = self.c.delete(self.pre_http + reverse('exerciseunit_detail', kwargs={'pk': test_unit.id}))
         # check whether exerciseunit and its sets were deleted
+        set_count_after = len(Set.objects.filter(exercise_unit=test_unit))
+        self.assertEqual(set_count_after, 0)
+        self.assertEqual(len(ExerciseUnit.objects.filter(id=test_id)), 0)

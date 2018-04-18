@@ -2,7 +2,7 @@ from rest_framework import generics
 from tracker.serializers.ExerciseUnitSerializer import *
 
 
-class ExerciseUnitList(generics.ListCreateAPIView):
+class ExerciseUnitList(generics.ListAPIView):
     """
     Class for creating new sets or retrieving a list of sets.
     """
@@ -10,7 +10,7 @@ class ExerciseUnitList(generics.ListCreateAPIView):
     serializer_class = ExerciseUnitSerializer
 
 
-class ExerciseUnitDetail(generics.RetrieveUpdateDestroyAPIView):
+class ExerciseUnitDetail(generics.RetrieveDestroyAPIView):
     """
     View to retrieve, update or delete ExerciseUnits via http request.
     """
