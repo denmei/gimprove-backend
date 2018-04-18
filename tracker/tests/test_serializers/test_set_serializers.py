@@ -109,7 +109,7 @@ class SetSerializerTest(APITestCase):
         durations = random.sample(range(1, 20), int(train_set.repetitions) + 5)
         data = {'repetitions':  int(train_set.repetitions) + 5, 'weight': 10,
                 'exercise_name': exercise.name, 'equipment_id': str(equipment.id),
-                'date_time': train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 'rfid': str(user.rfid_tag),
+                'date_time': train_set.date_time, 'rfid': str(user.rfid_tag),
                 'active': str(False), 'durations': json.dumps(durations)}
         before_time = timezone.now()
 
@@ -122,7 +122,7 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(content['repetitions'], int(train_set.repetitions) + 5)
         self.assertEqual(content['weight'], 10)
-        self.assertEqual(content['date_time'], train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"))
+        self.assertEqual((content['date_time']), str(train_set.date_time.astimezone()))
         self.assertEqual(content['exercise_unit'], str(exercise_unit.id))
         self.assertTrue(Set.objects.get(id=content['id']).last_update > before_time)
 
@@ -192,7 +192,7 @@ class SetSerializerTest(APITestCase):
         id_2 = get_new_set_id(active=True)
         active_before = UserProfile.objects.first().active_set
         response_2 = self.c.delete(self.pre_http + reverse('set_detail', kwargs={'pk': id_2}))
-        self.assertEqual(str(active_before), id_2)
+        self.assertEqual(str(active_before.id), id_2)
         self.assertEqual(UserProfile.objects.first().active_set, None)
         self.assertEqual(response_2.status_code, 204)
 
