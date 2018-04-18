@@ -30,8 +30,9 @@ class ExerciseUnitSerializerTest(APITestCase):
         test_id = test_unit.id
         # get reference on all sets of the exerciseunit
         set_count_before = len(Set.objects.filter(exercise_unit=test_unit))
+        self.assertNotEqual(set_count_before, 0)
         # delete exercise unit
-        response = self.c.delete(self.pre_http + reverse('exerciseunit_detail', kwargs={'pk': test_unit.id}))
+        self.c.delete(self.pre_http + reverse('exerciseunit_detail', kwargs={'pk': test_unit.id}))
         # check whether exerciseunit and its sets were deleted
         set_count_after = len(Set.objects.filter(exercise_unit=test_unit))
         self.assertEqual(set_count_after, 0)

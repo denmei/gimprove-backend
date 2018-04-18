@@ -4,7 +4,8 @@
 from django.conf.urls import url
 
 from tracker import views
-from tracker.views.serializer_views import userprofile_serializer_view, set_serializer_view, exerciseunit_serializer_view
+from tracker.views.serializer_views import userprofile_serializer_view, set_serializer_view, \
+    exerciseunit_serializer_view, trainunit_serializer_view
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -32,6 +33,10 @@ urlpatterns += [
     url(r'^exerciseunit_list_rest/$', exerciseunit_serializer_view.ExerciseUnitList.as_view(), name='exerciseunit_list'),
     url(r'^exerciseunit_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', exerciseunit_serializer_view.ExerciseUnitDetail.as_view(),
         name='exerciseunit_detail'),
+    url(r'^trainunit_list_rest/$', trainunit_serializer_view.TrainUnitList.as_view(),
+        name='trainunit_list'),
+    url(r'^trainunit_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', trainunit_serializer_view.TrainUnitDetail.as_view(),
+        name='trainunit_detail'),
     url(r'^userprofile_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', userprofile_serializer_view.UserProfileDetail.as_view(),
         name='userprofile_detail'),
     url(r'^userprofile_detail_rfid_rest/(?P<rfid_tag>[\w\-]+)$',
