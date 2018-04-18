@@ -1,6 +1,7 @@
 import json
 import random
 from datetime import datetime
+from dateutil import parser
 
 from django.test.utils import override_settings
 from rest_framework.test import APITestCase, RequestsClient
@@ -122,7 +123,7 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(content['repetitions'], int(train_set.repetitions) + 5)
         self.assertEqual(content['weight'], 10)
-        self.assertEqual((content['date_time']), str(train_set.date_time.astimezone()))
+        self.assertEqual(parser.parse(content['date_time']), train_set.date_time)
         self.assertEqual(content['exercise_unit'], str(exercise_unit.id))
         self.assertTrue(Set.objects.get(id=content['id']).last_update > before_time)
 
@@ -151,7 +152,7 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(content['repetitions'], int(train_set.repetitions))
         self.assertEqual(content['weight'], 10)
-        self.assertEqual(content['date_time'], train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"))
+        self.assertEqual(parser.parse(content['date_time']), train_set.date_time)
         self.assertEqual(content['exercise_unit'], str(exercise_unit.id))
 
         # test update request with length of durations field other than repetitions count. Must throw error.
@@ -203,12 +204,12 @@ class SetSerializerTest(APITestCase):
         """
         # create single set with new train unit and exercise unit
         user = UserProfile.objects.first()
-        train_unit = TrainUnit.objects.create(start_time_date=datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-                                              end_time_date=datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-                                              date=datetime.now().date(), user=user)
-        exercise_unit = ExerciseUnit.objects.create(time_date=datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        train_unit = TrainUnit.objects.create(start_time_date=timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                              end_time_date=timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                              date=timezone.now().date(), user=user)
+        exercise_unit = ExerciseUnit.objects.create(time_date=timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
                                                     train_unit=train_unit, exercise=Exercise.objects.first())
-        set = Set.objects.create(date_time=datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        set = Set.objects.create(date_time=timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
                                  exercise_unit=exercise_unit,
                                  repetitions=1, weight=10, durations=[0])
 
