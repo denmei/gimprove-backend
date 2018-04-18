@@ -34,7 +34,7 @@ class SetSerializerTest(APITestCase):
         weight = 60
         rfid = UserProfile.objects.first().rfid_tag
         train_unit = TrainUnit.objects.filter(user=UserProfile.objects.first())[0]
-        exercise_unit = train_unit.exercise_units.first()
+        exercise_unit = train_unit.exerciseunit_set.first()
         exercise_name = exercise_unit.exercise
         date_time = exercise_unit.time_date
         equipment_id = Equipment.objects.first().id
@@ -79,7 +79,7 @@ class SetSerializerTest(APITestCase):
         weight = 60
         rfid = UserProfile.objects.first().rfid_tag
         train_unit = TrainUnit.objects.filter(user=UserProfile.objects.first())[0]
-        exercise_unit = train_unit.exercise_units.first()
+        exercise_unit = train_unit.exerciseunit_set.first()
         date_time = exercise_unit.time_date
         equipment_id = Equipment.objects.first().id
         durations = random.sample(range(1, 20), repetitions)
@@ -173,7 +173,7 @@ class SetSerializerTest(APITestCase):
             """
             rfid = UserProfile.objects.first().rfid_tag
             train_unit = TrainUnit.objects.filter(user=UserProfile.objects.first())[0]
-            exercise_unit = train_unit.exercise_units.first()
+            exercise_unit = train_unit.exerciseunit_set.first()
             exercise_name = exercise_unit.exercise
             date_time = exercise_unit.time_date
             equipment_id = Equipment.objects.first().id

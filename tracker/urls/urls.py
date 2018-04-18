@@ -4,7 +4,7 @@
 from django.conf.urls import url
 
 from tracker import views
-from tracker.views.serializer_views import userprofile_serializer_view, set_serializer_view, ExerciseUnitSerializerView
+from tracker.views.serializer_views import userprofile_serializer_view, set_serializer_view, exerciseunit_serializer_view
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -29,8 +29,8 @@ urlpatterns = [
 urlpatterns += [
     url(r'^set_list_rest/$', set_serializer_view.SetList.as_view(), name='set_list'),
     url(r'^set_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', set_serializer_view.SetDetail.as_view(), name='set_detail'),
-    url(r'^exerciseunit_list_rest/$', ExerciseUnitSerializerView.ExerciseUnitList.as_view(), name='exerciseunit_list'),
-    url(r'^exerciseunit_detail_rest/$', ExerciseUnitSerializerView.ExerciseUnitDetail.as_view(), name='exerciseunit_list'),
+    url(r'^exerciseunit_list_rest/$', exerciseunit_serializer_view.ExerciseUnitList.as_view(), name='exerciseunit_list'),
+    url(r'^exerciseunit_detail_rest/$', exerciseunit_serializer_view.ExerciseUnitDetail.as_view(), name='exerciseunit_detail'),
     url(r'^userprofile_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', userprofile_serializer_view.UserProfileDetail.as_view(),
         name='userprofile_detail'),
     url(r'^userprofile_detail_rfid_rest/(?P<rfid_tag>[\w\-]+)$',

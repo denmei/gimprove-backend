@@ -150,7 +150,6 @@ class TrainUnit(models.Model, LoginRequiredMixin):
     end_time_date = models.DateTimeField(null=False, blank=False)
     date = models.DateField(null=False, blank=False)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    exercise_units = models.ManyToManyField('ExerciseUnit', related_name='+', blank=True)
 
     def __str__(self):
         return str(self.id)

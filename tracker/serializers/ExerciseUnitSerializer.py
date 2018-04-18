@@ -7,3 +7,4 @@ class ExerciseUnitSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ExerciseUnit
+        fields = '__all__'

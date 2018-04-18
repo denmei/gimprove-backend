@@ -73,16 +73,13 @@ class SetSerializer(serializers.ModelSerializer):
             else:
                 train_unit = TrainUnit.objects.create(date=timezone.now(), start_time_date=timezone.now(),
                                                       end_time_date=timezone.now(), user=user_profile)
-            if train_unit.exercise_units.filter(exercise=Exercise.objects.get(name=exercise_name_r)).exists():
-                exercise_unit_r = train_unit.exercise_units.get(exercise=Exercise.objects.get(name=exercise_name_r))
+            if train_unit.exerciseunit_set.filter(exercise=Exercise.objects.get(name=exercise_name_r)).exists():
+                exercise_unit_r = train_unit.exerciseunit_set.get(exercise=Exercise.objects.get(name=exercise_name_r))
             else:
                 exercise_unit_r = ExerciseUnit.objects.create(time_date=timezone.now(),
                                                         train_unit=train_unit,
                                                         exercise=Exercise.objects.get(name=exercise_name_r))
             validated_data['exercise_unit'] = exercise_unit_r
-            train_unit.exercise_units.add(exercise_unit_r)
-            train_unit.save()
-
         # Set has to be added to existing exercise unit:
         else:
             validated_data['exercise_unit'] = ExerciseUnit.objects.filter(id=validated_data['exercise_unit'])[0]
