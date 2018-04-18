@@ -40,3 +40,13 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
         if len(train_unit.exerciseunit_set.all()) == 0:
             train_unit.delete()
         return ret_val
+
+
+class SetListByExerciseUnit(generics.ListAPIView):
+    """
+    View to retrieve sets by exerciseunit.
+    """
+    queryset = Set.objects.all()
+    serializer_class = SetSerializer
+    lookup_field = 'exercise_unit'
+

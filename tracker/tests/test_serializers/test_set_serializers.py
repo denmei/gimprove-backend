@@ -19,11 +19,20 @@ class SetSerializerTest(APITestCase):
     def setUp(self):
         self.c = RequestsClient()
         self.pre_http = "http://127.0.0.1:8000"
-        pass
+        self.exercise_unit = ExerciseUnit.objects.first()
 
     def test_set_retrieval(self):
         response = self.c.get(self.pre_http + reverse('set_list')).status_code
         self.assertEqual(response, 200)
+
+    def test_set_retrieval_by_exercise_unit(self):
+        """
+        Tests whether Sets for a specific ExerciseUnit can be retrieved.
+        """
+        response = self.c.get(self.pre_http + reverse('set_exerciseunit_list',
+                                                      kwargs={'exercise_unit': self.exercise_unit.id}))
+        content = (json.loads(response.content.decode("utf-8")))
+        self.assertEqual(response.status_code, 200)
 
     def test_set_creation(self):
         """

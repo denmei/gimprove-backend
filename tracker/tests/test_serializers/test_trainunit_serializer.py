@@ -13,12 +13,24 @@ class TrainUnitSerializerTest(APITestCase):
     def setUp(self):
         self.c = RequestsClient()
         self.pre_http = "http://127.0.0.1:8000"
+        self.rfid_tag = UserProfile.objects.all()[0].rfid_tag
+        self.user = UserProfile.objects.all()[0].user
+        self.active_set = UserProfile.objects.all()[0].active_set
+        self.gym = GymProfile.objects.first()
 
     def test_trainunit_retrieval(self):
         """
         Test whether list-interface works properly.
         """
         response = self.c.get(self.pre_http + reverse('trainunit_list'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_trainunit_retrieval_by_user(self):
+        """
+        Tests whether TrainUnits for a specific user can be retrieved.
+        """
+        response = self.c.get(self.pre_http + reverse('trainunit_user_list', kwargs={'user': self.user.id}))
+        content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
 
     def test_trainunit_delete(self):

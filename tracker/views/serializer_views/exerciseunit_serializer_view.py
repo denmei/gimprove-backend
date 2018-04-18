@@ -12,7 +12,16 @@ class ExerciseUnitList(generics.ListAPIView):
 
 class ExerciseUnitDetail(generics.RetrieveDestroyAPIView):
     """
-    View to retrieve, update or delete ExerciseUnits via http request.
+    View to retrieve or delete ExerciseUnits via http request.
     """
     queryset = ExerciseUnit.objects.all()
     serializer_class = ExerciseUnitSerializer
+
+
+class ExerciseUnitListByTrainUnit(generics.ListAPIView):
+    """
+    View to retrieve ExerciseUnits by TrainUnit.
+    """
+    queryset = ExerciseUnit.objects.all()
+    serializer_class = ExerciseUnitSerializer
+    lookup_field = 'train_unit'

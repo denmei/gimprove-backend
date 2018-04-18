@@ -30,13 +30,22 @@ urlpatterns = [
 urlpatterns += [
     url(r'^set_list_rest/$', set_serializer_view.SetList.as_view(), name='set_list'),
     url(r'^set_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', set_serializer_view.SetDetail.as_view(), name='set_detail'),
+    url(r'^set_exerciseunit_rest/(?P<exercise_unit>[0-9A-Fa-f-]+)$',
+        set_serializer_view.SetListByExerciseUnit.as_view(), name='set_exerciseunit_list'),
+
     url(r'^exerciseunit_list_rest/$', exerciseunit_serializer_view.ExerciseUnitList.as_view(), name='exerciseunit_list'),
     url(r'^exerciseunit_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', exerciseunit_serializer_view.ExerciseUnitDetail.as_view(),
         name='exerciseunit_detail'),
+    url(r'^exerciseunit_trainunit_rest/(?P<train_unit>[\w\-]+)$',
+        exerciseunit_serializer_view.ExerciseUnitListByTrainUnit.as_view(), name='exerciseunit_trainunit_list'),
+
     url(r'^trainunit_list_rest/$', trainunit_serializer_view.TrainUnitList.as_view(),
         name='trainunit_list'),
     url(r'^trainunit_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', trainunit_serializer_view.TrainUnitDetail.as_view(),
         name='trainunit_detail'),
+    url(r'^trainunit_user_rest/(?P<user>[\w\-]+)$',
+        trainunit_serializer_view.TrainUnitListByUserId.as_view(), name='trainunit_user_list'),
+
     url(r'^userprofile_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', userprofile_serializer_view.UserProfileDetail.as_view(),
         name='userprofile_detail'),
     url(r'^userprofile_detail_rfid_rest/(?P<rfid_tag>[\w\-]+)$',

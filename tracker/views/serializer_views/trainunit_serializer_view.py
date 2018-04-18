@@ -16,3 +16,12 @@ class TrainUnitDetail(generics.RetrieveDestroyAPIView):
     """
     queryset = TrainUnit.objects.all()
     serializer_class = TrainUnitSerializer
+
+
+class TrainUnitListByUserId(generics.ListAPIView):
+    """
+    View to retrieve a user's trainunits by the user id.
+    """
+    queryset = TrainUnit.objects.all()
+    serializer_class = TrainUnitSerializer
+    lookup_field = 'user'

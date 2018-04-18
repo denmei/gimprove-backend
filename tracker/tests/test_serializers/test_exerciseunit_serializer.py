@@ -13,12 +13,22 @@ class ExerciseUnitSerializerTest(APITestCase):
     def setUp(self):
         self.c = RequestsClient()
         self.pre_http = "http://127.0.0.1:8000"
+        self.user = UserProfile.objects.all()[0].user
+        self.train_unit = TrainUnit.objects.first()
 
     def test_exerciseunit_retrieval(self):
         """
         Test whether list-interface works properly.
         """
         response = self.c.get(self.pre_http + reverse('exerciseunit_list'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_exerciseunit_retrieval_by_trainunit(self):
+        """
+        Tests whether exerciseunits for a specific trainunit can be retrieved.
+        """
+        response = self.c.get(self.pre_http + reverse('exerciseunit_trainunit_list', kwargs={'train_unit': self.train_unit}))
+        content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
 
     def test_exerciseunit_delete(self):
