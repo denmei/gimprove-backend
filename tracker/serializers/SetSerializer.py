@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework import serializers
-
+import dateutil.parser as date_parser
 from tracker.models.models import *
 
 
@@ -66,13 +66,14 @@ class SetSerializer(serializers.ModelSerializer):
 
         # Create a new TrainUnit and ExerciseUnit if necessary.
         if exercise_unit_r == "None" or exercise_unit_r == "":
-            # If there already exists a TrainUnit, update the end_time_date-field.
+            # If there already exists a TrainUnit for this day, update the end_time_date-field.
             if TrainUnit.objects.filter(date=timezone.now(), user=user_profile).exists():
                 train_unit = TrainUnit.objects.get(date=timezone.now(), user=user_profile)
                 train_unit.end_time_date = timezone.now()
             else:
                 train_unit = TrainUnit.objects.create(date=timezone.now(), start_time_date=timezone.now(),
                                                       end_time_date=timezone.now(), user=user_profile)
+            #  check whether there already is a exercise unit for the specified exercise in the train unit
             if train_unit.exerciseunit_set.filter(exercise=Exercise.objects.get(name=exercise_name_r)).exists():
                 exercise_unit_r = train_unit.exerciseunit_set.get(exercise=Exercise.objects.get(name=exercise_name_r))
             else:
@@ -84,6 +85,8 @@ class SetSerializer(serializers.ModelSerializer):
         else:
             validated_data['exercise_unit'] = ExerciseUnit.objects.filter(id=validated_data['exercise_unit'])[0]
         validated_data['durations'] = ""
+        validated_data['date_time'] = date_parser.parse(validated_data['date_time'])
+        print(validated_data['date_time'])
         new_set = Set.objects.create(**validated_data)
 
         if active == 'True':
