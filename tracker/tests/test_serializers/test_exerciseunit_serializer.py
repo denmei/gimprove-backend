@@ -27,7 +27,7 @@ class ExerciseUnitSerializerTest(APITestCase):
         """
         Tests whether exerciseunits for a specific trainunit can be retrieved.
         """
-        response = self.c.get(self.pre_http + reverse('exerciseunit_trainunit_list', kwargs={'train_unit': self.train_unit}))
+        response = self.c.get(self.pre_http + reverse('exerciseunit_trainunit_list', kwargs={'train_unit': self.train_unit.id}))
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
 

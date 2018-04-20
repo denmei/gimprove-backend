@@ -52,12 +52,62 @@
     }
 },
 {
+    "model": "tracker.trainunit",
+    "pk": "41e1a5cf-a810-47e4-8d7e-bb8b60f29312",
+    "fields": {
+        "start_time_date": "2018-04-19T05:35:42.871Z",
+        "end_time_date": "2018-04-19T05:35:42.871Z",
+        "date": "2018-04-19",
+        "user": 1
+    }
+},
+{
+    "model": "tracker.trainunit",
+    "pk": "f9653376-e906-444b-8b8f-11a1e2f903b6",
+    "fields": {
+        "start_time_date": "2018-04-20T06:05:53.941Z",
+        "end_time_date": "2018-04-20T06:05:53.941Z",
+        "date": "2018-04-20",
+        "user": 1
+    }
+},
+{
+    "model": "tracker.exerciseunit",
+    "pk": "75e9808f-b589-4018-bede-f9867dc67ebb",
+    "fields": {
+        "time_date": "2018-04-19T05:35:42.882Z",
+        "train_unit": "41e1a5cf-a810-47e4-8d7e-bb8b60f29312",
+        "exercise": "Lat Pulldown"
+    }
+},
+{
+    "model": "tracker.exerciseunit",
+    "pk": "7f81dbe5-e074-4a46-89c9-5024839b985b",
+    "fields": {
+        "time_date": "2018-04-20T05:03:35.622Z",
+        "train_unit": "f9653376-e906-444b-8b8f-11a1e2f903b6",
+        "exercise": "Lat Pulldown"
+    }
+},
+{
     "model": "tracker.exerciseunit",
     "pk": "d48b5f09-a186-433d-805a-e97c7c0e1e59",
     "fields": {
         "time_date": "2018-04-04T05:16:31.003Z",
         "train_unit": "1365f2a3-d9c6-4d06-90ba-15d9e2a24728",
         "exercise": "Lat Pulldown"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "2b9e9372-1327-46b1-b362-7c6e231f6a0e",
+    "fields": {
+        "date_time": "2018-04-19T05:35:42.888Z",
+        "exercise_unit": "75e9808f-b589-4018-bede-f9867dc67ebb",
+        "repetitions": 1,
+        "weight": 10,
+        "durations": "",
+        "last_update": "2018-04-19T05:35:42.888Z"
     }
 },
 {
@@ -70,6 +120,18 @@
         "weight": 10,
         "durations": "[0.37971, 0.463878, 0.4979, 0.510449, 0.515656, 0.467981, 0.497059, 0.470184, 0.470682, 0.523535]",
         "last_update": "2018-04-04T05:57:17.110Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "b153ad22-345e-4364-b751-138b5921cece",
+    "fields": {
+        "date_time": "2018-04-20T05:03:35.622Z",
+        "exercise_unit": "7f81dbe5-e074-4a46-89c9-5024839b985b",
+        "repetitions": 10,
+        "weight": 10,
+        "durations": "[0.396107, 0.475562, 0.496072, 0.511568, 0.523774, 0.469096, 0.541798, 0.504156, 0.51555, 0.536114]",
+        "last_update": "2018-04-20T05:03:43.463Z"
     }
 },
 {
@@ -99,7 +161,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$100000$VDCmvZjxXXvc$Ti2mbNwTFZ3YAr92HM5cO1LcBIQfa4d2s6qMFf0/FUk=",
-        "last_login": "2018-04-18T15:11:07.437Z",
+        "last_login": "2018-04-20T04:57:34.710Z",
         "is_superuser": true,
         "username": "dennis",
         "first_name": "",

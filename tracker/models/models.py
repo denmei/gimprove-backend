@@ -10,6 +10,7 @@ from django.utils import timezone
 import os
 from django.core.exceptions import ValidationError
 from datetime import timedelta, datetime
+import dateutil.parser as date_parser
 import json
 
 
@@ -146,13 +147,13 @@ class TrainUnit(models.Model, LoginRequiredMixin):
     """
     login_url = '/login/'
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    start_time_date = models.DateTimeField(null=False, blank=False)
-    end_time_date = models.DateTimeField(null=False, blank=False)
+    start_time_date = models.DateTimeField(default=timezone.now, null=False, blank=False)
+    end_time_date = models.DateTimeField(default=timezone.now, null=False, blank=False)
     date = models.DateField(null=False, blank=False)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.id)
+        return str(timezone.localtime(self.start_time_date)) + " " + str(self.id)
 
     def get_absolute_url(self):
         return reverse('exercise_unit_list', args=[str(self.id)])
@@ -167,12 +168,12 @@ class ExerciseUnit(models.Model):
     Represents a group of sets of the same exercise within the same TrainUnit.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    time_date = models.DateTimeField(null=False, blank=False)
+    time_date = models.DateTimeField(default=timezone.now, null=False, blank=False)
     train_unit = models.ForeignKey(TrainUnit, on_delete=models.CASCADE)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.exercise) + " " + str(self.time_date)
+        return str(self.exercise) + " " + str(timezone.localtime(self.time_date))
 
     def clean(self):
         if not ((self.time_date >= self.train_unit.start_time_date) and
@@ -196,7 +197,7 @@ class Set(models.Model):
         ordering = ['-date_time']
 
     def __str__(self):
-        return str(self.date_time) + "_" + str(self.repetitions) + "r_" + str(self.id)[0:5]
+        return str(timezone.localtime(self.date_time)) + "_" + str(self.repetitions) + "r_" + str(self.id)[0:5]
 
     def clean(self):
         # check repetitions
@@ -207,7 +208,8 @@ class Set(models.Model):
         if self.weight < 0:
             raise ValidationError("No negative values allowed for weight.")
         # check whether set date fits the exercise unit date
-        if not (self.exercise_unit.time_date <= self.date_time <= self.exercise_unit.time_date + timedelta(days=1)):
+        if not ((self.exercise_unit.time_date <= self.date_time) &
+                (self.date_time <= (self.exercise_unit.time_date + timedelta(days=1)))):
             raise ValidationError("Date value does not fit to exercise unit.")
         # check whether number of durations and repetitions fit
         if len(json.loads(self.durations)) != self.repetitions:
