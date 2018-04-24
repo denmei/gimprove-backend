@@ -126,6 +126,7 @@ class Exercise(models.Model):
     description = models.CharField(max_length=1000, help_text="Insert short description here.")
     muscles = models.ManyToManyField('Muscle', help_text="Muscles trained by the exercise.")
     equipment_machine = models.ManyToManyField('Equipment', help_text="Necessary equipment for the exercise.", blank=True)
+    gimprove_system = models.BooleanField(blank=False, null=False)
 
     def __str__(self):
         return self.name
@@ -134,8 +135,16 @@ class Exercise(models.Model):
         return reverse('exercise-detail', args=[str(self.name)])
 
 
+class MuscleGroup(models.Model):
+    name = models.CharField(max_length=50, primary_key=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Muscle(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
+    muscle_group = models.ForeignKey(MuscleGroup, on_delete=models.DO_NOTHING, null=False, blank=False)
 
     def __str__(self):
         return self.name
@@ -152,8 +161,11 @@ class TrainUnit(models.Model, LoginRequiredMixin):
     date = models.DateField(null=False, blank=False)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['-start_time_date']
+
     def __str__(self):
-        return str(timezone.localtime(self.start_time_date)) + " " + str(self.id)
+        return str(timezone.localtime(self.start_time_date)) + " - " + str(timezone.localtime(self.end_time_date))
 
     def get_absolute_url(self):
         return reverse('exercise_unit_list', args=[str(self.id)])
@@ -171,6 +183,9 @@ class ExerciseUnit(models.Model):
     time_date = models.DateTimeField(default=timezone.now, null=False, blank=False)
     train_unit = models.ForeignKey(TrainUnit, on_delete=models.CASCADE)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-time_date']
 
     def __str__(self):
         return str(self.exercise) + " " + str(timezone.localtime(self.time_date))
@@ -191,6 +206,7 @@ class Set(models.Model):
     repetitions = models.IntegerField(blank=False)
     weight = models.IntegerField(blank=False)
     durations = models.TextField(max_length=1200, blank=False, null=False)
+    auto_tracking = models.BooleanField(blank=False, null=False)
     last_update = models.DateTimeField(default=timezone.now, null=False, blank=False)
 
     class Meta:
