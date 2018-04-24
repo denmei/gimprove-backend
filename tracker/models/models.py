@@ -126,7 +126,7 @@ class Exercise(models.Model):
     description = models.CharField(max_length=1000, help_text="Insert short description here.")
     muscles = models.ManyToManyField('Muscle', help_text="Muscles trained by the exercise.")
     equipment_machine = models.ManyToManyField('Equipment', help_text="Necessary equipment for the exercise.", blank=True)
-    gimprove_system = models.BooleanField(blank=False, null=False)
+    gimprove_system = models.BooleanField(blank=False, null=False, default=False)
 
     def __str__(self):
         return self.name
@@ -206,7 +206,7 @@ class Set(models.Model):
     repetitions = models.IntegerField(blank=False)
     weight = models.IntegerField(blank=False)
     durations = models.TextField(max_length=1200, blank=False, null=False)
-    auto_tracking = models.BooleanField(blank=False, null=False)
+    auto_tracking = models.BooleanField(blank=False, null=False, default=False)
     last_update = models.DateTimeField(default=timezone.now, null=False, blank=False)
 
     class Meta:
