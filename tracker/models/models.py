@@ -204,7 +204,7 @@ class Set(models.Model):
     date_time = models.DateTimeField(default=timezone.now, null=False, blank=False)
     exercise_unit = models.ForeignKey(ExerciseUnit, on_delete=models.CASCADE)
     repetitions = models.IntegerField(blank=False)
-    weight = models.IntegerField(blank=False)
+    weight = models.FloatField(blank=False)
     durations = models.TextField(max_length=1200, blank=False, null=False)
     auto_tracking = models.BooleanField(blank=False, null=False, default=False)
     last_update = models.DateTimeField(default=timezone.now, null=False, blank=False)
