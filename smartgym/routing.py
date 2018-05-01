@@ -9,7 +9,7 @@ application = ProtocolTypeRouter({
     'websocket': AuthMiddlewareStack(
         URLRouter([
             # tracker.routing.websocket_urlpatterns,
-            path("ws/tracker", SetConsumer),
+            path("/ws/tracker", SetConsumer),
         ])
     ),
 })
