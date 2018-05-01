@@ -8,8 +8,7 @@ application = ProtocolTypeRouter({
     # (http->django views is added by default)
     'websocket': AuthMiddlewareStack(
         URLRouter([
-            # tracker.routing.websocket_urlpatterns,
-            path("/ws/tracker", SetConsumer),
+            tracker.routing.websocket_urlpatterns,
         ])
     ),
 })
