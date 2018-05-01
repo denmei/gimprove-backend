@@ -45,6 +45,10 @@ def delete_connection(request, pk):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
+def set(request, pk):
+    return None
+
+
 class TrainingUnitsList(LoginRequiredMixin, generic.ListView):
     """
     Show all training units of a user.

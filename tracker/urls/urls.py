@@ -53,3 +53,8 @@ urlpatterns += [
     url(r'^userprofile_create_rest/$', userprofile_serializer_view.UserProfileCreator.as_view(),
         name='userprofile_create'),
 ]
+
+# URLS for websockets
+urlpatterns += [
+    url(r'^ws/(?P<pk>\d+)$', views.set, name='set'),
+]

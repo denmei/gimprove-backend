@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_makemessages_xgettext',
     'rest_framework',
     'corsheaders',
+    'channels'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -86,7 +87,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'smartgym.wsgi.application'
-
+ASGI_APPLICATION = 'smartgym.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -115,6 +116,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Channel settings for websockets
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Internationalization
