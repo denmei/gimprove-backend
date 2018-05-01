@@ -17,4 +17,5 @@ django_makemessages_xgettext==0.1.1
 django-smtp-ssl==1.0
 djangorestframework==3.7.7
 django-cors-headers==2.2.0
+setuptools==38.2.5
 python-dateutil==2.6.0
