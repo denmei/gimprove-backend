@@ -1,7 +1,7 @@
 asgi-redis==1.4.3
 asgiref==2.3.0
 channels==2.1.1
-daphne==0.9.1
+daphne==2.1.1
 Django==2.0.3
 dj-database-url==0.4.1
 dj-static==0.0.6
