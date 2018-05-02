@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf.urls import url
 from django.views.generic import RedirectView
 from django.conf.urls.i18n import i18n_patterns
+from tracker.consumers.SetConsumer import SetConsumer
 
 urlpatterns = i18n_patterns(
     url(r'^landing_page/', include('landing_page.urls')),
@@ -31,6 +32,7 @@ urlpatterns += [
     url(r'^$', RedirectView.as_view(url='/landing_page/', permanent=True)),
     url(r'^admin/', admin.site.urls),
     url(r'^tracker/', include('tracker.urls.urls')),
+url(r'^/ws/tracker', SetConsumer),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
