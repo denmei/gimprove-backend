@@ -16,9 +16,10 @@ class SetConsumer(WebsocketConsumer):
         print("Disconnected")
 
     def receive(self, text_data=None, bytes_data=None):
-        message = json.loads(text_data)
-        if self.__message_valid__(message) and not self.anonymousUser:
+        if self.__message_valid__(text_data) and not self.anonymousUser:
             print("Valid")
+            message = json.loads(text_data)
+            print(message)
         else:
             self.send("Invalid message. Disconnect.")
             self.disconnect(400)
@@ -27,11 +28,15 @@ class SetConsumer(WebsocketConsumer):
         profile = UserProfile.objects.get(user=user)
         return profile
 
-    def __message_valid__(self, message):
+    def __message_valid__(self, text_data):
         """
         Checks whether a message has the appropriate format.
         :param message: Message to be checked.
         :return: True if format is OK, False otherwise.
         """
-        # TODO
-        return True
+        try:
+            message = json.loads(text_data)
+            return True
+        except Exception as e:
+            print(e)
+            return False
