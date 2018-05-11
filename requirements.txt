@@ -1,4 +1,4 @@
-asgi_redis==1.4.3
+asgi-redis==1.4.3
 asgiref==2.3.0
 channels==2.1.1
 daphne==2.1.1
@@ -18,5 +18,5 @@ django-smtp-ssl==1.0
 djangorestframework==3.7.7
 django-cors-headers==2.2.0
 setuptools==39.1.0
-redis==2.10.6
+redis==2.10.5
 python-dateutil==2.6.0
