@@ -2,21 +2,21 @@ from channels.generic.websocket import WebsocketConsumer
 from tracker.models.models import UserProfile
 import json
 import logging
+from tracker.models.models import User
 
 
 class SetConsumer(WebsocketConsumer):
 
     def connect(self):
         self.accept()
-        self.user = str(self.scope['user'])
+        self.user = User.objects.get(username=str(self.scope['user']))
         print(self.user)
         self.anonymousUser = (self.user == "AnonymousUser" or self.user is None)
         logger = logging.getLogger('django')
-        logger.info("Connected to %s" % str(self.user))
-        """
         if not self.anonymousUser:
-            self.user_profile = self.__initialize_user__(self.user)
-        self.send("Anonymous User: " + str(self.anonymousUser))"""
+            self.user_profile = self.__initialize_user__(self.user.id)
+            logger.info("Connected to %s, ID: %s, RFID: %s" % (self.user, self.user.id, self.user_profile.rfid_tag))
+        self.send("Anonymous User: " + str(self.anonymousUser))
 
     def disconnect(self, code):
         logger = logging.getLogger('django')
