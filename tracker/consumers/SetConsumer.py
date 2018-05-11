@@ -7,12 +7,18 @@ from tracker.models.models import User
 
 class SetConsumer(WebsocketConsumer):
 
+    def __init__(self):
+        WebsocketConsumer.__init__(self)
+        self.user = None
+        self.anonymousUser = None
+        self.user_profile = None
+        self.logger = logging.getLogger('django')
+
     def connect(self):
         self.accept()
         self.user = User.objects.get(username=str(self.scope['user']))
         print(self.user)
         self.anonymousUser = (self.user == "AnonymousUser" or self.user is None)
-        logger = logging.getLogger('django')
         if not self.anonymousUser:
             self.user_profile = self.__initialize_user__(self.user.id)
             logger.info("Connected to %s, ID: %s, RFID: %s" % (self.user, self.user.id, self.user_profile.rfid_tag))
