@@ -120,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Channel settings for websockets
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
