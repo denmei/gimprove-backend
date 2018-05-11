@@ -7,10 +7,12 @@ class SetConsumer(WebsocketConsumer):
 
     def connect(self):
         self.accept()
-        self.user = self.scope['user']
+        self.user = str(self.scope['user'])
+        print(self.user)
         self.anonymousUser = (self.user == "AnonymousUser" or self.user is None)
         if not self.anonymousUser:
             self.user_profile = self.__initialize_user__(self.user)
+        self.send("Anonymous User: " + str(self.anonymousUser))
 
     def disconnect(self, code):
         print("Disconnected")
@@ -18,6 +20,10 @@ class SetConsumer(WebsocketConsumer):
     def receive(self, text_data=None, bytes_data=None):
         if self.__message_valid__(text_data) and not self.anonymousUser:
             print("Valid")
+            message = json.loads(text_data)
+            print(message)
+        elif self.__message_valid__(text_data):
+            print("Valid, anonymous")
             message = json.loads(text_data)
             print(message)
         else:
@@ -39,4 +45,5 @@ class SetConsumer(WebsocketConsumer):
             return True
         except Exception as e:
             print(e)
+            print("Exception: %s" % text_data)
             return False
