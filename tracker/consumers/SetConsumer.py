@@ -3,6 +3,7 @@ from tracker.models.models import UserProfile
 import json
 import logging
 from tracker.models.models import User
+from asgiref.sync import async_to_sync
 
 
 class SetConsumer(WebsocketConsumer):
@@ -10,37 +11,35 @@ class SetConsumer(WebsocketConsumer):
     def __init__(self, *args, **kwargs):
         self.logger = logging.getLogger('django')
         WebsocketConsumer.__init__(self, *args, **kwargs)
-        self.user = None
-        self.anonymousUser = None
-        self.user_profile = None
 
     def connect(self):
         self.accept()
-        self.user = User.objects.get(username=str(self.scope['user']))
-        print(self.user)
-        self.anonymousUser = (self.user == "AnonymousUser" or self.user is None)
+        user = str(self.scope['user'])
+        anonymousUser = (user == "AnonymousUser" or user is None)
         self.logger = logging.getLogger('django')
-        if not self.anonymousUser:
-            self.user_profile = self.__initialize_user__(self.user.id)
-            self.logger.info("Connected to %s, ID: %s, RFID: %s" % (self.user, self.user.id, self.user_profile.rfid_tag))
-        self.send("Anonymous User: " + str(self.anonymousUser))
+        if not anonymousUser:
+            user = User.objects.get(username=str(self.scope['user']))
+            user_profile = self.__initialize_user__(user.id)
+            self.logger.info("Connected to %s, ID: %s, RFID: %s" % (user, user.id, user_profile.rfid_tag))
+        self.send("Anonymous User: " + str(anonymousUser))
+        async_to_sync(self.channel_layer.group_add)("chat", self.channel_name)
 
     def disconnect(self, code):
-        self.logger.info("Disconnected from %s" % str(self.user))
+        self.logger.info("Disconnected from %s" % self.scope['user'])
+        async_to_sync(self.channel_layer.group_discard)("chat", self.channel_name)
         print("Disconnected")
 
     def receive(self, text_data=None, bytes_data=None):
-        if self.__message_valid__(text_data) and not self.anonymousUser:
+        if self.__message_valid__(text_data):
             print("Valid")
             message = json.loads(text_data)
-            print(message)
-        elif self.__message_valid__(text_data):
-            print("Valid, anonymous")
-            message = json.loads(text_data)
-            print(message)
+            async_to_sync(self.channel_layer.group_send)("chat", {"type": "chat.message", "text": str(message)})
         else:
             self.send("Invalid message. Disconnect.")
             self.disconnect(400)
+
+    def chat_message(self, event):
+        self.send(text_data=event["text"])
 
     def __initialize_user__(self, user):
         profile = UserProfile.objects.get(user=user)
