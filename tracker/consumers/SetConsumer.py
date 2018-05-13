@@ -31,7 +31,7 @@ class SetConsumer(WebsocketConsumer):
 
     def receive(self, text_data=None, bytes_data=None):
         if self.__message_valid__(text_data):
-            print("Valid")
+            print("Valid %s" % text_data)
             message = json.loads(text_data)
             async_to_sync(self.channel_layer.group_send)("chat", {"type": "chat.message", "text": str(message)})
         else:
