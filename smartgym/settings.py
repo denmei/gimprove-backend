@@ -96,6 +96,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'OPTIONS': {
+        #   "init_command": "SET GLOBAL max_connections = 100000",
+        #}
     },
 }
 
@@ -199,5 +202,5 @@ LOGGING = {
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
+db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
