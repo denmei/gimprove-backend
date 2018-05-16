@@ -4,6 +4,7 @@ import json
 import logging
 from tracker.models.models import User
 from asgiref.sync import async_to_sync
+from django.db import close_old_connections
 
 
 class SetConsumer(WebsocketConsumer):
@@ -26,6 +27,7 @@ class SetConsumer(WebsocketConsumer):
     def disconnect(self, code):
         self.logger.info("Disconnected from %s" % self.scope['user'])
         async_to_sync(self.channel_layer.group_discard)("chat", self.channel_name)
+        close_old_connections()
         print("Disconnected")
 
     def receive(self, text_data=None, bytes_data=None):
