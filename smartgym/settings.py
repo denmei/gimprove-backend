@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django_makemessages_xgettext',
     'rest_framework',
     'corsheaders',
-    'channels'
+    'channels',
+    'rest_framework.authtoken'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
