@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url
-
+from rest_framework.authtoken import views as authtoken_views
 from tracker import views
 from tracker.views.serializer_views import userprofile_serializer_view, set_serializer_view, \
     exerciseunit_serializer_view, trainunit_serializer_view
@@ -54,9 +54,6 @@ urlpatterns += [
         name='userprofile_create'),
 ]
 
-"""
-# URLS for websockets
 urlpatterns += [
-    url(r'^ws/(?P<pk>\d+)$', views.set, name='set'),
+    url(r'^rest-auth/', authtoken_views.obtain_auth_token)
 ]
-"""

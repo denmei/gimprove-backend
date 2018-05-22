@@ -21,6 +21,10 @@ from django.conf.urls import url
 from django.views.generic import RedirectView
 from django.conf.urls.i18n import i18n_patterns
 from tracker.consumers.SetConsumer import SetConsumer
+from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
+from rest_framework.authtoken import views as rest_framework_views
 
 urlpatterns = i18n_patterns(
     url(r'^landing_page/', include('landing_page.urls')),
@@ -32,7 +36,11 @@ urlpatterns += [
     url(r'^$', RedirectView.as_view(url='/landing_page/', permanent=True)),
     url(r'^admin/', admin.site.urls),
     url(r'^tracker/', include('tracker.urls.urls')),
-url(r'^/ws/tracker', SetConsumer),
+    url(r'^/ws/tracker', SetConsumer),
+]
+
+urlpatterns = [
+    url(r'^get_auth_token/$', rest_framework_views.obtain_auth_token, name='get_auth_token'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

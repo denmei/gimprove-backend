@@ -1,6 +1,6 @@
 from rest_framework import generics
 from tracker.serializers.UserProfileSerializer import *
-
+from rest_framework.permissions import IsAuthenticated
 from tracker.serializers.SetSerializer import *
 
 
@@ -8,6 +8,7 @@ from tracker.serializers.SetSerializer import *
 
 
 class SetList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     """
     Class for creating new sets or retrieving a list of sets.
     """

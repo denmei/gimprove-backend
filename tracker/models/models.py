@@ -12,9 +12,16 @@ from django.core.exceptions import ValidationError
 from datetime import timedelta, datetime
 import dateutil.parser as date_parser
 import json
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 
-# Create your models here.
 def get_image_path(instance, filename):
     return os.path.join('photos', str(instance.pk), filename)
 
