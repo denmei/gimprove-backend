@@ -243,6 +243,7 @@ class Equipment(models.Model):
     """
     Represents a unique machine within a studio.
     """
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     exercises = models.ManyToManyField(Exercise, blank=False)
     gym = models.ForeignKey(GymProfile, on_delete=models.DO_NOTHING)
