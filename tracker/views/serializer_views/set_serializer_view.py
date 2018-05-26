@@ -17,6 +17,7 @@ class SetList(generics.ListCreateAPIView):
 
 
 class SetDetail(generics.RetrieveUpdateDestroyAPIView):
+    # TODO: Check for all requests whether only the data of the user the request is coming from is changed/accessed!
     """
     View to retrieve, update or delete sets via http request.
     """
