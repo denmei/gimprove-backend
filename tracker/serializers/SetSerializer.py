@@ -37,7 +37,7 @@ class SetSerializer(serializers.ModelSerializer):
 
         # Check whether exercise_name and equipment fit:
         fit = False
-        for exercise in Equipment.objects.get(id=equipment_id_r).exercises.all():
+        for exercise in Equipment.objects.get(ident=equipment_id_r).exercises.all():
             if exercise.name == exercise_name_r:
                 fit = True
                 break
@@ -118,7 +118,7 @@ class SetSerializer(serializers.ModelSerializer):
         """
         Check whether the provided exercise name exists.
         """
-        if not Equipment.objects.filter(id=value).exists():
+        if not Equipment.objects.filter(ident=value).exists():
             raise serializers.ValidationError('Equipment-ID does not exist."')
         return value
 

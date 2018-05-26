@@ -5,22 +5,22 @@
     "fields": {
         "bio": "",
         "profile_image": "",
-        "date_of_birth": "1991-03-11",
+        "date_of_birth": "1990-05-26",
         "rfid_tag": "0006921147",
         "_pr_active_set": null,
-        "gym": [],
+        "gym": [
+            3
+        ],
         "achievements": []
     }
 },
 {
     "model": "tracker.gymprofile",
-    "pk": 2,
+    "pk": 3,
     "fields": {
         "bio": "",
         "profile_image": "",
-        "members": [
-            1
-        ]
+        "members": []
     }
 },
 {
@@ -28,140 +28,74 @@
     "pk": "Lat Pulldown",
     "fields": {
         "description": "None",
+        "gimprove_system": true,
         "muscles": [
-            "Back"
+            "Lat"
         ],
-        "equipment_machine": [
-            "653c9ed3-8b00-4f52-bbc8-3fba95dc81cf"
-        ]
+        "equipment_machine": ["653c9ed3-8b00-4f52-bbc8-3fba95dc81cf"]
     }
 },
 {
-    "model": "tracker.muscle",
+    "model": "tracker.musclegroup",
     "pk": "Back",
     "fields": {}
 },
 {
-    "model": "tracker.trainunit",
-    "pk": "1365f2a3-d9c6-4d06-90ba-15d9e2a24728",
+    "model": "tracker.muscle",
+    "pk": "Lat",
     "fields": {
-        "start_time_date": "2018-04-04T05:16:30.980Z",
-        "end_time_date": "2018-04-04T05:57:08.635Z",
-        "date": "2018-04-04",
-        "user": 1
+        "muscle_group": "Back"
     }
 },
 {
     "model": "tracker.trainunit",
-    "pk": "41e1a5cf-a810-47e4-8d7e-bb8b60f29312",
+    "pk": "21ac5e78-9779-43f8-b18a-f2fb7ac86efc",
     "fields": {
-        "start_time_date": "2018-04-19T05:35:42.871Z",
-        "end_time_date": "2018-04-19T05:35:42.871Z",
-        "date": "2018-04-19",
-        "user": 1
-    }
-},
-{
-    "model": "tracker.trainunit",
-    "pk": "f9653376-e906-444b-8b8f-11a1e2f903b6",
-    "fields": {
-        "start_time_date": "2018-04-20T06:05:53.941Z",
-        "end_time_date": "2018-04-20T06:05:53.941Z",
-        "date": "2018-04-20",
+        "start_time_date": "2018-05-26T08:59:29Z",
+        "end_time_date": "2018-05-26T10:59:29Z",
+        "date": "2018-05-26",
         "user": 1
     }
 },
 {
     "model": "tracker.exerciseunit",
-    "pk": "75e9808f-b589-4018-bede-f9867dc67ebb",
+    "pk": "00da5a6d-af0d-4a7a-a7dc-3df24a91352b",
     "fields": {
-        "time_date": "2018-04-19T05:35:42.882Z",
-        "train_unit": "41e1a5cf-a810-47e4-8d7e-bb8b60f29312",
-        "exercise": "Lat Pulldown"
-    }
-},
-{
-    "model": "tracker.exerciseunit",
-    "pk": "7f81dbe5-e074-4a46-89c9-5024839b985b",
-    "fields": {
-        "time_date": "2018-04-20T05:03:35.622Z",
-        "train_unit": "f9653376-e906-444b-8b8f-11a1e2f903b6",
-        "exercise": "Lat Pulldown"
-    }
-},
-{
-    "model": "tracker.exerciseunit",
-    "pk": "d48b5f09-a186-433d-805a-e97c7c0e1e59",
-    "fields": {
-        "time_date": "2018-04-04T05:16:31.003Z",
-        "train_unit": "1365f2a3-d9c6-4d06-90ba-15d9e2a24728",
+        "time_date": "2018-05-26T10:50:49Z",
+        "train_unit": "21ac5e78-9779-43f8-b18a-f2fb7ac86efc",
         "exercise": "Lat Pulldown"
     }
 },
 {
     "model": "tracker.set",
-    "pk": "2b9e9372-1327-46b1-b362-7c6e231f6a0e",
+    "pk": "c01fbdc6-6a80-4bdf-8375-cd7736790e65",
     "fields": {
-        "date_time": "2018-04-19T05:35:42.888Z",
-        "exercise_unit": "75e9808f-b589-4018-bede-f9867dc67ebb",
+        "date_time": "2018-05-26T11:00:06Z",
+        "exercise_unit": "00da5a6d-af0d-4a7a-a7dc-3df24a91352b",
         "repetitions": 1,
-        "weight": 10,
-        "durations": "",
-        "last_update": "2018-04-19T05:35:42.888Z"
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "836c28ed-b007-41d5-b1ff-bf8ba0b4a05d",
-    "fields": {
-        "date_time": "2018-04-04T07:57:08Z",
-        "exercise_unit": "d48b5f09-a186-433d-805a-e97c7c0e1e59",
-        "repetitions": 10,
-        "weight": 10,
-        "durations": "[0.37971, 0.463878, 0.4979, 0.510449, 0.515656, 0.467981, 0.497059, 0.470184, 0.470682, 0.523535]",
-        "last_update": "2018-04-04T05:57:17.110Z"
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "b153ad22-345e-4364-b751-138b5921cece",
-    "fields": {
-        "date_time": "2018-04-20T05:03:35.622Z",
-        "exercise_unit": "7f81dbe5-e074-4a46-89c9-5024839b985b",
-        "repetitions": 10,
-        "weight": 10,
-        "durations": "[0.396107, 0.475562, 0.496072, 0.511568, 0.523774, 0.469096, 0.541798, 0.504156, 0.51555, 0.536114]",
-        "last_update": "2018-04-20T05:03:43.463Z"
-    }
-},
-{
-    "model": "tracker.set",
-    "pk": "f78692a8-3bdd-4a53-a102-fc1f6a2752c5",
-    "fields": {
-        "date_time": "2018-04-04T07:50:11Z",
-        "exercise_unit": "d48b5f09-a186-433d-805a-e97c7c0e1e59",
-        "repetitions": 10,
-        "weight": 10,
-        "durations": "[0.373925, 0.479326, 0.474428, 0.485449, 0.519376, 0.462619, 0.50936, 0.485263, 0.46862, 0.552955]",
-        "last_update": "2018-04-04T05:50:19.586Z"
+        "weight": 10.0,
+        "durations": "[2.0]",
+        "auto_tracking": true,
+        "last_update": "2018-05-26T11:00:06Z"
     }
 },
 {
     "model": "tracker.equipment",
     "pk": "653c9ed3-8b00-4f52-bbc8-3fba95dc81cf",
     "fields": {
-        "gym": 2,
+        "user": 2,
+        "gym": 3,
         "exercises": [
             "Lat Pulldown"
         ]
     }
 },
-    {
+{
     "model": "auth.user",
     "pk": 1,
     "fields": {
-        "password": "pbkdf2_sha256$100000$VDCmvZjxXXvc$Ti2mbNwTFZ3YAr92HM5cO1LcBIQfa4d2s6qMFf0/FUk=",
-        "last_login": "2018-04-20T04:57:34.710Z",
+        "password": "pbkdf2_sha256$100000$IH1VaB7XkxIP$ZZ8QjQWee4LKyTY6OqGp757gxVrWaibEtJKZPy60Ri4=",
+        "last_login": "2018-05-26T10:09:24.987Z",
         "is_superuser": true,
         "username": "dennis",
         "first_name": "",
@@ -169,7 +103,7 @@
         "email": "",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2018-03-11T09:57:12.270Z",
+        "date_joined": "2018-05-26T10:09:21.708Z",
         "groups": [],
         "user_permissions": []
     }
@@ -178,16 +112,34 @@
     "model": "auth.user",
     "pk": 2,
     "fields": {
-        "password": "pbkdf2_sha256$100000$Fg3MkFn8YGVi$A1m8wC5Xv/v74/j/ODLMDsYL/K/qMXc+JyGgDUlQkQA=",
+        "password": "pbkdf2_sha256$100000$HMrSKXTanIub$HF+E70YtLnRIsO7LfUHshbQbiwDk0NNvAhTMaJPfyp0=",
         "last_login": null,
         "is_superuser": false,
-        "username": "test_gym",
+        "username": "rasppi-1",
         "first_name": "",
         "last_name": "",
         "email": "",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2018-03-11T09:58:45.172Z",
+        "date_joined": "2018-05-26T10:09:41.229Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$100000$daLJgUKqprlb$da1KJHtMH9bFbmwrtC/uZsSYYHcN0/ckP9ZfNv9c1IY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "testgym",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2018-05-26T10:09:58.169Z",
         "groups": [],
         "user_permissions": []
     }

@@ -18,6 +18,7 @@ class UserProfileSerializerTest(APITestCase):
         self.user = UserProfile.objects.all()[0].user
         self.active_set = UserProfile.objects.all()[0].active_set
         self.gym = GymProfile.objects.first()
+        self.header = {'Authorization': 'Token ' + str(self.user.auth_token)}
 
     @override_settings(DEBUG=True)
     def test_userprofile_creation(self):
@@ -27,7 +28,7 @@ class UserProfileSerializerTest(APITestCase):
         data = {'date_of_birth': "1991-11-20", 'gym': self.gym.user.id, 'rfid_tag': "1234567890",
                 'achievements': None, 'active_set': None, 'bio': "Test", 'profile_image': None,
                 'username': 'test create'}
-        response = self.c.post(self.pre_http + reverse('userprofile_create'), data)
+        response = self.c.post(self.pre_http + reverse('userprofile_create'), data, headers=self.header)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(UserProfile.objects.last().gym.first(), self.gym)
 
@@ -39,12 +40,13 @@ class UserProfileSerializerTest(APITestCase):
         data = {'date_of_birth': "1991-11-20", 'gym': self.gym.user.id, 'rfid_tag': "1234567890",
                 'achievements': None, 'active_set': None, 'bio': "Test", 'profile_image': None,
                 'username': 'test delete'}
-        response_id = json.loads(self.c.post(self.pre_http + reverse('userprofile_create'), data)
+        response_id = json.loads(self.c.post(self.pre_http + reverse('userprofile_create'), data, headers=self.header)
                                  .content.decode("utf-8"))['user']
         active_users_1 = len(User.objects.filter(is_active=True))
         users_1 = len(User.objects.all())
         # delete account
-        delete_request = self.c.delete(self.pre_http + reverse('userprofile_detail', kwargs={'pk': response_id}))
+        delete_request = self.c.delete(self.pre_http + reverse('userprofile_detail',
+                                                               kwargs={'pk': response_id}), headers=self.header)
         active_users_2 = len(User.objects.filter(is_active=True))
         users_2 = len(User.objects.all())
         self.assertEqual(delete_request.status_code, 204)
@@ -55,7 +57,8 @@ class UserProfileSerializerTest(APITestCase):
         """
         Tests whether a UserProfile can be retrieved properly by the User-Id.
         """
-        response = self.c.get(self.pre_http + reverse('userprofile_detail', kwargs={'pk': self.user.id}))
+        response = self.c.get(self.pre_http + reverse('userprofile_detail', kwargs={'pk': self.user.id}),
+                              headers=self.header)
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
         if content['_pr_active_set'] is None:
@@ -67,7 +70,8 @@ class UserProfileSerializerTest(APITestCase):
         """
         Tests whether a UserProfile can be retrieved properly by the User-RFID-Number.
         """
-        response = self.c.get(self.pre_http + reverse('userprofile_rfid_detail', kwargs={'rfid_tag': self.rfid_tag}))
+        response = self.c.get(self.pre_http + reverse('userprofile_rfid_detail', kwargs={'rfid_tag': self.rfid_tag}),
+                              headers=self.header)
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
         if content['_pr_active_set'] is None:

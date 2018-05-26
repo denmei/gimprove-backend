@@ -17,19 +17,21 @@ class TrainUnitSerializerTest(APITestCase):
         self.user = UserProfile.objects.all()[0].user
         self.active_set = UserProfile.objects.all()[0].active_set
         self.gym = GymProfile.objects.first()
+        self.header = {'Authorization': 'Token ' + str(self.user.auth_token)}
 
     def test_trainunit_retrieval(self):
         """
         Test whether list-interface works properly.
         """
-        response = self.c.get(self.pre_http + reverse('trainunit_list'))
+        response = self.c.get(self.pre_http + reverse('trainunit_list'), headers=self.header)
         self.assertEqual(response.status_code, 200)
 
     def test_trainunit_retrieval_by_user(self):
         """
         Tests whether TrainUnits for a specific user can be retrieved.
         """
-        response = self.c.get(self.pre_http + reverse('trainunit_user_list', kwargs={'user': self.user.id}))
+        response = self.c.get(self.pre_http + reverse('trainunit_user_list', kwargs={'user': self.user.id}),
+                              headers=self.header)
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
 
@@ -49,7 +51,7 @@ class TrainUnitSerializerTest(APITestCase):
             set_count_before += len(Set.objects.filter(exercise_unit=exercise_unit))
         self.assertNotEqual(set_count_before, 0)
         # delete trainunit
-        response = self.c.delete(self.pre_http + reverse('trainunit_detail', kwargs={'pk': test_unit.id}))
+        response = self.c.delete(self.pre_http + reverse('trainunit_detail', kwargs={'pk': test_unit.id}), headers=self.header)
         # check whether exerciseunit and its sets were deleted
         exerciseunit_count_after = len(ExerciseUnit.objects.filter(train_unit=test_unit))
         self.assertEqual(exerciseunit_count_after, 0)
