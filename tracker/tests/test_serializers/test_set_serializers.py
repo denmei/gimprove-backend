@@ -235,3 +235,23 @@ class SetSerializerTest(APITestCase):
         self.assertEqual(ExerciseUnit.objects.filter(id=exercise_unit.id).count(), 0)
         self.assertEqual(TrainUnit.objects.filter(id=train_unit.id).count(), 0)
         self.assertEqual(response.status_code, 204)
+
+    def test_not_authenticated_request(self):
+        """
+        Every request has to come from an authenticated user. If user is not authenticated, answer with 401 status.
+        """
+        # generate request data
+        repetitions = 10
+        weight = 60
+        train_unit = TrainUnit.objects.filter(user=UserProfile.objects.first())[0]
+        exercise_unit = train_unit.exerciseunit_set.first()
+        exercise_name = exercise_unit.exercise
+        date_time = exercise_unit.time_date
+        equipment_id = Equipment.objects.first().ident
+        durations = random.sample(range(1, 20), repetitions)
+        # make request and test
+        data = {'exercise_unit': exercise_unit.id, 'repetitions': repetitions, 'weight': weight,
+                'exercise_name': exercise_name, 'rfid': self.rfid, 'date_time': date_time, 'equipment_id': equipment_id,
+                'active': False, 'durations': json.dumps(durations)}
+        response = self.c.post(self.pre_http + reverse('set_list'), data, headers=self.header)
+        self.assertEqual(response.status_code, 401)
