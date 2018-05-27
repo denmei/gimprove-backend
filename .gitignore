@@ -13,6 +13,8 @@ tests/.coverage
 build/
 tests/report/
 
+*.sqlite3
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
