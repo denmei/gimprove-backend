@@ -253,5 +253,5 @@ class SetSerializerTest(APITestCase):
         data = {'exercise_unit': exercise_unit.id, 'repetitions': repetitions, 'weight': weight,
                 'exercise_name': exercise_name, 'rfid': self.rfid, 'date_time': date_time, 'equipment_id': equipment_id,
                 'active': False, 'durations': json.dumps(durations)}
-        response = self.c.post(self.pre_http + reverse('set_list'), data, headers=self.header)
+        response = self.c.post(self.pre_http + reverse('set_list'), data)
         self.assertEqual(response.status_code, 401)
