@@ -134,6 +134,7 @@ class Exercise(models.Model):
     muscles = models.ManyToManyField('Muscle', help_text="Muscles trained by the exercise.")
     equipment_machine = models.ManyToManyField('Equipment', help_text="Necessary equipment for the exercise.", blank=True)
     gimprove_system = models.BooleanField(blank=False, null=False, default=False)
+    # TODO: Auto-fill equipment machine when a new equipment for this exercise is created!
 
     def __str__(self):
         return self.name
@@ -244,12 +245,12 @@ class Equipment(models.Model):
     Represents a unique machine within a studio.
     """
     user = models.ForeignKey(User, related_name="user", on_delete=models.CASCADE)
-    ident = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     exercises = models.ManyToManyField(Exercise, blank=False)
     gym = models.ForeignKey(GymProfile, related_name="gym", on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return str(self.gym) + ": " + str(self.ident)[0:5]
+        return str(self.gym) + ": " + str(self.id)[0:5]
 
 
 class Achievement(models.Model):
