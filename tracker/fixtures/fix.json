@@ -93,6 +93,19 @@
     }
 },
 {
+    "model": "tracker.set",
+    "pk": "c01fbdc6-6a80-4bdf-8375-cd7736790e95",
+    "fields": {
+        "date_time": "2018-05-26T11:00:06Z",
+        "exercise_unit": "00da5a6d-af0d-4a7a-a7dc-3df24a91352b",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[2.0]",
+        "auto_tracking": true,
+        "last_update": "2018-05-26T11:00:06Z"
+    }
+},
+{
     "model": "tracker.equipment",
     "pk": "653c9ed3-8b00-4f52-bbc8-3fba95dc81cf",
     "fields": {

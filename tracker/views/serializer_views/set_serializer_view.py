@@ -12,8 +12,15 @@ class SetList(generics.ListCreateAPIView):
     """
     Class for creating new sets or retrieving a list of sets.
     """
-    queryset = Set.objects.all()
     serializer_class = SetSerializer
+
+    def get_queryset(self):
+        # TODO: Directly filter sets for userprofile to avoid trainunit- and exerciseunit filtering!
+        user = self.request.user
+        userprofile = UserProfile.objects.get(user=user)
+        trainunits = TrainUnit.objects.filter(user=userprofile)
+        exerciseunits = ExerciseUnit.objects.filter(train_unit__in=trainunits)
+        return Set.objects.filter(exercise_unit__in=exerciseunits)
 
 
 class SetDetail(generics.RetrieveUpdateDestroyAPIView):
