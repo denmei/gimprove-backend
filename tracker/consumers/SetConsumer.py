@@ -50,6 +50,7 @@ class SetConsumer(WebsocketConsumer):
         self.send(text_data=event["text"])
 
     def __initialize_user__(self, user):
+        print("USER: %s" % user)
         profile = UserProfile.objects.get(user=user)
         return profile
 

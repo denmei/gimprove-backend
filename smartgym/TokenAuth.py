@@ -13,10 +13,10 @@ class TokenAuthMiddleware:
 
     def __call__(self, scope):
         headers = dict(scope['headers'])
-        print(scope)
         if b'authorization' in headers:
             try:
                 token_name, token_key = headers[b'authorization'].decode().split()
+                print("TOKENKEY: %s" % token_key)
                 if token_name == 'Token':
                     token = Token.objects.get(key=token_key)
                     scope['user'] = token.user
