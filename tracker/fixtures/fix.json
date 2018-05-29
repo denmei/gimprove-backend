@@ -49,6 +49,16 @@
 },
 {
     "model": "tracker.trainunit",
+    "pk": "361fc5b4-64a3-464b-94e6-33108bf1ac19",
+    "fields": {
+        "start_time_date": "2018-05-29T17:51:21.777Z",
+        "end_time_date": "2018-05-29T17:51:21.777Z",
+        "date": "2018-05-29",
+        "user": 1
+    }
+},
+{
+    "model": "tracker.trainunit",
     "pk": "e4654266-c3dd-4a18-804e-d08a80196d90",
     "fields": {
         "start_time_date": "2018-05-28T15:01:48Z",
@@ -59,11 +69,85 @@
 },
 {
     "model": "tracker.exerciseunit",
+    "pk": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+    "fields": {
+        "time_date": "2018-05-29T17:51:21.777Z",
+        "train_unit": "361fc5b4-64a3-464b-94e6-33108bf1ac19",
+        "exercise": "Lat Pulldown"
+    }
+},
+{
+    "model": "tracker.exerciseunit",
     "pk": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
     "fields": {
         "time_date": "2018-05-28T16:02:13Z",
         "train_unit": "e4654266-c3dd-4a18-804e-d08a80196d90",
         "exercise": "Lat Pulldown"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "003a9531-ea90-44e6-b23d-453aab33a125",
+    "fields": {
+        "date_time": "2018-05-28T17:27:42.353Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:27:42.480Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "00b1456f-c57a-4a0f-8465-641d5725dde7",
+    "fields": {
+        "date_time": "2018-05-28T17:35:34.878Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:35:34.996Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "026740c0-567b-4d78-b2cb-135e58181371",
+    "fields": {
+        "date_time": "2018-05-28T17:32:20.095Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:32:20.192Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "0a622fc7-cc91-4714-ad45-fc2ae7200e15",
+    "fields": {
+        "date_time": "2018-05-28T17:15:32.262Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:15:32.282Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "118f3eda-30dc-4c61-a105-7a44a39577ef",
+    "fields": {
+        "date_time": "2018-05-28T17:36:32.476Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:36:32.599Z"
     }
 },
 {
@@ -81,6 +165,201 @@
 },
 {
     "model": "tracker.set",
+    "pk": "2838cbf4-ff49-4a9a-a3c1-e230829856d6",
+    "fields": {
+        "date_time": "2018-05-28T17:19:57.115Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[17, 1, 19, 9, 11]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:19:57.237Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "2a159835-37f6-412d-8a85-2b2fd3477f02",
+    "fields": {
+        "date_time": "2018-05-28T17:32:19.781Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:32:19.796Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "2c19c0d0-a91c-433f-be84-8e25e3f12de2",
+    "fields": {
+        "date_time": "2018-05-29T17:54:24.628Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.186043, 1.175968, 1.149678, 1.504917, 1.544883, 1.268327, 1.272669, 1.358825, 1.320099, 1.356373]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T17:54:40.984Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "2f4f83e9-f106-4687-8009-ae29267b9e9e",
+    "fields": {
+        "date_time": "2018-05-28T17:37:59.085Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:37:59.102Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "2f74a9c2-a416-48df-b78b-57c78817767d",
+    "fields": {
+        "date_time": "2018-05-28T17:32:21.525Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[6, 11, 3, 18, 16]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:32:21.625Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "30a082e5-4121-48f3-85b6-86e4ebab6152",
+    "fields": {
+        "date_time": "2018-05-28T17:42:20.074Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:42:20.201Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "31baf09f-7654-44e1-a5c5-0006b26d5aad",
+    "fields": {
+        "date_time": "2018-05-28T17:28:55.305Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:28:55.324Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "383da6b6-c281-4ed6-8903-1725c4342589",
+    "fields": {
+        "date_time": "2018-05-29T17:51:21.777Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.362487, 1.521344, 1.35526, 1.381308, 1.714768, 1.527476, 1.561972, 1.656817, 1.503288, 1.608038]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T17:51:40.288Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "408b9c7b-724b-42cf-a091-27dd0f7aeec0",
+    "fields": {
+        "date_time": "2018-05-28T17:35:34.568Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:35:34.594Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "4a2e05f6-5802-4e5f-a2ae-7489e17eb09f",
+    "fields": {
+        "date_time": "2018-05-28T17:30:18.253Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:30:18.269Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "4cd77894-5e54-4c19-ae1c-fcb736f0f8d0",
+    "fields": {
+        "date_time": "2018-05-28T17:35:36.322Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[13, 7, 12, 3, 16]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:35:36.443Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "4f45cf1d-9737-4d58-b6a1-e5618828a716",
+    "fields": {
+        "date_time": "2018-05-28T17:36:32.157Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:36:32.173Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "57488bf4-6bb4-47f4-a2c8-9fa87af3ed91",
+    "fields": {
+        "date_time": "2018-05-28T17:41:00.781Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:41:00.797Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "5b286c6b-189e-4746-9645-3ce72276307d",
+    "fields": {
+        "date_time": "2018-05-29T17:52:39.849Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.226199, 1.402176, 1.248278, 1.537667, 1.546154, 1.445605, 1.344062, 1.413782, 1.272935, 1.360853]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T17:52:56.841Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "5bf43ab8-d359-4324-8151-1c32aa26e082",
+    "fields": {
+        "date_time": "2018-05-28T17:42:19.656Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:42:19.704Z"
+    }
+},
+{
+    "model": "tracker.set",
     "pk": "60922858-5ec6-4c63-b084-04cf2fe3c083",
     "fields": {
         "date_time": "2018-05-28T16:02:27Z",
@@ -94,15 +373,509 @@
 },
 {
     "model": "tracker.set",
-    "pk": "c01fbdc6-6a80-4bdf-8375-cd7736790e95",
+    "pk": "6cd73ce4-d6e1-4b85-a53d-0938907f7a39",
     "fields": {
-        "date_time": "2018-05-26T11:00:06Z",
-        "exercise_unit": "00da5a6d-af0d-4a7a-a7dc-3df24a91352b",
+        "date_time": "2018-05-28T17:20:38.655Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
         "repetitions": 1,
         "weight": 10.0,
-        "durations": "[2.0]",
-        "auto_tracking": true,
-        "last_update": "2018-05-26T11:00:06Z"
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:20:38.902Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "7076b163-72a7-41d3-ad9f-d2455dbd7b3e",
+    "fields": {
+        "date_time": "2018-05-28T17:17:59.553Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:17:59.589Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "70c2fde4-5969-4997-afde-63e9b7220fb2",
+    "fields": {
+        "date_time": "2018-05-28T17:25:18.063Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[14, 2, 18, 1, 4]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:25:18.201Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "7673bce8-91e3-499d-a492-21814ced1b92",
+    "fields": {
+        "date_time": "2018-05-28T17:17:43.562Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:17:43.677Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "786ed0ac-1c55-42aa-8e5c-5aac746e7dca",
+    "fields": {
+        "date_time": "2018-05-28T17:37:59.401Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:37:59.512Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "849bf096-5d5f-43ea-954a-7f05d5a98da5",
+    "fields": {
+        "date_time": "2018-05-28T17:42:23.778Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:42:23.842Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "866fa8b7-ed4b-4485-a724-3b826930c283",
+    "fields": {
+        "date_time": "2018-05-28T17:19:55.520Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:19:55.620Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "88aebcd1-7485-4efa-90e2-6aed5de1ec81",
+    "fields": {
+        "date_time": "2018-05-28T17:27:43.780Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[17, 14, 1, 6, 10]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:27:43.930Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "88b24b92-39ff-40f9-bf5b-d761fdc8630b",
+    "fields": {
+        "date_time": "2018-05-28T17:25:16.529Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:25:16.675Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "89067b55-ae84-44de-8625-c6dcbdd2f4bc",
+    "fields": {
+        "date_time": "2018-05-29T18:20:14.731Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.228543, 1.527499, 1.119149, 1.195927, 1.466662, 1.306684, 1.475764, 1.513518, 1.284001, 1.411747]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:20:31.424Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "927d3b47-ce61-4765-879b-26a7479e8997",
+    "fields": {
+        "date_time": "2018-05-28T17:42:21.485Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[7, 10, 5, 17, 12]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:42:21.579Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "928d0768-6e53-49de-a52e-bd5c1b9a8e86",
+    "fields": {
+        "date_time": "2018-05-28T17:17:45.205Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[13, 8, 17, 2, 1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:17:45.319Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "946d6647-6be9-4067-9fbc-7fb14616a256",
+    "fields": {
+        "date_time": "2018-05-29T18:03:27.159Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.150855, 1.254484, 1.396888, 1.379851, 1.549558, 1.316824, 1.398337, 1.362164, 1.323705, 1.448976]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:03:43.649Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "976a2850-1d10-4d38-8671-aa2c1ffaacea",
+    "fields": {
+        "date_time": "2018-05-29T18:08:09.712Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.261038, 1.535713, 1.049694, 0.860322, 1.54241, 1.393221, 1.540428, 1.244659, 1.324516, 1.451186]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:08:26.114Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "9d46a325-49e6-4c26-a186-afd6cdc6f86b",
+    "fields": {
+        "date_time": "2018-05-29T18:11:20.019Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.216666, 1.416164, 1.405232, 1.37094, 1.504934, 1.24769, 1.420719, 1.486136, 1.518831, 1.449991]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:11:37.271Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "9d4d32c4-397d-4462-98ef-5007341a837b",
+    "fields": {
+        "date_time": "2018-05-28T17:28:57.208Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[12, 18, 8, 15, 1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:28:57.350Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "a0825770-9392-4400-b0df-9763fa611ec0",
+    "fields": {
+        "date_time": "2018-05-29T18:16:41.991Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.211613, 1.470413, 1.203836, 1.210679, 1.306777, 1.262912, 1.560079, 1.448009, 1.465534, 1.583299]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:16:59.014Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "a43aa9d1-22cf-4653-ac8b-c269daddde5b",
+    "fields": {
+        "date_time": "2018-05-29T18:19:03.495Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.206592, 1.389508, 1.331379, 1.304292, 1.236993, 1.326115, 1.377835, 1.178723, 1.165583, 0.726488]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:19:18.347Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "a9e2d5f5-af3d-4ca1-94b1-c889f7e3b002",
+    "fields": {
+        "date_time": "2018-05-28T17:36:33.968Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[12, 8, 6, 13, 15]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:36:34.126Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "ab119fec-962f-4331-8974-6f34d01e44a3",
+    "fields": {
+        "date_time": "2018-05-29T18:17:59.706Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.279285, 1.009681, 0.775765, 1.39528, 1.464129, 1.291075, 1.495524, 1.396865, 1.172835, 1.209673]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:18:15.373Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "afb8600d-aa35-45e4-8e95-b99be6479ae4",
+    "fields": {
+        "date_time": "2018-05-28T17:28:55.679Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:28:55.815Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "b090112e-2247-40c8-8c07-22de0c33c5c5",
+    "fields": {
+        "date_time": "2018-05-28T17:27:41.963Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:27:41.980Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "b2c24d19-d8ed-42bd-91f8-73a7e8501f0a",
+    "fields": {
+        "date_time": "2018-05-28T17:25:16.240Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:25:16.255Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "ba7eec30-7866-4f12-abaa-8466ea13cb3c",
+    "fields": {
+        "date_time": "2018-05-29T18:12:09.112Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[0.995941, 1.161747, 1.358177, 1.312609, 0.913173, 0.940687, 1.426456, 1.243425, 1.116171, 0.989624]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:12:23.750Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "ba9007c1-fad5-4488-913f-da6414dc3b98",
+    "fields": {
+        "date_time": "2018-05-28T17:20:37.562Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:20:37.606Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "bb70b768-59e2-469d-9acc-c771e982cabe",
+    "fields": {
+        "date_time": "2018-05-28T17:30:20.199Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[3, 7, 14, 8, 10]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:30:20.324Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "bf9e2b65-50aa-430d-bf1f-935a22f05f89",
+    "fields": {
+        "date_time": "2018-05-28T17:17:43.049Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:17:43.067Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "ce52b65a-2cf9-4596-bb35-096dc3d5c8ea",
+    "fields": {
+        "date_time": "2018-05-28T17:20:11.308Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:20:11.352Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "d6bae37e-ed45-4b55-9924-c676c308dfb1",
+    "fields": {
+        "date_time": "2018-05-29T18:15:14.476Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.049751, 1.185363, 0.788898, 0.916761, 1.634999, 1.341649, 1.372032, 1.346675, 1.299498, 1.503296]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:15:30.206Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "d8a8bdb5-f214-4e28-8aa3-d476535c132e",
+    "fields": {
+        "date_time": "2018-05-29T17:56:11.078Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.394942, 1.097995, 1.100612, 1.469198, 1.616819, 1.393881, 1.618766, 1.473588, 1.244615, 1.443291]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T17:56:27.268Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "de861473-4192-445d-a392-7da063af0e73",
+    "fields": {
+        "date_time": "2018-05-29T17:57:01.560Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.150413, 1.114367, 1.439782, 1.517603, 1.521119, 1.30636, 1.349314, 1.403428, 1.389549, 1.420164]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T17:57:18.074Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "e0aecf4f-6c32-409f-a532-cc7b02dbeedd",
+    "fields": {
+        "date_time": "2018-05-28T17:19:55.049Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 0,
+        "weight": 0.0,
+        "durations": "",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:19:55.064Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "e48b27f8-e8c8-4513-8cba-b85b7a4147c8",
+    "fields": {
+        "date_time": "2018-05-28T17:30:18.590Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:30:18.798Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "e5c5cfaa-18fe-4938-a611-b299228ec738",
+    "fields": {
+        "date_time": "2018-05-28T17:41:01.118Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 1,
+        "weight": 10.0,
+        "durations": "[0.1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:41:01.280Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "e8cab6ee-d5d4-4e88-8a77-b18d5364079c",
+    "fields": {
+        "date_time": "2018-05-28T17:41:02.680Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[2, 10, 17, 5, 12]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:41:02.792Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "f72ee0c5-8b69-4656-8c8e-165dbda66761",
+    "fields": {
+        "date_time": "2018-05-29T18:20:41.697Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.160697, 1.095634, 1.060418, 1.286276, 1.41145, 1.110103, 1.477835, 1.430933, 1.330175, 1.513516]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:20:57.815Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "fa69357d-f982-4f6e-aa72-12009a7622e1",
+    "fields": {
+        "date_time": "2018-05-28T17:38:00.784Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[2, 19, 16, 5, 1]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:38:00.940Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "fe86c95a-9e67-423e-b34b-ba752f6eb88b",
+    "fields": {
+        "date_time": "2018-05-28T17:20:40.433Z",
+        "exercise_unit": "aec47ebb-6fd2-45d2-a8b2-d0767a455d88",
+        "repetitions": 5,
+        "weight": 5.0,
+        "durations": "[4, 13, 15, 3, 10]",
+        "auto_tracking": false,
+        "last_update": "2018-05-28T17:20:40.554Z"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "feaef9d5-e83d-47b6-b368-b7af2caec490",
+    "fields": {
+        "date_time": "2018-05-29T18:09:50.650Z",
+        "exercise_unit": "a2045a2b-5161-47bb-8078-3274fb5e3908",
+        "repetitions": 10,
+        "weight": 14.6,
+        "durations": "[1.144504, 1.362932, 1.310346, 1.344235, 1.485784, 1.386819, 1.467257, 1.508789, 1.34901, 1.604558]",
+        "auto_tracking": false,
+        "last_update": "2018-05-29T18:10:07.890Z"
     }
 },
 {
@@ -116,7 +889,7 @@
         ]
     }
 },
-{
+    {
     "model": "auth.user",
     "pk": 1,
     "fields": {
