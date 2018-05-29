@@ -5,7 +5,6 @@ import logging
 from tracker.models.models import User
 from asgiref.sync import async_to_sync
 from django.db import close_old_connections
-from channels.auth import login
 
 
 class SetConsumer(WebsocketConsumer):
@@ -15,20 +14,19 @@ class SetConsumer(WebsocketConsumer):
         WebsocketConsumer.__init__(self, *args, **kwargs)
 
     def connect(self):
-        self.accept()
-        print(self.scope)
         user = str(self.scope['user'])
         anonymousUser = (user == "AnonymousUser" or user is None)
         self.logger = logging.getLogger('django')
         if not anonymousUser:
+            self.accept()
             user = User.objects.get(username=str(self.scope['user']))
-            user_profile = self.__initialize_user__(user.id)
-            self.logger.info("Connected to %s, ID: %s, RFID: %s" % (user, user.id, user_profile.rfid_tag))
-            print("Connected to %s, ID: %s, RFID: %s" % (user, user.id, user_profile.rfid_tag))
+            # user_profile = self.__initialize_user__(user.id)
+            self.logger.info("Connected to %s, ID: %s" % (user, user.id))
+            async_to_sync(self.channel_layer.group_add)("chat", self.channel_name)
+            print("Connected to %s, ID: %s" % (user, user.id))
         else:
-            print("Connected to anonymous")
+            print("Denied connection to anonymous")
             # login the user to this session.
-        async_to_sync(self.channel_layer.group_add)("chat", self.channel_name)
 
     def disconnect(self, code):
         self.logger.info("Disconnected from %s" % self.scope['user'])
@@ -43,7 +41,7 @@ class SetConsumer(WebsocketConsumer):
             message = json.loads(text_data)
             async_to_sync(self.channel_layer.group_send)("chat", {"type": "chat.message", "text": str(message)})
         else:
-            self.send(json.dumps({'message':'Invalid message. Disconnect.'}))
+            self.send(json.dumps({'message': 'Invalid message. Disconnect.'}))
             self.disconnect(400)
 
     def chat_message(self, event):
