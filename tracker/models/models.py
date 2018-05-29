@@ -39,6 +39,11 @@ class Connection(models.Model):
         return str(self.follower) + ":" + str(self.followed)
 
 
+class ClientConnection(models.Model):
+    name = models.CharField(max_length=40, primary_key=True, blank=False, null=False)
+    rfid_tag = models.CharField('RFID', max_length=10, blank=False, null=False)
+
+
 class Profile(models.Model):
     """
     Abstract class for the two user types - gyms and athletes (users). Attributes:
