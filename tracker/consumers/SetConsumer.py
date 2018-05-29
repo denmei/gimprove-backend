@@ -49,8 +49,10 @@ class SetConsumer(WebsocketConsumer):
             message = json.loads(text_data)
             rfid_tag = message['rfid']
             channel_name = ClientConnection.objects.get(rfid_tag=rfid_tag).name
+            self.logger.info("Message: %s to %s" % (message, channel_name))
             async_to_sync(self.channel_layer.send)(channel_name, {"type": "chat.message", "text": str(message)})
         else:
+            self.logger.info("Invalid request: %s" % text_data)
             self.send(json.dumps({'status_code': '400', 'content': 'Invalid request'}))
 
     def chat_message(self, event):
