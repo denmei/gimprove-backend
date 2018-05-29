@@ -37,14 +37,13 @@ class SetConsumer(WebsocketConsumer):
     def disconnect(self, code):
         self.logger.info("Disconnected from %s" % self.scope['user'])
         async_to_sync(self.channel_layer.group_discard)("chat", self.channel_name)
-        ClientConnection.get(rfid_tag=UserProfile.objects.get(user=self.scope['user']).rfid_tag).delete()
+        ClientConnection.objects.get(rfid_tag=UserProfile.objects.get(user=self.scope['user']).rfid_tag).delete()
         close_old_connections()
         print("Disconnected")
 
     def receive(self, text_data=None, bytes_data=None):
         # self.scope["session"].save()
         if self.__message_valid__(text_data):
-            print("Valid %s" % text_data)
             message = json.loads(text_data)
             rfid_tag = message['rfid']
             channel_name = ClientConnection.objects.get(rfid_tag=rfid_tag).name
