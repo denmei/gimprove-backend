@@ -1,13 +1,13 @@
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 import tracker.routing
-from django.urls import path
 from tracker.consumers.SetConsumer import SetConsumer
+from .TokenAuth import TokenAuthMiddleware
 from django.conf.urls import url
 
 application = ProtocolTypeRouter({
     # (http->django views is added by default)
-    'websocket': AuthMiddlewareStack(
+    'websocket': TokenAuthMiddleware(
         URLRouter([
             url(tracker.routing.websocket_urlpatterns, SetConsumer),
         ])

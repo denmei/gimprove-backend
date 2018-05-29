@@ -5,6 +5,7 @@ import logging
 from tracker.models.models import User
 from asgiref.sync import async_to_sync
 from django.db import close_old_connections
+from channels.auth import login
 
 
 class SetConsumer(WebsocketConsumer):
@@ -15,6 +16,7 @@ class SetConsumer(WebsocketConsumer):
 
     def connect(self):
         self.accept()
+        print(self.scope)
         user = str(self.scope['user'])
         anonymousUser = (user == "AnonymousUser" or user is None)
         self.logger = logging.getLogger('django')
@@ -22,6 +24,10 @@ class SetConsumer(WebsocketConsumer):
             user = User.objects.get(username=str(self.scope['user']))
             user_profile = self.__initialize_user__(user.id)
             self.logger.info("Connected to %s, ID: %s, RFID: %s" % (user, user.id, user_profile.rfid_tag))
+            print("Connected to %s, ID: %s, RFID: %s" % (user, user.id, user_profile.rfid_tag))
+        else:
+            print("Connected to anonymous")
+            # login the user to this session.
         async_to_sync(self.channel_layer.group_add)("chat", self.channel_name)
 
     def disconnect(self, code):
@@ -31,6 +37,7 @@ class SetConsumer(WebsocketConsumer):
         print("Disconnected")
 
     def receive(self, text_data=None, bytes_data=None):
+        self.scope["session"].save()
         if self.__message_valid__(text_data):
             print("Valid %s" % text_data)
             message = json.loads(text_data)
