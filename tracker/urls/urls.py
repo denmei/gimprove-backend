@@ -46,7 +46,7 @@ urlpatterns += [
     url(r'^trainunit_user_rest/(?P<user>[\w\-]+)$',
         trainunit_serializer_view.TrainUnitListByUserId.as_view(), name='trainunit_user_list'),
 
-    url(r'^userprofile_detail_rest/(?P<pk>[0-9A-Fa-f-]+)$', userprofile_serializer_view.UserProfileDetail.as_view(),
+    url(r'^userprofile_detail_rest/$', userprofile_serializer_view.UserProfileDetail.as_view(),
         name='userprofile_detail'),
     url(r'^userprofile_detail_rfid_rest/(?P<rfid_tag>[\w\-]+)$',
         userprofile_serializer_view.UserProfileDetailByRfid.as_view(), name='userprofile_rfid_detail'),

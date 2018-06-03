@@ -26,6 +26,11 @@ class UserProfileDetail(generics.RetrieveAPIView):
         user = self.request.user
         return UserProfile.objects.filter(user=user)
 
+    def get_object(self):
+        queryset = self.filter_queryset(self.get_queryset())
+        obj = queryset.get(user=self.request.user)
+        return obj
+
 
 class UserProfileDetailByRfid(generics.RetrieveAPIView):
     """

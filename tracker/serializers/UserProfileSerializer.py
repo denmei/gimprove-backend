@@ -3,9 +3,6 @@ from rest_framework import serializers
 from tracker.models.models import *
 
 
-# TODO: Add permission to restrict access only to authenticated equipment components
-
-
 class UserProfileSerializer(serializers.ModelSerializer):
     """
     Serializer for the UserProfiles.
