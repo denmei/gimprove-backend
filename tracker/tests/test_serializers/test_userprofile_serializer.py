@@ -45,8 +45,7 @@ class UserProfileSerializerTest(APITestCase):
         active_users_1 = len(User.objects.filter(is_active=True))
         users_1 = len(User.objects.all())
         # delete account
-        delete_request = self.c.delete(self.pre_http + reverse('userprofile_detail',
-                                                               kwargs={'pk': response_id}), headers=self.header)
+        delete_request = self.c.delete(self.pre_http + reverse('userprofile_detail'), headers=self.header)
         active_users_2 = len(User.objects.filter(is_active=True))
         users_2 = len(User.objects.all())
         self.assertEqual(delete_request.status_code, 204)
@@ -57,8 +56,7 @@ class UserProfileSerializerTest(APITestCase):
         """
         Tests whether a UserProfile can be retrieved properly by the User-Id.
         """
-        response = self.c.get(self.pre_http + reverse('userprofile_detail', kwargs={'pk': self.user.id}),
-                              headers=self.header)
+        response = self.c.get(self.pre_http + reverse('userprofile_detail'), headers=self.header)
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
         if content['_pr_active_set'] is None:
@@ -79,3 +77,5 @@ class UserProfileSerializerTest(APITestCase):
         else:
             self.assertEqual(content['_pr_active_set'], str(self.active_set))
         self.assertEqual(content['user'], self.user.id)
+
+    # TODO: Add test for unauthorized userprofile-request
