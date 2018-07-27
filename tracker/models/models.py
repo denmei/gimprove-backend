@@ -188,6 +188,19 @@ class TrainUnit(models.Model, LoginRequiredMixin):
             raise ValidationError('End time must be after start time!')
 
 
+class Equipment(models.Model):
+    """
+    Represents a unique machine within a studio.
+    """
+    user = models.ForeignKey(User, related_name="user", on_delete=models.CASCADE)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    exercises = models.ManyToManyField(Exercise, blank=False)
+    gym = models.ForeignKey(GymProfile, related_name="gym", on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return str(self.gym) + ": " + str(self.id)[0:5]
+
+
 class ExerciseUnit(models.Model):
     """
     Represents a group of sets of the same exercise within the same TrainUnit.
@@ -196,6 +209,7 @@ class ExerciseUnit(models.Model):
     time_date = models.DateTimeField(default=timezone.now, null=False, blank=False)
     train_unit = models.ForeignKey(TrainUnit, on_delete=models.CASCADE)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    equipment = models.ForeignKey(Equipment, null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ['-time_date']
@@ -243,19 +257,6 @@ class Set(models.Model):
         # check whether number of durations and repetitions fit
         if len(json.loads(self.durations)) != self.repetitions:
             raise ValidationError("Number of durations values and repetitions do not fit.")
-
-
-class Equipment(models.Model):
-    """
-    Represents a unique machine within a studio.
-    """
-    user = models.ForeignKey(User, related_name="user", on_delete=models.CASCADE)
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    exercises = models.ManyToManyField(Exercise, blank=False)
-    gym = models.ForeignKey(GymProfile, related_name="gym", on_delete=models.DO_NOTHING)
-
-    def __str__(self):
-        return str(self.gym) + ": " + str(self.id)[0:5]
 
 
 class Achievement(models.Model):

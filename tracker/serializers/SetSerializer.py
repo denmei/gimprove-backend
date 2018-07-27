@@ -14,15 +14,14 @@ class SetSerializer(serializers.ModelSerializer):
     it's an not nullable field in the model (redefine for serializer).
     """
     exercise_unit = serializers.PrimaryKeyRelatedField(required=False, read_only=True, allow_null=True)
-    equipment_id = serializers.CharField(write_only=True)
-    exercise_name = serializers.CharField(write_only=True)
-    active = serializers.CharField(write_only=True)
-    rfid = serializers.CharField(write_only=True)
+    equipment_id = serializers.CharField(source="exercise_unit.equipment")
+    exercise_name = serializers.CharField(source="exercise_unit.exercise.name")
+    rfid = serializers.CharField(source="exercise_unit.train_unit.user.rfid_tag")
 
     class Meta:
         model = Set
         fields = ('id', 'date_time', 'durations', 'exercise_unit', 'repetitions', 'weight', 'rfid', 'equipment_id',
-                  'exercise_name', 'active')
+                  'exercise_name')
 
     def validate(self, attrs):
         """
