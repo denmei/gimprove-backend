@@ -44,6 +44,10 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
             user_profile.active_set = None
             user_profile.save()
         ret_val = super(SetDetail, self).destroy(request, *args, **kwargs)
+        if len(Set.objects.filter(exercise_unit=exercise_unit)) == 0:
+            exercise_unit.delete()
+        if len(train_unit.exerciseunit_set.all()) == 0:
+            train_unit.delete()
         return ret_val
 
 
