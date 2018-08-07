@@ -21,6 +21,7 @@ class TrainUnitDetail(generics.RetrieveDestroyAPIView):
     """
     Class for retrieving or deleting a single trainunit.
     """
+    # TODO: Check for user
     queryset = TrainUnit.objects.all()
     serializer_class = TrainUnitSerializer
 
@@ -29,6 +30,7 @@ class TrainUnitListByUserId(generics.ListAPIView):
     """
     View to retrieve a user's trainunits by the user id.
     """
+    # TODO: Check for user
     queryset = TrainUnit.objects.all()
     serializer_class = TrainUnitSerializer
     lookup_field = 'user'

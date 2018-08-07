@@ -28,6 +28,7 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     View to retrieve, update or delete sets via http request.
     """
+    # TODO: Check for user
     queryset = Set.objects.all()
     serializer_class = SetSerializer
 
@@ -55,6 +56,7 @@ class SetListByExerciseUnit(generics.ListAPIView):
     """
     View to retrieve sets by exerciseunit.
     """
+    # TODO: Check for user
     queryset = Set.objects.all()
     serializer_class = SetSerializer
     lookup_field = 'exercise_unit'

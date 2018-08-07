@@ -21,6 +21,7 @@ class ExerciseUnitDetail(generics.RetrieveDestroyAPIView):
     """
     View to retrieve or delete ExerciseUnits via http request.
     """
+    # TODO: Check for user
     queryset = ExerciseUnit.objects.all()
     serializer_class = ExerciseUnitSerializer
 
@@ -29,6 +30,7 @@ class ExerciseUnitListByTrainUnit(generics.ListAPIView):
     """
     View to retrieve ExerciseUnits by TrainUnit.
     """
+    # TODO: Check for user
     queryset = ExerciseUnit.objects.all()
     serializer_class = ExerciseUnitSerializer
     lookup_field = 'train_unit'
