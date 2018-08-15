@@ -77,7 +77,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'smartgym.urls'
+ROOT_URLCONF = 'gimprove.urls'
 
 TEMPLATES = [
     {
