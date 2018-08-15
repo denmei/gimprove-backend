@@ -1,6 +1,6 @@
 from rest_framework import generics
-from tracker.serializers.ExerciseUnitSerializer import *
-from rest_framework.permissions import IsAuthenticated
+from tracker.api.serializers.ExerciseUnitSerializer import ExerciseUnitSerializer
+from tracker.models.models import UserProfile, TrainUnit, ExerciseUnit
 
 
 class ExerciseUnitList(generics.ListAPIView):

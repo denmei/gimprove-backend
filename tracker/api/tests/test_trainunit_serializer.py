@@ -1,6 +1,7 @@
 from rest_framework.test import APITestCase, RequestsClient
-
-from tracker.serializers.TrainUnitSerializer import *
+from tracker.models.models import UserProfile, GymProfile, TrainUnit, ExerciseUnit, Set
+from django.urls import reverse
+import json
 
 
 class TrainUnitSerializerTest(APITestCase):

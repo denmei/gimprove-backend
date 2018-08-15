@@ -1,8 +1,8 @@
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
-
-from tracker.serializers.UserProfileSerializer import *
+from tracker.api.serializers.UserProfileSerializer import UserProfileSerializer
+from tracker.models.models import UserProfile
 
 
 class UserProfileDetail(generics.RetrieveAPIView):
