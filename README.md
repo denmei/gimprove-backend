@@ -29,6 +29,11 @@ address: http://127.0.0.1:8000.
 To test the tracker application, execute `python3 manage.py test tracker`.
 
 ### Build With
+The Gimprove-backend is based on the Django-Framework. To realize the required services, 3rd party packages were used:
+* [Django-Rest-Framework](http://www.django-rest-framework.org/) for the API used by our App and the clients
+* [Django-Channels](https://github.com/django/channels) Websocket-Communication for live tracking between the client
+and the App to achieve real-time communication.
+
 
 ### Contributing
 **Dennis Meisner:** meisnerdennis@web.de
