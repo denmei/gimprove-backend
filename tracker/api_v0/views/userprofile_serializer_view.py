@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
-from tracker.api.serializers.UserProfileSerializer import UserProfileSerializer
+from tracker.api_v0.serializers.UserProfileSerializer import UserProfileSerializer
 from tracker.models.models import UserProfile
 
 
