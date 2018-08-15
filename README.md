@@ -12,13 +12,16 @@ Here's an overview over the Gimprove system and it's components:
 There are three respositories for this project:
 1) [Gimprove Backend](https://bitbucket.org/den_mei/gimprove_backend/src/master/): 
 Gimprove Plattform hosting the Gimprove Website and providing the Gimprove-API.
+
 2) [Gimprove-App](https://bitbucket.org/den_mei/gimprove_app/src/master/): User Interface.
+
 3) [Gimprove-Client](https://bitbucket.org/den_mei/gimprove_app/src/master/): Client that is attached on the machines.
 
 ## Repository Overview
 This repository contains the code for the Gimprove-server and serves for two purposes at the moment:
 
 1) **Landing Page:** Code for the [Gimprove-Landing Page](www.gimprove.com)
+
 2) **Tracker-Backend:** Server-logic of the Gimprove system. Includes a REST-API to retrieve, update, 
 create and delete data from the git push application. To enable real-time tracking, websocket communication is used.
 
@@ -30,7 +33,9 @@ To test the tracker application, execute `python3 manage.py test tracker`.
 
 ### Build With
 The Gimprove-backend is based on the Django-Framework. To realize the required services, 3rd party packages were used:
+
 * [Django-Rest-Framework](http://www.django-rest-framework.org/) for the API used by our App and the clients
+
 * [Django-Channels](https://github.com/django/channels) Websocket-Communication for live tracking between the client
 and the App to achieve real-time communication.
 
