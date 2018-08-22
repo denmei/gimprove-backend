@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'landing_page.apps.LandingPageConfig',
     'tracker.apps.TrackerConfig',
+    'main.apps.MainConfig',
     'django_makemessages_xgettext',
     'rest_framework',
     'corsheaders',
