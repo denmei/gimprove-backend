@@ -15,7 +15,7 @@ class SetList(generics.ListCreateAPIView):
     def get_queryset(self):
         # TODO: Directly filter sets for userprofile to avoid trainunit- and exerciseunit filtering!
         user = self.request.user
-        userprofile = UserProfile.objects.get(user=user)
+        userprofile = UserTrackingProfile.objects.get(user=user)
         trainunits = TrainUnit.objects.filter(user=userprofile)
         exerciseunits = ExerciseUnit.objects.filter(train_unit__in=trainunits)
         return Set.objects.filter(exercise_unit__in=exerciseunits)
@@ -31,7 +31,7 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         user = self.request.user
-        userprofile = UserProfile.objects.get(user=user)
+        userprofile = UserTrackingProfile.objects.get(user=user)
         trainunits = TrainUnit.objects.filter(user=userprofile)
         exerciseunits = ExerciseUnit.objects.filter(train_unit__in=trainunits)
         relevant_sets = Set.objects.filter(exercise_unit__in=exerciseunits)

@@ -15,13 +15,40 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
-from main.models import UserProfile, GymProfile
+from main.models.models import GymProfile
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+def get_image_path(instance, filename):
+    return os.path.join('photos', str(instance.pk), filename)
+
+
+class UserTrackingProfile(models.Model):
+    """
+
+    """
+    user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    _pr_active_set = models.ForeignKey('tracker.Set', blank=True, null=True, on_delete=models.DO_NOTHING)
+
+    @property
+    def active_set(self):
+        """
+        Returns active set. If set has not been changed during the last 15 seconds, returns None.
+        """
+        if self._pr_active_set is not None:
+            time_diff = timezone.now() - self._pr_active_set.last_update
+            if time_diff.seconds > 15:
+                self._pr_active_set = None
+        return self._pr_active_set
+
+    @active_set.setter
+    def active_set(self, a_set):
+        self._pr_active_set = a_set
 
 
 class Connection(models.Model):
@@ -39,20 +66,6 @@ class Connection(models.Model):
 class ClientConnection(models.Model):
     name = models.CharField(max_length=40, primary_key=True, blank=False, null=False)
     rfid_tag = models.CharField('RFID', max_length=10, blank=False, null=False)
-
-
-def get_profile_type(user):
-    """
-    Helps to determine whether the user has a user or a gym profile.
-    :param user: Reference on user from request.
-    :return: 'user' in case of UserProfile, 'gym' in case of GymProfile, 'None' else
-    """
-    if hasattr(user, 'userprofile'):
-        return 'user'
-    elif getattr(user, 'gymprofile'):
-        return 'gym'
-    else:
-        return None
 
 
 class Exercise(models.Model):
@@ -97,7 +110,7 @@ class TrainUnit(models.Model, LoginRequiredMixin):
     start_time_date = models.DateTimeField(default=timezone.now, null=False, blank=False)
     end_time_date = models.DateTimeField(default=timezone.now, null=False, blank=False)
     date = models.DateField(null=False, blank=False)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserTrackingProfile, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-start_time_date']
@@ -184,7 +197,6 @@ class Set(models.Model):
             raise ValidationError("Number of durations values and repetitions do not fit.")
 
 """
-
 class Achievement(models.Model):
     name = models.CharField(max_length=100, help_text="Insert the name of the achievement here.", primary_key=True)
     description = models.TextField(max_length=500, help_text="What did the user do to achieve it?", null=True,

@@ -4,27 +4,21 @@
 from django.conf.urls import url
 from rest_framework.authtoken import views as authtoken_views
 from tracker import views
-from tracker.api_v0.views import userprofile_serializer_view, set_serializer_view, \
+from tracker.api_v0.views import set_serializer_view, \
     exerciseunit_serializer_view
+from main.api_v0.views import userprofile_serializer_view
 from tracker.api_v0.views import trainunit_serializer_view
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    # url(r'^contact$', views.contact, name='contact'),
-    url(r'^about$', views.about, name='about'),
-    url(r'^activities/(?P<pk>\d+)$', views.ActivityListView.as_view(), name='activities'),
-    url(r'^mockup/(?P<pk>\d+)$', views.AppMockupView.as_view(), name='mockup'),
     url(r'^training_units/(?P<pk>\d+)$', views.TrainingUnitsList.as_view(), name='training_units'),
     url(r'^exercise_unit_list/(?P<pk>[0-9A-Fa-f-]+)$', views.ExerciseUnitList.as_view(), name='exercise_unit_list'),
     url(r'^exercise_unit_list/(?P<pk>[0-9A-Fa-f-]+)/add/$', views.AddExerciseUnit.as_view(), name='add_exercise_unit'),
     url(r'^exercise_unit_list/(?P<pk>[0-9A-Fa-f-]+)/delete/$', views.DeleteTrainingUnit.as_view(),
         name='delete_training_unit'),
-    url(r'^user_profile/(?P<pk>\d+)$', views.UserProfileView.as_view(), name='profile'),
-    url(r'^achievements/(?P<pk>\d+)$', views.AchievementView.as_view(), name='achievements'),
-    url(r'^gym/(?P<pk>\d+)$', views.GymView.as_view(), name='gym'),
-    url(r'^followers/(?P<pk>\d+)$', views.FollowerView.as_view(), name='followers'),
-    url(r'^profile/cre_connection/(?P<pk>\d+)$', views.create_connection, name='create_connection'),
-    url(r'^profile/del_connection/(?P<pk>\d+)$', views.delete_connection, name='delete_connection'),
+    # url(r'^achievements/(?P<pk>\d+)$', views.AchievementView.as_view(), name='achievements'),
+    # url(r'^followers/(?P<pk>\d+)$', views.FollowerView.as_view(), name='followers'),
+    # url(r'^profile/cre_connection/(?P<pk>\d+)$', views.create_connection, name='create_connection'),
+    # url(r'^profile/del_connection/(?P<pk>\d+)$', views.delete_connection, name='delete_connection'),
 ]
 
 # Serializer Urls:

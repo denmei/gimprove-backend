@@ -1,6 +1,5 @@
 from django.db import models
 import os
-from django.utils import timezone
 from django.contrib.auth.models import User
 
 
@@ -56,23 +55,8 @@ class UserProfile(Profile):
     date_of_birth = models.DateField(null=False, blank=False)
     gym = models.ManyToManyField('GymProfile', blank=True)
     rfid_tag = models.CharField('RFID', max_length=10, blank=True, null=True)
+    tracking_data = models.ForeignKey('tracker.UserTrackingProfile', null=False, blank=False, on_delete=models.CASCADE)
     # achievements = models.ManyToManyField('Achievement', blank=True)
-    _pr_active_set = models.ForeignKey('Set', blank=True, null=True, on_delete=models.DO_NOTHING)
-
-    @property
-    def active_set(self):
-        """
-        Returns active set. If set has not been changed during the last 15 seconds, returns None.
-        """
-        if self._pr_active_set is not None:
-            time_diff = timezone.now() - self._pr_active_set.last_update
-            if time_diff.seconds > 15:
-                self._pr_active_set = None
-        return self._pr_active_set
-
-    @active_set.setter
-    def active_set(self, a_set):
-        self._pr_active_set = a_set
 
 
 class GymProfile(Profile):
@@ -80,3 +64,17 @@ class GymProfile(Profile):
     Extended Profile for gym users.
     """
     members = models.ManyToManyField('UserProfile', blank=True)
+
+
+def get_profile_type(user):
+    """
+    Helps to determine whether the user has a user or a gym profile.
+    :param user: Reference on user from request.
+    :return: 'user' in case of UserProfile, 'gym' in case of GymProfile, 'None' else
+    """
+    if hasattr(user, 'userprofile'):
+        return 'user'
+    elif getattr(user, 'gymprofile'):
+        return 'gym'
+    else:
+        return None

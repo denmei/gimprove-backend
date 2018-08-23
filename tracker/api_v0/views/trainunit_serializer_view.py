@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from tracker.api_v0.serializers.TrainUnitSerializer import TrainUnitSerializer
-from tracker.models.models import UserProfile, TrainUnit
+from tracker.models.models import UserTrackingProfile, TrainUnit
 
 
 class TrainUnitList(generics.ListAPIView):
@@ -13,7 +13,7 @@ class TrainUnitList(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        userprofile = UserProfile.objects.get(user=user)
+        userprofile = UserTrackingProfile.objects.get(user=user)
         trainunits = TrainUnit.objects.filter(user=userprofile)
         return trainunits
 

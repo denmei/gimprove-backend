@@ -1,6 +1,6 @@
 from rest_framework import generics
 from tracker.api_v0.serializers.ExerciseUnitSerializer import ExerciseUnitSerializer
-from tracker.models.models import UserProfile, TrainUnit, ExerciseUnit
+from tracker.models.models import UserTrackingProfile, TrainUnit, ExerciseUnit
 
 
 class ExerciseUnitList(generics.ListAPIView):
@@ -11,7 +11,7 @@ class ExerciseUnitList(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        userprofile = UserProfile.objects.get(user=user)
+        userprofile = UserTrackingProfile.objects.get(user=user)
         trainunits = TrainUnit.objects.filter(user=userprofile)
         exerciseunits = ExerciseUnit.objects.filter(train_unit__in=trainunits)
         return exerciseunits

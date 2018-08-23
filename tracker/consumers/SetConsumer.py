@@ -1,5 +1,6 @@
 from channels.generic.websocket import WebsocketConsumer
-from tracker.models.models import UserProfile, ClientConnection
+from tracker.models.models import ClientConnection
+from main.models.models import UserProfile
 import json
 import logging
 from tracker.models.models import User

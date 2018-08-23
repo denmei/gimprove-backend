@@ -1,6 +1,6 @@
 from django.test.utils import override_settings
 from rest_framework.test import APITestCase, RequestsClient
-from tracker.models.models import UserProfile, GymProfile, User
+from main.models.models import UserProfile, GymProfile, User
 import json
 from django.urls import reverse
 

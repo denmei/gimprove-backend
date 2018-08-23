@@ -1,5 +1,5 @@
 from rest_framework.test import APITestCase, RequestsClient
-from tracker.models.models import UserProfile, TrainUnit, Set, ExerciseUnit
+from tracker.models.models import UserTrackingProfile, TrainUnit, Set, ExerciseUnit
 from django.urls import reverse
 import json
 
