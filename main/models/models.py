@@ -1,6 +1,7 @@
 from django.db import models
 import os
 from django.contrib.auth.models import User
+from tracker.models.models import UserTrackingProfile
 
 
 def get_image_path(instance, filename):
@@ -55,8 +56,11 @@ class UserProfile(Profile):
     date_of_birth = models.DateField(null=False, blank=False)
     gym = models.ManyToManyField('GymProfile', blank=True)
     rfid_tag = models.CharField('RFID', max_length=10, blank=True, null=True)
-    tracking_data = models.ForeignKey('tracker.UserTrackingProfile', null=False, blank=False, on_delete=models.CASCADE)
-    # achievements = models.ManyToManyField('Achievement', blank=True)
+
+    def save(self, *args, **kwargs):
+        super(UserProfile, self).save(*args, **kwargs)
+        tracking_data = UserTrackingProfile(user_profile=self)
+        tracking_data.save()
 
 
 class GymProfile(Profile):

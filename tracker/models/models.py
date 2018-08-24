@@ -15,7 +15,6 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
-from main.models.models import GymProfile
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -29,10 +28,7 @@ def get_image_path(instance, filename):
 
 
 class UserTrackingProfile(models.Model):
-    """
-
-    """
-    user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    user_profile = models.ForeignKey('main.UserProfile', on_delete=models.CASCADE)
     _pr_active_set = models.ForeignKey('tracker.Set', blank=True, null=True, on_delete=models.DO_NOTHING)
 
     @property
@@ -50,11 +46,14 @@ class UserTrackingProfile(models.Model):
     def active_set(self, a_set):
         self._pr_active_set = a_set
 
+    def __str__(self):
+        return str(self.user_profile.user)
 
+"""
 class Connection(models.Model):
-    """
+    
     Connection between a follower and the followed profile.
-    """
+    
     created = models.DateTimeField(auto_now_add=True, editable=False)
     follower = models.ForeignKey(User, related_name="follower", on_delete=models.CASCADE)
     followed = models.ForeignKey(User, related_name="followed", on_delete=models.CASCADE)
@@ -62,10 +61,13 @@ class Connection(models.Model):
     def __str__(self):
         return str(self.follower) + ":" + str(self.followed)
 
+"""
+
 
 class ClientConnection(models.Model):
     name = models.CharField(max_length=40, primary_key=True, blank=False, null=False)
     rfid_tag = models.CharField('RFID', max_length=10, blank=False, null=False)
+
 
 
 class Exercise(models.Model):
@@ -84,6 +86,7 @@ class Exercise(models.Model):
 
     def get_absolute_url(self):
         return reverse('exercise-detail', args=[str(self.name)])
+
 
 
 class MuscleGroup(models.Model):
@@ -133,7 +136,7 @@ class Equipment(models.Model):
     user = models.ForeignKey(User, related_name="user", on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     exercises = models.ManyToManyField(Exercise, blank=False)
-    gym = models.ForeignKey(GymProfile, related_name="gym", on_delete=models.DO_NOTHING)
+    gym = models.ForeignKey('main.GymProfile', related_name="gym", on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return str(self.gym) + ": " + str(self.id)[0:5]
