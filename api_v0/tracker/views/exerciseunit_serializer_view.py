@@ -1,5 +1,5 @@
 from rest_framework import generics
-from tracker.api_v0.serializers.ExerciseUnitSerializer import ExerciseUnitSerializer
+from api_v0.tracker.serializers import ExerciseUnitSerializer
 from tracker.models.models import UserTrackingProfile, TrainUnit, ExerciseUnit
 
 

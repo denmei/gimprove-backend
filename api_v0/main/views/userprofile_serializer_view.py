@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
-from main.api_v0.serializers.UserProfileSerializer import UserProfileSerializer
+from api_v0.main.serializers.UserProfileSerializer import UserProfileSerializer
 from main.models.models import UserProfile
 
 

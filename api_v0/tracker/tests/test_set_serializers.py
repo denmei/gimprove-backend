@@ -4,7 +4,7 @@ from dateutil import parser
 from django.test.utils import override_settings
 from rest_framework.test import APITestCase, RequestsClient
 
-from tracker.api_v0.serializers.SetSerializer import *
+from api_v0.tracker.serializers.SetSerializer import *
 
 
 class SetSerializerTest(APITestCase):

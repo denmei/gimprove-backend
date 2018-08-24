@@ -49,6 +49,7 @@ class UserTrackingProfile(models.Model):
     def __str__(self):
         return str(self.user_profile.user)
 
+
 """
 class Connection(models.Model):
     
@@ -60,14 +61,12 @@ class Connection(models.Model):
 
     def __str__(self):
         return str(self.follower) + ":" + str(self.followed)
-
 """
 
 
 class ClientConnection(models.Model):
     name = models.CharField(max_length=40, primary_key=True, blank=False, null=False)
     rfid_tag = models.CharField('RFID', max_length=10, blank=False, null=False)
-
 
 
 class Exercise(models.Model):
@@ -86,7 +85,6 @@ class Exercise(models.Model):
 
     def get_absolute_url(self):
         return reverse('exercise-detail', args=[str(self.name)])
-
 
 
 class MuscleGroup(models.Model):
