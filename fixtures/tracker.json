@@ -1,0 +1,80 @@
+[
+{
+    "model": "tracker.usertrackingprofile",
+    "pk": 1,
+    "fields": {
+        "user_profile": 1,
+        "_pr_active_set": null
+    }
+},
+{
+    "model": "tracker.exercise",
+    "pk": "Lat Pulldown",
+    "fields": {
+        "description": "None",
+        "gimprove_system": false,
+        "muscles": [
+            "Lat"
+        ],
+        "equipment_machine": []
+    }
+},
+{
+    "model": "tracker.musclegroup",
+    "pk": "Back",
+    "fields": {}
+},
+{
+    "model": "tracker.muscle",
+    "pk": "Lat",
+    "fields": {
+        "muscle_group": "Back"
+    }
+},
+{
+    "model": "tracker.trainunit",
+    "pk": "f0f90652-72f7-44dc-b87a-b20364fcc122",
+    "fields": {
+        "start_time_date": "2018-08-24T13:00:18Z",
+        "end_time_date": "2018-08-24T13:53:18Z",
+        "date": "2018-08-24",
+        "user": 1
+    }
+},
+{
+    "model": "tracker.equipment",
+    "pk": "ca7110d1-c5d3-4fdf-99d4-4578139bff9b",
+    "fields": {
+        "user": [
+            "rasppi-1"
+        ],
+        "gym": 2,
+        "exercises": [
+            "Lat Pulldown"
+        ]
+    }
+},
+{
+    "model": "tracker.exerciseunit",
+    "pk": "8997cf70-ec57-4895-9500-4a10dab58100",
+    "fields": {
+        "time_date": "2018-08-24T13:43:38Z",
+        "train_unit": "f0f90652-72f7-44dc-b87a-b20364fcc122",
+        "exercise": "Lat Pulldown",
+        "equipment": "ca7110d1-c5d3-4fdf-99d4-4578139bff9b"
+    }
+},
+{
+    "model": "tracker.set",
+    "pk": "4626c42f-4119-424b-9fe2-0285cc829e99",
+    "fields": {
+        "date_time": "2018-08-24T13:53:56Z",
+        "exercise_unit": "8997cf70-ec57-4895-9500-4a10dab58100",
+        "repetitions": 2,
+        "weight": 10.0,
+        "durations": "[2, 3]",
+        "auto_tracking": false,
+        "last_update": "2018-08-24T13:53:56Z"
+    }
+}
+]
