@@ -1,11 +1,11 @@
 [
 {
-    "model": "main.userprofile",
+    "model": "app_main.userprofile",
     "pk": 1,
     "fields": {
         "bio": "",
         "profile_image": "",
-        "date_of_birth": "1991-08-24",
+        "date_of_birth": "1991-08-26",
         "rfid_tag": "0006921147",
         "gym": [
             2
@@ -13,7 +13,7 @@
     }
 },
 {
-    "model": "main.gymprofile",
+    "model": "app_main.gymprofile",
     "pk": 2,
     "fields": {
         "bio": "",
