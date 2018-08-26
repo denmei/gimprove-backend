@@ -3,6 +3,7 @@ import time
 from django.test import TestCase
 
 from tracker.models.models import *
+from main.models.models import UserProfile, GymProfile
 
 """
 Script to test the models of the tracker app.

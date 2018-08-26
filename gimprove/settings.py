@@ -141,6 +141,10 @@ CHANNEL_LAYERS = {
     },
 }
 
+FIXTURE_DIRS = (
+   'fixtures',
+)
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

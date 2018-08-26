@@ -45,9 +45,7 @@
     "model": "tracker.equipment",
     "pk": "ca7110d1-c5d3-4fdf-99d4-4578139bff9b",
     "fields": {
-        "user": [
-            "rasppi-1"
-        ],
+        "user": 3,
         "gym": 2,
         "exercises": [
             "Lat Pulldown"
