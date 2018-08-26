@@ -25,6 +25,8 @@ urlpatterns += [
     url(r'^$', RedirectView.as_view(url='/landing_page/', permanent=True)),
     url(r'^admin/', admin.site.urls),
     url(r'^tracker/', include('app_tracker.urls.urls')),
+    url(r'^api_v0_tracker/', include('api_v0.app_tracker.urls')),
+    url(r'^api_v0_main/', include('api_v0.app_main.urls')),
     url(r'^/ws/tracker', SetConsumer),
 ]
 

@@ -17,7 +17,6 @@ class UserProfileSerializerTest(APITestCase):
         self.pre_http = "http://127.0.0.1:8000"
         self.rfid_tag = UserProfile.objects.all()[0].rfid_tag
         self.user = UserProfile.objects.all()[0].user
-        self.active_set = UserProfile.objects.all()[0].active_set
         self.gym = GymProfile.objects.first()
         self.header = {'Authorization': 'Token ' + str(self.user.auth_token)}
 
@@ -60,10 +59,6 @@ class UserProfileSerializerTest(APITestCase):
         response = self.c.get(self.pre_http + reverse('userprofile_detail'), headers=self.header)
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
-        if content['_pr_active_set'] is None:
-            self.assertEqual(content['_pr_active_set'], self.active_set)
-        else:
-            self.assertEqual(content['_pr_active_set'], str(self.active_set))
 
     def test_userprofile_retrieval_rfid(self):
         """
@@ -73,10 +68,6 @@ class UserProfileSerializerTest(APITestCase):
                               headers=self.header)
         content = (json.loads(response.content.decode("utf-8")))
         self.assertEqual(response.status_code, 200)
-        if content['_pr_active_set'] is None:
-            self.assertEqual(content['_pr_active_set'], self.active_set)
-        else:
-            self.assertEqual(content['_pr_active_set'], str(self.active_set))
         self.assertEqual(content['user'], self.user.id)
 
     # TODO: Add test for unauthorized userprofile-request

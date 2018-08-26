@@ -177,3 +177,7 @@ class Set(models.Model):
         # check whether number of durations and repetitions fit
         if len(json.loads(self.durations)) != self.repetitions:
             raise ValidationError("Number of durations values and repetitions do not fit.")
+
+    def save(self, *args, **kwargs):
+        # TODO: Auto create exercise unit and trainunit
+        super(Set, self).save(*args, **kwargs)

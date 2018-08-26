@@ -1,7 +1,10 @@
 from rest_framework import serializers
-from rest_framework import serializers
 import dateutil.parser as date_parser
-from app_tracker.models.models import *
+from app_tracker.models.models import Set, Equipment, TrainUnit, ExerciseUnit, UserTrackingProfile, Exercise
+import json
+from django.utils import timezone
+from django.core.exceptions import ValidationError
+from app_main.models.models import UserProfile
 
 
 # TODO: Add permission to restrict access only to authenticated equipment components
@@ -16,7 +19,7 @@ class SetSerializer(serializers.ModelSerializer):
     exercise_unit = serializers.PrimaryKeyRelatedField(required=False, read_only=True, allow_null=True)
     equipment_id = serializers.CharField(source="exercise_unit.equipment")
     exercise_name = serializers.CharField(source="exercise_unit.exercise.name")
-    rfid = serializers.CharField(source="exercise_unit.train_unit.user.rfid_tag")
+    rfid = serializers.CharField(source="exercise_unit.train_unit.user.user_profile.rfid_tag")
 
     class Meta:
         model = Set
@@ -60,6 +63,7 @@ class SetSerializer(serializers.ModelSerializer):
         rfid_r = validated_data.pop('rfid')
         equipment_id = validated_data.pop('equipment_id')
         user_profile = UserProfile.objects.get(rfid_tag=rfid_r)
+        user_tracking_profile = UserTrackingProfile.objects.get(user_profile=user_profile)
         exercise_unit_r = validated_data['exercise_unit']
         active = validated_data.pop('active')
         set_time_tz = date_parser.parse(validated_data['date_time'])
@@ -67,12 +71,12 @@ class SetSerializer(serializers.ModelSerializer):
         # Create a new TrainUnit and ExerciseUnit if necessary.
         if exercise_unit_r == "None" or exercise_unit_r == "":
             # If there already exists a TrainUnit for this day, update the end_time_date-field.
-            if TrainUnit.objects.filter(date=set_time_tz, user=user_profile).exists():
-                train_unit = TrainUnit.objects.get(date=set_time_tz, user=user_profile)
+            if TrainUnit.objects.filter(date=set_time_tz, user=user_tracking_profile).exists():
+                train_unit = TrainUnit.objects.get(date=set_time_tz, user=user_tracking_profile)
                 train_unit.end_time_date = set_time_tz
             else:
                 train_unit = TrainUnit.objects.create(date=set_time_tz, start_time_date=set_time_tz,
-                                                      end_time_date=set_time_tz, user=user_profile)
+                                                      end_time_date=set_time_tz, user=user_tracking_profile)
             #  check whether there already is a exercise unit for the specified exercise in the train unit
             if train_unit.exerciseunit_set.filter(exercise=Exercise.objects.get(name=exercise_name_r)).exists():
                 exercise_unit_r = train_unit.exerciseunit_set.get(exercise=Exercise.objects.get(name=exercise_name_r))
@@ -90,8 +94,8 @@ class SetSerializer(serializers.ModelSerializer):
         new_set = Set.objects.create(**validated_data)
 
         if active == 'True':
-            user_profile.active_set = new_set
-            user_profile.save()
+            user_tracking_profile.active_set = new_set
+            user_tracking_profile.save()
 
         return new_set
 
@@ -108,8 +112,9 @@ class SetSerializer(serializers.ModelSerializer):
         # Check whether set is still active.
         if validated_data.get('active') != 'True':
             user_profile = UserProfile.objects.get(rfid_tag=validated_data.get('rfid'))
-            user_profile.active_set = None
-            user_profile.save()
+            user_tracking_profile = UserTrackingProfile.objects.get(user_profile=user_profile)
+            user_tracking_profile.active_set = None
+            user_tracking_profile.save()
         instance.save()
         return instance
 

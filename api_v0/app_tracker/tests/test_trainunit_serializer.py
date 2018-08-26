@@ -1,5 +1,5 @@
 from rest_framework.test import APITestCase, RequestsClient
-from app_tracker.models.models import UserTrackingProfile, GymProfile, TrainUnit, ExerciseUnit, Set
+from app_tracker.models.models import UserTrackingProfile, TrainUnit, ExerciseUnit, Set
 from django.urls import reverse
 import json
 
@@ -14,10 +14,9 @@ class TrainUnitSerializerTest(APITestCase):
     def setUp(self):
         self.c = RequestsClient()
         self.pre_http = "http://127.0.0.1:8000"
-        self.rfid_tag = UserProfile.objects.all()[0].rfid_tag
-        self.user = UserProfile.objects.all()[0].user
-        self.active_set = UserProfile.objects.all()[0].active_set
-        self.gym = GymProfile.objects.first()
+        self.rfid_tag = UserTrackingProfile.objects.all()[0].user_profile.rfid_tag
+        self.user = UserTrackingProfile.objects.all()[0].user_profile.user
+        self.active_set = UserTrackingProfile.objects.all()[0].active_set
         self.header = {'Authorization': 'Token ' + str(self.user.auth_token)}
 
     def test_trainunit_retrieval(self):

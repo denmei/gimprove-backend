@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url
-from api_v0.tracker.views import set_serializer_view, trainunit_serializer_view
-from api_v0.tracker.views import exerciseunit_serializer_view
+from api_v0.app_tracker.views import set_serializer_view, trainunit_serializer_view
+from api_v0.app_tracker.views import exerciseunit_serializer_view
 
 # Serializer Urls:
 urlpatterns = [

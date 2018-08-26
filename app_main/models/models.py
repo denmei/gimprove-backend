@@ -55,6 +55,7 @@ class UserProfile(Profile):
     date_of_birth = models.DateField(null=False, blank=False)
     gym = models.ManyToManyField('GymProfile', blank=True)
     rfid_tag = models.CharField('RFID', max_length=10, blank=True, null=True)
+    achievements = models.ManyToManyField('app_achievements.Achievement', blank=True)
 
     def save(self, *args, **kwargs):
         super(UserProfile, self).save(*args, **kwargs)

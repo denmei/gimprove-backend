@@ -3,7 +3,7 @@
 
 from django.conf.urls import url
 from rest_framework.authtoken import views as authtoken_views
-from api_v0.main.views import userprofile_serializer_view
+from api_v0.app_main.views import userprofile_serializer_view
 
 # Serializer Urls:
 urlpatterns = [

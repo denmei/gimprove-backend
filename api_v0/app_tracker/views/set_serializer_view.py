@@ -1,6 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from api_v0.tracker.serializers.SetSerializer import *
+from api_v0.app_tracker.serializers.SetSerializer import *
+from app_main.models.models import UserProfile
 
 
 class SetList(generics.ListCreateAPIView):
@@ -15,8 +16,9 @@ class SetList(generics.ListCreateAPIView):
     def get_queryset(self):
         # TODO: Directly filter sets for userprofile to avoid trainunit- and exerciseunit filtering!
         user = self.request.user
-        userprofile = UserTrackingProfile.objects.get(user=user)
-        trainunits = TrainUnit.objects.filter(user=userprofile)
+        userprofile = UserProfile.objects.get(user=user)
+        userprofile_tracking = UserTrackingProfile.objects.get(user_profile=userprofile)
+        trainunits = TrainUnit.objects.filter(user=userprofile_tracking)
         exerciseunits = ExerciseUnit.objects.filter(train_unit__in=trainunits)
         return Set.objects.filter(exercise_unit__in=exerciseunits)
 
@@ -31,8 +33,9 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         user = self.request.user
-        userprofile = UserTrackingProfile.objects.get(user=user)
-        trainunits = TrainUnit.objects.filter(user=userprofile)
+        userprofile = UserProfile.objects.get(user=user)
+        userprofile_tracking = UserTrackingProfile.objects.get(user_profile=userprofile)
+        trainunits = TrainUnit.objects.filter(user=userprofile_tracking)
         exerciseunits = ExerciseUnit.objects.filter(train_unit__in=trainunits)
         relevant_sets = Set.objects.filter(exercise_unit__in=exerciseunits)
         return relevant_sets.get(id=self.kwargs['pk'])

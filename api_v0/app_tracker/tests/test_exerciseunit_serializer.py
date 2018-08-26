@@ -1,5 +1,5 @@
-from rest_framework.test import APITestCase, RequestsClient
 from app_tracker.models.models import UserTrackingProfile, TrainUnit, Set, ExerciseUnit
+from rest_framework.test import APITestCase, RequestsClient
 from django.urls import reverse
 import json
 
@@ -14,7 +14,7 @@ class ExerciseUnitSerializerTest(APITestCase):
     def setUp(self):
         self.c = RequestsClient()
         self.pre_http = "http://127.0.0.1:8000"
-        self.user = UserProfile.objects.all()[0].user
+        self.user = UserTrackingProfile.objects.all()[0].user_profile.user
         self.train_unit = TrainUnit.objects.first()
         self.header = {'Authorization': 'Token ' + str(self.user.auth_token)}
 

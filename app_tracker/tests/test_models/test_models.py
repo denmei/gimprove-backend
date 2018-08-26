@@ -2,8 +2,8 @@ import time
 
 from django.test import TestCase
 
-from app_tracker.models.models import *
-from app_main.models.models import UserProfile, GymProfile
+from app_tracker.models.models import UserTrackingProfile, Set
+from django.utils import timezone
 
 """
 Script to test the models of the tracker app.
@@ -18,10 +18,12 @@ class UserProfileTest(TestCase):
     fixtures = ['fix.json']
 
     def setUp(self):
-        self.up = UserProfile.objects.all()[0]
-        self.gym = GymProfile.objects.all()[0]
+        self.up = UserTrackingProfile.objects.all()[0]
 
     def test_auto_deactivation(self):
+        """
+        Active sets must be deactivated automatically after 15 seconds of inactivity.
+        """
         self.up.active_set = Set.objects.first()
         time.sleep(16)
         self.assertEqual(self.up.active_set, None)
@@ -35,7 +37,7 @@ class UserProfileActiveSetTest(TestCase):
     fixtures = ['fix.json']
 
     def setUp(self):
-        self.up = UserProfile.objects.first()
+        self.up = UserTrackingProfile.objects.first()
         self.set = Set.objects.first()
         self.set.last_update = timezone.now()
         self.up.active_set = self.set

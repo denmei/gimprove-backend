@@ -3,8 +3,8 @@ from dateutil import parser
 
 from django.test.utils import override_settings
 from rest_framework.test import APITestCase, RequestsClient
-
-from api_v0.tracker.serializers.SetSerializer import *
+from django.urls import reverse
+from api_v0.app_tracker.serializers.SetSerializer import *
 
 
 class SetSerializerTest(APITestCase):
@@ -17,9 +17,9 @@ class SetSerializerTest(APITestCase):
     def setUp(self):
         self.c = RequestsClient()
         self.pre_http = "http://127.0.0.1:8000"
-        self.user = UserProfile.objects.first().user
-        self.user_profile = UserProfile.objects.first()
-        self.rfid = self.user_profile.rfid_tag
+        self.user = UserTrackingProfile.objects.first().user_profile.user
+        self.user_profile = UserTrackingProfile.objects.first()
+        self.rfid = self.user_profile.user_profile.rfid_tag
         self.exercise_unit = ExerciseUnit.objects.first()
         self.header = {'Authorization': 'Token ' + str(self.user.auth_token)}
 
@@ -44,7 +44,7 @@ class SetSerializerTest(APITestCase):
         # generate request data
         repetitions = 10
         weight = 60
-        train_unit = TrainUnit.objects.filter(user=UserProfile.objects.first())[0]
+        train_unit = TrainUnit.objects.filter(user=UserTrackingProfile.objects.first())[0]
         exercise_unit = train_unit.exerciseunit_set.first()
         exercise_name = exercise_unit.exercise
         date_time = exercise_unit.time_date
@@ -87,7 +87,7 @@ class SetSerializerTest(APITestCase):
         # generate request data
         repetitions = 10
         weight = 60
-        train_unit = TrainUnit.objects.filter(user=UserProfile.objects.first())[0]
+        train_unit = TrainUnit.objects.filter(user=UserTrackingProfile.objects.first())[0]
         exercise_unit = train_unit.exerciseunit_set.first()
         date_time = exercise_unit.time_date
         equipment_id = Equipment.objects.first().id
@@ -115,7 +115,7 @@ class SetSerializerTest(APITestCase):
         exercise = exercise_unit.exercise
         equipment = exercise.equipment_machine.all()[0]
         train_unit = exercise_unit.train_unit
-        user = train_unit.user
+        user = train_unit.user.user_profile
         durations = random.sample(range(1, 20), int(train_set.repetitions) + 5)
         data = {'repetitions':  int(train_set.repetitions) + 5, 'weight': 10,
                 'exercise_name': exercise.name, 'equipment_id': str(equipment.id),
@@ -148,7 +148,7 @@ class SetSerializerTest(APITestCase):
         exercise = exercise_unit.exercise
         equipment = exercise.equipment_machine.all()[0]
         train_unit = exercise_unit.train_unit
-        user = train_unit.user
+        user = train_unit.user.user_profile
         durations = random.sample(range(1, 20), int(train_set.repetitions) - 1)
         data = {'repetitions':  int(train_set.repetitions) - 1, 'weight': 10,
                 'exercise_name': exercise.name, 'equipment_id': str(equipment.id),
@@ -180,8 +180,8 @@ class SetSerializerTest(APITestCase):
             Creates new set.
             :return: id of the new set
             """
-            rfid = UserProfile.objects.first().rfid_tag
-            train_unit = TrainUnit.objects.filter(user=UserProfile.objects.first())[0]
+            rfid = UserTrackingProfile.objects.first().user_profile.rfid_tag
+            train_unit = TrainUnit.objects.filter(user=UserTrackingProfile.objects.first())[0]
             exercise_unit = train_unit.exerciseunit_set.first()
             exercise_name = exercise_unit.exercise
             date_time = exercise_unit.time_date
@@ -200,10 +200,10 @@ class SetSerializerTest(APITestCase):
 
         # try deleting an active set
         id_2 = get_new_set_id(active=True)
-        active_before = UserProfile.objects.first().active_set
+        active_before = UserTrackingProfile.objects.first().active_set
         response_2 = self.c.delete(self.pre_http + reverse('set_detail', kwargs={'pk': id_2}), headers=self.header)
         self.assertEqual(str(active_before.id), id_2)
-        self.assertEqual(UserProfile.objects.first().active_set, None)
+        self.assertEqual(UserTrackingProfile.objects.first().active_set, None)
         self.assertEqual(response_2.status_code, 204)
 
     def test_delete_last(self):
@@ -212,7 +212,7 @@ class SetSerializerTest(APITestCase):
         deleted. If the exercise unit was the last one in the TrainUnit, the TrainUnit must be deleted.
         """
         # create single set with new train unit and exercise unit
-        user = UserProfile.objects.first()
+        user = UserTrackingProfile.objects.first()
         train_unit = TrainUnit.objects.create(start_time_date=timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
                                               end_time_date=timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
                                               date=timezone.now().date(), user=user)
@@ -243,7 +243,7 @@ class SetSerializerTest(APITestCase):
         # generate request data
         repetitions = 10
         weight = 60
-        train_unit = TrainUnit.objects.filter(user=UserProfile.objects.first())[0]
+        train_unit = TrainUnit.objects.filter(user=UserTrackingProfile.objects.first())[0]
         exercise_unit = train_unit.exerciseunit_set.first()
         exercise_name = exercise_unit.exercise
         date_time = exercise_unit.time_date

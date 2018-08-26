@@ -9,7 +9,8 @@
         "rfid_tag": "0006921147",
         "gym": [
             2
-        ]
+        ],
+        "achievements": []
     }
 },
 {
@@ -92,7 +93,9 @@
         "muscles": [
             "Lat"
         ],
-        "equipment_machine": []
+        "equipment_machine": [
+            "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640"
+        ]
     }
 },
 {

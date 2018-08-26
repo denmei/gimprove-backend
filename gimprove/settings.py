@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'channels',
     'rest_framework.authtoken',
     'app_network.apps.NetworkConfig',
-    'app_achievements.apps.AchievementsConfig'
+    'app_achievements.apps.AchievementsConfig',
+    'api_v0.apps.ApiConfig'
 ]
 
 REST_FRAMEWORK = {
