@@ -2,7 +2,7 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
 from api_v0.main.serializers.UserProfileSerializer import UserProfileSerializer
-from main.models.models import UserProfile
+from app_main.models.models import UserProfile
 
 
 class UserProfileDetail(generics.RetrieveAPIView):

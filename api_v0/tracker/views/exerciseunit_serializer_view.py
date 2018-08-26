@@ -1,6 +1,6 @@
 from rest_framework import generics
 from api_v0.tracker.serializers import ExerciseUnitSerializer
-from tracker.models.models import UserTrackingProfile, TrainUnit, ExerciseUnit
+from app_tracker.models.models import UserTrackingProfile, TrainUnit, ExerciseUnit
 
 
 class ExerciseUnitList(generics.ListAPIView):

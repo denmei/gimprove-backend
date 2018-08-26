@@ -41,14 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'landing_page.apps.LandingPageConfig',
-    'tracker.apps.TrackerConfig',
-    'main.apps.MainConfig',
+    'app_landingpage.apps.LandingPageConfig',
+    'app_tracker.apps.TrackerConfig',
+    'app_main.apps.MainConfig',
     'django_makemessages_xgettext',
     'rest_framework',
     'corsheaders',
     'channels',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'app_network.apps.NetworkConfig',
+    'app_achievements.apps.AchievementsConfig'
 ]
 
 REST_FRAMEWORK = {

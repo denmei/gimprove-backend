@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from tracker.models.models import *
+from app_tracker.models.models import *
 
 
 class TrainUnitSerializer(serializers.ModelSerializer):

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework import serializers
 import dateutil.parser as date_parser
-from tracker.models.models import *
+from app_tracker.models.models import *
 
 
 # TODO: Add permission to restrict access only to authenticated equipment components
