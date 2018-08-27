@@ -18,7 +18,6 @@ class SetSerializer(serializers.ModelSerializer):
     """
     exercise_unit = serializers.PrimaryKeyRelatedField(required=False, read_only=True, allow_null=True)
     equipment_id = serializers.CharField(source="exercise_unit.equipment")
-    exercise_name = serializers.CharField(source="exercise_unit.exercise.name")
     rfid = serializers.CharField(source="exercise_unit.train_unit.user.user_profile.rfid_tag")
 
     class Meta:

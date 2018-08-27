@@ -14,6 +14,8 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
+from app_main.models.models import UserProfile
+import dateutil.parser as date_parser
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -149,11 +151,14 @@ class Set(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     date_time = models.DateTimeField(default=timezone.now, null=False, blank=False)
-    exercise_unit = models.ForeignKey(ExerciseUnit, on_delete=models.CASCADE)
+    exercise_unit = models.ForeignKey(ExerciseUnit, blank=True, null=True, on_delete=models.CASCADE)
+    equipment = models.ForeignKey(Equipment, blank=True, null=True, on_delete=models.DO_NOTHING)
+    exercise_name = models.CharField(max_length=100, blank=True, null=True)
     repetitions = models.IntegerField(blank=False)
     weight = models.FloatField(blank=False)
     durations = models.TextField(max_length=1200, blank=False, null=False)
     auto_tracking = models.BooleanField(blank=False, null=False, default=False)
+    rfid = models.CharField(max_length=10, blank=False, null=False)
     last_update = models.DateTimeField(default=timezone.now, null=False, blank=False)
 
     class Meta:
@@ -162,22 +167,66 @@ class Set(models.Model):
     def __str__(self):
         return str(timezone.localtime(self.date_time)) + "_" + str(self.repetitions) + "r_" + str(self.id)[0:5]
 
+    def get_durations(self):
+        return json.loads(self.durations)
+
     def clean(self):
+        # Either at least exercisename & rfid or exerciseunit must be provided and valid
+        if self.exercise_unit is None and (self.exercise_name is None or self.rfid is None):
+            raise ValidationError("Either at least exercisename & rfid or exerciseunit must be provided")
+        # check exerciseunit
+        if self.exercise_unit is not None and len(ExerciseUnit.objects.filter(id=self.exercise_unit.id)) == 0:
+            raise ValidationError("Not a valid exercise_unit")
+        # check rfid
+        if self.rfid is not None and len(UserProfile.objects.filter(rfid_tag=self.rfid)) == 0:
+            raise ValidationError("Not a valid rfid")
+        # check exercise
+        if self.exercise_name is not None and len(Exercise.objects.filter(name=self.exercise_name)) == 0:
+            raise ValidationError("Not a valid exercisename")
         # check repetitions
         if (self.repetitions < 0) or (self.repetitions > 500):
             raise ValidationError("Not a reasonable value for repetitions.")
-        # TODO check duration match repetition
+        # check date: must be in the past
+        if self.date_time > timezone.now():
+            raise ValidationError("Date and time must be in the past.")
         # check weight
         if self.weight < 0:
             raise ValidationError("No negative values allowed for weight.")
         # check whether set date fits the exercise unit date
-        if not ((self.exercise_unit.time_date <= self.date_time) &
-                (self.date_time <= (self.exercise_unit.time_date + timedelta(days=1)))):
-            raise ValidationError("Date value does not fit to exercise unit.")
+        if self.exercise_unit is not None:
+            if not ((self.exercise_unit.time_date <= self.date_time) &
+                    (self.date_time <= (self.exercise_unit.time_date + timedelta(days=1)))):
+                raise ValidationError("Date value does not fit to exercise unit.")
         # check whether number of durations and repetitions fit
         if len(json.loads(self.durations)) != self.repetitions:
             raise ValidationError("Number of durations values and repetitions do not fit.")
 
     def save(self, *args, **kwargs):
-        # TODO: Auto create exercise unit and trainunit
+        self.clean()
+
+        user_profile = UserProfile.objects.get(rfid_tag=self.rfid)
+        user_tracking_profile = UserTrackingProfile.objects.get(user_profile=user_profile)
+
+        # Create a new TrainUnit and ExerciseUnit if necessary.
+        if self.exercise_unit is None:
+            # If there already exists a TrainUnit for this day, update the end_time_date-field.
+            if TrainUnit.objects.filter(date=self.date_time, user=user_tracking_profile).exists():
+                train_unit = TrainUnit.objects.get(date=self.date_time, user=user_tracking_profile)
+                train_unit.end_time_date = self.date_time
+            else:
+                train_unit = TrainUnit.objects.create(date=self.date_time, start_time_date=self.date_time,
+                                                      end_time_date=self.date_time, user=user_tracking_profile)
+            #  check whether there already is a exercise unit for the specified exercise in the train unit
+            if train_unit.exerciseunit_set.filter(exercise=Exercise.objects.get(name=self.exercise_name)).exists():
+                exercise_unit_r = train_unit.exerciseunit_set.get(exercise=Exercise.objects.get(name=self.exercise_name))
+            else:
+                exercise_unit_r = ExerciseUnit.objects.create(time_date=self.date_time,
+                                                              train_unit=train_unit,
+                                                              exercise=Exercise.objects.get(name=self.exercise_name))
+            self.exercise_unit = exercise_unit_r
+        # Set has to be added to existing exercise unit:
+        # else:
+        #     kwargs.pop('exercise_unit')
+        #     kwargs['exercise_unit'] = ExerciseUnit.objects.filter(id=self.exercise_unit.id)[0]
+        # kwargs['durations'] = ""
         super(Set, self).save(*args, **kwargs)

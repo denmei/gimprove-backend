@@ -2,8 +2,11 @@ import time
 
 from django.test import TestCase
 
-from app_tracker.models.models import UserTrackingProfile, Set
+from app_tracker.models.models import UserTrackingProfile, Set, ExerciseUnit
 from django.utils import timezone
+from django.core.exceptions import ValidationError
+from datetime import timedelta
+import datetime
 
 """
 Script to test the models of the tracker app.
@@ -54,4 +57,63 @@ class UserProfileActiveSetTest(TestCase):
         self.assertTrue(self.up.active_set is None)
 
 
-#TODO: Test function "get_profile_type"
+class SetTest(TestCase):
+
+    fixtures = ['fix.json']
+
+    def setUp(self):
+        pass
+
+    def test_set_creation_all_parameters(self):
+        """
+        Tests whether a set is created properly if all necessary parameters are provided.
+        """
+        exercise_unit = ExerciseUnit.objects.first()
+        new_set = Set.objects.create(repetitions=2, exercise_unit=exercise_unit, weight=10, durations="[1,2]",
+                                     auto_tracking=False, date_time=exercise_unit.time_date, rfid="0006921147",
+                                     exercise_name="Lat Pulldown")
+        self.assertEqual(new_set.repetitions, 2)
+        self.assertEqual(new_set.get_durations()[0], 1)
+        self.assertEqual(new_set.weight, 10)
+        self.assertEqual(new_set.exercise_unit, exercise_unit)
+
+    def test_set_validation(self):
+        """
+        Tests whether the validation methods of the set-creation work properly.
+        """
+        exercise_unit = ExerciseUnit.objects.first()
+        # check wrong durations
+        with self.assertRaises(ValidationError):
+            Set.objects.create(repetitions=2, exercise_unit=exercise_unit, weight=10, durations="[2]",
+                               auto_tracking=False, date_time=exercise_unit.time_date, rfid="0006921147",
+                               exercise_name="Lat Pulldown")
+        # check invalid date
+        with self.assertRaises(ValidationError):
+            Set.objects.create(repetitions=2, exercise_unit=exercise_unit, weight=10, durations="[1,2]",
+                               auto_tracking=False, date_time=(exercise_unit.time_date + timedelta(days=2)),
+                               rfid="0006921147", exercise_name="Lat Pulldown")
+        # check invalid repetitions
+        with self.assertRaises(ValidationError):
+            Set.objects.create(repetitions=-2, exercise_unit=exercise_unit, weight=10, durations="[1,2]",
+                               auto_tracking=False, date_time=exercise_unit.time_date, rfid="0006921147",
+                               exercise_name="Lat Pulldown")
+        # check invalid weight
+        with self.assertRaises(ValidationError):
+            Set.objects.create(repetitions=2, exercise_unit=exercise_unit, weight=-10, durations="[1,2]",
+                               auto_tracking=False, date_time=exercise_unit.time_date, rfid="0006921147",
+                               exercise_name="Lat Pulldown")
+
+    def test_set_creation_no_eu_no_tu(self):
+        """
+        If no exercise_unit is provided, a new exercise_unit must be created automatically. If there is no train_unit
+        for the current day, a new train_unit must be created, too.
+        """
+        new_set = Set.objects.create(repetitions=2, weight=10, durations="[1,2]", auto_tracking=False,
+                                     date_time=timezone.now() - timedelta(days=2), rfid="0006921147",
+                                     exercise_name="Lat Pulldown")
+        new_exercise_unit = new_set.exercise_unit
+        new_train_unit = new_exercise_unit.train_unit
+        self.assertEqual(new_exercise_unit.time_date, new_set.date_time)
+        self.assertEqual(new_train_unit.start_time_date, new_set.date_time)
+
+# TODO: Test function "get_profile_type"
