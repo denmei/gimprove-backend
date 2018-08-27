@@ -4,9 +4,7 @@ The `urlpatterns` list routes URLs to views.
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.conf import settings
-from django.conf.urls.static import static
-from django.conf.urls import url
+from rest_framework.documentation import include_docs_urls
 from django.views.generic import RedirectView
 from django.conf.urls.i18n import i18n_patterns
 from app_tracker.consumers.SetConsumer import SetConsumer
@@ -28,6 +26,8 @@ urlpatterns += [
     url(r'^api_v0_tracker/', include('api_v0.app_tracker.urls')),
     url(r'^api_v0_main/', include('api_v0.app_main.urls')),
     url(r'^/ws/tracker', SetConsumer),
+    url(r'^docs/', include_docs_urls(title='Gimprove Api', authentication_classes=[],
+                                     permission_classes=[]))
 ]
 
 urlpatterns += [

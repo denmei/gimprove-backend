@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'app_network.apps.NetworkConfig',
     'app_achievements.apps.AchievementsConfig',
-    'api_v0.apps.ApiConfig'
+    'api_v0.apps.ApiConfig',
 ]
 
 REST_FRAMEWORK = {
