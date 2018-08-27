@@ -153,7 +153,7 @@ class Set(models.Model):
     date_time = models.DateTimeField(default=timezone.now, null=False, blank=False)
     exercise_unit = models.ForeignKey(ExerciseUnit, blank=True, null=True, on_delete=models.CASCADE)
     equipment = models.ForeignKey(Equipment, blank=True, null=True, on_delete=models.DO_NOTHING)
-    exercise_name = models.CharField(max_length=100, blank=True, null=True)
+    exercise = models.ForeignKey(Exercise, blank=True, null=True, on_delete=models.CASCADE)
     repetitions = models.IntegerField(blank=False)
     weight = models.FloatField(blank=False)
     durations = models.TextField(max_length=1200, blank=False, null=False)
@@ -173,7 +173,7 @@ class Set(models.Model):
 
     def clean(self):
         # Either at least exercisename & rfid or exerciseunit must be provided and valid
-        if self.exercise_unit is None and (self.exercise_name is None or self.rfid is None):
+        if self.exercise_unit is None and (self.exercise is None or self.rfid is None):
             raise ValidationError("Either at least exercisename & rfid or exerciseunit must be provided")
         # check exerciseunit
         if self.exercise_unit is not None and len(ExerciseUnit.objects.filter(id=self.exercise_unit.id)) == 0:
@@ -184,7 +184,7 @@ class Set(models.Model):
         if self.rfid is not None and len(UserProfile.objects.filter(rfid_tag=self.rfid)) == 0:
             raise ValidationError("Not a valid rfid")
         # check exercise
-        if self.exercise_name is not None and len(Exercise.objects.filter(name=self.exercise_name)) == 0:
+        if self.exercise is not None and len(Exercise.objects.filter(name=self.exercise.name)) == 0:
             raise ValidationError("Not a valid exercisename")
         # check repetitions
         if (self.repetitions < 0) or (self.repetitions > 500):
@@ -202,6 +202,9 @@ class Set(models.Model):
                 raise ValidationError("Date value does not fit to exercise unit.")
         # check whether number of durations and repetitions fit
         if len(json.loads(self.durations)) != self.repetitions:
+            print(len(json.loads(self.durations)))
+            print((json.loads(self.durations)))
+            print(self.repetitions)
             raise ValidationError("Number of durations values and repetitions do not fit.")
 
     def save(self, *args, **kwargs):
@@ -223,16 +226,17 @@ class Set(models.Model):
             if TrainUnit.objects.filter(date=self.date_time, user=user_tracking_profile).exists():
                 train_unit = TrainUnit.objects.get(date=self.date_time, user=user_tracking_profile)
                 train_unit.end_time_date = self.date_time
+                print("UPDATEd")
             else:
                 train_unit = TrainUnit.objects.create(date=self.date_time, start_time_date=self.date_time,
                                                       end_time_date=self.date_time, user=user_tracking_profile)
             #  check whether there already is a exercise unit for the specified exercise in the train unit
-            if train_unit.exerciseunit_set.filter(exercise=Exercise.objects.get(name=self.exercise_name)).exists():
-                exercise_unit_r = train_unit.exerciseunit_set.get(exercise=Exercise.objects.get(name=self.exercise_name))
+            if train_unit.exerciseunit_set.filter(exercise=Exercise.objects.get(name=self.exercise.name)).exists():
+                exercise_unit_r = train_unit.exerciseunit_set.get(exercise=Exercise.objects.get(name=self.exercise.name))
             else:
                 exercise_unit_r = ExerciseUnit.objects.create(time_date=self.date_time,
                                                               train_unit=train_unit,
-                                                              exercise=Exercise.objects.get(name=self.exercise_name))
+                                                              exercise=Exercise.objects.get(name=self.exercise.name))
             self.exercise_unit = exercise_unit_r
 
         # If the active-parameter is true, make the set the new active set of the specified user

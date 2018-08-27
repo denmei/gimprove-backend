@@ -16,7 +16,9 @@
         "muscles": [
             "Lat"
         ],
-        "equipment_machine": []
+        "equipment_machine": [
+            "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709"
+        ]
     }
 },
 {
@@ -71,13 +73,14 @@
         "date_time": "2018-08-27T16:47:54Z",
         "exercise_unit": "f88ab3b6-e155-4f3a-99c8-f93f83a26453",
         "equipment": "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709",
-        "exercise_name": null,
+        "exercise": null,
         "repetitions": 2,
         "weight": 12.0,
         "durations": "[1,2]",
         "auto_tracking": true,
         "rfid": "0006921147",
-        "last_update": "2018-08-27T16:57:54Z"
+        "last_update": "2018-08-27T16:57:54Z",
+        "active": false
     }
 }
 ]

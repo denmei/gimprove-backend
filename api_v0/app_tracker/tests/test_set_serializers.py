@@ -52,7 +52,7 @@ class SetSerializerTest(APITestCase):
         durations = random.sample(range(1, 20), repetitions)
         # make request and test
         data = {'exercise_unit': exercise_unit.id, 'repetitions': repetitions, 'weight': weight,
-                'exercise_name': exercise_name, 'rfid': self.rfid, 'date_time': date_time, 'equipment_id': equipment_id,
+                'exercise': exercise_name, 'rfid': self.rfid, 'date_time': date_time, 'equipment_id': equipment_id,
                 'active': False, 'durations': json.dumps(durations)}
         response = self.c.post(self.pre_http + reverse('set_list'), data, headers=self.header)
         self.assertEqual(response.status_code, 201)
@@ -74,7 +74,7 @@ class SetSerializerTest(APITestCase):
         date_time = timezone.now()
         equipment_id = Equipment.objects.first().id
         durations = random.sample(range(1, 20), repetitions)
-        data = {'exercise_unit': "", 'repetitions': repetitions, 'weight': weight, 'exercise_name': exercise_name,
+        data = {'exercise_unit': "", 'repetitions': repetitions, 'weight': weight, 'exercise': exercise_name,
                 'rfid': self.rfid, 'date_time': date_time, 'equipment_id': equipment_id, 'active': False, 'durations':
                     json.dumps(durations)}
         response = self.c.post(self.pre_http + reverse('set_list'), data, headers=self.header)
@@ -94,14 +94,14 @@ class SetSerializerTest(APITestCase):
         durations = random.sample(range(1, 20), repetitions)
         # make request where exercise name and equipment do not match
         data = {'exercise_unit': exercise_unit.id, 'repetitions': repetitions, 'weight': weight,
-                'exercise_name': 'some_name', 'rfid': self.rfid, 'date_time': date_time, 'equipment_id': equipment_id,
+                'exercise': 'some_name', 'rfid': self.rfid, 'date_time': date_time, 'equipment_id': equipment_id,
                 'active': False, 'durations': json.dumps(durations)}
         response = self.c.post(self.pre_http + reverse('set_list'), data, headers=self.header)
         content = response.content
 
         # check whether error occured
         self.assertEqual(response.status_code, 400)
-        self.assertIn("Exercise name does not fit to Equipment-ID.", str(content))
+        self.assertIn("object does not exist.", str(content))
 
     @override_settings(DEBUG=True)
     def test_update(self):
@@ -118,9 +118,9 @@ class SetSerializerTest(APITestCase):
         user = train_unit.user.user_profile
         durations = random.sample(range(1, 20), int(train_set.repetitions) + 5)
         data = {'repetitions':  int(train_set.repetitions) + 5, 'weight': 10,
-                'exercise_name': exercise.name, 'equipment_id': str(equipment.id),
+                'exercise': exercise, 'equipment_id': str(equipment.id),
                 'date_time': train_set.date_time, 'rfid': str(user.rfid_tag),
-                'active': str(False), 'durations': json.dumps(durations)}
+                'active': str(False), 'durations': json.dumps(durations), 'exercise_unit': exercise_unit.id}
         before_time = timezone.now()
 
         # make update request
@@ -151,13 +151,14 @@ class SetSerializerTest(APITestCase):
         user = train_unit.user.user_profile
         durations = random.sample(range(1, 20), int(train_set.repetitions) - 1)
         data = {'repetitions':  int(train_set.repetitions) - 1, 'weight': 10,
-                'exercise_name': exercise.name, 'equipment_id': str(equipment.id),
+                'exercise': exercise, 'equipment_id': str(equipment.id),
                 'date_time': train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 'rfid': str(user.rfid_tag),
-                'active': str(False), 'durations': json.dumps(durations)}
+                'active': str(False), 'durations': json.dumps(durations), 'exercise_unit': exercise_unit.id}
         url = self.pre_http + reverse('set_detail', kwargs={'pk': train_set.id})
         # test correct update request. Repetitions value may not be changed since may not be decreased.
         response = self.c.put(url, data, headers=self.header)
         content = (json.loads(response.content.decode("utf-8")))
+        print(content)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(content['repetitions'], int(train_set.repetitions))
         self.assertEqual(content['weight'], 10)
