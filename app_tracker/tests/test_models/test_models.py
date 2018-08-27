@@ -2,7 +2,7 @@ import time
 
 from django.test import TestCase
 
-from app_tracker.models.models import UserTrackingProfile, Set, ExerciseUnit
+from app_tracker.models.models import UserTrackingProfile, Set, ExerciseUnit, TrainUnit
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 from datetime import timedelta
@@ -103,11 +103,31 @@ class SetTest(TestCase):
                                auto_tracking=False, date_time=exercise_unit.time_date, rfid="0006921147",
                                exercise_name="Lat Pulldown")
 
+        # check invalid date: date before exercise_unit
+        with self.assertRaises(ValidationError):
+            Set.objects.create(repetitions=2, exercise_unit=exercise_unit, weight=10, durations="[1,2]",
+                               auto_tracking=False, date_time=exercise_unit.time_date - timedelta(days=2),
+                               rfid="0006921147", exercise_name="Lat Pulldown")
+
+        # check invalid input: no rfid and no exercise_unit
+        with self.assertRaises(ValidationError):
+            Set.objects.create(repetitions=2, weight=10, durations="[1,2]",
+                               auto_tracking=False, date_time=exercise_unit.time_date,
+                               exercise_name="Lat Pulldown")
+
+        # check invalid input: no exercise and no exercise_unit
+        with self.assertRaises(ValidationError):
+            Set.objects.create(repetitions=2, weight=10, durations="[1,2]",
+                               auto_tracking=False, date_time=exercise_unit.time_date, rfid="0006921147")
+
     def test_set_creation_no_eu_no_tu(self):
         """
         If no exercise_unit is provided, a new exercise_unit must be created automatically. If there is no train_unit
         for the current day, a new train_unit must be created, too.
         """
+        TrainUnit.objects.all().delete()
+
+        # Create new set and train_unit
         new_set = Set.objects.create(repetitions=2, weight=10, durations="[1,2]", auto_tracking=False,
                                      date_time=timezone.now() - timedelta(days=2), rfid="0006921147",
                                      exercise_name="Lat Pulldown")
@@ -116,4 +136,23 @@ class SetTest(TestCase):
         self.assertEqual(new_exercise_unit.time_date, new_set.date_time)
         self.assertEqual(new_train_unit.start_time_date, new_set.date_time)
 
-# TODO: Test function "get_profile_type"
+        # Create new set with existing trainunit
+        start = timezone.now() - timedelta(hours=2)
+        end = timezone.now()
+        TrainUnit.objects.create(start_time_date=start, end_time_date=end,
+                                 date=timezone.now(), user=UserTrackingProfile.objects.first())
+        new_set_with_tu = Set.objects.create(repetitions=2, weight=10, durations="[1,2]", auto_tracking=False,
+                                     date_time=timezone.now() - timedelta(days=2), rfid="0006921147",
+                                     exercise_name="Lat Pulldown")
+        new_exercise_unit_with_tu = new_set_with_tu.exercise_unit
+        new_train_unit = new_exercise_unit_with_tu.train_unit
+        self.assertEqual(new_exercise_unit.time_date, new_set.date_time)
+        self.assertEqual(new_train_unit.start_time_date, new_set.date_time)
+        self.assertEqual(new_train_unit.start_time_date, start)
+        self.assertEqual(new_train_unit.end_time_date, end)
+
+        # check invalid date: date in the future
+        with self.assertRaises(ValidationError):
+            Set.objects.create(repetitions=2, weight=10, durations="[1,2]", auto_tracking=False,
+                                         date_time=timezone.now() + timedelta(seconds=5), rfid="0006921147",
+                                         exercise_name="Lat Pulldown")

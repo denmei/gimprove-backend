@@ -160,6 +160,7 @@ class Set(models.Model):
     auto_tracking = models.BooleanField(blank=False, null=False, default=False)
     rfid = models.CharField(max_length=10, blank=False, null=False)
     last_update = models.DateTimeField(default=timezone.now, null=False, blank=False)
+    active = models.BooleanField(default=False, null=False, blank=False)
 
     class Meta:
         ordering = ['-date_time']
@@ -177,6 +178,8 @@ class Set(models.Model):
         # check exerciseunit
         if self.exercise_unit is not None and len(ExerciseUnit.objects.filter(id=self.exercise_unit.id)) == 0:
             raise ValidationError("Not a valid exercise_unit")
+        if self.exercise_unit is not None and ExerciseUnit.objects.get(id=self.exercise_unit.id).time_date > self.date_time:
+            raise ValidationError("Set cannot have a date before it's exerciseunit")
         # check rfid
         if self.rfid is not None and len(UserProfile.objects.filter(rfid_tag=self.rfid)) == 0:
             raise ValidationError("Not a valid rfid")
@@ -202,6 +205,13 @@ class Set(models.Model):
             raise ValidationError("Number of durations values and repetitions do not fit.")
 
     def save(self, *args, **kwargs):
+        """
+        Handles the creation of a new set.
+        If there is no exerciseunit specified, check for a trainunit of the specified day first. If there is none,
+        create a new trainunit and also a new exerciseunit within this new trainunit. Otherwise, check if there is
+        a exerciseunit in the existing trainunit whose exercise matches the one of the set. If not, create a new one.
+        Assign the set to the corresponding exerciseunit.
+        """
         self.clean()
 
         user_profile = UserProfile.objects.get(rfid_tag=self.rfid)
@@ -224,9 +234,10 @@ class Set(models.Model):
                                                               train_unit=train_unit,
                                                               exercise=Exercise.objects.get(name=self.exercise_name))
             self.exercise_unit = exercise_unit_r
-        # Set has to be added to existing exercise unit:
-        # else:
-        #     kwargs.pop('exercise_unit')
-        #     kwargs['exercise_unit'] = ExerciseUnit.objects.filter(id=self.exercise_unit.id)[0]
-        # kwargs['durations'] = ""
+
+        # If the active-parameter is true, make the set the new active set of the specified user
+        if self.active == 'True':
+            user_tracking_profile.active_set = self
+            user_tracking_profile.save()
+
         super(Set, self).save(*args, **kwargs)
