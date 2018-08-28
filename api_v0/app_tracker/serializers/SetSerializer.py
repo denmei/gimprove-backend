@@ -8,7 +8,6 @@ from app_main.models.models import UserProfile
 
 
 # TODO: Add permission to restrict access only to authenticated equipment components
-# TODO: Extra mark for sets that were tracked by equipment components
 
 
 class SetSerializer(serializers.ModelSerializer):
@@ -58,14 +57,6 @@ class SetSerializer(serializers.ModelSerializer):
         if (exercise_unit is None or exercise_unit == "") and ((exercise_name_r is None or exercise_name_r == "") or
                                                                (rfid is None or rfid == "")):
             raise ValidationError("Must provide at least exercise_unit or (exercise_name and rfid).")
-
-        if exercise_unit is not None and exercise_unit != "":
-            if not ExerciseUnit.objects.filter(id=exercise_unit).exists():
-                raise ValidationError("ExerciseUnit does not exist.")
-
-        if exercise_name_r is not None and exercise_name_r != "":
-            if not Exercise.objects.filter(name=exercise_name_r).exists():
-                raise ValidationError("Exercise %s does not exist!" % exercise_name_r)
 
         # Check whether exercise_name and equipment fit:
         fit = False
@@ -130,6 +121,24 @@ class SetSerializer(serializers.ModelSerializer):
         if value < 0:
             raise serializers.ValidationError('Weight must be positive!')
         return value
+
+    def validate_exercise_unit(self, value):
+        """
+        Logic test for exercise_unit:
+        - must exist
+        """
+        if value is not None and value != "":
+            if not ExerciseUnit.objects.filter(id=value.id).exists():
+                raise ValidationError("ExerciseUnit does not exist.")
+
+    def validate_exercise(self, value):
+        """
+        Logic test for exercise:
+        - must exist
+        """
+        if value is not None and value != "":
+            if not Exercise.objects.filter(name=value).exists():
+                raise ValidationError("Exercise %s does not exist!" % value)
 
     def validate_rfid(self, value):
         """

@@ -146,6 +146,7 @@ class SetSerializerTest(APITestCase):
         # data preparation
         train_set = Set.objects.all()[0]
         exercise_unit = train_set.exercise_unit
+        exercise_unit_id = exercise_unit.id
         exercise = exercise_unit.exercise
         equipment = exercise.equipment_machine.all()[0]
         train_unit = exercise_unit.train_unit
@@ -154,11 +155,13 @@ class SetSerializerTest(APITestCase):
         data = {'repetitions':  int(train_set.repetitions) - 1, 'weight': 10,
                 'exercise': exercise, 'equipment_id': str(equipment.id),
                 'date_time': train_set.date_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 'rfid': str(user.rfid_tag),
-                'active': str(False), 'durations': json.dumps(durations), 'exercise_unit': exercise_unit.id}
+                'active': str(False), 'durations': json.dumps(durations), 'exercise_unit': exercise_unit_id}
         url = self.pre_http + reverse('set_detail', kwargs={'pk': train_set.id})
+
         # test correct update request. Repetitions value may not be changed since may not be decreased.
         response = self.c.put(url, data, headers=self.header)
         content = (json.loads(response.content.decode("utf-8")))
+
         self.assertEqual(response.status_code, 200)
         self.assertEqual(content['repetitions'], int(train_set.repetitions))
         self.assertEqual(content['weight'], 10)
