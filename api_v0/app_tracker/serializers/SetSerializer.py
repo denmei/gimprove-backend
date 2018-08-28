@@ -87,10 +87,10 @@ class SetSerializer(serializers.ModelSerializer):
         """
         Only allows to increase the repetitions count (extra functionality for equipment components).
         """
-        instance.repetitions = max(int(validated_data.get('repetitions')), int(instance.repetitions))
-        instance.weight = int(validated_data.get('weight'))
         if instance.repetitions < int(validated_data.get('repetitions')):
             instance.durations = validated_data.get('durations')
+        instance.repetitions = max(int(validated_data.get('repetitions')), int(instance.repetitions))
+        instance.weight = int(validated_data.get('weight'))
         instance.last_update = timezone.now()
 
         # Check whether set is still active.

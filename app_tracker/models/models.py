@@ -238,6 +238,8 @@ class Set(models.Model):
                                                               train_unit=train_unit,
                                                               exercise=Exercise.objects.get(name=self.exercise.name))
             self.exercise_unit = exercise_unit_r
+        else:
+            user_tracking_profile = self.exercise_unit.train_unit.user
 
         # If the active-parameter is true, make the set the new active set of the specified user
         if self.active == 'True':

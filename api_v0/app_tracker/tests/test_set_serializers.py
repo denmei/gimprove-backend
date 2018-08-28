@@ -121,6 +121,7 @@ class SetSerializerTest(APITestCase):
                 'exercise': exercise, 'equipment_id': str(equipment.id),
                 'date_time': train_set.date_time, 'rfid': str(user.rfid_tag),
                 'active': str(False), 'durations': json.dumps(durations), 'exercise_unit': exercise_unit.id}
+
         before_time = timezone.now()
 
         # make update request
