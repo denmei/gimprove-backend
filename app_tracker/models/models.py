@@ -151,14 +151,14 @@ class Set(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     date_time = models.DateTimeField(default=timezone.now, null=False, blank=False)
-    exercise_unit = models.ForeignKey(ExerciseUnit, blank=True, null=True, on_delete=models.CASCADE)
+    exercise_unit = models.ForeignKey(ExerciseUnit, blank=True, null=True, on_delete=models.CASCADE, default=None)
     equipment = models.ForeignKey(Equipment, blank=True, null=True, on_delete=models.DO_NOTHING)
-    exercise = models.ForeignKey(Exercise, blank=True, null=True, on_delete=models.CASCADE)
+    exercise = models.ForeignKey(Exercise, blank=True, null=True, on_delete=models.CASCADE, default=None)
     repetitions = models.IntegerField(blank=False)
     weight = models.FloatField(blank=False)
     durations = models.TextField(max_length=1200, blank=False, null=False)
     auto_tracking = models.BooleanField(blank=False, null=False, default=False)
-    rfid = models.CharField(max_length=10, blank=False, null=False)
+    rfid = models.CharField(max_length=10, blank=True, null=True, default=None)
     last_update = models.DateTimeField(default=timezone.now, null=False, blank=False)
     active = models.BooleanField(default=False, null=False, blank=False)
 
@@ -182,6 +182,8 @@ class Set(models.Model):
             raise ValidationError("Set cannot have a date before it's exerciseunit")
         # check rfid
         if self.rfid is not None and len(UserProfile.objects.filter(rfid_tag=self.rfid)) == 0:
+            print(self.rfid)
+            print(self.rfid is None)
             raise ValidationError("Not a valid rfid")
         # check exercise
         if self.exercise is not None and len(Exercise.objects.filter(name=self.exercise.name)) == 0:
@@ -217,16 +219,14 @@ class Set(models.Model):
         """
         self.clean()
 
-        user_profile = UserProfile.objects.get(rfid_tag=self.rfid)
-        user_tracking_profile = UserTrackingProfile.objects.get(user_profile=user_profile)
-
         # Create a new TrainUnit and ExerciseUnit if necessary.
         if self.exercise_unit is None:
+            user_profile = UserProfile.objects.get(rfid_tag=self.rfid)
+            user_tracking_profile = UserTrackingProfile.objects.get(user_profile=user_profile)
             # If there already exists a TrainUnit for this day, update the end_time_date-field.
             if TrainUnit.objects.filter(date=self.date_time, user=user_tracking_profile).exists():
                 train_unit = TrainUnit.objects.get(date=self.date_time, user=user_tracking_profile)
                 train_unit.end_time_date = self.date_time
-                print("UPDATEd")
             else:
                 train_unit = TrainUnit.objects.create(date=self.date_time, start_time_date=self.date_time,
                                                       end_time_date=self.date_time, user=user_tracking_profile)

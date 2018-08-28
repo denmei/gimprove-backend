@@ -36,11 +36,12 @@ class SetSerializer(serializers.ModelSerializer):
         else:
             exercise_unit = None
             exercise = Exercise.objects.get(name=exercise_name)
+
         new_set = Set.objects.create(repetitions=int(validated_data['repetitions']), exercise_unit=exercise_unit,
                                      weight=int(validated_data['weight']), durations=validated_data['durations'],
                                      auto_tracking=bool(auto_tracking),
                                      date_time=date_parser.parse(validated_data['date_time']),
-                                     rfid=rfid, exercise=exercise)
+                                     rfid=rfid, exercise=exercise, active=validated_data['active'])
         return new_set
 
     def validate(self, attrs):
@@ -91,7 +92,6 @@ class SetSerializer(serializers.ModelSerializer):
         if instance.repetitions < int(validated_data.get('repetitions')):
             instance.durations = validated_data.get('durations')
         instance.last_update = timezone.now()
-        # TODO: Logikpruefung fuer Gewicht: Siginifikant kleiner/groesser sodass waehrend Set verstellt?
 
         # Check whether set is still active.
         if validated_data.get('active') != 'True':

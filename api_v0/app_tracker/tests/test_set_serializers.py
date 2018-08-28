@@ -158,7 +158,6 @@ class SetSerializerTest(APITestCase):
         # test correct update request. Repetitions value may not be changed since may not be decreased.
         response = self.c.put(url, data, headers=self.header)
         content = (json.loads(response.content.decode("utf-8")))
-        print(content)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(content['repetitions'], int(train_set.repetitions))
         self.assertEqual(content['weight'], 10)
@@ -189,7 +188,7 @@ class SetSerializerTest(APITestCase):
             equipment_id = Equipment.objects.first().id
             durations = random.sample(range(1, 20), 10)
             data = {'exercise_unit': exercise_unit.id, 'repetitions': 10, 'weight': 60,
-                    'exercise_name': exercise_name, 'rfid': rfid, 'date_time': date_time, 'equipment_id': equipment_id,
+                    'exercise': exercise_name, 'rfid': rfid, 'date_time': date_time, 'equipment_id': equipment_id,
                     'active': active, 'durations': json.dumps(durations)}
             response = json.loads(self.c.post(self.pre_http + reverse('set_list'), data, headers=self.header).content.decode("utf-8"))
             return response['id']
@@ -214,14 +213,14 @@ class SetSerializerTest(APITestCase):
         """
         # create single set with new train unit and exercise unit
         user = UserTrackingProfile.objects.first()
-        train_unit = TrainUnit.objects.create(start_time_date=timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-                                              end_time_date=timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        train_unit = TrainUnit.objects.create(start_time_date=timezone.now(),
+                                              end_time_date=timezone.now(),
                                               date=timezone.now().date(), user=user)
-        exercise_unit = ExerciseUnit.objects.create(time_date=timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        exercise_unit = ExerciseUnit.objects.create(time_date=timezone.now(),
                                                     train_unit=train_unit, exercise=Exercise.objects.first())
-        set = Set.objects.create(date_time=timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-                                 exercise_unit=exercise_unit,
-                                 repetitions=1, weight=10, durations=[0])
+        set = Set.objects.create(date_time=timezone.now(),
+                                 exercise_unit=exercise_unit, active=False,
+                                 repetitions=1, weight=10, durations=json.dumps([0]))
 
         # make sure that every object was created and is unique
         self.assertEqual(Set.objects.filter(id=set.id).count(), 1)

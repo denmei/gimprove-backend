@@ -49,6 +49,7 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
         user_profile = set.exercise_unit.train_unit.user
         exercise_unit = set.exercise_unit
         train_unit = exercise_unit.train_unit
+
         if user_profile.active_set == set:
             user_profile.active_set = None
             user_profile.save()
