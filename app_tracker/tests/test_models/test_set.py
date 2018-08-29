@@ -177,3 +177,16 @@ class SetTest(TestCase):
         delete_set.delete()
         self.assertEqual(TrainUnit.objects.filter(id=train_unit.id).count(), 0)
         self.assertEqual(ExerciseUnit.objects.filter(id=exercise_unit.id).count(), 0)
+
+    def test_delete_active_set(self):
+        """
+        When an active set is deleted, the usertracking_profile's active value must be set to None.
+        """
+        exercise_unit = ExerciseUnit.objects.first()
+        user_tracking_profile = exercise_unit.train_unit.user
+        new_set = Set.objects.create(repetitions=3, weight=10, durations="[1,2,1]", auto_tracking=False,
+                                     rfid="0006921147", exercise_unit=exercise_unit, date_time=exercise_unit.time_date,
+                                     active=True)
+        self.assertTrue(user_tracking_profile.active_set == new_set)
+        new_set.delete()
+        self.assertEqual(user_tracking_profile.active_set, None)

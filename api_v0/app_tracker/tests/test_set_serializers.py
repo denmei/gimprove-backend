@@ -48,7 +48,7 @@ class SetSerializerTest(APITestCase):
         exercise_unit = train_unit.exerciseunit_set.first()
         exercise_name = exercise_unit.exercise
         date_time = exercise_unit.time_date
-        equipment_id = Equipment.objects.first().id
+        equipment_id = exercise_unit.equipment.id
         durations = random.sample(range(1, 20), repetitions)
         # make request and test
         data = {'exercise_unit': exercise_unit.id, 'repetitions': repetitions, 'weight': weight,
@@ -70,9 +70,9 @@ class SetSerializerTest(APITestCase):
         """
         repetitions = 10
         weight = 60
-        exercise_name = Exercise.objects.first()
         date_time = timezone.now()
         equipment_id = Equipment.objects.first().id
+        exercise_name = Equipment.objects.first().exercises.first().name
         durations = random.sample(range(1, 20), repetitions)
         data = {'exercise_unit': "", 'repetitions': repetitions, 'weight': weight, 'exercise': exercise_name,
                 'rfid': self.rfid, 'date_time': date_time, 'equipment_id': equipment_id, 'active': False, 'durations':
@@ -189,7 +189,7 @@ class SetSerializerTest(APITestCase):
             exercise_unit = train_unit.exerciseunit_set.first()
             exercise_name = exercise_unit.exercise
             date_time = exercise_unit.time_date
-            equipment_id = Equipment.objects.first().id
+            equipment_id = exercise_unit.equipment.id
             durations = random.sample(range(1, 20), 10)
             data = {'exercise_unit': exercise_unit.id, 'repetitions': 10, 'weight': 60,
                     'exercise': exercise_name, 'rfid': rfid, 'date_time': date_time, 'equipment_id': equipment_id,

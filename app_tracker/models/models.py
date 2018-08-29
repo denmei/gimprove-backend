@@ -15,7 +15,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from app_main.models.models import UserProfile
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, pre_delete
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -242,12 +242,19 @@ class Set(models.Model):
             user_tracking_profile = self.exercise_unit.train_unit.user
 
         # If the active-parameter is true, make the set the new active set of the specified user
-        if self.active == 'True':
+        if self.active:
             user_tracking_profile.active_set = self
             user_tracking_profile.save()
 
         super(Set, self).save(*args, **kwargs)
 
+
+@receiver(pre_delete, sender=Set)
+def reset_userprofile_active(sender, instance, **kwargs):
+    user_tracking_profile = instance.exercise_unit.train_unit.user
+    if user_tracking_profile.active_set == instance:
+        user_tracking_profile.active_set = None
+        user_tracking_profile.save()
 
 @receiver(post_delete, sender=Set)
 def delete_empty_exercise_unit(sender, instance, **kwargs):
