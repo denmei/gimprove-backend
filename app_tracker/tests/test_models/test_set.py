@@ -4,6 +4,7 @@ from app_tracker.models.models import UserTrackingProfile, Set, ExerciseUnit, Tr
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 from datetime import timedelta
+import dateutil.parser as date_parser
 
 
 class SetTest(TestCase):
@@ -118,3 +119,61 @@ class SetTest(TestCase):
         with self.assertRaises(ValidationError):
             Set.objects.create(repetitions=2, weight=10, durations="[1,2]", auto_tracking=False,
                                date_time=timezone.now() + timedelta(seconds=5), rfid="0006921147", exercise=exercise)
+
+    def test_not_last_set_deletion(self):
+        """
+        Tests whether a set can be deleted from an exerciseunit that contains more than one set.
+        """
+        exercise_unit = ExerciseUnit.objects.first()
+        # make sure that there are more than one set in the exerciseunit
+        Set.objects.create(repetitions=2, weight=10, durations="[1,2]", auto_tracking=False, rfid="0006921147",
+                           exercise_unit=exercise_unit, date_time=exercise_unit.time_date)
+        delete_set = Set.objects.create(repetitions=3, weight=10, durations="[1,2,1]", auto_tracking=False, rfid="0006921147",
+                           exercise_unit=exercise_unit, date_time=exercise_unit.time_date)
+        self.assertTrue(exercise_unit.set_set.count() > 1)
+        count_before = exercise_unit.set_set.count()
+        delete_set.delete()
+        self.assertEqual(count_before-1, exercise_unit.set_set.count())
+
+    def test_last_set_deletion(self):
+        """
+        Tests whether a set can be deleted from an exerciseunit with only one set. The exerciseunit must also be
+        deleted then.
+        """
+        # make sure that the exerciseunit only has one set and the corresponding trainunit has more than
+        # one exerciseunit
+        # Todo: Trainunit auto creation
+        train_unit = TrainUnit.objects.create(start_time_date=date_parser.parse("2018-08-29 03:48:11.142234+00:00"),
+                                             end_time_date=date_parser.parse("2018-08-29 04:48:11.142234+00:00"),
+                                             date=date_parser.parse("2018-08-29"), user=UserTrackingProfile.objects.first())
+        exercise_unit = ExerciseUnit.objects.create(time_date=date_parser.parse("2018-08-29 04:48:11.142234+00:00"),
+                                                    exercise=Exercise.objects.all()[0], train_unit=train_unit)
+        ExerciseUnit.objects.create(time_date=date_parser.parse("2018-08-29 04:38:11.142234+00:00"),
+                                    exercise=Exercise.objects.all()[1], train_unit=train_unit)
+        self.assertEqual(train_unit.exerciseunit_set.count(), 2)
+        delete_set = Set.objects.create(repetitions=3, weight=10, durations="[1,2,1]", auto_tracking=False,
+                                        rfid="0006921147", exercise_unit=exercise_unit, date_time=exercise_unit.time_date)
+        delete_set.delete()
+        self.assertEqual(train_unit.exerciseunit_set.count(), 1)
+
+    def test_last_set_deletion_with_tu(self):
+        """
+        Tests whether a set can be deleted from an exerciseunit with only one set. The exerciseunit must also be
+        deleted then. If the exerciseunit is the only eu of it's trainunit, the trainunit must be deleted too.
+        """
+        train_unit = TrainUnit.objects.create(start_time_date=date_parser.parse("2018-08-29 03:48:11.142234+00:00"),
+                                              end_time_date=date_parser.parse("2018-08-29 04:48:11.142234+00:00"),
+                                              date=date_parser.parse("2018-08-29"),
+                                              user=UserTrackingProfile.objects.first())
+        exercise_unit = ExerciseUnit.objects.create(time_date=date_parser.parse("2018-08-29 04:48:11.142234+00:00"),
+                                                    exercise=Exercise.objects.all()[0], train_unit=train_unit)
+        self.assertEqual(train_unit.exerciseunit_set.count(), 1)
+        self.assertEqual(TrainUnit.objects.filter(id=train_unit), 1)
+        self.assertEqual(ExerciseUnit.objects.filter(id=exercise_unit), 1)
+        delete_set = Set.objects.create(repetitions=3, weight=10, durations="[1,2,1]", auto_tracking=False,
+                                        rfid="0006921147", exercise_unit=exercise_unit,
+                                        date_time=exercise_unit.time_date)
+
+        delete_set.delete()
+        self.assertEqual(TrainUnit.objects.filter(id=train_unit), 0)
+        self.assertEqual(ExerciseUnit.objects.filter(id=exercise_unit), 0)

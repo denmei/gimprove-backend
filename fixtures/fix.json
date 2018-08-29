@@ -54,6 +54,24 @@
     }
 },
 {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$100000$UIenAY1BvhZt$8rPJJPDIrRokxO+PXrI8AizdDOH2HvhzZWrVwpBshOw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "rasspi-2",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2018-08-29T04:43:34.752Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
     "model": "app_tracker.usertrackingprofile",
     "pk": 1,
     "fields": {
@@ -76,8 +94,27 @@
     }
 },
 {
+    "model": "app_tracker.exercise",
+    "pk": "Leg Press",
+    "fields": {
+        "description": "none",
+        "gimprove_system": true,
+        "muscles": [
+            "Quadriceps"
+        ],
+        "equipment_machine": [
+            "0f0daf69-fc3d-46b6-b437-778413a68bec"
+        ]
+    }
+},
+{
     "model": "app_tracker.musclegroup",
     "pk": "Back",
+    "fields": {}
+},
+{
+    "model": "app_tracker.musclegroup",
+    "pk": "Legs",
     "fields": {}
 },
 {
@@ -88,6 +125,13 @@
     }
 },
 {
+    "model": "app_tracker.muscle",
+    "pk": "Quadriceps",
+    "fields": {
+        "muscle_group": "Legs"
+    }
+},
+{
     "model": "app_tracker.trainunit",
     "pk": "525ba316-2b15-4acb-aaec-b311a46f7096",
     "fields": {
@@ -95,6 +139,17 @@
         "end_time_date": "2018-08-27T16:58:12Z",
         "date": "2018-08-27",
         "user": 1
+    }
+},
+{
+    "model": "app_tracker.equipment",
+    "pk": "0f0daf69-fc3d-46b6-b437-778413a68bec",
+    "fields": {
+        "user": 4,
+        "gym": 2,
+        "exercises": [
+            "Leg Press"
+        ]
     }
 },
 {
