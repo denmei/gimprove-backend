@@ -168,12 +168,12 @@ class SetTest(TestCase):
         exercise_unit = ExerciseUnit.objects.create(time_date=date_parser.parse("2018-08-29 04:48:11.142234+00:00"),
                                                     exercise=Exercise.objects.all()[0], train_unit=train_unit)
         self.assertEqual(train_unit.exerciseunit_set.count(), 1)
-        self.assertEqual(TrainUnit.objects.filter(id=train_unit), 1)
-        self.assertEqual(ExerciseUnit.objects.filter(id=exercise_unit), 1)
+        self.assertEqual(TrainUnit.objects.filter(id=train_unit.id).count(), 1)
+        self.assertEqual(ExerciseUnit.objects.filter(id=exercise_unit.id).count(), 1)
         delete_set = Set.objects.create(repetitions=3, weight=10, durations="[1,2,1]", auto_tracking=False,
                                         rfid="0006921147", exercise_unit=exercise_unit,
                                         date_time=exercise_unit.time_date)
 
         delete_set.delete()
-        self.assertEqual(TrainUnit.objects.filter(id=train_unit), 0)
-        self.assertEqual(ExerciseUnit.objects.filter(id=exercise_unit), 0)
+        self.assertEqual(TrainUnit.objects.filter(id=train_unit.id).count(), 0)
+        self.assertEqual(ExerciseUnit.objects.filter(id=exercise_unit.id).count(), 0)

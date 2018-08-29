@@ -15,7 +15,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from app_main.models.models import UserProfile
-import dateutil.parser as date_parser
+from django.db.models.signals import post_delete
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -247,3 +247,23 @@ class Set(models.Model):
             user_tracking_profile.save()
 
         super(Set, self).save(*args, **kwargs)
+
+
+@receiver(post_delete, sender=Set)
+def delete_empty_exercise_unit(sender, instance, **kwargs):
+    """
+    If a set is deleted and it's exercise_unit does not have any further sets, delete the exercise_unit.
+    """
+    exercise_unit = instance.exercise_unit
+    if exercise_unit.set_set.count() < 1:
+        exercise_unit.delete()
+
+
+@receiver(post_delete, sender=ExerciseUnit)
+def delete_empty_train_unit(sender, instance, **kwargs):
+    """
+    If an exercise_unit is deleted and it's train_unit does not have any further exercise_units, delete the train_unit.
+    """
+    train_unit = instance.train_unit
+    if train_unit.exerciseunit_set.count() < 1:
+        train_unit.delete()
