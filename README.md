@@ -18,12 +18,21 @@ Gimprove Plattform hosting the Gimprove Website and providing the Gimprove-API.
 3) [Gimprove-Client](https://bitbucket.org/den_mei/gimprove_app/src/master/): Client that is attached on the machines.
 
 ## Repository Overview
-This repository contains the code for the Gimprove-server and serves for two purposes at the moment:
+This repository contains the code for the Gimprove-server. There are mutiple apps with different purposes:
 
 1) **Landing Page:** Code for the [Gimprove-Landing Page](www.gimprove.com)
 
-2) **Tracker-Backend:** Server-logic of the Gimprove system. Includes a REST-API to retrieve, update, 
-create and delete data from the git push application. To enable real-time tracking, websocket communication is used.
+2) **app_main:** General models that can be used by the other apps.
+
+3) **app_tracker:** Logic for the tracking system. Administration of users' tracking data.
+
+4) **api_v`x`:** Rest-API with the version `x`. API-logic for all apps, implemented with the 
+Django-Rest-Framework.
+
+5) **app_network:** Logic for the Gimprove network that connects users and gyms.
+
+6) **app_achievements:** Logic for managing the users' achievements. Users can earn *achievements* e.g. by solving 
+challenges or reaching predefined goals.
 
 ## Usage
 To run the application locally, execute `python3 manage.py runserver`. The app will start to run under the following 
