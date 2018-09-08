@@ -57,6 +57,27 @@ class SetSerializerTest(APITestCase):
         response = self.c.post(self.pre_http + reverse('set_list'), data, headers=self.header)
         self.assertEqual(response.status_code, 201)
 
+    def test_active_set_creation(self):
+        """
+        Using existing trainunit and existing exerciseunit.
+        """
+        # generate request data
+        repetitions = 0
+        weight = 60
+        train_unit = TrainUnit.objects.filter(user=UserTrackingProfile.objects.first())[0]
+        exercise_unit = train_unit.exerciseunit_set.first()
+        exercise_name = exercise_unit.exercise
+        date_time = exercise_unit.time_date
+        equipment_id = exercise_unit.equipment.id
+        durations = random.sample(range(1, 20), repetitions)
+        # make request and test
+        data = {'exercise_unit': '', 'repetitions': repetitions, 'weight': weight,
+                'exercise': exercise_name, 'rfid': self.rfid, 'date_time': date_time, 'equipment_id': equipment_id,
+                'active': True, 'durations': json.dumps(durations)}
+        response = self.c.post(self.pre_http + reverse('set_list'), data, headers=self.header)
+        self.assertEqual(response.status_code, 201)
+        self.assertTrue(json.loads(response.content.decode('utf-8'))['active'] is True)
+
     def test_train_unit_creation(self):
         """
         Create new trainunit and exerciseunit.

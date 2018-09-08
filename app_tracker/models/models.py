@@ -256,6 +256,7 @@ def reset_userprofile_active(sender, instance, **kwargs):
         user_tracking_profile.active_set = None
         user_tracking_profile.save()
 
+
 @receiver(post_delete, sender=Set)
 def delete_empty_exercise_unit(sender, instance, **kwargs):
     """

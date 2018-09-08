@@ -36,6 +36,7 @@ class SetSerializer(serializers.ModelSerializer):
             exercise_unit = None
             exercise = Exercise.objects.get(name=exercise_name)
 
+        print(validated_data)
         new_set = Set.objects.create(repetitions=int(validated_data['repetitions']), exercise_unit=exercise_unit,
                                      weight=int(validated_data['weight']), durations=validated_data['durations'],
                                      auto_tracking=bool(auto_tracking),
