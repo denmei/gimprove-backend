@@ -8,7 +8,6 @@ from app_main.models.models import UserProfile
 
 
 # TODO: Add permission to restrict access only to authenticated equipment components
-# TODO: Extra mark for sets that were tracked by equipment components
 
 
 class SetSerializer(serializers.ModelSerializer):
@@ -16,26 +15,48 @@ class SetSerializer(serializers.ModelSerializer):
     Additional fields to identify the User and the used equipment. Exercise_unit must be defined twice, since
     it's an not nullable field in the model (redefine for serializer).
     """
-    exercise_unit = serializers.PrimaryKeyRelatedField(required=False, read_only=True, allow_null=True)
-    equipment_id = serializers.CharField(source="exercise_unit.equipment")
-    exercise_name = serializers.CharField(source="exercise_unit.exercise.name")
-    rfid = serializers.CharField(source="exercise_unit.train_unit.user.user_profile.rfid_tag")
 
     class Meta:
         model = Set
-        fields = ('id', 'date_time', 'durations', 'exercise_unit', 'repetitions', 'weight', 'rfid', 'equipment_id',
-                  'exercise_name')
+        fields = ('id', 'date_time', 'durations', 'exercise_unit', 'repetitions', 'weight', 'rfid', 'equipment',
+                  'exercise', 'active', 'auto_tracking')
+
+    def create(self, validated_data):
+        exercise_unit = validated_data['exercise_unit']
+        exercise_name = validated_data['exercise']
+        rfid = validated_data['rfid']
+
+        # TODO: Implement logic for autotracking
+        auto_tracking = True
+
+        if exercise_unit is not None and exercise_unit != "":
+            exercise_unit = ExerciseUnit.objects.get(id=exercise_unit)
+            exercise = None
+        else:
+            exercise_unit = None
+            exercise = Exercise.objects.get(name=exercise_name)
+
+        new_set = Set.objects.create(repetitions=int(validated_data['repetitions']), exercise_unit=exercise_unit,
+                                     weight=int(validated_data['weight']), durations=validated_data['durations'],
+                                     auto_tracking=bool(auto_tracking),
+                                     date_time=date_parser.parse(validated_data['date_time']),
+                                     rfid=rfid, exercise=exercise, active=validated_data['active'])
+        return new_set
 
     def validate(self, attrs):
         """
         Multiple validations of the input data coming from the client.
         """
-        # TODO: Check whether all values in request
-        # TODO: check durations vs. repetitions
         equipment_id_r = self.initial_data['equipment_id']
-        exercise_name_r = self.initial_data['exercise_name']
+        exercise_unit = self.initial_data['exercise_unit']
+        exercise_name_r = self.initial_data['exercise']
         durations = self.initial_data['durations']
         repetitions = self.initial_data['repetitions']
+        rfid = self.initial_data['rfid']
+
+        if (exercise_unit is None or exercise_unit == "") and ((exercise_name_r is None or exercise_name_r == "") or
+                                                               (rfid is None or rfid == "")):
+            raise ValidationError("Must provide at least exercise_unit or (exercise_name and rfid).")
 
         # Check whether exercise_name and equipment fit:
         fit = False
@@ -51,63 +72,17 @@ class SetSerializer(serializers.ModelSerializer):
         if len(durations) != int(repetitions):
             raise ValidationError("The number of duration values must be equal to the number of repetitions." +
                                   str(len(durations)) + " " + str(durations) + " " + str(repetitions))
-
         return self.initial_data
-
-    def create(self, validated_data, **kwargs):
-        """
-        Remove additional parameters (rfid and exercise name) before creating the set-instance.
-        """
-        # Pop the data not needed to create a set.
-        exercise_name_r = validated_data.pop('exercise_name')
-        rfid_r = validated_data.pop('rfid')
-        equipment_id = validated_data.pop('equipment_id')
-        user_profile = UserProfile.objects.get(rfid_tag=rfid_r)
-        user_tracking_profile = UserTrackingProfile.objects.get(user_profile=user_profile)
-        exercise_unit_r = validated_data['exercise_unit']
-        active = validated_data.pop('active')
-        set_time_tz = date_parser.parse(validated_data['date_time'])
-
-        # Create a new TrainUnit and ExerciseUnit if necessary.
-        if exercise_unit_r == "None" or exercise_unit_r == "":
-            # If there already exists a TrainUnit for this day, update the end_time_date-field.
-            if TrainUnit.objects.filter(date=set_time_tz, user=user_tracking_profile).exists():
-                train_unit = TrainUnit.objects.get(date=set_time_tz, user=user_tracking_profile)
-                train_unit.end_time_date = set_time_tz
-            else:
-                train_unit = TrainUnit.objects.create(date=set_time_tz, start_time_date=set_time_tz,
-                                                      end_time_date=set_time_tz, user=user_tracking_profile)
-            #  check whether there already is a exercise unit for the specified exercise in the train unit
-            if train_unit.exerciseunit_set.filter(exercise=Exercise.objects.get(name=exercise_name_r)).exists():
-                exercise_unit_r = train_unit.exerciseunit_set.get(exercise=Exercise.objects.get(name=exercise_name_r))
-            else:
-                exercise_unit_r = ExerciseUnit.objects.create(time_date=set_time_tz,
-                                                              train_unit=train_unit,
-                                                              exercise=Exercise.objects.get(name=exercise_name_r))
-            validated_data['exercise_unit'] = exercise_unit_r
-        # Set has to be added to existing exercise unit:
-        else:
-            validated_data['exercise_unit'] = ExerciseUnit.objects.filter(id=validated_data['exercise_unit'])[0]
-        validated_data['durations'] = ""
-        # necessary to keep the timezone correct:
-        validated_data['date_time'] = date_parser.parse(validated_data['date_time'])
-        new_set = Set.objects.create(**validated_data)
-
-        if active == 'True':
-            user_tracking_profile.active_set = new_set
-            user_tracking_profile.save()
-
-        return new_set
 
     def update(self, instance, validated_data):
         """
         Only allows to increase the repetitions count (extra functionality for equipment components).
         """
+        if instance.repetitions < int(validated_data.get('repetitions')):
+            instance.durations = validated_data.get('durations')
         instance.repetitions = max(int(validated_data.get('repetitions')), int(instance.repetitions))
-        instance.weight = validated_data.get('weight')
-        instance.durations = validated_data.get('durations')
+        instance.weight = int(validated_data.get('weight'))
         instance.last_update = timezone.now()
-        # TODO: Logikpruefung fuer Gewicht: Siginifikant kleiner/groesser sodass waehrend Set verstellt?
 
         # Check whether set is still active.
         if validated_data.get('active') != 'True':
@@ -146,6 +121,24 @@ class SetSerializer(serializers.ModelSerializer):
         if value < 0:
             raise serializers.ValidationError('Weight must be positive!')
         return value
+
+    def validate_exercise_unit(self, value):
+        """
+        Logic test for exercise_unit:
+        - must exist
+        """
+        if value is not None and value != "":
+            if not ExerciseUnit.objects.filter(id=value.id).exists():
+                raise ValidationError("ExerciseUnit does not exist.")
+
+    def validate_exercise(self, value):
+        """
+        Logic test for exercise:
+        - must exist
+        """
+        if value is not None and value != "":
+            if not Exercise.objects.filter(name=value).exists():
+                raise ValidationError("Exercise %s does not exist!" % value)
 
     def validate_rfid(self, value):
         """

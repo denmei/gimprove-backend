@@ -1,7 +1,7 @@
 from django.db import models
 import os
 from django.contrib.auth.models import User
-from app_tracker.models.models import UserTrackingProfile
+from app_tracker.models import models as tracker
 from app_network.models.models import Activity, Connection
 
 
@@ -59,7 +59,7 @@ class UserProfile(Profile):
 
     def save(self, *args, **kwargs):
         super(UserProfile, self).save(*args, **kwargs)
-        tracking_data = UserTrackingProfile(user_profile=self)
+        tracking_data = tracker.UserTrackingProfile(user_profile=self)
         tracking_data.save()
 
 

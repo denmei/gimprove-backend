@@ -2,9 +2,8 @@ import time
 
 from django.test import TestCase
 
-from app_tracker.models.models import UserTrackingProfile, Set
+from app_tracker.models.models import UserTrackingProfile, Set, ExerciseUnit, TrainUnit, Exercise
 from django.utils import timezone
-
 """
 Script to test the models of the tracker app.
 """
@@ -52,6 +51,3 @@ class UserProfileActiveSetTest(TestCase):
         self.up.active_set = self.set
         self.set.last_update = timezone.now() - timezone.timedelta(seconds=16)
         self.assertTrue(self.up.active_set is None)
-
-
-#TODO: Test function "get_profile_type"

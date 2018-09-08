@@ -11,19 +11,38 @@
     "model": "app_tracker.exercise",
     "pk": "Lat Pulldown",
     "fields": {
-        "description": "none",
+        "description": "\u00f6",
         "gimprove_system": true,
         "muscles": [
             "Lat"
         ],
         "equipment_machine": [
-            "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640"
+            "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709"
+        ]
+    }
+},
+{
+    "model": "app_tracker.exercise",
+    "pk": "Leg Press",
+    "fields": {
+        "description": "none",
+        "gimprove_system": true,
+        "muscles": [
+            "Quadriceps"
+        ],
+        "equipment_machine": [
+            "0f0daf69-fc3d-46b6-b437-778413a68bec"
         ]
     }
 },
 {
     "model": "app_tracker.musclegroup",
     "pk": "Back",
+    "fields": {}
+},
+{
+    "model": "app_tracker.musclegroup",
+    "pk": "Legs",
     "fields": {}
 },
 {
@@ -34,18 +53,38 @@
     }
 },
 {
-    "model": "app_tracker.trainunit",
-    "pk": "2cd9cc65-f1b9-4ae5-a000-44d77d3b5a3a",
+    "model": "app_tracker.muscle",
+    "pk": "Quadriceps",
     "fields": {
-        "start_time_date": "2018-08-26T08:56:50Z",
-        "end_time_date": "2018-08-26T09:56:50Z",
-        "date": "2018-08-26",
+        "muscle_group": "Legs"
+    }
+},
+{
+    "model": "app_tracker.trainunit",
+    "pk": "525ba316-2b15-4acb-aaec-b311a46f7096",
+    "fields": {
+        "start_time_date": "2018-08-27T16:28:12Z",
+        "end_time_date": "2018-08-27T16:58:12Z",
+        "date": "2018-08-27",
         "user": 1
     }
 },
 {
     "model": "app_tracker.equipment",
-    "pk": "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640",
+    "pk": "0f0daf69-fc3d-46b6-b437-778413a68bec",
+    "fields": {
+        "user": [
+            "rasspi-2"
+        ],
+        "gym": 2,
+        "exercises": [
+            "Leg Press"
+        ]
+    }
+},
+{
+    "model": "app_tracker.equipment",
+    "pk": "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709",
     "fields": {
         "user": [
             "rasppi-1"
@@ -58,25 +97,29 @@
 },
 {
     "model": "app_tracker.exerciseunit",
-    "pk": "2a7cf951-5476-425d-8e19-4d2458cb4ba0",
+    "pk": "f88ab3b6-e155-4f3a-99c8-f93f83a26453",
     "fields": {
-        "time_date": "2018-08-26T09:46:47Z",
-        "train_unit": "2cd9cc65-f1b9-4ae5-a000-44d77d3b5a3a",
+        "time_date": "2018-08-27T16:38:04Z",
+        "train_unit": "525ba316-2b15-4acb-aaec-b311a46f7096",
         "exercise": "Lat Pulldown",
-        "equipment": "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640"
+        "equipment": "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709"
     }
 },
 {
     "model": "app_tracker.set",
-    "pk": "f7d2bb5e-41f4-43f6-8e67-5f92eb5794f1",
+    "pk": "410a37a2-6eac-44d4-972c-066ccfd96147",
     "fields": {
-        "date_time": "2018-08-26T09:52:31Z",
-        "exercise_unit": "2a7cf951-5476-425d-8e19-4d2458cb4ba0",
+        "date_time": "2018-08-27T16:47:54Z",
+        "exercise_unit": "f88ab3b6-e155-4f3a-99c8-f93f83a26453",
+        "equipment": "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709",
+        "exercise": null,
         "repetitions": 2,
-        "weight": 14.0,
-        "durations": "[2,1]",
-        "auto_tracking": false,
-        "last_update": "2018-08-26T09:56:31Z"
+        "weight": 12.0,
+        "durations": "[1,2]",
+        "auto_tracking": true,
+        "rfid": "0006921147",
+        "last_update": "2018-08-27T16:57:54Z",
+        "active": false
     }
 }
 ]

@@ -1,11 +1,202 @@
 [
 {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$100000$jwE1LpuJEFhe$VD3R2mSnxbt2jil4tvsoKjVlmfsPoZbNQ5Etv06mpHY=",
+        "last_login": "2018-08-24T05:04:29.471Z",
+        "is_superuser": true,
+        "username": "dennis",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2018-08-24T05:04:18.041Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$100000$8VEAoOUo5g3n$N/cTWckm9wXEQFPRW51SwMLVY9wjUdGc8aE2yW7JLP0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "testgym",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2018-08-24T05:04:56.831Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$100000$MIp2xaHs1dsQ$iKQBty0IO39DrzTUcDKwahWiALUOq5S86ojw5r3e8Nk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "rasppi-1",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2018-08-24T13:50:48.898Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$100000$UIenAY1BvhZt$8rPJJPDIrRokxO+PXrI8AizdDOH2HvhzZWrVwpBshOw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "rasspi-2",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2018-08-29T04:43:34.752Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "app_tracker.usertrackingprofile",
+    "pk": 1,
+    "fields": {
+        "user_profile": 1,
+        "_pr_active_set": null
+    }
+},
+{
+    "model": "app_tracker.exercise",
+    "pk": "Lat Pulldown",
+    "fields": {
+        "description": "\u00f6",
+        "gimprove_system": true,
+        "muscles": [
+            "Lat"
+        ],
+        "equipment_machine": [
+            "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709"
+        ]
+    }
+},
+{
+    "model": "app_tracker.exercise",
+    "pk": "Leg Press",
+    "fields": {
+        "description": "none",
+        "gimprove_system": true,
+        "muscles": [
+            "Quadriceps"
+        ],
+        "equipment_machine": [
+            "0f0daf69-fc3d-46b6-b437-778413a68bec"
+        ]
+    }
+},
+{
+    "model": "app_tracker.musclegroup",
+    "pk": "Back",
+    "fields": {}
+},
+{
+    "model": "app_tracker.musclegroup",
+    "pk": "Legs",
+    "fields": {}
+},
+{
+    "model": "app_tracker.muscle",
+    "pk": "Lat",
+    "fields": {
+        "muscle_group": "Back"
+    }
+},
+{
+    "model": "app_tracker.muscle",
+    "pk": "Quadriceps",
+    "fields": {
+        "muscle_group": "Legs"
+    }
+},
+{
+    "model": "app_tracker.trainunit",
+    "pk": "525ba316-2b15-4acb-aaec-b311a46f7096",
+    "fields": {
+        "start_time_date": "2018-08-27T16:28:12Z",
+        "end_time_date": "2018-08-27T16:58:12Z",
+        "date": "2018-08-27",
+        "user": 1
+    }
+},
+{
+    "model": "app_tracker.equipment",
+    "pk": "0f0daf69-fc3d-46b6-b437-778413a68bec",
+    "fields": {
+        "user": 4,
+        "gym": 2,
+        "exercises": [
+            "Leg Press"
+        ]
+    }
+},
+{
+    "model": "app_tracker.equipment",
+    "pk": "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709",
+    "fields": {
+        "user": 3,
+        "gym": 2,
+        "exercises": [
+            "Lat Pulldown"
+        ]
+    }
+},
+{
+    "model": "app_tracker.exerciseunit",
+    "pk": "f88ab3b6-e155-4f3a-99c8-f93f83a26453",
+    "fields": {
+        "time_date": "2018-08-27T16:38:04Z",
+        "train_unit": "525ba316-2b15-4acb-aaec-b311a46f7096",
+        "exercise": "Lat Pulldown",
+        "equipment": "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709"
+    }
+},
+{
+    "model": "app_tracker.set",
+    "pk": "410a37a2-6eac-44d4-972c-066ccfd96147",
+    "fields": {
+        "date_time": "2018-08-27T16:47:54Z",
+        "exercise_unit": "f88ab3b6-e155-4f3a-99c8-f93f83a26453",
+        "equipment": "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709",
+        "exercise": null,
+        "repetitions": 2,
+        "weight": 12.0,
+        "durations": "[1,2]",
+        "auto_tracking": true,
+        "rfid": "0006921147",
+        "last_update": "2018-08-27T16:57:54Z",
+        "active": false
+    }
+},
+{
     "model": "app_main.userprofile",
     "pk": 1,
     "fields": {
         "bio": "",
         "profile_image": "",
-        "date_of_birth": "1991-08-26",
+        "date_of_birth": "1991-08-27",
         "rfid_tag": "0006921147",
         "gym": [
             2
@@ -20,140 +211,6 @@
         "bio": "",
         "profile_image": "",
         "members": []
-    }
-},
-  {
-    "model": "auth.user",
-    "pk": 1,
-    "fields": {
-        "password": "pbkdf2_sha256$100000$vGDucplQ2wYB$nYwhiDJvedhqEn1znLLsFBMSATV29+xn7rhUHptbXUo=",
-        "last_login": "2018-08-26T09:54:43.475Z",
-        "is_superuser": true,
-        "username": "dennis",
-        "first_name": "",
-        "last_name": "",
-        "email": "",
-        "is_staff": true,
-        "is_active": true,
-        "date_joined": "2018-08-26T09:54:10.361Z",
-        "groups": [],
-        "user_permissions": []
-    }
-},
-{
-    "model": "auth.user",
-    "pk": 2,
-    "fields": {
-        "password": "pbkdf2_sha256$100000$VhpVCARiXllO$7ydJ7he2zyf4/RfasXzAtT+mHeYB0MBRpuXJN/jlbJw=",
-        "last_login": null,
-        "is_superuser": false,
-        "username": "testgym",
-        "first_name": "",
-        "last_name": "",
-        "email": "",
-        "is_staff": false,
-        "is_active": true,
-        "date_joined": "2018-08-26T09:55:14.732Z",
-        "groups": [],
-        "user_permissions": []
-    }
-},
-{
-    "model": "auth.user",
-    "pk": 3,
-    "fields": {
-        "password": "pbkdf2_sha256$100000$14Nqt2j71smg$XnTOfAdkImMnyvfjTTaHUhTf86QCnqX44KkcvVrZCTQ=",
-        "last_login": null,
-        "is_superuser": false,
-        "username": "rasppi-1",
-        "first_name": "",
-        "last_name": "",
-        "email": "",
-        "is_staff": false,
-        "is_active": true,
-        "date_joined": "2018-08-26T09:55:48.304Z",
-        "groups": [],
-        "user_permissions": []
-    }
-},
-  {
-    "model": "app_tracker.usertrackingprofile",
-    "pk": 1,
-    "fields": {
-        "user_profile": 1,
-        "_pr_active_set": null
-    }
-},
-{
-    "model": "app_tracker.exercise",
-    "pk": "Lat Pulldown",
-    "fields": {
-        "description": "none",
-        "gimprove_system": true,
-        "muscles": [
-            "Lat"
-        ],
-        "equipment_machine": [
-            "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640"
-        ]
-    }
-},
-{
-    "model": "app_tracker.musclegroup",
-    "pk": "Back",
-    "fields": {}
-},
-{
-    "model": "app_tracker.muscle",
-    "pk": "Lat",
-    "fields": {
-        "muscle_group": "Back"
-    }
-},
-{
-    "model": "app_tracker.trainunit",
-    "pk": "2cd9cc65-f1b9-4ae5-a000-44d77d3b5a3a",
-    "fields": {
-        "start_time_date": "2018-08-26T08:56:50Z",
-        "end_time_date": "2018-08-26T09:56:50Z",
-        "date": "2018-08-26",
-        "user": 1
-    }
-},
-{
-    "model": "app_tracker.equipment",
-    "pk": "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640",
-    "fields": {
-        "user": [
-            "rasppi-1"
-        ],
-        "gym": 2,
-        "exercises": [
-            "Lat Pulldown"
-        ]
-    }
-},
-{
-    "model": "app_tracker.exerciseunit",
-    "pk": "2a7cf951-5476-425d-8e19-4d2458cb4ba0",
-    "fields": {
-        "time_date": "2018-08-26T09:46:47Z",
-        "train_unit": "2cd9cc65-f1b9-4ae5-a000-44d77d3b5a3a",
-        "exercise": "Lat Pulldown",
-        "equipment": "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640"
-    }
-},
-{
-    "model": "app_tracker.set",
-    "pk": "f7d2bb5e-41f4-43f6-8e67-5f92eb5794f1",
-    "fields": {
-        "date_time": "2018-08-26T09:52:31Z",
-        "exercise_unit": "2a7cf951-5476-425d-8e19-4d2458cb4ba0",
-        "repetitions": 2,
-        "weight": 14.0,
-        "durations": "[2,1]",
-        "auto_tracking": false,
-        "last_update": "2018-08-26T09:56:31Z"
     }
 }
 ]
