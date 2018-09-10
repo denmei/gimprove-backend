@@ -182,8 +182,6 @@ class Set(models.Model):
             raise ValidationError("Set cannot have a date before it's exerciseunit")
         # check rfid
         if self.rfid is not None and len(UserProfile.objects.filter(rfid_tag=self.rfid)) == 0:
-            print(self.rfid)
-            print(self.rfid is None)
             raise ValidationError("Not a valid rfid")
         # check exercise
         if self.exercise is not None and len(Exercise.objects.filter(name=self.exercise.name)) == 0:
@@ -204,9 +202,6 @@ class Set(models.Model):
                 raise ValidationError("Date value does not fit to exercise unit.")
         # check whether number of durations and repetitions fit
         if len(json.loads(self.durations)) != self.repetitions:
-            print(len(json.loads(self.durations)))
-            print((json.loads(self.durations)))
-            print(self.repetitions)
             raise ValidationError("Number of durations values and repetitions do not fit.")
 
     def save(self, *args, **kwargs):
@@ -241,12 +236,15 @@ class Set(models.Model):
         else:
             user_tracking_profile = self.exercise_unit.train_unit.user
 
-        # If the active-parameter is true, make the set the new active set of the specified user
-        if self.active:
-            user_tracking_profile.active_set = self
-            user_tracking_profile.save()
-
         super(Set, self).save(*args, **kwargs)
+
+
+@receiver(post_save, sender=Set)
+def update_userprofile_active(sender, instance, **kwargs):
+    if instance.active:
+        user_tracking_profile = instance.exercise_unit.train_unit.user
+        user_tracking_profile.active_set = instance
+        user_tracking_profile.save()
 
 
 @receiver(pre_delete, sender=Set)

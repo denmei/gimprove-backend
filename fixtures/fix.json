@@ -76,45 +76,26 @@
     "pk": 1,
     "fields": {
         "user_profile": 1,
-        "_pr_active_set": null
+        "_pr_active_set": "f7d2bb5e-41f4-43f6-8e67-5f92eb5794f1"
     }
 },
 {
     "model": "app_tracker.exercise",
     "pk": "Lat Pulldown",
     "fields": {
-        "description": "\u00f6",
+        "description": "none",
         "gimprove_system": true,
         "muscles": [
             "Lat"
         ],
         "equipment_machine": [
-            "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709"
-        ]
-    }
-},
-{
-    "model": "app_tracker.exercise",
-    "pk": "Leg Press",
-    "fields": {
-        "description": "none",
-        "gimprove_system": true,
-        "muscles": [
-            "Quadriceps"
-        ],
-        "equipment_machine": [
-            "0f0daf69-fc3d-46b6-b437-778413a68bec"
+            "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640"
         ]
     }
 },
 {
     "model": "app_tracker.musclegroup",
     "pk": "Back",
-    "fields": {}
-},
-{
-    "model": "app_tracker.musclegroup",
-    "pk": "Legs",
     "fields": {}
 },
 {
@@ -125,36 +106,28 @@
     }
 },
 {
-    "model": "app_tracker.muscle",
-    "pk": "Quadriceps",
+    "model": "app_tracker.trainunit",
+    "pk": "2cd9cc65-f1b9-4ae5-a000-44d77d3b5a3a",
     "fields": {
-        "muscle_group": "Legs"
+        "start_time_date": "2018-08-26T08:56:50Z",
+        "end_time_date": "2018-08-26T09:56:50Z",
+        "date": "2018-08-26",
+        "user": 1
     }
 },
 {
     "model": "app_tracker.trainunit",
-    "pk": "525ba316-2b15-4acb-aaec-b311a46f7096",
+    "pk": "7f91e278-f910-4afa-a955-68605f227804",
     "fields": {
-        "start_time_date": "2018-08-27T16:28:12Z",
-        "end_time_date": "2018-08-27T16:58:12Z",
-        "date": "2018-08-27",
+        "start_time_date": "2018-09-08T09:10:54.476Z",
+        "end_time_date": "2018-09-08T09:10:54.476Z",
+        "date": "2018-09-08",
         "user": 1
     }
 },
 {
     "model": "app_tracker.equipment",
-    "pk": "0f0daf69-fc3d-46b6-b437-778413a68bec",
-    "fields": {
-        "user": 4,
-        "gym": 2,
-        "exercises": [
-            "Leg Press"
-        ]
-    }
-},
-{
-    "model": "app_tracker.equipment",
-    "pk": "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709",
+    "pk": "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640",
     "fields": {
         "user": 3,
         "gym": 2,
@@ -165,28 +138,38 @@
 },
 {
     "model": "app_tracker.exerciseunit",
-    "pk": "f88ab3b6-e155-4f3a-99c8-f93f83a26453",
+    "pk": "2a7cf951-5476-425d-8e19-4d2458cb4ba0",
     "fields": {
-        "time_date": "2018-08-27T16:38:04Z",
-        "train_unit": "525ba316-2b15-4acb-aaec-b311a46f7096",
+        "time_date": "2018-08-26T09:46:47Z",
+        "train_unit": "2cd9cc65-f1b9-4ae5-a000-44d77d3b5a3a",
         "exercise": "Lat Pulldown",
-        "equipment": "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709"
+        "equipment": "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640"
+    }
+},
+{
+    "model": "app_tracker.exerciseunit",
+    "pk": "e944651e-15d9-4ddf-aa0f-abf189b4d73d",
+    "fields": {
+        "time_date": "2018-09-08T09:10:54.476Z",
+        "train_unit": "7f91e278-f910-4afa-a955-68605f227804",
+        "exercise": "Lat Pulldown",
+        "equipment": "0aad6c44-ee75-4cfa-b3a4-b07f4c1f2640"
     }
 },
 {
     "model": "app_tracker.set",
-    "pk": "410a37a2-6eac-44d4-972c-066ccfd96147",
+    "pk": "f7d2bb5e-41f4-43f6-8e67-5f92eb5794f1",
     "fields": {
-        "date_time": "2018-08-27T16:47:54Z",
-        "exercise_unit": "f88ab3b6-e155-4f3a-99c8-f93f83a26453",
-        "equipment": "8f8caeb1-7431-41d8-a7e7-4ba2c1da8709",
+        "date_time": "2018-08-26T09:52:31Z",
+        "exercise_unit": "2a7cf951-5476-425d-8e19-4d2458cb4ba0",
+        "equipment": null,
         "exercise": null,
         "repetitions": 2,
-        "weight": 12.0,
-        "durations": "[1,2]",
-        "auto_tracking": true,
+        "weight": 14.0,
+        "durations": "[2,1]",
+        "auto_tracking": false,
         "rfid": "0006921147",
-        "last_update": "2018-08-27T16:57:54Z",
+        "last_update": "2018-08-26T09:56:31Z",
         "active": false
     }
 },

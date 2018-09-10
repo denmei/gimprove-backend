@@ -37,11 +37,18 @@ class SetSerializer(serializers.ModelSerializer):
             exercise = Exercise.objects.get(name=exercise_name)
 
         print(validated_data)
+
+        if validated_data['equipment_id'] is not None and validated_data['equipment_id'] != "":
+            equipment = Equipment.objects.get(id=validated_data['equipment_id'])
+        else:
+            equipment = None
+
         new_set = Set.objects.create(repetitions=int(validated_data['repetitions']), exercise_unit=exercise_unit,
                                      weight=int(validated_data['weight']), durations=validated_data['durations'],
                                      auto_tracking=bool(auto_tracking),
                                      date_time=date_parser.parse(validated_data['date_time']),
-                                     rfid=rfid, exercise=exercise, active=validated_data['active'])
+                                     rfid=rfid, exercise=exercise, active=validated_data['active'],
+                                     equipment=equipment)
         return new_set
 
     def validate(self, attrs):
@@ -49,11 +56,11 @@ class SetSerializer(serializers.ModelSerializer):
         Multiple validations of the input data coming from the client.
         """
         equipment_id_r = self.initial_data['equipment_id']
-        exercise_unit = self.initial_data['exercise_unit']
-        exercise_name_r = self.initial_data['exercise']
+        exercise_unit = self.initial_data.get('exercise_unit')
+        exercise_name_r = self.initial_data.get('exercise')
         durations = self.initial_data['durations']
         repetitions = self.initial_data['repetitions']
-        rfid = self.initial_data['rfid']
+        rfid = self.initial_data.get('rfid')
 
         if (exercise_unit is None or exercise_unit == "") and ((exercise_name_r is None or exercise_name_r == "") or
                                                                (rfid is None or rfid == "")):
@@ -82,7 +89,7 @@ class SetSerializer(serializers.ModelSerializer):
         if instance.repetitions < int(validated_data.get('repetitions')):
             instance.durations = validated_data.get('durations')
         instance.repetitions = max(int(validated_data.get('repetitions')), int(instance.repetitions))
-        instance.weight = int(validated_data.get('weight'))
+        instance.weight = float(validated_data.get('weight'))
         instance.last_update = timezone.now()
 
         # Check whether set is still active.
