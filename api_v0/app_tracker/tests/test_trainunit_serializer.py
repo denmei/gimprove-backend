@@ -40,7 +40,7 @@ class TrainUnitSerializerTest(APITestCase):
         When a TrainUnit is deleted, all corresponding exerciseunits and sets must be deleted, too.
         """
         # get reference on a trainunit
-        test_unit = TrainUnit.objects.first()
+        test_unit = TrainUnit.objects.all()[1]
         test_id = test_unit.id
         # get count of all exerciseunits of the trainunit
         exerciseunit_count_before = len(ExerciseUnit.objects.filter(train_unit=test_unit))

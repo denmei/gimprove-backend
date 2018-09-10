@@ -40,7 +40,7 @@ class ExerciseUnitSerializerTest(APITestCase):
         When an ExerciseUnit is deleted, all corresponding sets must be deleted, too.
         """
         # get reference on a exerciseunit
-        test_unit = ExerciseUnit.objects.first()
+        test_unit = ExerciseUnit.objects.all()[1]
         test_id = test_unit.id
         # get reference on all sets of the exerciseunit
         set_count_before = len(Set.objects.filter(exercise_unit=test_unit))
