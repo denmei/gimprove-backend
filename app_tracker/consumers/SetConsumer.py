@@ -3,7 +3,7 @@ from app_tracker.models.models import ClientConnection
 from app_main.models.models import UserProfile
 import json
 import logging
-from app_tracker.models.models import User
+from app_tracker.models.models import User, Equipment
 from asgiref.sync import async_to_sync
 from django.db import close_old_connections
 
@@ -16,23 +16,30 @@ class SetConsumer(WebsocketConsumer):
         WebsocketConsumer.__init__(self, *args, **kwargs)
 
     def connect(self):
+        """
+        Creates a new connection between a client and the server. For each connection, a new instance of the
+        ClientConnection-model is created. This allows to query the connection later on.
+        :return:
+        """
         user = str(self.scope['user'])
         self.anonymousUser = (user == "AnonymousUser" or user is None)
         self.logger = logging.getLogger('django')
         self.accept()
         if not self.anonymousUser:
-            print("accepeted. %s" % self.channel_name)
+            print("accepted. %s" % self.channel_name)
             user = User.objects.get(username=str(self.scope['user']))
             # user_profile = self.__initialize_user__(user.id)
             self.logger.info("Connected to %s, ID: %s" % (user, user.id))
             async_to_sync(self.channel_layer.group_add)("chat", self.channel_name)
             if len(UserProfile.objects.filter(user=user)) == 1:
-                rfid_tag = UserProfile.objects.get(user=user).rfid_tag
-                ClientConnection.objects.all().delete()
-                ClientConnection.objects.create(name=self.channel_name, rfid_tag=rfid_tag)
-                print("Added channel: %s, %s" % (rfid_tag, self.channel_name))
+                ClientConnection.objects.filter(user=user).delete()
+                ClientConnection.objects.create(name=self.channel_name, user=user)
+            elif len(Equipment.objects.filter(user=user)) == 1:
+                ClientConnection.objects.filter(user=user).delete()
+                ClientConnection.objects.create(name=self.channel_name, user=user)
             self.logger.info("Connected to %s, ID: %s" % (user, user.id))
         else:
+            print("not accepted")
             self.disconnect(401)
             self.logger.info("Denied connection to anonymous")
 
@@ -40,7 +47,7 @@ class SetConsumer(WebsocketConsumer):
         self.logger.info("Disconnected from %s" % self.scope['user'])
         async_to_sync(self.channel_layer.group_discard)("chat", self.channel_name)
         if not self.anonymousUser:
-            ClientConnection.objects.get(rfid_tag=UserProfile.objects.get(user=self.scope['user']).rfid_tag).delete()
+            ClientConnection.objects.get(user=UserProfile.objects.get(user=self.scope['user'])).delete()
         close_old_connections()
         print("Disconnected")
 
@@ -48,8 +55,8 @@ class SetConsumer(WebsocketConsumer):
         # self.scope["session"].save()
         if self.__message_valid__(text_data):
             message = json.loads(text_data)
-            rfid_tag = message['rfid']
-            channel_name = ClientConnection.objects.get(rfid_tag=rfid_tag).name
+            user = User.objects.get(username=str(self.scope['user']))
+            channel_name = ClientConnection.objects.get(user=user).name
             self.logger.info("Message: %s to %s" % (message, channel_name))
             async_to_sync(self.channel_layer.send)(channel_name, {"type": "chat.message", "text": str(message)})
         else:
@@ -73,7 +80,7 @@ class SetConsumer(WebsocketConsumer):
         try:
             valid = True
             message = json.loads(text_data)
-            required_keys = ['rfid', 'repetitions', 'weight', 'exercise_name']
+            required_keys = ['rfid', 'repetitions', 'weight', 'exercise']
             for required_key in required_keys:
                 if required_key not in message:
                     valid = False

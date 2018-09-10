@@ -48,8 +48,11 @@ class UserTrackingProfile(models.Model):
 
 
 class ClientConnection(models.Model):
+    """
+    Represents a connection from a client to the server. Created and used by the SetConsumer-Class for example.
+    """
     name = models.CharField(max_length=40, primary_key=True, blank=False, null=False)
-    rfid_tag = models.CharField('RFID', max_length=10, blank=False, null=False)
+    user = models.CharField('user', max_length=10, blank=False, null=False)
 
 
 class Exercise(models.Model):
