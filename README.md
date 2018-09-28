@@ -29,7 +29,8 @@ This repository contains the code for the Gimprove-server. There are mutiple app
 4) **api_v`x`:** Rest-API with the version `x`. API-logic for all apps, implemented with the 
 Django-Rest-Framework.
 
-5) **app_network:** Logic for the Gimprove network that connects users and gyms.
+5) **app_network:** Logic for the Gimprove network that connects users and gym
+s.
 
 6) **app_achievements:** Logic for managing the users' achievements. Users can earn *achievements* e.g. by solving 
 challenges or reaching predefined goals.
@@ -51,3 +52,8 @@ and the App to achieve real-time communication.
 
 ### Contributing
 **Dennis Meisner:** meisnerdennis@web.de
+
+### Team Members
+* **Lennard Rügauf:** l.ruegauf@gmx.de f(Business, Hardware)
+* **Matthias Schuhbauer:** matthias_schuhbauer@web.de (Hardware)
+* **Dennis Meisner:** meisnerdennis@web.de (Business, Software)
