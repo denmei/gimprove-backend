@@ -51,9 +51,9 @@ and the App to achieve real-time communication.
 
 
 ### Contributing
-**Dennis Meisner:** meisnerdennis@web.de
+**Denni Meisner:** meisnerdennis@web.de
 
 ### Team Members
-* **Lennard Rügauf:** l.ruegauf@gmx.de f(Business, Hardware)
+* **Lennard Rügauf:** l.ruegauf@gmx.de (Business, Hardware)
 * **Matthias Schuhbauer:** matthias_schuhbauer@web.de (Hardware)
 * **Dennis Meisner:** meisnerdennis@web.de (Business, Software)
