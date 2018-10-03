@@ -31,12 +31,9 @@ class SetConsumer(WebsocketConsumer):
             # user_profile = self.__initialize_user__(user.id)
             self.logger.info("Connected to %s, ID: %s" % (user, user.id))
             async_to_sync(self.channel_layer.group_add)("chat", self.channel_name)
-            if len(UserProfile.objects.filter(user=user)) == 1:
-                ClientConnection.objects.filter(user=user).delete()
-                ClientConnection.objects.create(name=self.channel_name, user=user)
-            elif len(Equipment.objects.filter(user=user)) == 1:
-                ClientConnection.objects.filter(user=user).delete()
-                ClientConnection.objects.create(name=self.channel_name, user=user)
+            ClientConnection.objects.filter(user=user).delete()
+            ClientConnection.objects.create(name=self.channel_name, user=user)
+            print("Added channel: %s, %s" % (user, self.channel_name))
             self.logger.info("Connected to %s, ID: %s" % (user, user.id))
         else:
             print("not accepted")
@@ -55,8 +52,10 @@ class SetConsumer(WebsocketConsumer):
         # self.scope["session"].save()
         if self.__message_valid__(text_data):
             message = json.loads(text_data)
-            user = User.objects.get(username=str(self.scope['user']))
+            rfid = message['rfid']
+            user = UserProfile.objects.get(rfid_tag=rfid)
             channel_name = ClientConnection.objects.get(user=user).name
+            print("Forwarding to %s" % channel_name)
             self.logger.info("Message: %s to %s" % (message, channel_name))
             async_to_sync(self.channel_layer.send)(channel_name, {"type": "chat.message", "text": str(message)})
         else:
