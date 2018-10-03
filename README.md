@@ -1,13 +1,13 @@
 # Gimprove - Backend
 A project where my colleagues and I digitized fitness machines. Unfortunately we had to
 stop the project for personal and business reasons. Landing Page is still available here: 
-[Gimprove-Website](www.gimprove.com). 
+[Gimprove-Website](http://www.gimprove.com). 
 
 ## Project Overview
 Gimprove is a lightweight system built to digitalize fitness equipment. Once installed on regular machines, Gimprove
 allows users to automatically track all relevant keyfigures of their activities such as the number of repetitions
 or the weight used. Users get feedback in realtime and can analyze their progress in the Gimprove App. For more 
-information about Gimprove, visit the [Gimprove-Website](www.gimprove.com).
+information about Gimprove, visit the [Gimprove-Website](http://www.gimprove.com).
 
 Here's an overview over the Gimprove system and it's components:
 ![Overview over the single components of the Gimprove System](photos/ReadMe/GimproveSystem.png) 
