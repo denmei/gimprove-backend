@@ -19,7 +19,8 @@ class SetConsumer(WebsocketConsumer):
         """
         Creates a new connection between a client and the server. For each connection, a new instance of the
         ClientConnection-model is created. This allows to query the connection later on.
-        :return:
+        For each user, a new connection will be created. Therefore, a sender can send a message to another user's channel,
+        where he can receive and read the message from all devices where he's currently logged in.
         """
         user = str(self.scope['user'])
         self.anonymousUser = (user == "AnonymousUser" or user is None)
@@ -41,14 +42,26 @@ class SetConsumer(WebsocketConsumer):
             self.logger.info("Denied connection to anonymous")
 
     def disconnect(self, code):
+        """
+        Closes a connection between the client and the server. The ClientConnection-instance will be deleted from the
+        database.
+        :param code: Error-Code that should be sent to the client (e.g. 401)
+        """
         self.logger.info("Disconnected from %s" % self.scope['user'])
         async_to_sync(self.channel_layer.group_discard)("chat", self.channel_name)
         if not self.anonymousUser:
             ClientConnection.objects.get(user=UserProfile.objects.get(user=self.scope['user'])).delete()
         close_old_connections()
-        print("Disconnected")
 
     def receive(self, text_data=None, bytes_data=None):
+        """
+        Forwards messages to the channel specified in the message if message is valid.
+        Valid messages must contain at least the following keys: 'rfid', 'repetitions', 'weight', 'exercise'.
+        The rfid-field is used to identify the destination channel.
+        An error message will be sent back if the message was not forwarded.
+        :param text_data: data to be transmitted.
+        :param bytes_data: byte-date will not be used (only for inheritance purposes)
+        """
         # self.scope["session"].save()
         if self.__message_valid__(text_data):
             message = json.loads(text_data)
